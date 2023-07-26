@@ -1,0 +1,127 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$palette-rich-black: (
+    50 : #e1e1e4,
+    100 : #b3b5bc,
+    200 : #81838f,
+    300 : #4f5162,
+    400 : #292c40,
+    500 : $rich-black,
+    600 : #03061a,
+    700 : #020516,
+    800 : #020412,
+    900 : #01020a,
+    A100 : #4f4fff,
+    A200 : #1c1cff,
+    A400 : #0000e8,
+    A700 : #0000ce,
+    contrast: (
+        50 : $rich-black,
+        100 : $rich-black,
+        200 : $rich-black,
+        300 : $white,
+        400 : $white,
+        500 : $white,
+        600 : $white,
+        700 : $white,
+        800 : $white,
+        900 : $white,
+        A100 : $white,
+        A200 : $white,
+        A400 : $white,
+        A700 : $white,
+    )
+);
+
+$palette-penn-red: (
+    50 : #f3e1e1,
+    100 : #e2b3b5,
+    200 : #ce8184,
+    300 : #ba4e52,
+    400 : #ac282d,
+    500 : $penn-red,
+    600 : #950207,
+    700 : #8b0106,
+    800 : #810104,
+    900 : #6f0102,
+    A100 : #ff9e9e,
+    A200 : #ff6b6b,
+    A400 : #ff3838,
+    A700 : #ff1f1f,
+    contrast: (
+        50 : $rich-black,
+        100 : $rich-black,
+        200 : $rich-black,
+        300 : $white,
+        400 : $white,
+        500 : $white,
+        600 : $white,
+        700 : $white,
+        800 : $white,
+        900 : $white,
+        A100 : $rich-black,
+        A200 : $rich-black,
+        A400 : $white,
+        A700 : $white,
+    )
+);
+
+$palette-engineering-orange: (
+    50 : #f9e0e0,
+    100 : #f1b3b3,
+    200 : #e88080,
+    300 : #de4d4d,
+    400 : #d72626,
+    500 : $engineering-orange,
+    600 : #cb0000,
+    700 : #c40000,
+    800 : #be0000,
+    900 : #b30000,
+    A100 : #ffdcdc,
+    A200 : #ffa9a9,
+    A400 : #ff7676,
+    A700 : #ff5d5d,
+    contrast: (
+        50 : $rich-black,
+        100 : $rich-black,
+        200 : $rich-black,
+        300 : $white,
+        400 : $white,
+        500 : $white,
+        600 : $white,
+        700 : $white,
+        800 : $white,
+        900 : $white,
+        A100 : $rich-black,
+        A200 : $rich-black,
+        A400 : $rich-black,
+        A700 : $rich-black,
+    )
+);
+
+$dragon-drop-primary: mat.define-palette($palette-rich-black);
+$dragon-drop-accent: mat.define-palette($palette-penn-red, 500, A100, A400);
+$dragon-drop-warn: mat.define-palette($palette-engineering-orange);
+
+$dragon-drop-typography: mat.define-typography-config(
+  $font-family: #{$font-family, $font-family-alt},
+  $body-1: mat.define-typography-level($font-size: $font-size-base),
+  $body-2: mat.define-typography-level($font-size: $font-size-base),
+  $button: mat.define-typography-level($font-size: $font-size-base, $font-weight: 500)
+);
+
+
+$dragon-drop-theme: mat.define-light-theme((
+  color: (
+    primary: $dragon-drop-primary,
+    accent: $dragon-drop-accent,
+    warn: $dragon-drop-warn,
+  ),
+  typography: $dragon-drop-typography,
+  density: 0,
+));
+
+@include mat.all-component-themes($dragon-drop-theme);
+@include mat.all-component-typographies($dragon-drop-typography);

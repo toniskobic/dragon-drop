@@ -1,0 +1,26 @@
+:root {
+  --rich-black: #{$rich-black};
+  --rosewood: #{$rosewood};
+  --penn-red: #{$penn-red};
+  --engineering-orange: #{$engineering-orange};
+  --sinopia: #{$sinopia};
+  --persimmon: #{$persimmon};
+  --princeton-orange: #{$princeton-orange};
+  --selective-yellow: #{$selective-yellow};
+  --white: #{$white};
+
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-size-4xl: #{$font-size-4xl};
+
+  --font-family: #{$font-family};
+  --font-family-alt: #{$font-family-alt};
+
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-semibold: #{$font-weight-semibold};
+}

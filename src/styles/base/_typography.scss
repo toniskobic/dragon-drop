@@ -1,0 +1,15 @@
+html {
+  font-size: $font-size-html;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-family: $font-family, $font-family-alt;
+}
+
+html * {
+  font-size: $font-size-base;
+  font-family: inherit;
+}
+
+h1 {
+  font-size: $font-size-2xl;
+}

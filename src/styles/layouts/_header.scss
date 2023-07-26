@@ -1,0 +1,29 @@
+header{
+    .mat-toolbar {
+        gap: 10px;
+
+        .menu {
+            border-radius: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+
+            &>.mat-mdc-button-persistent-ripple{
+                border-radius: 0;
+            }
+        }
+
+        .mat-icon.logo {
+            display: flex;
+            height: auto;
+            width: 200px;
+        }
+
+        .spacer {
+            flex: 1 1 auto;
+        }
+
+
+    }
+}
+
