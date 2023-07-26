@@ -1,5 +1,5 @@
 export interface AppState {
-  editor: EditorState
+  editor: EditorState;
 }
 
 export interface EditorState {

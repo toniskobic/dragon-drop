@@ -1,9 +1,8 @@
-import { createActionGroup, emptyProps, props } from "@ngrx/store";
-import { EditorState } from "./editor-state.model";
+import { createActionGroup, props } from '@ngrx/store';
 
 export const EditorActions = createActionGroup({
   source: 'Editor',
   events: {
     'Set Sidebar Opened': props<{ opened?: boolean }>(),
-  }
+  },
 });
