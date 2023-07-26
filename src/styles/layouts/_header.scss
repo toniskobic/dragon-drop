@@ -18,6 +18,11 @@ header {
       display: flex;
       height: auto;
       width: 200px;
+      cursor: pointer;
+    }
+
+    .empty {
+      width: 48px;
     }
 
     .spacer {

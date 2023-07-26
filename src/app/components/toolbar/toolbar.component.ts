@@ -5,7 +5,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
 import { EditorActions } from 'src/app/state/editor.actions';
@@ -20,6 +20,7 @@ import { AppState } from 'src/app/state/editor-state.model';
     MatButtonModule,
     MatIconModule,
     MatRippleModule,
+    RouterModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
