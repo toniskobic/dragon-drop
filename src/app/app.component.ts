@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import ToolbarComponent from './components/toolbar/toolbar.component';
 
 @Component({
   selector: 'drd-root',

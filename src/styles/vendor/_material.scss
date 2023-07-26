@@ -108,6 +108,11 @@ $dragon-drop-warn: mat.define-palette($palette-engineering-orange);
 $dragon-drop-typography: mat.define-typography-config(
   $font-family: #{$font-family,
   $font-family-alt},
+  $headline-5:
+    mat.define-typography-level(
+      $font-size: $font-size-4xl,
+      $font-weight: $font-weight-bold,
+    ),
   $body-1:
     mat.define-typography-level(
       $font-size: $font-size-base,
@@ -137,3 +142,8 @@ $dragon-drop-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($dragon-drop-theme);
 @include mat.all-component-typographies($dragon-drop-typography);
+
+
+span.mdc-button__label {
+  font-size: inherit;
+}

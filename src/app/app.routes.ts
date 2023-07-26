@@ -4,11 +4,13 @@ import { RouterStateSnapshot, Routes, TitleStrategy } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 import { EditorComponent } from './pages/editor/editor.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'editor', component: EditorComponent, title: 'Editor' },
-  { path: '', redirectTo: '/editor', pathMatch: 'full' },
-  { path: '**', redirectTo: '/editor' },
+  { path: '**', component: NotFoundComponent, title: 'Page Not Found' },
 ];
 
 @Injectable()

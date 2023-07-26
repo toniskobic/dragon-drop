@@ -1,10 +1,10 @@
 <header>
   <mat-toolbar color="primary" class="mat-elevation-z6">
-    <button mat-icon-button class="menu" (click)="onClick()">
+    <button *ngIf="editor" mat-icon-button class="menu" (click)="onClick()">
       <mat-icon svgIcon="menu"></mat-icon>
     </button>
     <mat-icon class="logo" svgIcon="dragon-drop-full-white"></mat-icon>
     <div class="spacer"></div>
-    <button mat-raised-button color="accent">Export</button>
+    <button *ngIf="editor" mat-raised-button color="accent">Export</button>
   </mat-toolbar>
 </header>
