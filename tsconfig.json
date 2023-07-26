@@ -17,7 +17,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "typeRoots": ["node_modules/@angular/material"],
+    "typeRoots": ["@angular/material"],
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": [

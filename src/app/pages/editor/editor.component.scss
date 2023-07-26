@@ -1,6 +1,16 @@
-:host {
-    mat-sidenav-container {
-        height: 100%;
-    }
-}
+$rich-black-lighter: var(--rich-black-lighter);
+$white: var(--white);
 
+:host {
+  .mat-sidenav-container {
+    height: 100%;
+    z-index: -1 !important;
+
+    & > mat-sidenav {
+      width: 250px;
+      padding: 5px 10px;
+      background-color: $rich-black-lighter;
+      color: $white;
+    }
+  }
+}
