@@ -36,7 +36,14 @@
         }
       },
       "rules": {
-        "prettier/prettier": ["warn", { "singleQuote": true }],
+        "prettier/prettier": [
+          "warn",
+          { "singleQuote": true },
+          "warn",
+          {
+            "endOfLine": "auto"
+          }
+        ],
         "simple-import-sort/imports": "warn",
         "simple-import-sort/exports": "warn",
         "no-unused-vars": "off",

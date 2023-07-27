@@ -1,4 +1,4 @@
 <drd-toolbar></drd-toolbar>
-<main>
-  <router-outlet></router-outlet>
+<main [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+  <router-outlet #outlet="outlet"></router-outlet>
 </main>
