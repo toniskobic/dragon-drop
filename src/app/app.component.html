@@ -1,4 +1,7 @@
 <drd-toolbar></drd-toolbar>
-<main [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+<main
+  [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''"
+  (@fadeAnimation.start)="animationStarted($event)"
+  (@fadeAnimation.done)="animationDone($event)">
   <router-outlet #outlet="outlet"></router-outlet>
 </main>
