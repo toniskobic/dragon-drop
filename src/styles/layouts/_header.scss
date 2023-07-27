@@ -1,5 +1,7 @@
 header {
   .mat-toolbar {
+    position: relative;
+    z-index: 10;
     gap: 10px;
 
     .menu {

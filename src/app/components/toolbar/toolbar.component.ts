@@ -26,6 +26,9 @@ import { AppState } from 'src/app/state/editor-state.model';
   styleUrls: ['./toolbar.component.scss'],
 })
 export default class ToolbarComponent implements OnInit, OnDestroy {
+  rippleColor = getComputedStyle(document.documentElement).getPropertyValue(
+    '--rich-black-lighter-ripple'
+  );
   editor = false;
   subscriptions: Subscription[] = [];
 

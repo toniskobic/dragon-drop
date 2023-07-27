@@ -4,7 +4,9 @@
       *ngIf="editor; else emptyFirst"
       mat-icon-button
       class="menu"
-      (click)="onClick()">
+      (click)="onClick()"
+      matRipple
+      [matRippleColor]="rippleColor">
       <mat-icon svgIcon="menu"></mat-icon>
     </button>
     <mat-icon
