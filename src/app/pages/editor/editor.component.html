@@ -1,5 +1,10 @@
+<drd-toolbar #toolbar></drd-toolbar>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" [opened]="opened$ | async">
+  <mat-sidenav
+    mode="side"
+    [opened]="opened$ | async"
+    [fixedInViewport]="true"
+    [fixedTopGap]="64">
     <mat-list class="sidenav-list">
       <mat-list-item
         matRipple

@@ -1,5 +1,26 @@
 .section {
-  padding-top: 200px;
   height: 100%;
-  justify-content: flex-start;
+
+  .not-found {
+    display: flex;
+    align-items: center;
+    .icon {
+      width: 300px;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: var(--font-size-xl);
+    }
+
+    .home-button {
+      font-size: var(--font-size-xl);
+      width: 200px;
+      height: 50px;
+    }
+  }
 }

@@ -143,7 +143,6 @@ $dragon-drop-theme: mat.define-light-theme(
 @include mat.all-component-themes($dragon-drop-theme);
 @include mat.all-component-typographies($dragon-drop-typography);
 
-
 span.mdc-button__label {
   font-size: inherit;
 }

@@ -1,7 +1,6 @@
 <header>
   <mat-toolbar color="primary" class="mat-elevation-z6">
     <button
-      *ngIf="editor; else emptyFirst"
       mat-icon-button
       class="menu"
       (click)="onClick()"
@@ -14,10 +13,6 @@
       svgIcon="dragon-drop-full-white"
       routerLink=""></mat-icon>
     <div class="spacer"></div>
-    <button *ngIf="editor" mat-raised-button color="accent">Export</button>
+    <button mat-raised-button color="accent">Export</button>
   </mat-toolbar>
 </header>
-
-<ng-template #emptyFirst>
-  <div class="empty"></div>
-</ng-template>

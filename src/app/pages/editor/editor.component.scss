@@ -3,8 +3,6 @@ $white: var(--white);
 
 :host {
   .mat-sidenav-container {
-    height: 100%;
-
     & > mat-sidenav {
       width: 250px;
       background-color: $rich-black-lighter;

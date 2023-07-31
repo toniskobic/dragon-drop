@@ -38,11 +38,7 @@
       "rules": {
         "prettier/prettier": [
           "warn",
-          { "singleQuote": true },
-          "warn",
-          {
-            "endOfLine": "auto"
-          }
+          { "singleQuote": true, "endOfLine": "auto" }
         ],
         "simple-import-sort/imports": "warn",
         "simple-import-sort/exports": "warn",

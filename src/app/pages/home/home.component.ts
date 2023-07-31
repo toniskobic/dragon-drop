@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { InitIconsComponent } from 'src/app/components/init-icons/init-icons.component';
 
 import ToolbarComponent from '../../components/toolbar/toolbar.component';
 
@@ -20,23 +21,11 @@ import ToolbarComponent from '../../components/toolbar/toolbar.component';
     RouterModule,
   ],
 })
-export class HomeComponent {
+export class HomeComponent extends InitIconsComponent {
   constructor(
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    override matIconRegistry: MatIconRegistry,
+    override domSanitizer: DomSanitizer
   ) {
-    this.initSvgIcons();
-  }
-
-  private initSvgIcons() {
-    const icons = ['dragon-drop-short'];
-    icons.forEach(icon => {
-      this.matIconRegistry.addSvgIcon(
-        icon,
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          `assets/svgs/${icon}.svg`
-        )
-      );
-    });
+    super(domSanitizer, matIconRegistry, ['dragon-drop-short']);
   }
 }

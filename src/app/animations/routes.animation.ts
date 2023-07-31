@@ -1,20 +1,36 @@
 import {
-  trigger,
   animate,
-  transition,
-  style,
+  animateChild,
   query,
+  style,
+  transition,
+  trigger,
 } from '@angular/animations';
 
 export const fadeAnimation = trigger('fadeAnimation', [
   transition('* => *', [
     query(
+      ':enter',
+      [
+        style({
+          opacity: 0,
+          position: 'absolute',
+          height: '100%',
+          width: '100%',
+        }),
+      ],
+      { optional: true }
+    ),
+    query(
       ':leave',
       [
         style({
           opacity: 1,
+          position: 'absolute',
+          height: '100%',
+          width: '100%',
         }),
-        animate('0.3s', style({ opacity: 0, display: 'none' })),
+        animate('0.3s', style({ opacity: 0 })),
       ],
       { optional: true }
     ),
@@ -23,10 +39,14 @@ export const fadeAnimation = trigger('fadeAnimation', [
       [
         style({
           opacity: 0,
+          position: 'relative',
+          height: '100%',
+          width: '100%',
         }),
         animate('0.3s', style({ opacity: 1 })),
       ],
       { optional: true }
     ),
+    query('@*', animateChild(), { optional: true }),
   ]),
 ]);
