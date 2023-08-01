@@ -1,8 +1,11 @@
 $rich-black-lighter: var(--rich-black-lighter);
 $white: var(--white);
+$toolbar-height: var(--toolbar-height);
 
 :host {
   .mat-sidenav-container {
+    height: calc(100% - $toolbar-height);
+
     & > mat-sidenav {
       width: 250px;
       background-color: $rich-black-lighter;

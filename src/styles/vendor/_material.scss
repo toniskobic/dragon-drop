@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @include mat.core();
@@ -101,6 +102,14 @@ $palette-engineering-orange: (
   ),
 );
 
+$background-palette: (
+  background: $white,
+);
+
+$foreground-palette: (
+  text: $rich-black,
+);
+
 $dragon-drop-primary: mat.define-palette($palette-rich-black);
 $dragon-drop-accent: mat.define-palette($palette-penn-red, 500, A100, A400);
 $dragon-drop-warn: mat.define-palette($palette-engineering-orange);
@@ -138,6 +147,32 @@ $dragon-drop-theme: mat.define-light-theme(
     typography: $dragon-drop-typography,
     density: 0,
   )
+);
+
+$dragon-drop-theme: map.set(
+  $dragon-drop-theme,
+  color,
+  background,
+  $background-palette
+);
+
+$dragon-drop-theme: map.set(
+  $dragon-drop-theme,
+  color,
+  foreground,
+  $foreground-palette
+);
+
+$dragon-drop-theme: map.set(
+  $dragon-drop-theme,
+  background,
+  $background-palette
+);
+
+$dragon-drop-theme: map.set(
+  $dragon-drop-theme,
+  foreground,
+  $foreground-palette
 );
 
 @include mat.all-component-themes($dragon-drop-theme);
