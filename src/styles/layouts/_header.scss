@@ -42,8 +42,8 @@ header {
       .toggle-option {
         color: $white;
         border: none;
-        padding: 6px;
         transition: background-color 0.2s ease-in-out;
+        cursor: pointer;
 
         &.mat-button-toggle-checked {
           background-color: $penn-red;
@@ -51,6 +51,7 @@ header {
 
         button {
           display: flex;
+          padding: 6px;
 
           .mat-button-toggle-label-content {
             display: flex;
