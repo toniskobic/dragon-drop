@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { InitIconsComponent } from 'src/app/components/init-icons/init-icons.component';
 import ToolbarComponent from 'src/app/components/toolbar/toolbar.component';
 import { CanDeactivateComponent } from 'src/app/models/can-deactivate.model';
+import { ListItem } from 'src/app/models/list-item.model';
+import { UtilsService } from 'src/app/services/utils.service';
 import { selectSidebarOpened } from 'src/app/state/editor.selectors';
 import { AppState } from 'src/app/state/editor-state.model';
 
@@ -26,10 +26,7 @@ import { AppState } from 'src/app/state/editor-state.model';
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss'],
 })
-export class EditorComponent
-  extends InitIconsComponent
-  implements CanDeactivateComponent
-{
+export class EditorComponent implements CanDeactivateComponent {
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue(
     '--rich-black-lighter-ripple'
   );
@@ -37,17 +34,17 @@ export class EditorComponent
   isSaved = false;
 
   opened$ = this.store.select(selectSidebarOpened);
+  listItems: ListItem[] = [
+    { title: 'Pages', icon: 'pages' },
+    { title: 'Add Section', icon: 'add' },
+    { title: 'Theme Settings', icon: 'theme-settings' },
+  ];
 
   constructor(
     private store: Store<AppState>,
-    override matIconRegistry: MatIconRegistry,
-    override domSanitizer: DomSanitizer
+    private utilsService: UtilsService
   ) {
-    super(domSanitizer, matIconRegistry, undefined, [
-      { title: 'Pages', icon: 'pages' },
-      { title: 'Add Section', icon: 'add' },
-      { title: 'Theme Settings', icon: 'theme-settings' },
-    ]);
+    this.utilsService.initSvgIcons(this.listItems.map(item => item.icon));
   }
 
   canDeactivate(): boolean {

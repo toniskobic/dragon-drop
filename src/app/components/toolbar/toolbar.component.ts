@@ -2,15 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { UtilsService } from 'src/app/services/utils.service';
 import { EditorActions } from 'src/app/state/editor.actions';
 import { AppState } from 'src/app/state/editor-state.model';
-
-import { InitIconsComponent } from '../init-icons/init-icons.component';
 
 @Component({
   selector: 'drd-toolbar',
@@ -26,17 +24,16 @@ import { InitIconsComponent } from '../init-icons/init-icons.component';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
 })
-export default class ToolbarComponent extends InitIconsComponent {
+export default class ToolbarComponent {
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue(
     '--rich-black-lighter-ripple'
   );
 
   constructor(
     private store: Store<AppState>,
-    override domSanitizer: DomSanitizer,
-    override matIconRegistry: MatIconRegistry
+    private utilsService: UtilsService
   ) {
-    super(domSanitizer, matIconRegistry, [
+    this.utilsService.initSvgIcons([
       'dragon-drop-full-white',
       'menu',
       'mobile',

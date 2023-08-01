@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { InitIconsComponent } from 'src/app/components/init-icons/init-icons.component';
+import { UtilsService } from 'src/app/services/utils.service';
 
 import ToolbarComponent from '../../components/toolbar/toolbar.component';
 
@@ -21,11 +20,8 @@ import ToolbarComponent from '../../components/toolbar/toolbar.component';
     RouterModule,
   ],
 })
-export class HomeComponent extends InitIconsComponent {
-  constructor(
-    override matIconRegistry: MatIconRegistry,
-    override domSanitizer: DomSanitizer
-  ) {
-    super(domSanitizer, matIconRegistry, ['dragon-drop-short']);
+export class HomeComponent {
+  constructor(private utilsService: UtilsService) {
+    this.utilsService.initSvgIcons(['dragon-drop-short']);
   }
 }
