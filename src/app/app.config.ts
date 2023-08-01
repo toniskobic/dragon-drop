@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import {
   MAT_RIPPLE_GLOBAL_OPTIONS,
@@ -9,6 +9,8 @@ import { provideRouter, TitleStrategy } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { CustomTitleStrategy, routes } from './app.routes';
 import { EditorEffects } from './state/editor.effects';
@@ -22,6 +24,10 @@ const globalRippleConfig: RippleGlobalOptions = {
   },
 };
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -30,7 +36,16 @@ export const appConfig: ApplicationConfig = {
       useClass: CustomTitleStrategy,
     },
     provideAnimations(),
-    importProvidersFrom(HttpClientModule),
+    provideHttpClient(),
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader,
+          deps: [HttpClient],
+        },
+      })
+    ),
     provideStore({ editor: editorReducer }),
     provideStoreDevtools(),
     provideEffects([EditorEffects]),

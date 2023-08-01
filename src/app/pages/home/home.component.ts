@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { UtilsService } from 'src/app/services/utils.service';
 
 import ToolbarComponent from '../../components/toolbar/toolbar.component';
@@ -18,6 +19,7 @@ import ToolbarComponent from '../../components/toolbar/toolbar.component';
     ToolbarComponent,
     MatButtonModule,
     RouterModule,
+    TranslateModule,
   ],
 })
 export class HomeComponent {

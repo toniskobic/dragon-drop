@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { UtilsService } from 'src/app/services/utils.service';
 import { EditorActions } from 'src/app/state/editor.actions';
 import { AppState } from 'src/app/state/editor-state.model';
@@ -20,6 +21,7 @@ import { AppState } from 'src/app/state/editor-state.model';
     MatIconModule,
     MatRippleModule,
     RouterModule,
+    TranslateModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
