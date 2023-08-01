@@ -1,3 +1,7 @@
+$white: var(--white);
+$rich-black-lighter-ripple: var(--rich-black-lighter-ripple);
+$penn-red: var(--penn-red);
+
 header {
   .mat-toolbar {
     position: relative;
@@ -19,7 +23,7 @@ header {
     }
 
     .menu:hover {
-      background-color: var(--rich-black-lighter-ripple);
+      background-color: $rich-black-lighter-ripple;
       transition: background-color 0.2s ease-in-out;
     }
 
@@ -30,8 +34,41 @@ header {
       cursor: pointer;
     }
 
-    .empty {
-      width: 48px;
+    .viewport-toggle {
+      border: 2px solid $white;
+      border-radius: 5px;
+      align-items: center;
+
+      .toggle-option {
+        color: $white;
+        border: none;
+        padding: 6px;
+        transition: background-color 0.2s ease-in-out;
+
+        &.mat-button-toggle-checked {
+          background-color: $penn-red;
+        }
+
+        button {
+          display: flex;
+
+          .mat-button-toggle-label-content {
+            display: flex;
+            padding: 0;
+          }
+        }
+      }
+
+      .toggle-option:not(.mat-button-toggle-checked):hover {
+        background-color: $rich-black-lighter-ripple;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .vertical-divider {
+        width: 2px;
+        background-color: $white;
+        align-self: stretch;
+      }
     }
 
     .spacer {
