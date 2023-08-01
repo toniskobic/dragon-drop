@@ -11,10 +11,16 @@ header {
       display: flex;
       align-items: center;
       overflow: hidden;
+      transition: background-color 0.2s ease-in-out;
 
       & > .mat-mdc-button-persistent-ripple {
         border-radius: 0;
       }
+    }
+
+    .menu:hover {
+      background-color: var(--rich-black-lighter-ripple);
+      transition: background-color 0.2s ease-in-out;
     }
 
     .mat-icon.logo {
