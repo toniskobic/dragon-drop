@@ -149,27 +149,27 @@ $dragon-drop-theme: mat.define-light-theme(
   )
 );
 
-$dragon-drop-theme: map.set(
+$dragon-drop-theme: map.merge(
   $dragon-drop-theme,
   color,
   background,
   $background-palette
 );
 
-$dragon-drop-theme: map.set(
+$dragon-drop-theme: map.merge(
   $dragon-drop-theme,
   color,
   foreground,
   $foreground-palette
 );
 
-$dragon-drop-theme: map.set(
+$dragon-drop-theme: map.merge(
   $dragon-drop-theme,
   background,
   $background-palette
 );
 
-$dragon-drop-theme: map.set(
+$dragon-drop-theme: map.merge(
   $dragon-drop-theme,
   foreground,
   $foreground-palette
