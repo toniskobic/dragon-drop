@@ -5,5 +5,47 @@
     width: 250px;
     background-color: $rich-black-lighter;
     color: $white;
+
+    .sidenav-body {
+      &.slide-in-from-left {
+        animation: slideInFromLeft $sidenav-transition-duration ease-out;
+      }
+
+      &.slide-in-from-right {
+        animation: slideInFromRight $sidenav-transition-duration ease-out;
+      }
+
+      .sidenav-back {
+        display: flex;
+        height: 56px;
+        width: 100%;
+        background-color: $rich-black-lighter;
+        color: $white;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0;
+        text-align: initial;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+
+        .mat-icon {
+          width: 24px;
+          height: 24px;
+          margin-inline: 16px;
+          flex-grow: 0;
+        }
+
+        span {
+          flex-grow: 1;
+          font-weight: $font-weight-regular;
+          line-height: 1.2;
+        }
+      }
+
+      .sidenav-back:hover {
+        background-color: $rich-black;
+        transition: background-color 0.15s ease-in-out;
+      }
+    }
   }
 }

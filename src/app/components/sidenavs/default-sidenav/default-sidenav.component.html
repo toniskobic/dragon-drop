@@ -1,5 +1,10 @@
 <mat-list class="sidenav-list">
-  <mat-list-item matRipple [matRippleColor]="rippleColor" class="list-item" *ngFor="let item of listItems">
+  <mat-list-item
+    *ngFor="let item of listItems"
+    matRipple
+    [matRippleColor]="rippleColor"
+    class="list-item"
+    (click)="item.onClick ? item.onClick() : undefined">
     <mat-icon class="item-icon" matListItemIcon [svgIcon]="item.icon"></mat-icon>
     <span class="item-label" matListItemTitle>{{ item.label }}</span>
   </mat-list-item>

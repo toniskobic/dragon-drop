@@ -32,5 +32,7 @@ $white: #ffffffff;
 $rich-black-lighter-ripple: rgba(41, 44, 64, 0.75);
 
 // Heights
-$toolbar-height-value: 64;
-$toolbar-height: #{$toolbar-height-value}px;
+$toolbar-height: 64px;
+
+// Transition durations
+$sidenav-transition-duration: 400ms;

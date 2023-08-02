@@ -22,6 +22,7 @@
       "BUTTONS": { "EXPORT": "Export" }
     },
     "MENU": {
+      "BUTTONS": { "BACK": "Back" },
       "LABELS": {
         "PAGES": "Pages",
         "ADD_SECTION": "Add Section",

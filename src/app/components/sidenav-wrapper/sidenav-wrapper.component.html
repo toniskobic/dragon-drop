@@ -1,0 +1,15 @@
+<div
+  class="sidenav-body"
+  [class.slide-in-from-left]="isSlidingInFromLeft"
+  [class.slide-in-from-right]="isSlidingInFromRight">
+  <button
+    class="sidenav-back"
+    *ngIf="subSidenavActive$ | async"
+    (click)="goBack()"
+    matRipple
+    [matRippleColor]="rippleColor">
+    <mat-icon svgIcon="back"></mat-icon>
+    <span>{{ 'EDITOR.MENU.BUTTONS.BACK' | translate }}</span>
+  </button>
+  <ng-template drdSidenavContentArea></ng-template>
+</div>

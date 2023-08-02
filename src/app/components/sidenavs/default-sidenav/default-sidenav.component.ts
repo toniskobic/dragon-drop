@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 import { ListItem } from 'src/app/models/list-item.model';
+import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
+
+import { ThemeSettingsSidenavComponent } from '../theme-settings-sidenav/theme-settings-sidenav.component';
 
 @Component({
   selector: 'drd-default-sidenav',
@@ -23,7 +26,8 @@ export class DefaultSidenavComponent implements OnInit {
 
   constructor(
     private utilsService: UtilsService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private sidenavService: SidenavService
   ) {
     this.utilsService.initSvgIcons(['pages', 'add', 'theme-settings']);
   }
@@ -40,8 +44,15 @@ export class DefaultSidenavComponent implements OnInit {
       {
         label: this.translations['EDITOR.MENU.LABELS.THEME_SETTINGS'],
         icon: 'theme-settings',
+        onClick: async () => {
+          await this.openSpecificSidenav(ThemeSettingsSidenavComponent);
+        },
       },
     ];
+  }
+
+  private async openSpecificSidenav(component: Type<unknown>) {
+    await this.sidenavService.push(component);
   }
 
   private async getTranslations() {
