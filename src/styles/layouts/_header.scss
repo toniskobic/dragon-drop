@@ -6,16 +6,15 @@ header {
     gap: 10px;
 
     .menu {
-      border-radius: 0;
+      width: 48px;
       height: 100%;
+      padding: 0;
+      background-color: $rich-black;
+      color: $white;
       display: flex;
+      justify-content: center;
       align-items: center;
-      overflow: hidden;
       transition: background-color 0.2s ease-in-out;
-
-      & > .mat-mdc-button-persistent-ripple {
-        border-radius: 0;
-      }
     }
 
     .menu:hover {
