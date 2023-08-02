@@ -2,13 +2,13 @@ import type { Type } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { SidenavContentAreaDirective } from '../directives/sidenav-content-area.directive';
+import { DynamicContentAreaDirective } from '../directives/dynamic-content-area.directive';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SidenavService {
-  private contentArea?: SidenavContentAreaDirective;
+  private contentArea?: DynamicContentAreaDirective;
 
   private stack = [] as Type<unknown>[];
 
@@ -23,7 +23,7 @@ export class SidenavService {
     10
   );
 
-  setDynamicContentArea(host: SidenavContentAreaDirective) {
+  setDynamicContentArea(host: DynamicContentAreaDirective) {
     this.contentArea = host;
   }
 

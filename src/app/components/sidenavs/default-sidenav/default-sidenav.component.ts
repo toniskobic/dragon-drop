@@ -6,9 +6,11 @@ import { MatListModule } from '@angular/material/list';
 import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 import { ListItem } from 'src/app/models/list-item.model';
+import { DesignCanvasService } from 'src/app/services/design-canvas.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
+import { ResizableDraggableComponent } from '../../resizable-draggable/resizable-draggable.component';
 import { ThemeSettingsSidenavComponent } from '../theme-settings-sidenav/theme-settings-sidenav.component';
 
 @Component({
@@ -27,7 +29,8 @@ export class DefaultSidenavComponent implements OnInit {
   constructor(
     private utilsService: UtilsService,
     private translate: TranslateService,
-    private sidenavService: SidenavService
+    private sidenavService: SidenavService,
+    private designCanvasService: DesignCanvasService
   ) {
     this.utilsService.initSvgIcons(['pages', 'add', 'theme-settings']);
   }
@@ -40,6 +43,9 @@ export class DefaultSidenavComponent implements OnInit {
       {
         label: this.translations['EDITOR.MENU.LABELS.ADD_SECTION'],
         icon: 'add',
+        onClick: () => {
+          this.designCanvasService.addElement(ResizableDraggableComponent, { title: 'Hello' });
+        },
       },
       {
         label: this.translations['EDITOR.MENU.LABELS.THEME_SETTINGS'],

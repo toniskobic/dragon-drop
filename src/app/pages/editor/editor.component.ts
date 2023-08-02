@@ -8,11 +8,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import ToolbarComponent from 'src/app/components/toolbar/toolbar.component';
-import { SidenavContentAreaDirective } from 'src/app/directives/sidenav-content-area.directive';
+import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { CanDeactivateComponent } from 'src/app/models/can-deactivate.model';
 import { selectSidebarOpened } from 'src/app/state/editor.selectors';
 import { AppState } from 'src/app/state/editor-state.model';
 
+import { DesignCanvasComponent } from '../../components/design-canvas/design-canvas.component';
 import { SidenavWrapperComponent } from '../../components/sidenav-wrapper/sidenav-wrapper.component';
 
 @Component({
@@ -27,10 +28,11 @@ import { SidenavWrapperComponent } from '../../components/sidenav-wrapper/sidena
     MatIconModule,
     MatRippleModule,
     ToolbarComponent,
-    SidenavContentAreaDirective,
+    DynamicContentAreaDirective,
     MatButtonModule,
     TranslateModule,
     SidenavWrapperComponent,
+    DesignCanvasComponent,
   ],
 })
 export class EditorComponent implements CanDeactivateComponent {

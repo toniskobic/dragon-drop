@@ -1,0 +1,11 @@
+<div
+  class="rectangle"
+  #resizableElement
+  mwlResizable
+  [ngStyle]="style"
+  [enableGhostResize]="true"
+  (resizeEnd)="onResizeEnd($event)">
+  <div class="resize-handle-top" mwlResizeHandle [resizeEdges]="{ top: true }"></div>
+  <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true }"></div>
+  <h1 class="title">{{ title }}</h1>
+</div>

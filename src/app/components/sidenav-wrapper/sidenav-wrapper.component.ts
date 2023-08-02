@@ -3,7 +3,7 @@ import { AfterContentInit, ChangeDetectorRef, Component, OnDestroy, OnInit, View
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
-import { SidenavContentAreaDirective } from 'src/app/directives/sidenav-content-area.directive';
+import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -16,7 +16,7 @@ import { DefaultSidenavComponent } from '../sidenavs/default-sidenav/default-sid
     CommonModule,
     MatRippleModule,
     DefaultSidenavComponent,
-    SidenavContentAreaDirective,
+    DynamicContentAreaDirective,
     MatIconModule,
     TranslateModule,
   ],
@@ -24,7 +24,7 @@ import { DefaultSidenavComponent } from '../sidenavs/default-sidenav/default-sid
   styleUrls: ['./sidenav-wrapper.component.scss'],
 })
 export class SidenavWrapperComponent implements OnInit, AfterContentInit, OnDestroy {
-  @ViewChild(SidenavContentAreaDirective, { static: true }) sidenavContentArea!: SidenavContentAreaDirective;
+  @ViewChild(DynamicContentAreaDirective, { static: true }) sidenavContentArea!: DynamicContentAreaDirective;
 
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
   subSidenavActive$ = this.sidenavService.subSidenavActive$;

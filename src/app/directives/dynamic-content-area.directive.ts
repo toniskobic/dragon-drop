@@ -1,9 +1,9 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[drdSidenavContentArea]',
+  selector: '[drdDynamicContentArea]',
   standalone: true,
 })
-export class SidenavContentAreaDirective {
+export class DynamicContentAreaDirective {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }
