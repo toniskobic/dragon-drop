@@ -1,33 +1,19 @@
 <header>
   <mat-toolbar color="primary" class="mat-elevation-z6">
-    <button
-      mat-icon-button
-      class="menu"
-      (click)="onClick()"
-      matRipple
-      [matRippleColor]="rippleColor">
+    <button mat-icon-button class="menu" (click)="onClick()" matRipple [matRippleColor]="rippleColor">
       <mat-icon svgIcon="menu"></mat-icon>
     </button>
-    <mat-icon
-      class="logo"
-      svgIcon="dragon-drop-full-white"
-      routerLink=""></mat-icon>
+    <mat-icon class="logo" svgIcon="dragon-drop-full-white" routerLink=""></mat-icon>
     <mat-button-toggle-group
       [value]="viewportModes.desktop"
       class="viewport-toggle"
       name="viewport"
       aria-label="Toggled Viewport">
-      <mat-button-toggle
-        class="toggle-option"
-        [value]="viewportModes.desktop"
-        matRipple>
+      <mat-button-toggle class="toggle-option" [value]="viewportModes.desktop" matRipple>
         <mat-icon svgIcon="desktop"></mat-icon>
       </mat-button-toggle>
       <div class="vertical-divider"></div>
-      <mat-button-toggle
-        class="toggle-option"
-        [value]="viewportModes.mobile"
-        matRipple>
+      <mat-button-toggle class="toggle-option" [value]="viewportModes.mobile" matRipple>
         <mat-icon svgIcon="mobile"></mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>

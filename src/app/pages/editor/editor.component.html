@@ -1,11 +1,7 @@
 <drd-toolbar></drd-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav
-    mode="side"
-    [opened]="opened$ | async"
-    [fixedInViewport]="true"
-    [fixedTopGap]="toolbarHeight">
-    <drd-default-sidenav></drd-default-sidenav>
+  <mat-sidenav mode="side" [opened]="opened$ | async" [fixedInViewport]="true" [fixedTopGap]="toolbarHeight">
+    <ng-template drdSidenavContentArea></ng-template>
   </mat-sidenav>
   <mat-sidenav-content></mat-sidenav-content>
 </mat-sidenav-container>

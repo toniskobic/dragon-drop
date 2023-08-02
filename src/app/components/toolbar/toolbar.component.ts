@@ -28,9 +28,7 @@ import { AppState } from 'src/app/state/editor-state.model';
   styleUrls: ['./toolbar.component.scss'],
 })
 export default class ToolbarComponent {
-  rippleColor = getComputedStyle(document.documentElement).getPropertyValue(
-    '--rich-black-lighter-ripple'
-  );
+  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
 
   viewportModes = { desktop: 'desktop', mobile: 'mobile' };
 
@@ -38,12 +36,7 @@ export default class ToolbarComponent {
     private store: Store<AppState>,
     private utilsService: UtilsService
   ) {
-    this.utilsService.initSvgIcons([
-      'dragon-drop-full-white',
-      'menu',
-      'mobile',
-      'desktop',
-    ]);
+    this.utilsService.initSvgIcons(['dragon-drop-full-white', 'menu', 'mobile', 'desktop']);
   }
 
   onClick() {

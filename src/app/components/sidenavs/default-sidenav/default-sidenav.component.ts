@@ -16,9 +16,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./default-sidenav.component.scss'],
 })
 export class DefaultSidenavComponent implements OnInit {
-  rippleColor = getComputedStyle(document.documentElement).getPropertyValue(
-    '--rich-black-lighter-ripple'
-  );
+  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
 
   translations: { [key: string]: string } = {};
   listItems: ListItem[] = [];
@@ -47,11 +45,7 @@ export class DefaultSidenavComponent implements OnInit {
   }
 
   private async getTranslations() {
-    const keys = [
-      'EDITOR.MENU.LABELS.PAGES',
-      'EDITOR.MENU.LABELS.ADD_SECTION',
-      'EDITOR.MENU.LABELS.THEME_SETTINGS',
-    ];
+    const keys = ['EDITOR.MENU.LABELS.PAGES', 'EDITOR.MENU.LABELS.ADD_SECTION', 'EDITOR.MENU.LABELS.THEME_SETTINGS'];
     this.translations = (await firstValueFrom(this.translate.get(keys))) as {
       [key: string]: string;
     };

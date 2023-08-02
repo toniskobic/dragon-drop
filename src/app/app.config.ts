@@ -1,9 +1,6 @@
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import {
-  MAT_RIPPLE_GLOBAL_OPTIONS,
-  RippleGlobalOptions,
-} from '@angular/material/core';
+import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, TitleStrategy } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';

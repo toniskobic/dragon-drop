@@ -9,12 +9,7 @@
         "project": ["tsconfig.json"],
         "sourceType": "module"
       },
-      "plugins": [
-        "import",
-        "unused-imports",
-        "simple-import-sort",
-        "@typescript-eslint"
-      ],
+      "plugins": ["import", "unused-imports", "simple-import-sort", "@typescript-eslint"],
       "extends": [
         "eslint:recommended",
         "plugin:import/recommended",
@@ -36,10 +31,7 @@
         }
       },
       "rules": {
-        "prettier/prettier": [
-          "warn",
-          { "singleQuote": true, "endOfLine": "auto" }
-        ],
+        "prettier/prettier": ["warn", { "singleQuote": true, "endOfLine": "auto", "printWidth": 120 }],
         "simple-import-sort/imports": "warn",
         "simple-import-sort/exports": "warn",
         "no-unused-vars": "off",

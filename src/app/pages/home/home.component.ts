@@ -13,14 +13,7 @@ import ToolbarComponent from '../../components/toolbar/toolbar.component';
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    ToolbarComponent,
-    MatButtonModule,
-    RouterModule,
-    TranslateModule,
-  ],
+  imports: [CommonModule, MatIconModule, ToolbarComponent, MatButtonModule, RouterModule, TranslateModule],
 })
 export class HomeComponent {
   constructor(private utilsService: UtilsService) {
