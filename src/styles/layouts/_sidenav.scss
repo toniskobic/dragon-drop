@@ -1,0 +1,9 @@
+.mat-sidenav-container {
+  height: calc(100% - $toolbar-height);
+
+  & > mat-sidenav {
+    width: 250px;
+    background-color: $rich-black-lighter;
+    color: $white;
+  }
+}

@@ -32,4 +32,5 @@ $white: #ffffffff;
 $rich-black-lighter-ripple: rgba(41, 44, 64, 0.75);
 
 // Heights
-$toolbar-height: 64px;
+$toolbar-height-value: 64;
+$toolbar-height: #{$toolbar-height-value}px;

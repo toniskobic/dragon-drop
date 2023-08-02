@@ -1,23 +1,11 @@
 <drd-toolbar></drd-toolbar>
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container>
   <mat-sidenav
     mode="side"
     [opened]="opened$ | async"
     [fixedInViewport]="true"
-    [fixedTopGap]="64">
-    <mat-list class="sidenav-list">
-      <mat-list-item
-        matRipple
-        [matRippleColor]="rippleColor"
-        class="list-item"
-        *ngFor="let item of listItems">
-        <mat-icon
-          class="item-icon"
-          matListItemIcon
-          [svgIcon]="item.icon"></mat-icon>
-        <span class="item-label" matListItemTitle>{{ item.label }}</span>
-      </mat-list-item>
-    </mat-list>
+    [fixedTopGap]="toolbarHeight">
+    <drd-default-sidenav></drd-default-sidenav>
   </mat-sidenav>
   <mat-sidenav-content></mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,0 +1,27 @@
+$rich-black: var(--rich-black);
+$white: var(--white);
+
+.sidenav-list {
+  padding: 0;
+
+  .list-item {
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+
+    .item-icon {
+      margin-inline: 16px;
+      color: $white;
+    }
+
+    .item-label {
+      color: $white;
+      line-height: 1.2;
+    }
+  }
+
+  .list-item:hover {
+    background-color: $rich-black;
+    transition: background-color 0.15s ease-in-out;
+  }
+}

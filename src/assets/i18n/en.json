@@ -15,6 +15,9 @@
     }
   },
   "EDITOR": {
+    "ALERTS": {
+      "UNSAVED_CHANGES": "Are you sure you want to leave, all your progress will be lost?"
+    },
     "TOOLBAR": {
       "BUTTONS": { "EXPORT": "Export" }
     },
