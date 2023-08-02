@@ -5,6 +5,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,6 +24,7 @@ import { AppState } from 'src/app/state/editor-state.model';
     RouterModule,
     TranslateModule,
     MatButtonToggleModule,
+    MatTooltipModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],

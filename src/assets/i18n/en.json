@@ -19,7 +19,11 @@
       "UNSAVED_CHANGES": "Are you sure you want to leave, all your progress will be lost?"
     },
     "TOOLBAR": {
-      "BUTTONS": { "EXPORT": "Export" }
+      "BUTTONS": { "EXPORT": "Export" },
+      "TOOLTIPS": {
+        "DESKTOP": "Desktop view",
+        "MOBILE": "Mobile view"
+      }
     },
     "MENU": {
       "BUTTONS": { "BACK": "Back" },

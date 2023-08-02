@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Type } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -45,14 +45,10 @@ export class DefaultSidenavComponent implements OnInit {
         label: this.translations['EDITOR.MENU.LABELS.THEME_SETTINGS'],
         icon: 'theme-settings',
         onClick: async () => {
-          await this.openSpecificSidenav(ThemeSettingsSidenavComponent);
+          await this.sidenavService.push(ThemeSettingsSidenavComponent);
         },
       },
     ];
-  }
-
-  private async openSpecificSidenav(component: Type<unknown>) {
-    await this.sidenavService.push(component);
   }
 
   private async getTranslations() {

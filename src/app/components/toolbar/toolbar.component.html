@@ -9,11 +9,19 @@
       class="viewport-toggle"
       name="viewport"
       aria-label="Toggled Viewport">
-      <mat-button-toggle class="toggle-option" [value]="viewportModes.desktop" matRipple>
+      <mat-button-toggle
+        class="toggle-option"
+        [value]="viewportModes.desktop"
+        matRipple
+        [matTooltip]="'EDITOR.TOOLBAR.TOOLTIPS.DESKTOP' | translate">
         <mat-icon svgIcon="desktop"></mat-icon>
       </mat-button-toggle>
       <div class="vertical-divider"></div>
-      <mat-button-toggle class="toggle-option" [value]="viewportModes.mobile" matRipple>
+      <mat-button-toggle
+        class="toggle-option"
+        [value]="viewportModes.mobile"
+        matRipple
+        [matTooltip]="'EDITOR.TOOLBAR.TOOLTIPS.MOBILE' | translate">
         <mat-icon svgIcon="mobile"></mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>
