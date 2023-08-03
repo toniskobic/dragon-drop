@@ -12,5 +12,8 @@
       "source.fixAll.eslint": true
     },
     "editor.formatOnSave": false
-  }
+  },
+  "scss.lint.unknownProperties": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "scss.lint.emptyRules": "ignore"
 }

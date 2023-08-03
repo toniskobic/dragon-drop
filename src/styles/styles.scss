@@ -1,12 +1,6 @@
 @charset "UTF-8";
 
-//Abstracts
-@import 'abstracts/__abstracts-dir';
-//Vendor
-@import 'vendor/__vendor-dir';
-//Base Styles
-@import 'base/__base-dir';
-//Components
-@import 'components/__components-dir';
-//Layout
-@import 'layouts/__layouts-dir';
+//Dragon Drop
+@import 'dragon-drop/__dragon-drop-dir';
+//User
+@import 'user/__user-dir';

@@ -1,0 +1,1 @@
+export const MIN_SECTION_DIMENSIONS_PX = 100;

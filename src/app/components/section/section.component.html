@@ -1,3 +1,6 @@
-<section class="container">
-  <div class="content"></div>
+<section class="container" [ngStyle]="style" #element>
+  <div class="content">
+    <h1>{{ title }}</h1>
+    <p>{{ text }}</p>
+  </div>
 </section>

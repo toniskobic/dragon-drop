@@ -1,43 +1,63 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ComponentRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resizable-element';
+import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
+import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
+import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
 
 @Component({
   selector: 'drd-resizable-draggable',
   standalone: true,
-  imports: [CommonModule, ResizableModule],
+  imports: [CommonModule, ResizableModule, DynamicContentAreaDirective],
   templateUrl: './resizable-draggable.component.html',
   styleUrls: ['./resizable-draggable.component.scss'],
 })
-export class ResizableDraggableComponent implements AfterViewInit {
-  @Input() title = 'Test';
+export class ResizableDraggableComponent implements AfterViewInit, OnChanges {
+  @ViewChild(DynamicContentAreaDirective, { static: true }) dynamicContentArea?: DynamicContentAreaDirective;
+  @ViewChild('resizableElement', { read: ResizableDirective }) resizable?: ResizableDirective;
 
-  @ViewChild('resizableElement', { read: ResizableDirective }) resizable!: ResizableDirective;
-  public style: object = {};
+  @Input() component?: DynamicComponent;
+
+  componentRef?: ComponentRef<DynamicElement>;
+  style = {};
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['component'].currentValue) {
+      const component = changes['component'].currentValue as DynamicComponent;
+      this.renderComponent(component);
+    }
+  }
 
   ngAfterViewInit() {
-    const resizable$ = this.resizable.resizing;
-    resizable$.subscribe(event => {
-      console.log(event);
+    const resizable$ = this.resizable?.resizing;
+    resizable$?.subscribe(event => {
       if (event.rectangle.height) {
-        const height = this.roundUpNearest100(event.rectangle.height);
-        this.style = {
-          height: `${height <= 50 ? 50 : height}px`,
+        const style = {
+          height: `${event.rectangle.height}px`,
         };
+        this.componentRef?.setInput('style', style);
       }
     });
   }
 
-  onResizeEnd(event: ResizeEvent): void {
-    if (event.rectangle.height) {
-      const height = this.roundUpNearest100(event.rectangle.height);
-      this.style = {
-        height: `${height <= 50 ? 50 : height}px`,
-      };
+  validate = (event: ResizeEvent): boolean => {
+    if (
+      event.rectangle.width &&
+      event.rectangle.height &&
+      (event.rectangle.width < MIN_SECTION_DIMENSIONS_PX || event.rectangle.height < MIN_SECTION_DIMENSIONS_PX)
+    ) {
+      return false;
     }
-  }
+    return true;
+  };
 
-  roundUpNearest100(num: number) {
-    return Math.round(num / 100) * 100;
+  private renderComponent(component: DynamicComponent) {
+    this.dynamicContentArea?.viewContainerRef.clear();
+    this.componentRef = this.dynamicContentArea?.viewContainerRef.createComponent(component.component);
+    if (component.inputs) {
+      for (const [key, value] of Object.entries(component.inputs)) {
+        this.componentRef?.setInput(key, value);
+      }
+    }
   }
 }

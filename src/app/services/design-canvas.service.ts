@@ -1,6 +1,8 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 
+import { ResizableDraggableComponent } from '../components/resizable-draggable/resizable-draggable.component';
 import { DynamicContentAreaDirective } from '../directives/dynamic-content-area.directive';
+import { DynamicComponent } from '../models/dynamic-component.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +14,10 @@ export class DesignCanvasService {
     this.contentArea = host;
   }
 
-  addElement(component: Type<unknown>, inputs?: { [key: string]: string }): void {
-    const componentRef = this.contentArea?.viewContainerRef.createComponent(component);
-    if (inputs) {
-      for (const [key, value] of Object.entries(inputs)) {
-        componentRef?.setInput(key, value);
-      }
+  addElement(component: DynamicComponent): void {
+    const componentRef = this.contentArea?.viewContainerRef.createComponent(ResizableDraggableComponent);
+    if (componentRef) {
+      componentRef.setInput('component', component);
     }
   }
 }

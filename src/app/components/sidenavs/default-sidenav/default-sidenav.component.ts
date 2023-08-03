@@ -10,7 +10,7 @@ import { DesignCanvasService } from 'src/app/services/design-canvas.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
-import { ResizableDraggableComponent } from '../../resizable-draggable/resizable-draggable.component';
+import { SectionComponent } from '../../section/section.component';
 import { ThemeSettingsSidenavComponent } from '../theme-settings-sidenav/theme-settings-sidenav.component';
 
 @Component({
@@ -44,7 +44,9 @@ export class DefaultSidenavComponent implements OnInit {
         label: this.translations['EDITOR.MENU.LABELS.ADD_SECTION'],
         icon: 'add',
         onClick: () => {
-          this.designCanvasService.addElement(ResizableDraggableComponent, { title: 'Hello' });
+          this.designCanvasService.addElement({
+            component: SectionComponent,
+          });
         },
       },
       {
