@@ -1,3 +1,4 @@
+import { Page } from '../models/page.model';
 import { Viewport } from '../models/viewport.enum';
 
 export interface AppState {
@@ -7,4 +8,6 @@ export interface AppState {
 export interface EditorState {
   sidebarOpened: boolean;
   viewport: Viewport;
+  pages: Page[];
+  currentPageId: string;
 }

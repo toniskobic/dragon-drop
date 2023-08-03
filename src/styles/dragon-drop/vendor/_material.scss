@@ -164,3 +164,7 @@ $dragon-drop-theme: map.merge($dragon-drop-theme, foreground, $foreground-palett
 span.mdc-button__label {
   font-size: inherit;
 }
+
+.cdk-drag-placeholder {
+  visibility: hidden;
+}

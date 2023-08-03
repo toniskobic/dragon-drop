@@ -1,4 +1,5 @@
-import { CdkDrag } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ComponentRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resizable-element';
@@ -9,7 +10,7 @@ import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-compone
 @Component({
   selector: 'drd-resizable-draggable',
   standalone: true,
-  imports: [CommonModule, ResizableModule, DynamicContentAreaDirective, CdkDrag],
+  imports: [CommonModule, ResizableModule, DynamicContentAreaDirective, DragDropModule, ScrollingModule],
   templateUrl: './resizable-draggable.component.html',
   styleUrls: ['./resizable-draggable.component.scss'],
 })

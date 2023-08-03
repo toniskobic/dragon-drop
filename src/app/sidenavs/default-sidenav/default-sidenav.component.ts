@@ -9,9 +9,9 @@ import { ListItem } from 'src/app/models/list-item.model';
 import { DesignCanvasService } from 'src/app/services/design-canvas.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { ThemeSettingsSidenavComponent } from 'src/app/sidenavs/theme-settings-sidenav/theme-settings-sidenav.component';
 
 import { SectionComponent } from '../../builder-components/section/section.component';
-import { ThemeSettingsSidenavComponent } from '../theme-settings-sidenav/theme-settings-sidenav.component';
 
 @Component({
   selector: 'drd-default-sidenav',
@@ -25,7 +25,7 @@ export class DefaultSidenavComponent implements OnInit {
 
   translations: { [key: string]: string } = {};
   listItems: ListItem[] = [];
-
+  counter = 0;
   constructor(
     private utilsService: UtilsService,
     private translate: TranslateService,
@@ -46,6 +46,7 @@ export class DefaultSidenavComponent implements OnInit {
         onClick: () => {
           this.designCanvasService.addElement({
             component: SectionComponent,
+            inputs: { title: `${++this.counter}` },
           });
         },
       },

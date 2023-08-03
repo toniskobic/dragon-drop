@@ -11,3 +11,15 @@ export const selectSidebarOpened = createSelector(selectEditorState, state => {
 export const selectViewport = createSelector(selectEditorState, state => {
   return state.viewport;
 });
+
+export const selectPages = createSelector(selectEditorState, state => {
+  return state.pages;
+});
+
+export const selectCurrentPageId = createSelector(selectEditorState, state => {
+  return state.currentPageId;
+});
+
+export const selectCurrentPage = createSelector(selectEditorState, state => {
+  return state.pages.find(page => page.id === state.currentPageId);
+});

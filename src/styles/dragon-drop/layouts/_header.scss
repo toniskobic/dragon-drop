@@ -4,6 +4,20 @@ header {
     height: $toolbar-height;
     z-index: 10;
     gap: 10px;
+    overflow: auto;
+
+    .subcontainer {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      justify-content: flex-start;
+
+      &--end {
+        justify-content: flex-end;
+      }
+    }
 
     .menu {
       width: 48px;
@@ -15,11 +29,11 @@ header {
       justify-content: center;
       align-items: center;
       transition: background-color 0.2s ease-in-out;
-    }
 
-    .menu:hover {
-      background-color: $rich-black-lighter-ripple;
-      transition: background-color 0.2s ease-in-out;
+      &:hover {
+        background-color: $rich-black-lighter-ripple;
+        transition: background-color 0.2s ease-in-out;
+      }
     }
 
     .mat-icon.logo {
@@ -27,6 +41,10 @@ header {
       height: auto;
       width: 200px;
       cursor: pointer;
+
+      &--small {
+        width: 50px;
+      }
     }
 
     .viewport-toggle {
@@ -68,7 +86,9 @@ header {
     }
 
     .spacer {
-      flex: 1 1 auto;
+      display: flex;
+      flex-grow: 0;
+      flex-shrink: 0;
     }
   }
 }

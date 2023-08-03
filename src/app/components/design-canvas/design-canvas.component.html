@@ -1,3 +1,11 @@
-<div class="canvas" [class.canvas--mobile]="(currentViewport$ | async) === Viewport.Mobile" cdkDropList>
-  <ng-template drdDynamicContentArea></ng-template>
+<div
+  class="canvas"
+  [class.canvas--mobile]="(currentViewport$ | async) === Viewport.Mobile"
+  cdkDropList
+  cdkScrollable
+  [cdkDropListAutoScrollDisabled]="false"
+  [cdkDropListAutoScrollStep]="10"
+  (cdkDropListDropped)="drop($event)">
+  <!-- <ng-template drdDynamicContentArea></ng-template> -->
+  <drd-resizable-draggable *ngFor="let component of components" [component]="component"></drd-resizable-draggable>
 </div>
