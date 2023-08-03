@@ -2,13 +2,13 @@ import { CdkDropList } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { SectionComponent } from 'src/app/builder-components/section/section.component';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { DesignCanvasService } from 'src/app/services/design-canvas.service';
 import { selectViewport } from 'src/app/state/editor.selectors';
 import { AppState } from 'src/app/state/editor-state.model';
 
-import { SectionComponent } from '../builder-components/section/section.component';
 import { ResizableDraggableComponent } from '../resizable-draggable/resizable-draggable.component';
 
 @Component({

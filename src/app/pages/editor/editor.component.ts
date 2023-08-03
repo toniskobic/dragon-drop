@@ -14,7 +14,7 @@ import { selectSidebarOpened } from 'src/app/state/editor.selectors';
 import { AppState } from 'src/app/state/editor-state.model';
 
 import { DesignCanvasComponent } from '../../components/design-canvas/design-canvas.component';
-import { SidenavWrapperComponent } from '../../components/sidenav-wrapper/sidenav-wrapper.component';
+import { SidenavWrapperComponent } from '../../sidenavs/sidenav-wrapper/sidenav-wrapper.component';
 
 @Component({
   selector: 'drd-editor',
@@ -38,7 +38,7 @@ import { SidenavWrapperComponent } from '../../components/sidenav-wrapper/sidena
 export class EditorComponent implements CanDeactivateComponent {
   toolbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--toolbar-height'), 10);
 
-  isSaved = false;
+  isSaved = true;
   opened$ = this.store.select(selectSidebarOpened);
 
   constructor(

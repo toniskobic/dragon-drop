@@ -7,7 +7,7 @@ import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
-import { DefaultSidenavComponent } from '../sidenavs/default-sidenav/default-sidenav.component';
+import { DefaultSidenavComponent } from '../default-sidenav/default-sidenav.component';
 
 @Component({
   selector: 'drd-sidenav-wrapper',
