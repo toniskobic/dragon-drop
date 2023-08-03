@@ -1,6 +1,19 @@
+$breakpoint-mobile: var(--breakpoint-mobile);
+$box-shadow-xl: var(--box-shadow-xl);
+
 .canvas {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  margin-inline: 0;
+  transition: 0.5s ease-in-out;
+  transition-property: width, margin-inline, box-shadow;
+}
+
+.canvas--mobile {
+  width: $breakpoint-mobile;
+  margin-inline: calc(50% - #{$breakpoint-mobile / 2});
+  box-shadow: $box-shadow-xl;
+  transition: all 0.5s ease-in-out;
 }

@@ -1,17 +1,18 @@
 <header>
   <mat-toolbar color="primary" class="mat-elevation-z6">
-    <button class="menu" (click)="onClick()" matRipple [matRippleColor]="rippleColor">
+    <button class="menu" (click)="onMenuClick()" matRipple [matRippleColor]="rippleColor">
       <mat-icon svgIcon="menu"></mat-icon>
     </button>
     <mat-icon class="logo" svgIcon="dragon-drop-full-white" routerLink=""></mat-icon>
     <mat-button-toggle-group
-      [value]="viewportModes.desktop"
+      [value]="currentViewport$ | async"
+      (change)="onViewportChange($event)"
       class="viewport-toggle"
       name="viewport"
       aria-label="Toggled Viewport">
       <mat-button-toggle
         class="toggle-option"
-        [value]="viewportModes.desktop"
+        [value]="Viewport.Desktop"
         matRipple
         [matTooltip]="'EDITOR.TOOLBAR.TOOLTIPS.DESKTOP' | translate">
         <mat-icon svgIcon="desktop"></mat-icon>
@@ -19,7 +20,7 @@
       <div class="vertical-divider"></div>
       <mat-button-toggle
         class="toggle-option"
-        [value]="viewportModes.mobile"
+        [value]="Viewport.Mobile"
         matRipple
         [matTooltip]="'EDITOR.TOOLBAR.TOOLTIPS.MOBILE' | translate">
         <mat-icon svgIcon="mobile"></mat-icon>

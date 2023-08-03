@@ -36,3 +36,13 @@ $toolbar-height: 64px;
 
 // Transition durations
 $sidenav-transition-duration: 400ms;
+
+//Breakpoints
+
+$breakpoint-mobile: 480px;
+
+//Box Shadows
+$box-shadow-xl:
+  0px 10px 13px -6px rgba(0, 0, 0, 0.2),
+  0px 20px 31px 3px rgba(0, 0, 0, 0.14),
+  0px 8px 38px 7px rgba(0, 0, 0, 0.12);
