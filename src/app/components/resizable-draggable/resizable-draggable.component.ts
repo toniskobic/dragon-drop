@@ -1,3 +1,4 @@
+import { CdkDrag } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ComponentRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resizable-element';
@@ -8,7 +9,7 @@ import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-compone
 @Component({
   selector: 'drd-resizable-draggable',
   standalone: true,
-  imports: [CommonModule, ResizableModule, DynamicContentAreaDirective],
+  imports: [CommonModule, ResizableModule, DynamicContentAreaDirective, CdkDrag],
   templateUrl: './resizable-draggable.component.html',
   styleUrls: ['./resizable-draggable.component.scss'],
 })
@@ -54,6 +55,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges {
   private renderComponent(component: DynamicComponent) {
     this.dynamicContentArea?.viewContainerRef.clear();
     this.componentRef = this.dynamicContentArea?.viewContainerRef.createComponent(component.component);
+
     if (component.inputs) {
       for (const [key, value] of Object.entries(component.inputs)) {
         this.componentRef?.setInput(key, value);
