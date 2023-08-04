@@ -4,7 +4,9 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
@@ -14,7 +16,7 @@ import { map } from 'rxjs';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { EditorActions } from 'src/app/state/editor.actions';
-import { selectCurrentPage, selectViewport } from 'src/app/state/editor.selectors';
+import { selectCurrentPageId, selectPages, selectViewport } from 'src/app/state/editor.selectors';
 import { AppState } from 'src/app/state/editor-state.model';
 @Component({
   selector: 'drd-toolbar',
@@ -29,6 +31,8 @@ import { AppState } from 'src/app/state/editor-state.model';
     TranslateModule,
     MatButtonToggleModule,
     MatTooltipModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
@@ -39,7 +43,9 @@ export default class ToolbarComponent {
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
 
   currentViewport$ = this.store.select(selectViewport);
-  currentPage$ = this.store.select(selectCurrentPage);
+  currentPageId$ = this.store.select(selectCurrentPageId);
+  pages$ = this.store.select(selectPages);
+
   isMobile$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(map(result => result.matches));
 
   constructor(
@@ -48,6 +54,12 @@ export default class ToolbarComponent {
     private breakpointObserver: BreakpointObserver
   ) {
     this.utilsService.initSvgIcons(['dragon-drop-full-white', 'dragon-drop-short', 'menu', 'mobile', 'desktop']);
+  }
+
+  onPageSelect(event: MatSelectChange) {
+    const pageId = event.value as string;
+    this.store.dispatch(EditorActions.setCurrentPage({ pageId: pageId }));
+    event.source.close();
   }
 
   onViewportChange($event: MatButtonToggleChange) {

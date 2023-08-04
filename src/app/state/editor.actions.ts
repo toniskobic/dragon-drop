@@ -7,5 +7,6 @@ export const EditorActions = createActionGroup({
   events: {
     'Set Sidebar Opened': props<{ opened?: boolean }>(),
     'Set Viewport': props<{ viewport: Viewport }>(),
+    'Set Current Page': props<{ pageId: string }>(),
   },
 });

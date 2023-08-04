@@ -33,8 +33,17 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-    <div class="spacer">
-      {{ (currentPage$ | async)?.title }}
+    <div class="page-title">
+      <mat-form-field class="current-page">
+        <mat-select
+          [value]="currentPageId$ | async"
+          (selectionChange)="onPageSelect($event)"
+          panelClass="page-select-panel">
+          <mat-option class="select-option" *ngFor="let page of pages$ | async" [value]="page.id">
+            {{ page.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="subcontainer subcontainer--end">
       <button mat-raised-button color="accent">

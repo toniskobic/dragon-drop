@@ -10,7 +10,10 @@ const id = uuidv4();
 export const initialState: EditorState = {
   sidebarOpened: false,
   viewport: Viewport.Desktop,
-  pages: [{ id: id, title: 'Homepage', components: [] }],
+  pages: [
+    { id: id, title: 'Homepage', components: [] },
+    { id: uuidv4(), title: 'About', components: [] },
+  ],
   currentPageId: id,
 };
 
@@ -23,5 +26,9 @@ export const editorReducer = createReducer(
   on(EditorActions.setViewport, (state, { viewport }) => ({
     ...state,
     viewport: viewport,
+  })),
+  on(EditorActions.setCurrentPage, (state, { pageId }) => ({
+    ...state,
+    currentPageId: pageId,
   }))
 );

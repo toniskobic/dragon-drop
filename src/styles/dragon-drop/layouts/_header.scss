@@ -85,10 +85,64 @@ header {
       }
     }
 
-    .spacer {
+    .page-title {
       display: flex;
       flex-grow: 0;
       flex-shrink: 0;
+      justify-content: center;
+
+      .mat-mdc-form-field.current-page {
+        transition: background-color 0.2s ease-in-out;
+        border-radius: 4px;
+        width: 80%;
+        cursor: pointer;
+
+        &.mat-focused {
+          background-color: $rich-black-lighter-ripple;
+        }
+
+        .mat-mdc-select[aria-expanded='true'] {
+          .mat-mdc-select-arrow {
+            transform: rotate(0deg);
+            transition: transform 0.2s linear;
+          }
+        }
+
+        .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+          background-color: inherit;
+          border-radius: 4px;
+
+          .mdc-line-ripple::before {
+            border-bottom-color: $rich-black;
+          }
+        }
+        .mat-mdc-select {
+          color: $white;
+          line-height: $line-height-xs;
+
+          .mat-mdc-select-arrow {
+            color: $white;
+            transform: rotate(90deg);
+            transition: transform 0.2s linear;
+          }
+        }
+        .mat-mdc-form-field-subscript-wrapper {
+          display: none;
+        }
+
+        &:hover {
+          background-color: $rich-black-lighter-ripple;
+          transition: background-color 0.2s ease-in-out;
+
+          .mat-mdc-form-field-focus-overlay {
+            opacity: 0;
+          }
+        }
+      }
+
+      .current-page.mat-mdc-form-field.mat-focused .mat-mdc-form-field-focus-overlay {
+        opacity: 0;
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 :root {
+  // Colors
   --rich-black: #{$rich-black};
   --rich-black-lighter: #{$rich-black-lighter};
   --rosewood: #{$rosewood};
@@ -9,9 +10,9 @@
   --princeton-orange: #{$princeton-orange};
   --selective-yellow: #{$selective-yellow};
   --white: #{$white};
-
   --rich-black-lighter-ripple: #{$rich-black-lighter-ripple};
 
+  // Fonts
   --font-size-xs: #{$font-size-xs};
   --font-size-sm: #{$font-size-sm};
   --font-size-base: #{$font-size-base};
@@ -21,18 +22,27 @@
   --font-size-3xl: #{$font-size-3xl};
   --font-size-4xl: #{$font-size-4xl};
 
+  // Line Heights
+  --line-height-xs: #{$line-height-xs};
+
+  // Font Families
   --font-family: #{$font-family};
   --font-family-alt: #{$font-family-alt};
 
+  // Font Weights
   --font-weight-regular: #{$font-weight-regular};
   --font-weight-semibold: #{$font-weight-semibold};
   --font-weight-bold: #{$font-weight-bold};
 
+  // Heights
   --toolbar-height: #{$toolbar-height};
 
+  // Transition durations
   --sidenav-transition-duration: #{$sidenav-transition-duration};
 
+  //Breakpoints
   --breakpoint-mobile: #{$breakpoint-mobile};
 
+  //Box Shadows
   --box-shadow-xl: #{$box-shadow-xl};
 }

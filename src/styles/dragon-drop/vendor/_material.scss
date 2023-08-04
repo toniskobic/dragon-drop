@@ -168,3 +168,36 @@ span.mdc-button__label {
 .cdk-drag-placeholder {
   visibility: hidden;
 }
+
+.page-select-panel.mat-mdc-select-panel {
+  background-color: $rich-black-lighter;
+  padding: 0;
+
+  .select-option {
+    min-height: 56px;
+    padding: 8px 16px;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .select-option:not(.mdc-list-item--selected):hover {
+    background-color: $rich-black;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+
+  .select-option,
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+    span {
+      color: $white;
+      line-height: $line-height-xs;
+    }
+  }
+
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
+    background-color: $rich-black;
+  }
+
+  .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+    color: $white;
+  }
+}
