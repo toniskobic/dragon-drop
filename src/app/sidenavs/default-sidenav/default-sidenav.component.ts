@@ -11,7 +11,8 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { ThemeSettingsSidenavComponent } from 'src/app/sidenavs/theme-settings-sidenav/theme-settings-sidenav.component';
 
-import { SectionComponent } from '../../builder-components/section/section.component';
+import { PagesSidenavComponent } from '../pages-sidenav/pages-sidenav.component';
+import { SectionsSidenavComponent } from '../sections-sidenav/sections-sidenav.component';
 
 @Component({
   selector: 'drd-default-sidenav',
@@ -39,15 +40,18 @@ export class DefaultSidenavComponent implements OnInit {
     await this.getTranslations();
 
     this.listItems = [
-      { label: this.translations['EDITOR.MENU.LABELS.PAGES'], icon: 'pages' },
+      {
+        label: this.translations['EDITOR.MENU.LABELS.PAGES'],
+        icon: 'pages',
+        onClick: async () => {
+          await this.sidenavService.push(PagesSidenavComponent);
+        },
+      },
       {
         label: this.translations['EDITOR.MENU.LABELS.ADD_SECTION'],
         icon: 'add',
-        onClick: () => {
-          this.designCanvasService.addElement({
-            component: SectionComponent,
-            inputs: { title: `${++this.counter}` },
-          });
+        onClick: async () => {
+          await this.sidenavService.push(SectionsSidenavComponent);
         },
       },
       {

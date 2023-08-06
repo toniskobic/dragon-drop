@@ -43,7 +43,15 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    provideStore({ editor: editorReducer }),
+    provideStore(
+      { editor: editorReducer },
+      {
+        runtimeChecks: {
+          strictStateImmutability: false,
+          strictActionImmutability: false,
+        },
+      }
+    ),
     provideStoreDevtools(),
     provideEffects([EditorEffects]),
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },

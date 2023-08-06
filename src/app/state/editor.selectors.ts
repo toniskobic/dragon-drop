@@ -23,3 +23,7 @@ export const selectCurrentPageId = createSelector(selectEditorState, state => {
 export const selectCurrentPage = createSelector(selectEditorState, state => {
   return state.pages.find(page => page.id === state.currentPageId);
 });
+
+export const selectCurrentPageComponents = createSelector(selectCurrentPage, page => {
+  return page?.components;
+});
