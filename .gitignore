@@ -3,7 +3,8 @@
 
 # Ignore environment files
 /src/environments/*.ts
-/src/environments/*.ts
+!/src/environments/environment.example.ts
+
 
 # Compiled output
 /dist
