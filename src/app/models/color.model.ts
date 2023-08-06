@@ -1,6 +1,5 @@
-type RGB = `rgb(${number}, ${number}, ${number})`;
-type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
-type HEX = `#${string}`;
+export type RGB = `rgb(${number}, ${number}, ${number})`;
+export type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
+export type HEX = `#${string}`;
 
-// eslint-disable-next-line unused-imports/no-unused-vars, @typescript-eslint/no-unused-vars
-type Color = RGB | RGBA | HEX;
+export type Color = RGB | RGBA | HEX;

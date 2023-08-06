@@ -1,0 +1,16 @@
+$white: var(--white);
+$rich-black-lighter: var(--rich-black);
+
+.mat-accordion {
+  padding-inline: 1rem;
+
+  .mat-expansion-panel {
+    background-color: $rich-black-lighter;
+    color: $white;
+
+    .mat-expansion-panel-header-title,
+    .mat-expansion-panel-header-description {
+      color: $white;
+    }
+  }
+}

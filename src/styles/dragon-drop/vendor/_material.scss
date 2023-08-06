@@ -109,6 +109,7 @@ $background-palette: (
 
 $foreground-palette: (
   text: $rich-black,
+  secondary-text: $white,
 );
 
 $dragon-drop-primary: mat.define-palette($palette-rich-black);

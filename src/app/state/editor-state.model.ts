@@ -1,4 +1,5 @@
 import { Page } from '../models/page.model';
+import { ThemeSettings } from '../models/theme-settings.model';
 import { Viewport } from '../models/viewport.enum';
 
 export interface AppState {
@@ -10,4 +11,5 @@ export interface EditorState {
   viewport: Viewport;
   pages: Page[];
   currentPageId: string;
+  themeSettings: ThemeSettings;
 }
