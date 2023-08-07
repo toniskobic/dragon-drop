@@ -1,7 +1,6 @@
 import { Type } from '@angular/core';
 
-export interface ListItem {
-  label: string;
-  icon: string;
+export interface Sidenav {
   component: Type<unknown>;
+  label?: string;
 }

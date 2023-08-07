@@ -29,7 +29,7 @@
       "BUTTONS": { "BACK": "Back" },
       "LABELS": {
         "PAGES": "Pages",
-        "ADD_SECTION": "Add Section",
+        "SECTIONS": "Sections",
         "THEME_SETTINGS": "Theme Settings"
       }
     }

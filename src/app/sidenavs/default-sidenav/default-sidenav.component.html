@@ -4,8 +4,8 @@
     matRipple
     [matRippleColor]="rippleColor"
     class="list-item"
-    (click)="item.onClick ? item.onClick() : undefined">
+    (click)="onClick(item)">
     <mat-icon class="item-icon" matListItemIcon [svgIcon]="item.icon"></mat-icon>
-    <span class="item-label" matListItemTitle>{{ item.label }}</span>
+    <span class="item-label" matListItemTitle>{{ item.label | translate }}</span>
   </mat-list-item>
 </mat-list>

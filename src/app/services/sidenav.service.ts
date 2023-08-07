@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { DynamicContentAreaDirective } from '../directives/dynamic-content-area.directive';
+import { Sidenav } from '../models/sidenav.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,13 @@ import { DynamicContentAreaDirective } from '../directives/dynamic-content-area.
 export class SidenavService {
   private contentArea?: DynamicContentAreaDirective;
 
-  private stack = [] as Type<unknown>[];
+  private stack: Sidenav[] = [];
 
   private subSidenavActiveSubject$ = new BehaviorSubject(this.stack.length > 1);
   subSidenavActive$ = this.subSidenavActiveSubject$.asObservable();
+
+  private subSidenavLabelSubject$ = new BehaviorSubject<string | undefined>(undefined);
+  subSidenavLabel$ = this.subSidenavLabelSubject$.asObservable();
 
   isSlidingInFromRight = false;
   isSlidingInFromLeft = false;
@@ -27,10 +31,13 @@ export class SidenavService {
     this.contentArea = host;
   }
 
-  async push(component: Type<unknown>) {
-    this.stack.push(component);
-    this.setContent(component);
+  async push(sidenav: Sidenav) {
+    this.stack.push(sidenav);
+
+    this.setContent(sidenav.component);
     this.subSidenavActiveSubject$.next(this.stack.length > 1);
+    this.subSidenavLabelSubject$.next(sidenav.label);
+
     if (this.stack.length > 1) await this.animateInFromRight();
   }
 
@@ -41,8 +48,10 @@ export class SidenavService {
 
     this.stack.pop();
 
-    this.setContent(this.stack[this.stack.length - 1]);
+    this.setContent(this.stack[this.stack.length - 1].component);
     this.subSidenavActiveSubject$.next(this.stack.length > 1);
+    this.subSidenavLabelSubject$.next(this.stack[this.stack.length - 1].label);
+
     await this.animateInFromLeft();
   }
 

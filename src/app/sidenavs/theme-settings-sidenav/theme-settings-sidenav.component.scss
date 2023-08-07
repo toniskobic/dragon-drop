@@ -2,8 +2,6 @@ $white: var(--white);
 $rich-black-lighter: var(--rich-black);
 
 .mat-accordion {
-  padding-inline: 1rem;
-
   .mat-expansion-panel {
     background-color: $rich-black-lighter;
     color: $white;

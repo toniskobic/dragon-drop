@@ -28,6 +28,7 @@ export class SidenavWrapperComponent implements OnInit, AfterContentInit, OnDest
 
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
   subSidenavActive$ = this.sidenavService.subSidenavActive$;
+  subSidenavLabel$ = this.sidenavService.subSidenavLabel$;
 
   get isSlidingInFromRight() {
     return this.sidenavService.isSlidingInFromRight;
@@ -50,7 +51,7 @@ export class SidenavWrapperComponent implements OnInit, AfterContentInit, OnDest
   }
 
   async ngAfterContentInit() {
-    await this.sidenavService.push(DefaultSidenavComponent);
+    await this.sidenavService.push({ component: DefaultSidenavComponent });
     this.cdr.detectChanges();
   }
 
