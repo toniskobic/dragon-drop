@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { DynamicContentAreaDirective } from '../directives/dynamic-content-area.directive';
 import { DynamicComponent } from '../models/dynamic-component.model';
-import { EditorActions } from '../state/editor.actions';
+import { EditorActions } from '../state/editor/editor.actions';
 import { AppState } from '../state/editor-state.model';
 
 @Injectable({

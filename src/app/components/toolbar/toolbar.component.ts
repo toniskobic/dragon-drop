@@ -15,9 +15,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
-import { EditorActions } from 'src/app/state/editor.actions';
-import { selectCurrentPageId, selectPages, selectViewport } from 'src/app/state/editor.selectors';
-import { AppState } from 'src/app/state/editor-state.model';
+import { AppState } from 'src/app/state/app.reducer';
+import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { selectCurrentPageId, selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
+import { EditorActions } from 'src/app/state/editor/editor.actions';
+import { selectViewport } from 'src/app/state/editor/editor.reducer';
+
 @Component({
   selector: 'drd-toolbar',
   standalone: true,
@@ -58,7 +61,7 @@ export default class ToolbarComponent {
 
   onPageSelect(event: MatSelectChange) {
     const pageId = event.value as string;
-    this.store.dispatch(EditorActions.setCurrentPage({ pageId: pageId }));
+    this.store.dispatch(DesignCanvasActions.setCurrentPage({ pageId: pageId }));
     event.source.close();
   }
 

@@ -1,6 +1,6 @@
-import { Color } from './color.model';
+import { Color } from 'src/app/models/color.model';
 
-export interface ThemeSettings {
+export interface ThemeSettingsState {
   colors: {
     primary: Color;
     secondary: Color;

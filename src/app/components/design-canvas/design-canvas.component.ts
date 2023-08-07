@@ -7,9 +7,10 @@ import { SectionComponent } from 'src/app/builder-components/section/section.com
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { Viewport } from 'src/app/models/viewport.enum';
-import { EditorActions } from 'src/app/state/editor.actions';
-import { selectCurrentPageComponents, selectViewport } from 'src/app/state/editor.selectors';
-import { AppState } from 'src/app/state/editor-state.model';
+import { AppState } from 'src/app/state/app.reducer';
+import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { selectCurrentPageComponents } from 'src/app/state/design-canvas/design-canvas.reducer';
+import { selectViewport } from 'src/app/state/editor/editor.reducer';
 
 import { ResizableDraggableComponent } from '../resizable-draggable/resizable-draggable.component';
 
@@ -43,7 +44,10 @@ export class DesignCanvasComponent {
 
   drop(event: CdkDragDrop<DynamicComponent[]>) {
     this.store.dispatch(
-      EditorActions.sortCurrentPageComponents({ previousIndex: event.previousIndex, currentIndex: event.currentIndex })
+      DesignCanvasActions.sortCurrentPageComponents({
+        previousIndex: event.previousIndex,
+        currentIndex: event.currentIndex,
+      })
     );
     // moveItemInArray(this.components, event.previousIndex, event.currentIndex);
   }

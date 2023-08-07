@@ -10,8 +10,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import ToolbarComponent from 'src/app/components/toolbar/toolbar.component';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { CanDeactivateComponent } from 'src/app/models/can-deactivate.model';
-import { selectSidebarOpened } from 'src/app/state/editor.selectors';
-import { AppState } from 'src/app/state/editor-state.model';
+import { AppState } from 'src/app/state/app.reducer';
+import { selectSidebarOpened } from 'src/app/state/editor/editor.reducer';
 
 import { DesignCanvasComponent } from '../../components/design-canvas/design-canvas.component';
 import { SidenavWrapperComponent } from '../../sidenavs/sidenav-wrapper/sidenav-wrapper.component';

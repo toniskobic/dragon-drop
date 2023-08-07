@@ -10,8 +10,10 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { CustomTitleStrategy, routes } from './app.routes';
-import { EditorEffects } from './state/editor.effects';
-import { editorReducer } from './state/editor.reducer';
+import { reducers } from './state/app.reducer';
+import { DesignCanvasEffects } from './state/design-canvas/design-canvas.effects';
+import { EditorEffects } from './state/editor/editor.effects';
+import { ThemeSettingsEffects } from './state/theme-settings/theme-settings.effects';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -43,17 +45,14 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    provideStore(
-      { editor: editorReducer },
-      {
-        runtimeChecks: {
-          strictStateImmutability: false,
-          strictActionImmutability: false,
-        },
-      }
-    ),
+    provideStore(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      },
+    }),
     provideStoreDevtools(),
-    provideEffects([EditorEffects]),
+    provideEffects([EditorEffects, DesignCanvasEffects, ThemeSettingsEffects]),
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
   ],
 };
