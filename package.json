@@ -28,6 +28,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "@types/uuid": "^9.0.2",
     "angular-resizable-element": "^7.0.2",
+    "ngx-color-picker": "^14.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "uuid": "^9.0.0",

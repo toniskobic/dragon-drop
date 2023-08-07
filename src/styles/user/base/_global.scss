@@ -1,8 +1,8 @@
 :root {
   //Colors
-  --primary-color: initial;
-  --secondary-color: initial;
-  --tertiary-color: initial;
+  --primary-color: #{$rosewood};
+  --secondary-color: #{$rich-black};
+  --tertiary-color: #{$sinopia};
 
   // Font Families
   --primary-font-family: #{$font-family};

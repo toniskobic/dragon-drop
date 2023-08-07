@@ -1,6 +1,7 @@
-import { createFeature, createReducer } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { Color } from 'src/app/models/color.model';
 
+import { ThemeSettingsActions } from './theme-settings.actions';
 import { ThemeSettingsState } from './theme-settings.model';
 
 const primaryFontFamily = getComputedStyle(document.documentElement).getPropertyValue('--primary-font-family');
@@ -26,11 +27,22 @@ export const initialState: ThemeSettingsState = {
   },
 };
 
-export const reducer = createReducer(initialState);
+export const reducer = createReducer(
+  initialState,
+  on(ThemeSettingsActions.setColor, (state, { key, color }) => {
+    if (state.colors[key as keyof typeof state.colors] !== color) {
+      return { ...state, colors: { ...state.colors, [key as keyof typeof state.colors]: color } };
+    }
+    return state;
+  })
+);
 
 export const themeSettingsFeature = createFeature({
   name: themeSettingsFeatureKey,
   reducer,
+  extraSelectors: ({ selectColors }) => ({
+    selectPrimaryColor: createSelector(selectColors, colors => colors.primary),
+  }),
 });
 
-export const { selectThemeSettingsState, selectColors, selectFonts } = themeSettingsFeature;
+export const { selectThemeSettingsState, selectColors, selectFonts, selectPrimaryColor } = themeSettingsFeature;

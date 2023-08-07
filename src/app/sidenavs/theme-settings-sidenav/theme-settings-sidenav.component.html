@@ -4,6 +4,21 @@
       <mat-expansion-panel-header>
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.COLORS.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
+      <div class="theme-color-wrapper">
+        <div class="theme-color" *ngFor="let color of colors$ | async | keyvalue; trackBy: identify">
+          <label class="theme-color-label">{{ color.key | titlecase }}:</label>
+          <div
+            class="theme-color-input-wrapper"
+            [colorPicker]="color.value"
+            [cpPosition]="'right'"
+            [cpPositionOffset]="'50%'"
+            [cpPositionRelativeToArrow]="true"
+            [cpAlphaChannel]="'disabled'"
+            (colorPickerChange)="onColorChange(color.key, $event)">
+            <div class="theme-color-input" [style.background-color]="color.value"></div>
+          </div>
+        </div>
+      </div>
     </mat-expansion-panel>
     <mat-expansion-panel class="panel-box-shadow">
       <mat-expansion-panel-header>
