@@ -18,4 +18,8 @@ export class SectionComponent implements DynamicElement {
   @Input() text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
   @Input() style: object = {};
+
+  get backgroundColor() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+  }
 }
