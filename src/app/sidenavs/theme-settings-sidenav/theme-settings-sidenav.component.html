@@ -1,14 +1,14 @@
-<mat-accordion multi="true">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>Fonts</mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
-  </mat-expansion-panel>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>Colors</mat-panel-title>
-    </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
-  </mat-expansion-panel>
-</mat-accordion>
+<div class="accordion-wrapper">
+  <mat-accordion multi="true">
+    <mat-expansion-panel class="panel-box-shadow">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.COLORS.TITLE' | translate }}</mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="panel-box-shadow">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.FONTS.TITLE' | translate }}</mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

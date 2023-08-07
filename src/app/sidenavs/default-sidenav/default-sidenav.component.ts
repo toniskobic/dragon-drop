@@ -25,17 +25,17 @@ export class DefaultSidenavComponent {
 
   listItems: ListItem[] = [
     {
-      label: 'EDITOR.MENU.LABELS.PAGES',
+      label: 'EDITOR.SIDENAVS.DEFAULT.LABELS.PAGES',
       icon: 'pages',
       component: PagesSidenavComponent,
     },
     {
-      label: 'EDITOR.MENU.LABELS.SECTIONS',
-      icon: 'add',
+      label: 'EDITOR.SIDENAVS.DEFAULT.LABELS.SECTIONS',
+      icon: 'section',
       component: SectionsSidenavComponent,
     },
     {
-      label: 'EDITOR.MENU.LABELS.THEME_SETTINGS',
+      label: 'EDITOR.SIDENAVS.DEFAULT.LABELS.THEME_SETTINGS',
       icon: 'theme-settings',
       component: ThemeSettingsSidenavComponent,
     },
@@ -45,7 +45,7 @@ export class DefaultSidenavComponent {
     private utilsService: UtilsService,
     private sidenavService: SidenavService
   ) {
-    this.utilsService.initSvgIcons(['pages', 'add', 'theme-settings']);
+    this.utilsService.initSvgIcons(this.listItems.map(listItem => listItem.icon));
   }
 
   async onClick(sidenav: Sidenav) {

@@ -1,5 +1,9 @@
 {
-  "COMMON": {},
+  "COMMON": {
+    "BUTTONS": {
+      "BACK": "Back"
+    }
+  },
   "HOME": {
     "TITLE": "Dragon Drop",
     "INTRO": "Static website drag and drop builder, no coding required.<br/>Transform your ideas into digital reality, one drop at a time.",
@@ -25,12 +29,33 @@
         "MOBILE": "Mobile view"
       }
     },
-    "MENU": {
-      "BUTTONS": { "BACK": "Back" },
-      "LABELS": {
-        "PAGES": "Pages",
-        "SECTIONS": "Sections",
-        "THEME_SETTINGS": "Theme Settings"
+    "SIDENAVS": {
+      "DEFAULT": {
+        "LABELS": {
+          "PAGES": "Pages",
+          "SECTIONS": "Sections",
+          "THEME_SETTINGS": "Theme Settings"
+        }
+      },
+      "THEME_SETTINGS": {
+        "PANELS": {
+          "COLORS": {
+            "TITLE": "Colors",
+            "LABELS": {
+              "PRIMARY": "Primary",
+              "SECONDARY": "Secondary",
+              "TERTIARY": "Tertiary"
+            }
+          },
+          "FONTS": {
+            "TITLE": "Fonts",
+            "LABELS": {
+              "PRIMARY": "Primary",
+              "SECONDARY": "Secondary",
+              "ALTERNATIVE": "Alternative"
+            }
+          }
+        }
       }
     }
   }
