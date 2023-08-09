@@ -1,4 +1,5 @@
 import { Color } from 'src/app/models/color.model';
+import { WebFontItem } from 'src/app/models/web-font.model';
 
 export interface ThemeSettingsState {
   colors: {
@@ -11,4 +12,5 @@ export interface ThemeSettingsState {
     secondary: string;
     alternative: string;
   };
+  fontList: WebFontItem[] | undefined;
 }

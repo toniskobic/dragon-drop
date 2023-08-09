@@ -17,3 +17,11 @@ export interface WebFontItem {
 
 export type FontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 export type FontStyle = `${FontWeight}` | `${FontWeight}italic` | 'regular' | 'italic';
+
+export enum FontSort {
+  Alpha = 'alpha',
+  Date = 'date',
+  Popularity = 'popularity',
+  Style = 'style',
+  Trending = 'trending',
+}
