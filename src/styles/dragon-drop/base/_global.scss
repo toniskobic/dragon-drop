@@ -1,7 +1,7 @@
 :root {
   // Colors
   --rich-black: #{$rich-black};
-  --rich-black-lighter: #{$rich-black-lighter};
+  --rich-black-light: #{$rich-black-light};
   --rosewood: #{$rosewood};
   --penn-red: #{$penn-red};
   --engineering-orange: #{$engineering-orange};
@@ -10,7 +10,9 @@
   --princeton-orange: #{$princeton-orange};
   --selective-yellow: #{$selective-yellow};
   --white: #{$white};
-  --rich-black-lighter-ripple: #{$rich-black-lighter-ripple};
+  --rich-black-light-ripple: #{$rich-black-light-ripple};
+  --rich-black-lighter: #{$rich-black-lighter};
+
 
   // Fonts
   --font-size-xs: #{$font-size-xs};
@@ -45,4 +47,8 @@
 
   //Box Shadows
   --box-shadow-xl: #{$box-shadow-xl};
+}
+
+.dragging-cursor {
+  cursor: grabbing;
 }

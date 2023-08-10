@@ -39,16 +39,32 @@ export const reducer = createReducer(
   on(FontsApiActions.fontsLoadedSuccess, (state, { fontList }) => ({
     ...state,
     fontList: fontList,
-  }))
+  })),
+  on(ThemeSettingsActions.setFont, (state, { key, font }) => {
+    if (state.fonts[key as keyof typeof state.fonts] !== font) {
+      return { ...state, fonts: { ...state.fonts, [key as keyof typeof state.fonts]: font } };
+    }
+    return state;
+  })
 );
 
 export const themeSettingsFeature = createFeature({
   name: themeSettingsFeatureKey,
   reducer,
-  extraSelectors: ({ selectColors }) => ({
-    selectPrimaryColor: createSelector(selectColors, colors => colors.primary),
+  extraSelectors: ({ selectThemeSettingsState, selectFonts }) => ({
+    selectPrimarySecondaryFonts: createSelector(selectFonts, fonts => {
+      return { primary: fonts.primary, secondary: fonts.secondary };
+    }),
+    selectAlternativeFont: createSelector(selectFonts, fonts => fonts.alternative),
+    selectFontList: createSelector(selectThemeSettingsState, fonts => fonts.fontList?.map(font => font.family)),
   }),
 });
 
-export const { selectThemeSettingsState, selectColors, selectFonts, selectPrimaryColor, selectFontList } =
-  themeSettingsFeature;
+export const {
+  selectThemeSettingsState,
+  selectColors,
+  selectFonts,
+  selectFontList,
+  selectPrimarySecondaryFonts,
+  selectAlternativeFont,
+} = themeSettingsFeature;

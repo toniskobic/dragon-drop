@@ -23,7 +23,7 @@ $line-height-xs: 1.2;
 
 // Colors
 $rich-black: #03071eff;
-$rich-black-lighter: #292c40;
+$rich-black-light: #292c40;
 $rosewood: #6a040fff;
 $penn-red: #9d0208ff;
 $engineering-orange: #d00000ff;
@@ -32,7 +32,8 @@ $persimmon: #e85d04ff;
 $princeton-orange: #f48c06ff;
 $selective-yellow: #ffba08ff;
 $white: #ffffffff;
-$rich-black-lighter-ripple: rgba(41, 44, 64, 0.75);
+$rich-black-light-ripple: rgba(41, 44, 64, 0.75);
+$rich-black-lighter: rgba(41, 44, 64, 0.35);
 
 // Heights
 $toolbar-height: 64px;

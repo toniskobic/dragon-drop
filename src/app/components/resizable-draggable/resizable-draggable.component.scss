@@ -1,5 +1,5 @@
 $rich-black: var(--rich-black);
-$rich-black-lighter: var(--rich-black-lighter);
+$rich-black-light: var(--rich-black-light);
 $penn-red: var(--penn-red);
 $white: var(--white);
 
@@ -20,8 +20,8 @@ mwlResizable {
   align-items: center;
   height: 5px;
   width: 100%;
-  background-color: $rich-black-lighter;
-  border: 1px solid $rich-black-lighter;
+  background-color: $rich-black-light;
+  border: 1px solid $rich-black-light;
   border-radius: 5px;
 
   .resize-handle-top,
@@ -30,7 +30,7 @@ mwlResizable {
     height: 12px;
     width: 12px;
     background-color: $white;
-    border: 3px solid $rich-black-lighter;
+    border: 3px solid $rich-black-light;
     overflow: visible;
     cursor: row-resize;
     z-index: 10;
@@ -59,4 +59,12 @@ mwlResizable {
 
 .resize-edge-right {
   right: 0;
+}
+
+.drag-handle {
+  cursor: grab;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
 }

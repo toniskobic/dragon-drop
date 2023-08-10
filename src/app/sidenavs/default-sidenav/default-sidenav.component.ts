@@ -21,7 +21,7 @@ import { SectionsSidenavComponent } from '../sections-sidenav/sections-sidenav.c
   styleUrls: ['./default-sidenav.component.scss'],
 })
 export class DefaultSidenavComponent {
-  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
+  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
 
   listItems: ListItem[] = [
     {

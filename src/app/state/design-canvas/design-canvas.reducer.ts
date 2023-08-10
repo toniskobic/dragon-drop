@@ -13,6 +13,7 @@ const pageId = uuidv4();
 export const initialState: DesignCanvasState = {
   pages: [
     { id: pageId, title: 'Home', components: [{ component: SectionComponent }, { component: SectionComponent }] },
+    { id: uuidv4(), title: 'About', components: [{ component: SectionComponent }] },
   ],
   currentPageId: pageId,
 };

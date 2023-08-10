@@ -1,0 +1,50 @@
+.editor-input.mat-mdc-form-field {
+  background-color: $rich-black-lighter;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 4px;
+  cursor: pointer;
+
+  input {
+    caret-color: $white;
+  }
+
+  &.mat-focused {
+    background-color: $rich-black-light-ripple;
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    background-color: rgba(255, 255, 255, 0);
+    opacity: 0;
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: inherit;
+    border-radius: 4px;
+
+    .mdc-line-ripple::before {
+      border-bottom-color: $rich-black;
+    }
+  }
+  .mat-mdc-select {
+    color: $white;
+    line-height: $line-height-xs;
+
+  }
+
+  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  &:hover {
+    background-color: $rich-black-light-ripple;
+    transition: background-color 0.2s ease-in-out;
+
+    .mat-mdc-form-field-focus-overlay {
+      opacity: 0;
+    }
+  }
+}

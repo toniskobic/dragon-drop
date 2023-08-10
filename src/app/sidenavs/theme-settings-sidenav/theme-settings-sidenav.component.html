@@ -4,9 +4,11 @@
       <mat-expansion-panel-header>
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.COLORS.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="theme-color-wrapper">
-        <div class="theme-color" *ngFor="let color of colors$ | async | keyvalue; trackBy: identify">
-          <label class="theme-color-label">{{ color.key | titlecase }}:</label>
+      <div class="panel-content-wrapper">
+        <div class="theme-color" *ngFor="let color of colors$ | async | keyvalue: returnZero; trackBy: identify">
+          <label class="theme-color-label">
+            {{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.COLORS.LABELS.' + (color.key | uppercase) | translate }}:
+          </label>
           <div
             class="theme-color-input-wrapper"
             [colorPicker]="color.value"
@@ -24,6 +26,21 @@
       <mat-expansion-panel-header>
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.FONTS.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
+      <div class="panel-content-wrapper mat-component-density-xs">
+        <mat-form-field
+          class="editor-input"
+          *ngFor="let font of fonts$ | async | keyvalue: returnZero; trackBy: identify">
+          <mat-label>
+            {{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.FONTS.LABELS.' + (font.key | uppercase) | translate }}:
+          </mat-label>
+          <input type="text" matInput [formControl]="formControls[font.key]" [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setFont($event, font.key)" class="select-field">
+            <mat-option class="select-option" *ngFor="let option of filteredFonts$[font.key] | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

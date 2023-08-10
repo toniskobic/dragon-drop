@@ -4,13 +4,21 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ComponentRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resizable-element';
 import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
+import { DragCursorDirective } from 'src/app/directives/drag-cursor.directive';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
 
 @Component({
   selector: 'drd-resizable-draggable',
   standalone: true,
-  imports: [CommonModule, ResizableModule, DynamicContentAreaDirective, DragDropModule, ScrollingModule],
+  imports: [
+    CommonModule,
+    ResizableModule,
+    DynamicContentAreaDirective,
+    DragDropModule,
+    ScrollingModule,
+    DragCursorDirective,
+  ],
   templateUrl: './resizable-draggable.component.html',
   styleUrls: ['./resizable-draggable.component.scss'],
 })

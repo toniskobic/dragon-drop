@@ -31,7 +31,7 @@ header {
       transition: background-color 0.2s ease-in-out;
 
       &:hover {
-        background-color: $rich-black-lighter-ripple;
+        background-color: $rich-black-light-ripple;
         transition: background-color 0.2s ease-in-out;
       }
     }
@@ -74,7 +74,7 @@ header {
       }
 
       .toggle-option:not(.mat-button-toggle-checked):hover {
-        background-color: $rich-black-lighter-ripple;
+        background-color: $rich-black-light-ripple;
         transition: background-color 0.2s ease-in-out;
       }
 
@@ -98,7 +98,7 @@ header {
         cursor: pointer;
 
         &.mat-focused {
-          background-color: $rich-black-lighter-ripple;
+          background-color: $rich-black-light-ripple;
         }
 
         .mat-mdc-select[aria-expanded='true'] {
@@ -131,7 +131,7 @@ header {
         }
 
         &:hover {
-          background-color: $rich-black-lighter-ripple;
+          background-color: $rich-black-light-ripple;
           transition: background-color 0.2s ease-in-out;
 
           .mat-mdc-form-field-focus-overlay {

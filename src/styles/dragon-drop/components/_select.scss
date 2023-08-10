@@ -1,0 +1,30 @@
+.select-field {
+  .select-option.mat-mdc-option {
+    min-height: 56px;
+    padding: 8px 16px;
+    transition: background-color 0.2s ease-in-out;
+
+    &:not(.mdc-list-item--selected):hover {
+      background-color: $rich-black;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    &,
+    &.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+      span {
+        color: $white;
+        line-height: $line-height-xs;
+      }
+    }
+
+    .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+      color: $white;
+    }
+
+    &.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
+      background-color: $rich-black;
+    }
+  }
+
+}
+

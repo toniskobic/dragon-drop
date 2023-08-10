@@ -8,7 +8,7 @@ $palette-rich-black: (
   100: #b3b5bc,
   200: #81838f,
   300: #4f5162,
-  400: $rich-black-lighter,
+  400: $rich-black-light,
   500: $rich-black,
   600: #03061a,
   700: #020516,
@@ -170,35 +170,12 @@ span.mdc-button__label {
   visibility: hidden;
 }
 
-.page-select-panel.mat-mdc-select-panel {
-  background-color: $rich-black-lighter;
-  padding: 0;
-
-  .select-option {
-    min-height: 56px;
-    padding: 8px 16px;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  .select-option:not(.mdc-list-item--selected):hover {
-    background-color: $rich-black;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-
-  .select-option,
-  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
-    span {
-      color: $white;
-      line-height: $line-height-xs;
-    }
-  }
-
-  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
-    background-color: $rich-black;
-  }
-
-  .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
-    color: $white;
-  }
+.mat-component-density-xs {
+  @include mat.all-component-densities(-1);
 }
+
+.select-field, .select-field.mat-mdc-select-panel, div.mat-mdc-autocomplete-panel[role='listbox']  {
+  background-color: $rich-black-light;
+  padding: 0;
+}
+

@@ -26,7 +26,7 @@ import { DefaultSidenavComponent } from '../default-sidenav/default-sidenav.comp
 export class SidenavWrapperComponent implements OnInit, AfterContentInit, OnDestroy {
   @ViewChild(DynamicContentAreaDirective, { static: true }) sidenavContentArea!: DynamicContentAreaDirective;
 
-  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
+  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
   subSidenavActive$ = this.sidenavService.subSidenavActive$;
   subSidenavLabel$ = this.sidenavService.subSidenavLabel$;
 

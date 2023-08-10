@@ -6,6 +6,7 @@ export const ThemeSettingsActions = createActionGroup({
   source: 'Theme Settings',
   events: {
     'Set Color': props<{ key: string; color: Color }>(),
+    'Set Font': props<{ key: string; font: string }>(),
     'Load Fonts': emptyProps(),
   },
 });

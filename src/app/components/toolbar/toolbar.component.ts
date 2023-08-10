@@ -43,7 +43,7 @@ import { selectViewport } from 'src/app/state/editor/editor.reducer';
 export default class ToolbarComponent {
   readonly Viewport = Viewport;
 
-  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-lighter-ripple');
+  rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
 
   currentViewport$ = this.store.select(selectViewport);
   currentPageId$ = this.store.select(selectCurrentPageId);
