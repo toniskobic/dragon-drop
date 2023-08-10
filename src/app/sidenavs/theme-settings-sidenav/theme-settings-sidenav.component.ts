@@ -1,12 +1,10 @@
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { LetDirective } from '@ngrx/component';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -21,7 +19,6 @@ import { selectColors, selectFontList, selectFonts } from 'src/app/state/theme-s
   selector: 'drd-theme-settings-sidenav',
   standalone: true,
   imports: [
-    FormsModule,
     CommonModule,
     MatExpansionModule,
     TranslateModule,
@@ -30,8 +27,6 @@ import { selectColors, selectFontList, selectFonts } from 'src/app/state/theme-s
     ReactiveFormsModule,
     MatInputModule,
     MatAutocompleteModule,
-    ScrollingModule,
-    LetDirective,
   ],
   templateUrl: './theme-settings-sidenav.component.html',
   styleUrls: ['./theme-settings-sidenav.component.scss'],

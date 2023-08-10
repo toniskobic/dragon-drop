@@ -174,8 +174,9 @@ span.mdc-button__label {
   @include mat.all-component-densities(-1);
 }
 
-.select-field, .select-field.mat-mdc-select-panel, div.mat-mdc-autocomplete-panel[role='listbox']  {
+.select-field,
+.select-field.mat-mdc-select-panel,
+div.mat-mdc-autocomplete-panel[role='listbox'] {
   background-color: $rich-black-light;
   padding: 0;
 }
-
