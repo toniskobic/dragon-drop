@@ -1,1 +1,47 @@
-<p>sections-sidenav works!</p>
+<div class="accordion-wrapper">
+  <mat-accordion>
+    <mat-expansion-panel class="panel-box-shadow">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ 'Headers' }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="panel-content-wrapper">
+        <div
+          class="grid"
+          cdkDropList
+          [cdkDropListConnectedTo]="'canvas'"
+          [cdkDropListSortingDisabled]="true"
+          [cdkDropListDisabled]="">
+          <div
+            class="grid-item mat-elevation-z6"
+            *ngFor="let header of headers"
+            cdkDrag
+            [cdkDragData]="header.component">
+            <span>{{ header.name }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="panel-box-shadow">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ 'Sections' }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="panel-content-wrapper">
+        <div class="grid" cdkDropList [cdkDropListConnectedTo]="'canvas'" [cdkDropListSortingDisabled]="true">
+          <div
+            class="grid-item mat-elevation-z6"
+            *ngFor="let section of sections"
+            cdkDrag
+            [cdkDragData]="section.component">
+            <span>{{ section.name }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel class="panel-box-shadow">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ 'Footers' }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="panel-content-wrapper"></div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

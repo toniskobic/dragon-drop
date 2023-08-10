@@ -7,5 +7,10 @@ export const DesignCanvasActions = createActionGroup({
     'Set Current Page': props<{ pageId: string }>(),
     'Sort Current Page Components': props<{ previousIndex: number; currentIndex: number }>(),
     'Add Curent Page Component': props<{ component: DynamicComponent }>(),
+    'Add Dropped Current Page Component': props<{
+      component: DynamicComponent;
+      previousIndex: number;
+      currentIndex: number;
+    }>(),
   },
 });

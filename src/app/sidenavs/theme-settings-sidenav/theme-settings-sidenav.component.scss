@@ -1,53 +1,19 @@
 $white: var(--white);
-$rich-black: var(--rich-black);
-$rich-black-light: var(--rich-black-light);
-$white-shadow: #393b45;
 
-.accordion-wrapper {
+.theme-color {
   display: flex;
-  flex-direction: column;
-  padding-inline: 1rem;
+  align-items: center;
 
-  .mat-accordion {
-    .mat-expansion-panel {
-      background-color: $rich-black;
-      color: $white;
+  .theme-color-label {
+    flex: 1 1 50%;
+  }
 
-      .mat-expansion-panel-header-title,
-      .mat-expansion-panel-header-description {
-        color: $white;
-      }
-
-      .panel-content-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        .theme-color {
-          display: flex;
-          align-items: center;
-
-          .theme-color-label {
-            flex: 1 1 50%;
-          }
-
-          .theme-color-input {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-            border: 2px solid $white;
-            border-radius: 50%;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-
-    .panel-box-shadow {
-      box-shadow:
-        0px 7px 8px -4px rgba(0, 0, 0, 0.2),
-        0px 12px 17px 2px rgba(0, 0, 0, 0.14),
-        0px 5px 22px 4px $rich-black-light;
-    }
+  .theme-color-input {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border: 2px solid $white;
+    border-radius: 50%;
+    cursor: pointer;
   }
 }

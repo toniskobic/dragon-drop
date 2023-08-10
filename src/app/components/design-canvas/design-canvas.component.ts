@@ -3,9 +3,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SectionComponent } from 'src/app/builder-components/section/section.component';
+import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
+import { SectionItem } from 'src/app/models/section-item.model';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
@@ -42,13 +43,23 @@ export class DesignCanvasComponent {
     private store: Store<AppState>
   ) {}
 
-  drop(event: CdkDragDrop<DynamicComponent[]>) {
-    this.store.dispatch(
-      DesignCanvasActions.sortCurrentPageComponents({
-        previousIndex: event.previousIndex,
-        currentIndex: event.currentIndex,
-      })
-    );
-    // moveItemInArray(this.components, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<DynamicComponent[], SectionItem[] | DynamicComponent[]>) {
+    if (event.previousContainer === event.container) {
+      this.store.dispatch(
+        DesignCanvasActions.sortCurrentPageComponents({
+          previousIndex: event.previousIndex,
+          currentIndex: event.currentIndex,
+        })
+      );
+    } else {
+      const component = event.item.data as DynamicComponent;
+      this.store.dispatch(
+        DesignCanvasActions.addDroppedCurrentPageComponent({
+          component: component,
+          previousIndex: event.previousIndex,
+          currentIndex: event.currentIndex,
+        })
+      );
+    }
   }
 }

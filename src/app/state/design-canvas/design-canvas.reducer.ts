@@ -1,10 +1,10 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
-import { SectionComponent } from 'src/app/builder-components/section/section.component';
+import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DesignCanvasActions } from './design-canvas.actions';
 import { DesignCanvasState } from './design-canvas.model';
-import { currentPage, moveItemInArray, updatePage } from './design-canvas.utils';
+import { copyArrayItem, currentPage, moveItemInArray, updatePage } from './design-canvas.utils';
 
 export const designCanvasFeatureKey = 'designCanvas';
 
@@ -38,6 +38,16 @@ export const reducer = createReducer(
     const page = currentPage(state);
     if (page) {
       const components = [...page.components, component];
+      const modifiedPage = { ...page, components: components };
+      const pages = updatePage(state, modifiedPage);
+      return { ...state, pages: pages };
+    }
+    return state;
+  }),
+  on(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { component, previousIndex, currentIndex }) => {
+    const page = currentPage(state);
+    if (page) {
+      const components = copyArrayItem(component, page.components, previousIndex, currentIndex);
       const modifiedPage = { ...page, components: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };

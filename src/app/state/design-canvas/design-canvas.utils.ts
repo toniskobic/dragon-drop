@@ -24,3 +24,13 @@ export function moveItemInArray<T>(arr: T[], previousIndex: number, currentIndex
 
   return newArray;
 }
+
+export function copyArrayItem<T>(newItem: T, targetArray: T[], currentIndex: number, targetIndex: number): T[] {
+  // Create a copy of the target array
+  const newTargetArray = [...targetArray];
+
+  // Insert the new item into the new target array at the specified index
+  newTargetArray.splice(targetIndex, 0, newItem);
+
+  return newTargetArray;
+}

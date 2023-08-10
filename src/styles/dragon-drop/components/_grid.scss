@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 10px;
+  padding-inline: 5px;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $rich-black-light;
+  color: $white;
+  border: 1px solid white;
+  max-width: 80px;
+  aspect-ratio: 1;
+}

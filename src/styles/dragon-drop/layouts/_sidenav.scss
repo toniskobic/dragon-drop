@@ -6,6 +6,10 @@
     background-color: $rich-black-light;
     color: $white;
 
+    .mat-drawer-inner-container {
+      overflow-x: hidden;
+    }
+
     .sidenav-body {
       &.slide-in-from-left {
         animation: slideInFromLeft $sidenav-transition-duration ease-out;

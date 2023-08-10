@@ -1,0 +1,9 @@
+<header #element [ngStyle]="style">
+  <nav>
+    <ul>
+      <li *ngFor="let page of pages$ | async">
+        <a>{{ page.title }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>

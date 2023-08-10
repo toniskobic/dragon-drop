@@ -13,7 +13,7 @@ import { DynamicElement } from 'src/app/models/dynamic-component.model';
 export class SectionComponent implements DynamicElement {
   @ViewChild('element') element: ElementRef<HTMLElement> | null = null;
 
-  @Input() title = 'Default title';
+  @Input() title = 'Lorem ipsum';
 
   @Input() text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
 
