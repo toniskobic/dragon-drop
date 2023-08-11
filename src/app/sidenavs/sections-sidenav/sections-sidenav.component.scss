@@ -2,4 +2,12 @@
   max-height: 250px;
   overflow: auto;
 
+  .grid-item:hover {
+    cursor: grab;
+  }
+
+  .grid-item:active {
+    cursor: grabbing;
+  }
+
 }

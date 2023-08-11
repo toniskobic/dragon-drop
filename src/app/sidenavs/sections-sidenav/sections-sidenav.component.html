@@ -21,6 +21,7 @@
             class="grid-item mat-elevation-z6"
             *ngFor="let section of sections.value"
             cdkDrag
+            drdDragCursor
             [cdkDragData]="section">
             <span>{{ section.name }}</span>
           </div>

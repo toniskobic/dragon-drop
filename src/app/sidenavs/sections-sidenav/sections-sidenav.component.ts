@@ -6,12 +6,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FooterComponent } from 'src/app/builder-components/footers/footer/footer.component';
 import { HeaderComponent } from 'src/app/builder-components/headers/header/header.component';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
+import { DragCursorDirective } from 'src/app/directives/drag-cursor.directive';
 import { SectionItem } from 'src/app/models/section-item.model';
 
 @Component({
   selector: 'drd-sections-sidenav',
   standalone: true,
-  imports: [CommonModule, MatExpansionModule, TranslateModule, DragDropModule],
+  imports: [CommonModule, MatExpansionModule, TranslateModule, DragDropModule, DragCursorDirective],
   templateUrl: './sections-sidenav.component.html',
   styleUrls: ['./sections-sidenav.component.scss'],
 })
