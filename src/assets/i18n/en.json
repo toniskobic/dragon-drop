@@ -37,6 +37,16 @@
           "THEME_SETTINGS": "Theme Settings"
         }
       },
+      "PAGES": {
+        "PANELS": {
+          "PAGES": {
+            "TITLE": "Pages"
+          },
+          "CURRENT_PAGE": {
+            "TITLE": "Current Page"
+          }
+        }
+      },
       "THEME_SETTINGS": {
         "PANELS": {
           "COLORS": {
