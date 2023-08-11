@@ -46,25 +46,27 @@ export class DesignCanvasComponent {
   ) {}
 
   drop(event: CdkDragDrop<DynamicComponent[], SectionItem[] | DynamicComponent[]>) {
-    if (event.previousContainer === event.container) {
-      this.store.dispatch(
-        DesignCanvasActions.sortCurrentPageComponents({
-          previousIndex: event.previousIndex,
-          currentIndex: event.currentIndex,
-        })
-      );
-    } else {
-      const sectionItem = event.item.data as SectionItem;
-      this.store.dispatch(
-        DesignCanvasActions.addDroppedCurrentPageComponent({
-          component: sectionItem.component,
-          previousIndex: event.previousIndex,
-          currentIndex: event.currentIndex,
-        })
-      );
+    if (event.isPointerOverContainer) {
+      if (event.previousContainer === event.container) {
+        this.store.dispatch(
+          DesignCanvasActions.sortCurrentPageComponents({
+            previousIndex: event.previousIndex,
+            currentIndex: event.currentIndex,
+          })
+        );
+      } else {
+        const sectionItem = event.item.data as SectionItem;
+        this.store.dispatch(
+          DesignCanvasActions.addDroppedCurrentPageComponent({
+            component: sectionItem.component,
+            previousIndex: event.previousIndex,
+            currentIndex: event.currentIndex,
+          })
+        );
+      }
     }
     if (event.previousContainer.data) {
-      this.utils.filterInPlace(event.previousContainer.data as SectionItem[], f => !f.temp);
+      this.utils.filterInPlace(event.previousContainer.data as SectionItem[], item => !item.temp);
     }
   }
 }

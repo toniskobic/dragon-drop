@@ -62,6 +62,7 @@ mwlResizable {
 }
 
 .drag-handle {
+  overflow: hidden;
   cursor: grab;
 }
 

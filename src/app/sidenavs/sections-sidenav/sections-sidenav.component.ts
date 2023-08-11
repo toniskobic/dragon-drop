@@ -26,7 +26,7 @@ export class SectionsSidenavComponent {
   exited(event: CdkDragExit<SectionItem[], unknown>) {
     const sectionItem = event.item.data as SectionItem;
     const sections = event.container.data;
-    const currentIdx = event.container.data.findIndex(f => f.name === sectionItem.name);
+    const currentIdx = event.container.data.findIndex(item => item.name === sectionItem.name);
     sections.splice(currentIdx + 1, 0, {
       ...sectionItem,
       temp: true,
@@ -34,7 +34,7 @@ export class SectionsSidenavComponent {
   }
 
   entered(key: string) {
-    this.sectionTypes[key] = this.sectionTypes[key].filter(f => !f.temp);
+    this.sectionTypes[key] = this.sectionTypes[key].filter(item => !item.temp);
   }
 
   identify(index: number) {
