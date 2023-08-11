@@ -8,6 +8,7 @@ import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { SectionItem } from 'src/app/models/section-item.model';
 import { Viewport } from 'src/app/models/viewport.enum';
+import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 import { selectCurrentPageComponents } from 'src/app/state/design-canvas/design-canvas.reducer';
@@ -40,7 +41,8 @@ export class DesignCanvasComponent {
 
   constructor(
     // private designCanvasService: DesignCanvasService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private utils: UtilsService
   ) {}
 
   drop(event: CdkDragDrop<DynamicComponent[], SectionItem[] | DynamicComponent[]>) {
@@ -52,14 +54,17 @@ export class DesignCanvasComponent {
         })
       );
     } else {
-      const component = event.item.data as DynamicComponent;
+      const sectionItem = event.item.data as SectionItem;
       this.store.dispatch(
         DesignCanvasActions.addDroppedCurrentPageComponent({
-          component: component,
+          component: sectionItem.component,
           previousIndex: event.previousIndex,
           currentIndex: event.currentIndex,
         })
       );
+    }
+    if (event.previousContainer.data) {
+      this.utils.filterInPlace(event.previousContainer.data as SectionItem[], f => !f.temp);
     }
   }
 }

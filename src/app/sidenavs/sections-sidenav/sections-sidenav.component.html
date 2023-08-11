@@ -1,47 +1,31 @@
 <div class="accordion-wrapper">
   <mat-accordion>
-    <mat-expansion-panel class="panel-box-shadow">
+    <mat-expansion-panel
+      class="panel-box-shadow"
+      *ngFor="let sections of sectionTypes | keyvalue: returnZero; trackBy: identify">
       <mat-expansion-panel-header>
-        <mat-panel-title>{{ 'Headers' }}</mat-panel-title>
+        <mat-panel-title>
+          {{ 'EDITOR.SIDENAVS.SECTIONS.PANELS.' + (sections.key | uppercase) + '.TITLE' | translate }}
+        </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="panel-content-wrapper">
         <div
           class="grid"
           cdkDropList
           [cdkDropListConnectedTo]="'canvas'"
+          [cdkDropListData]="sections.value"
           [cdkDropListSortingDisabled]="true"
-          [cdkDropListDisabled]="">
+          (cdkDropListExited)="exited($event)"
+          (cdkDropListEntered)="entered(sections.key)">
           <div
             class="grid-item mat-elevation-z6"
-            *ngFor="let header of headers"
+            *ngFor="let section of sections.value"
             cdkDrag
-            [cdkDragData]="header.component">
-            <span>{{ header.name }}</span>
-          </div>
-        </div>
-      </div>
-    </mat-expansion-panel>
-    <mat-expansion-panel class="panel-box-shadow">
-      <mat-expansion-panel-header>
-        <mat-panel-title>{{ 'Sections' }}</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="panel-content-wrapper">
-        <div class="grid" cdkDropList [cdkDropListConnectedTo]="'canvas'" [cdkDropListSortingDisabled]="true">
-          <div
-            class="grid-item mat-elevation-z6"
-            *ngFor="let section of sections"
-            cdkDrag
-            [cdkDragData]="section.component">
+            [cdkDragData]="section">
             <span>{{ section.name }}</span>
           </div>
         </div>
       </div>
-    </mat-expansion-panel>
-    <mat-expansion-panel class="panel-box-shadow">
-      <mat-expansion-panel-header>
-        <mat-panel-title>{{ 'Footers' }}</mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="panel-content-wrapper"></div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
