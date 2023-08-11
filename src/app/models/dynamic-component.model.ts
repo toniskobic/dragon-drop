@@ -6,6 +6,7 @@ export interface DynamicElement {
 }
 
 export interface DynamicComponent {
+  id: string;
   component: Type<DynamicElement>;
-  inputs?: { [key: string]: string };
+  inputs?: { [key: string]: unknown };
 }

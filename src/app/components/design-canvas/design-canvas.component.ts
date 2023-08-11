@@ -58,7 +58,7 @@ export class DesignCanvasComponent {
         const sectionItem = event.item.data as SectionItem;
         this.store.dispatch(
           DesignCanvasActions.addDroppedCurrentPageComponent({
-            component: sectionItem.component,
+            componentClass: sectionItem.class,
             previousIndex: event.previousIndex,
             currentIndex: event.currentIndex,
           })

@@ -1,7 +1,9 @@
-import { DynamicComponent } from './dynamic-component.model';
+import { Type } from '@angular/core';
+
+import { DynamicElement } from './dynamic-component.model';
 
 export interface SectionItem {
   name: string;
-  component: DynamicComponent;
+  class: Type<DynamicElement>;
   temp?: boolean;
 }

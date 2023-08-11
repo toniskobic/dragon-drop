@@ -18,9 +18,9 @@ import { SectionItem } from 'src/app/models/section-item.model';
 })
 export class SectionsSidenavComponent {
   sectionTypes: { [key: string]: SectionItem[] } = {
-    headers: [{ name: 'Default Header', component: { component: HeaderComponent } }],
-    sections: [{ name: 'Default Section', component: { component: SectionComponent } }],
-    footers: [{ name: 'Default Footer', component: { component: FooterComponent } }],
+    headers: [{ name: 'Default Header', class: HeaderComponent }],
+    sections: [{ name: 'Default Section', class: SectionComponent }],
+    footers: [{ name: 'Default Footer', class: FooterComponent }],
   };
 
   exited(event: CdkDragExit<SectionItem[], unknown>) {

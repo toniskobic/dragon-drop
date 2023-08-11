@@ -12,8 +12,15 @@ const pageId = uuidv4();
 
 export const initialState: DesignCanvasState = {
   pages: [
-    { id: pageId, title: 'Home', components: [{ component: SectionComponent }, { component: SectionComponent }] },
-    { id: uuidv4(), title: 'About', components: [{ component: SectionComponent }] },
+    {
+      id: pageId,
+      title: 'Home',
+      components: [
+        { id: uuidv4(), component: SectionComponent },
+        { id: uuidv4(), component: SectionComponent },
+      ],
+    },
+    { id: uuidv4(), title: 'About', components: [{ id: uuidv4(), component: SectionComponent }] },
   ],
   currentPageId: pageId,
 };
@@ -44,10 +51,26 @@ export const reducer = createReducer(
     }
     return state;
   }),
-  on(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { component, previousIndex, currentIndex }) => {
+  on(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { componentClass, previousIndex, currentIndex }) => {
     const page = currentPage(state);
     if (page) {
-      const components = copyArrayItem(component, page.components, previousIndex, currentIndex);
+      const newComponent = { id: uuidv4(), component: componentClass };
+      const components = copyArrayItem(newComponent, page.components, previousIndex, currentIndex);
+      const modifiedPage = { ...page, components: components };
+      const pages = updatePage(state, modifiedPage);
+      return { ...state, pages: pages };
+    }
+    return state;
+  }),
+  on(DesignCanvasActions.updateComponent, (state, { id, inputs }) => {
+    const page = currentPage(state);
+    if (page) {
+      const components = page.components.map(component => {
+        if (component.id === id) {
+          return { ...component, inputs: inputs };
+        }
+        return component;
+      });
       const modifiedPage = { ...page, components: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
