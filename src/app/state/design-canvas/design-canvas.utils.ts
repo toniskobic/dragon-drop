@@ -25,7 +25,7 @@ export function moveItemInArray<T>(arr: T[], previousIndex: number, currentIndex
   return newArray;
 }
 
-export function copyArrayItem<T>(newItem: T, targetArray: T[], currentIndex: number, targetIndex: number): T[] {
+export function copyArrayItem<T>(newItem: T, targetArray: T[], targetIndex: number): T[] {
   // Create a copy of the target array
   const newTargetArray = [...targetArray];
 

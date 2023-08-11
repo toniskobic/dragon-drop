@@ -10,7 +10,6 @@ export const DesignCanvasActions = createActionGroup({
     'Add Curent Page Component': props<{ component: DynamicComponent }>(),
     'Add Dropped Current Page Component': props<{
       componentClass: Type<DynamicElement>;
-      previousIndex: number;
       currentIndex: number;
     }>(),
     'Update Component': props<{ id: string; inputs: { [key: string]: unknown } }>(),

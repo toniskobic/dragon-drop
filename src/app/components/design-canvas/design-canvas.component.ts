@@ -59,7 +59,6 @@ export class DesignCanvasComponent {
         this.store.dispatch(
           DesignCanvasActions.addDroppedCurrentPageComponent({
             componentClass: sectionItem.class,
-            previousIndex: event.previousIndex,
             currentIndex: event.currentIndex,
           })
         );

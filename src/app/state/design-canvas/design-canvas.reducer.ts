@@ -51,11 +51,11 @@ export const reducer = createReducer(
     }
     return state;
   }),
-  on(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { componentClass, previousIndex, currentIndex }) => {
+  on(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { componentClass, currentIndex }) => {
     const page = currentPage(state);
     if (page) {
       const newComponent = { id: uuidv4(), component: componentClass };
-      const components = copyArrayItem(newComponent, page.components, previousIndex, currentIndex);
+      const components = copyArrayItem(newComponent, page.components, currentIndex);
       const modifiedPage = { ...page, components: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
