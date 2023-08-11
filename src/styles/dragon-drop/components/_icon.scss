@@ -1,0 +1,23 @@
+.icon-button.mat-mdc-icon-button.mat-mdc-button-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  .mat-icon[role='img'] {
+    width: 20px;
+    height: 20px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .mat-mdc-button-touch-target {
+    width: 20px;
+    height: 20px;
+  }
+}

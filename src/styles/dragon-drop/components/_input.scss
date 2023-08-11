@@ -4,9 +4,23 @@
   border-radius: 4px;
   cursor: pointer;
 
+  .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 100%;
+    min-height: auto;
+    gap: 5px;
+  }
+
   input.mdc-text-field__input {
     color: rgba(255, 255, 255, 0.87);
     caret-color: $white;
+  }
+
+  .mat-mdc-form-field-flex {
+    align-items: center;
+    height: 100%;
   }
 
   &.mat-focused {
@@ -26,14 +40,10 @@
       border-bottom-color: $rich-black;
     }
   }
-  .mat-mdc-select {
-    color: $white;
-    line-height: $line-height-xs;
-  }
 
   .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
     color: rgba(255, 255, 255, 0.6);
-}
+  }
 
   .mat-mdc-form-field-subscript-wrapper {
     display: none;
@@ -46,5 +56,9 @@
     .mat-mdc-form-field-focus-overlay {
       opacity: 0;
     }
+  }
+
+  &.page-title .mdc-text-field--filled {
+    padding-right: 8px;
   }
 }

@@ -4,7 +4,22 @@
       <mat-expansion-panel-header>
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="panel-content-wrapper"></div>
+      <div class="panel-content-wrapper mat-component-density-xs">
+        <div class="page" *ngFor="let page of pages$ | async">
+          <mat-form-field class="editor-input page-title">
+            <input matInput [value]="page.title" />
+            <button class="icon-button" mat-icon-button>
+              <mat-icon svgIcon="check"></mat-icon>
+            </button>
+            <button class="icon-button" mat-icon-button>
+              <mat-icon svgIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+          <button class="icon-button" mat-icon-button (click)="removePage(page.id)">
+            <mat-icon svgIcon="remove"></mat-icon>
+          </button>
+        </div>
+      </div>
     </mat-expansion-panel>
     <mat-expansion-panel class="panel-box-shadow">
       <mat-expansion-panel-header>

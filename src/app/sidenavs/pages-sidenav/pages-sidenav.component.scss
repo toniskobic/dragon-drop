@@ -1,0 +1,21 @@
+.panel-content-wrapper {
+  .page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    .page-title.editor-input.mat-mdc-form-field {
+      height: 40px;
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        padding-right: 8px;
+      }
+
+      input.mdc-text-field__input {
+        padding-block: 5px;
+        height: 100%;
+      }
+    }
+  }
+}

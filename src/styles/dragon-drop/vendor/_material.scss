@@ -180,8 +180,12 @@ span.mdc-button__label {
   visibility: hidden;
 }
 
-.mat-component-density-xs {
+.mat-component-density-s {
   @include mat.all-component-densities(-1);
+}
+
+.mat-component-density-xs {
+  @include mat.all-component-densities(-2);
 }
 
 .select-field,
