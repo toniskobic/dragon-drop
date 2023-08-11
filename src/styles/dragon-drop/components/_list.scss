@@ -13,7 +13,7 @@ mat-list.list {
 
     span.item-label {
       color: $white;
-      line-height: 1.2;
+      line-height: $line-height-xs;
     }
 
     &:hover {

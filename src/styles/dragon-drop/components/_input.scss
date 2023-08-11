@@ -4,7 +4,8 @@
   border-radius: 4px;
   cursor: pointer;
 
-  input {
+  input.mdc-text-field__input {
+    color: rgba(255, 255, 255, 0.87);
     caret-color: $white;
   }
 
@@ -30,9 +31,9 @@
     line-height: $line-height-xs;
   }
 
-  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
     color: rgba(255, 255, 255, 0.6);
-  }
+}
 
   .mat-mdc-form-field-subscript-wrapper {
     display: none;

@@ -11,6 +11,7 @@
       .mat-expansion-panel-header-title,
       .mat-expansion-panel-header-description {
         color: $white;
+        line-height: $line-height-xs;
       }
 
       .panel-content-wrapper {
