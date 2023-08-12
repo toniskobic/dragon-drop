@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
+import { map, Observable, of, Subscription } from 'rxjs';
+import { PageInput } from 'src/app/models/page.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
+import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 import { selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
 
 @Component({
@@ -25,13 +28,17 @@ import { selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatRippleModule,
+    MatTooltipModule,
   ],
   templateUrl: './pages-sidenav.component.html',
   styleUrls: ['./pages-sidenav.component.scss'],
 })
-export class PagesSidenavComponent {
+export class PagesSidenavComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
+
   pages$ = this.store.select(selectPages);
+
+  pagesInput$: Observable<PageInput[]> = of([]);
 
   constructor(
     private store: Store<AppState>,
@@ -40,8 +47,69 @@ export class PagesSidenavComponent {
     this.utilsService.initSvgIcons(['check', 'close', 'remove']);
   }
 
-  removePage(pageId: string) {
-    console.log(pageId);
-    // this.store.dispatch();
+  ngOnInit(): void {
+    this.subscriptions.push(
+      this.pages$
+        .pipe(
+          map(pages => {
+            this.pagesInput$ = of(
+              pages.map(page => {
+                const formControl = new FormControl<string>(page.title, { nonNullable: true });
+                return {
+                  ...page,
+                  formControl: formControl,
+                  valueChanged: false,
+                  confirmDelete: false,
+                };
+              })
+            );
+            this.subscriptions.push(
+              this.pagesInput$.subscribe(value => {
+                value.forEach(page => {
+                  this.subscriptions.push(
+                    page.formControl.valueChanges.subscribe(() => {
+                      page.valueChanged = true;
+                    })
+                  );
+                });
+              })
+            );
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions = [];
+  }
+
+  close(page: PageInput) {
+    if (page.confirmDelete) {
+      page.confirmDelete = false;
+    } else {
+      page.formControl.setValue(page.title);
+      page.valueChanged = false;
+    }
+  }
+
+  confirm(page: PageInput) {
+    if (page.confirmDelete) {
+      this.store.dispatch(DesignCanvasActions.removePage({ pageId: page.id }));
+      page.confirmDelete = false;
+    } else {
+      const updatedPage = { id: page.id, title: page.formControl.value, components: page.components };
+      this.store.dispatch(
+        DesignCanvasActions.updatePage({
+          page: updatedPage,
+        })
+      );
+      page.valueChanged = false;
+    }
+  }
+
+  removePage(page: PageInput) {
+    page.confirmDelete = !page.confirmDelete;
   }
 }

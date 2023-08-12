@@ -31,6 +31,14 @@ export const reducer = createReducer(
     ...state,
     currentPageId: pageId,
   })),
+  on(DesignCanvasActions.removePage, (state, { pageId }) => {
+    const pages = state.pages.filter(page => page.id !== pageId);
+    return {
+      ...state,
+      pages: pages,
+      currentPageId: state.currentPageId === pageId ? pages[0].id : state.currentPageId,
+    };
+  }),
   on(DesignCanvasActions.sortCurrentPageComponents, (state, { previousIndex, currentIndex }) => {
     const page = currentPage(state);
     if (page) {
@@ -76,6 +84,10 @@ export const reducer = createReducer(
       return { ...state, pages: pages };
     }
     return state;
+  }),
+  on(DesignCanvasActions.updatePage, (state, { page }) => {
+    const pages = updatePage(state, page);
+    return { ...state, pages: pages };
   })
 );
 

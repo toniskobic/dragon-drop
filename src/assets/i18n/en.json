@@ -40,7 +40,13 @@
       "PAGES": {
         "PANELS": {
           "PAGES": {
-            "TITLE": "Pages"
+            "TITLE": "Pages",
+            "CONFIRMATIONS": {
+              "DELETE_PAGE": "Are you sure?"
+            },
+            "TOOLTIPS": {
+              "DELETE_PAGE": "Delete page"
+            }
           },
           "CURRENT_PAGE": {
             "TITLE": "Current Page"

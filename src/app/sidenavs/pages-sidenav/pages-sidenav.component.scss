@@ -7,6 +7,7 @@
 
     .page-title.editor-input.mat-mdc-form-field {
       height: 40px;
+      width: calc(100% - 20px);
 
       .mdc-text-field--filled:not(.mdc-text-field--disabled) {
         padding-right: 8px;

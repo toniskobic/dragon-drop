@@ -5,17 +5,33 @@
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
       <div class="panel-content-wrapper mat-component-density-xs">
-        <div class="page" *ngFor="let page of pages$ | async">
+        <div class="page" *ngFor="let page of pagesInput$ | async">
           <mat-form-field class="editor-input page-title">
-            <input matInput [value]="page.title" />
-            <button class="icon-button" mat-icon-button>
+            <input [style.display]="page.confirmDelete ? 'none' : 'block'" matInput [formControl]="page.formControl" />
+            <span *ngIf="page.confirmDelete">
+              {{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.CONFIRMATIONS.DELETE_PAGE' | translate }}
+            </span>
+            <button
+              *ngIf="page.valueChanged || page.confirmDelete"
+              class="icon-button"
+              mat-icon-button
+              (click)="confirm(page)">
               <mat-icon svgIcon="check"></mat-icon>
             </button>
-            <button class="icon-button" mat-icon-button>
+            <button
+              *ngIf="page.valueChanged || page.confirmDelete"
+              class="icon-button"
+              mat-icon-button
+              (click)="close(page)">
               <mat-icon svgIcon="close"></mat-icon>
             </button>
           </mat-form-field>
-          <button class="icon-button" mat-icon-button (click)="removePage(page.id)">
+          <button
+            class="icon-button"
+            mat-icon-button
+            (click)="removePage(page)"
+            matTooltip="{{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.TOOLTIPS.DELETE_PAGE' | translate }}"
+            matTooltipPosition="right">
             <mat-icon svgIcon="remove"></mat-icon>
           </button>
         </div>
