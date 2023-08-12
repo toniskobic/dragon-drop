@@ -7,7 +7,7 @@ export const currentPage = (state: DesignCanvasState) => {
 };
 
 export const updatePage = (state: DesignCanvasState, newPage: Page) => {
-  return state.pages.map(page => (page.id === state.currentPageId ? newPage : page));
+  return state.pages.map(page => (page.id === newPage.id ? newPage : page));
 };
 
 export function moveItemInArray<T>(arr: T[], previousIndex: number, currentIndex: number): T[] {
