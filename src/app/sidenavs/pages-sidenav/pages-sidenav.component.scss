@@ -1,3 +1,6 @@
+$rich-black-light: var(--rich-black-light);
+$penn-red: var(--penn-red);
+
 .panel-header {
   gap: 1rem;
 }
@@ -21,6 +24,35 @@
         padding-block: 5px;
         height: 100%;
       }
+    }
+  }
+
+  .mat-card {
+    height: 36px;
+    cursor: pointer;
+    background-color: $rich-black-light;
+    outline-color: $penn-red;
+    outline-offset: 3px;
+
+    .mat-mdc-card-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .mat-mdc-card-content:last-child {
+      padding-bottom: 0;
+    }
+
+    .mat-mdc-card-content:first-child {
+      padding-top: 0;
+    }
+
+    &.focused {
+      outline: 2px solid $penn-red;
+      outline-offset: 1px;
+      transition: outline-offset 0.05s ease-in;
     }
   }
 }

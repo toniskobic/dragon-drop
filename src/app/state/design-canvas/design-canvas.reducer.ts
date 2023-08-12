@@ -1,5 +1,6 @@
 import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
+import { Page } from 'src/app/models/page.model';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DesignCanvasActions } from './design-canvas.actions';
@@ -42,7 +43,7 @@ export const reducer = createReducer(
     ...state,
     currentPageId: pageId,
   })),
-  on(DesignCanvasActions.removePage, (state, { pageId }) => {
+  on(DesignCanvasActions.deletePage, (state, { pageId }) => {
     const pages = state.pages.filter(page => page.id !== pageId);
     return {
       ...state,
@@ -54,7 +55,7 @@ export const reducer = createReducer(
     const page = currentPage(state);
     if (page) {
       const components = moveItemInArray(page.sections, previousIndex, currentIndex);
-      const modifiedPage = { ...page, components: components };
+      const modifiedPage: Page = { ...page, sections: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
     }
@@ -64,7 +65,7 @@ export const reducer = createReducer(
     const page = currentPage(state);
     if (page) {
       const components = [...page.sections, component];
-      const modifiedPage = { ...page, components: components };
+      const modifiedPage: Page = { ...page, sections: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
     }
@@ -73,9 +74,19 @@ export const reducer = createReducer(
   on(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { componentClass, currentIndex }) => {
     const page = currentPage(state);
     if (page) {
-      const newComponent = { id: uuidv4(), component: componentClass };
-      const components = copyArrayItem(newComponent, page.sections, currentIndex);
-      const modifiedPage = { ...page, components: components };
+      const newSection = { id: uuidv4(), component: componentClass };
+      const sections = copyArrayItem(newSection, page.sections, currentIndex);
+      const modifiedPage: Page = { ...page, sections: sections };
+      const pages = updatePage(state, modifiedPage);
+      return { ...state, pages: pages };
+    }
+    return state;
+  }),
+  on(DesignCanvasActions.deleteComponent, (state, { pageId, id }) => {
+    const page = pageId ? state.pages.find(page => page.id === pageId) : currentPage(state);
+    if (page) {
+      const components = page.sections.filter(component => component.id !== id);
+      const modifiedPage: Page = { ...page, sections: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
     }
@@ -90,7 +101,7 @@ export const reducer = createReducer(
         }
         return component;
       });
-      const modifiedPage = { ...page, components: components };
+      const modifiedPage: Page = { ...page, sections: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
     }

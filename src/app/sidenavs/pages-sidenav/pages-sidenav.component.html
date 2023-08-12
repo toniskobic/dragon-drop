@@ -38,7 +38,7 @@
           <button
             class="icon-button"
             mat-icon-button
-            (click)="removePage(page)"
+            (click)="deletePage(page)"
             matTooltip="{{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.TOOLTIPS.DELETE_PAGE' | translate }}"
             matTooltipPosition="right">
             <mat-icon svgIcon="remove"></mat-icon>
@@ -51,7 +51,24 @@
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.PAGES.PANELS.CURRENT_PAGE.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
       <div class="panel-content-wrapper">
-        <mat-card *ngFor="let component of currentPageComponents$ | async"></mat-card>
+        <mat-card
+          class="mat-card"
+          [ngClass]="{ focused: section.selected }"
+          *ngFor="let section of sectionCards$ | async as sections"
+          (click)="cardClick(section.id, sections)">
+          <mat-card-content>
+            <span>{{ section.name }}</span>
+            <button
+              *ngIf="section.selected"
+              class="icon-button"
+              mat-icon-button
+              (click)="deleteSection(section.id)"
+              matTooltip="{{ 'EDITOR.SIDENAVS.PAGES.PANELS.CURRENT_PAGE.TOOLTIPS.DELETE_SECTION' | translate }}"
+              matTooltipPosition="right">
+              <mat-icon svgIcon="remove"></mat-icon>
+            </button>
+          </mat-card-content>
+        </mat-card>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

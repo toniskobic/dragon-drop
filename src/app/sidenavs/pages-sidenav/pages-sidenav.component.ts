@@ -12,6 +12,8 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { map, Observable, of, Subscription } from 'rxjs';
 import { PageInput } from 'src/app/models/page.model';
+import { SectionCard } from 'src/app/models/section-item.model';
+import { SectionsService } from 'src/app/services/sections.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
@@ -39,15 +41,17 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   pages$ = this.store.select(selectPages);
-  currentPageComponents$ = this.store.select(selectCurrentPageSections);
+  currentPageSections$ = this.store.select(selectCurrentPageSections);
 
+  sectionCards$: Observable<SectionCard[] | undefined> = of([]);
   pagesInput$: Observable<PageInput[]> = of([]);
 
   pagesOpened = false;
 
   constructor(
     private store: Store<AppState>,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private sectionsService: SectionsService
   ) {
     this.utilsService.initSvgIcons(['check', 'close', 'add', 'remove']);
   }
@@ -83,6 +87,18 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
         )
         .subscribe()
     );
+
+    this.sectionCards$ = this.currentPageSections$.pipe(
+      map(sections => {
+        return sections?.map(section => {
+          return {
+            id: section.id,
+            name: this.sectionsService.allSections.get(section.component) ?? '',
+            selected: false,
+          };
+        });
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -106,7 +122,7 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
 
   confirm(page: PageInput) {
     if (page.confirmDelete) {
-      this.store.dispatch(DesignCanvasActions.removePage({ pageId: page.id }));
+      this.store.dispatch(DesignCanvasActions.deletePage({ pageId: page.id }));
       page.confirmDelete = false;
     } else {
       const updatedPage = { id: page.id, title: page.formControl.value, sections: page.sections };
@@ -119,7 +135,17 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
     }
   }
 
-  removePage(page: PageInput) {
+  deleteSection(sectionId: string) {
+    this.store.dispatch(DesignCanvasActions.deleteComponent({ id: sectionId }));
+  }
+
+  deletePage(page: PageInput) {
     page.confirmDelete = !page.confirmDelete;
+  }
+
+  cardClick(id: string, cards: SectionCard[]) {
+    cards.forEach(card => {
+      card.selected = card.id === id ? !card.selected : false;
+    });
   }
 }

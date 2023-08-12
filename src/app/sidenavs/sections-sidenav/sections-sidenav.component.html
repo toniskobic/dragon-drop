@@ -20,6 +20,7 @@
           <div
             class="grid-item mat-elevation-z6 insertable-section"
             *ngFor="let section of sections.value"
+            matTooltip="{{ 'EDITOR.SIDENAVS.SECTIONS.TOOLTIPS.DRAG_SECTION' | translate }}"
             cdkDrag
             drdDragCursor
             [cdkDragData]="section">

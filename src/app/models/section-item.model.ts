@@ -7,3 +7,9 @@ export interface SectionItem {
   class: Type<DynamicElement>;
   temp?: boolean;
 }
+
+export interface SectionCard {
+  id: string;
+  name: string;
+  selected: boolean;
+}

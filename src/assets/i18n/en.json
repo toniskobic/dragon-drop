@@ -50,7 +50,10 @@
             }
           },
           "CURRENT_PAGE": {
-            "TITLE": "Current Page"
+            "TITLE": "Page Sections",
+            "TOOLTIPS": {
+              "DELETE_SECTION": "Delete section"
+            }
           }
         }
       },
@@ -85,6 +88,9 @@
           "FOOTERS": {
             "TITLE": "Footers"
           }
+        },
+        "TOOLTIPS": {
+          "DRAG_SECTION": "Drag the section onto the canvas"
         }
       }
     }
