@@ -11,7 +11,7 @@ import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
-import { selectCurrentPageComponents } from 'src/app/state/design-canvas/design-canvas.reducer';
+import { selectCurrentPageSections } from 'src/app/state/design-canvas/design-canvas.reducer';
 import { selectViewport } from 'src/app/state/editor/editor.reducer';
 
 import { ResizableDraggableComponent } from '../resizable-draggable/resizable-draggable.component';
@@ -33,7 +33,7 @@ import { ResizableDraggableComponent } from '../resizable-draggable/resizable-dr
 export class DesignCanvasComponent {
   // @ViewChild(DynamicContentAreaDirective, { static: true }) canvasContentArea!: DynamicContentAreaDirective;
 
-  components$ = this.store.select(selectCurrentPageComponents);
+  components$ = this.store.select(selectCurrentPageSections);
 
   readonly Viewport = Viewport;
 

@@ -15,18 +15,29 @@ export const initialState: DesignCanvasState = {
     {
       id: pageId,
       title: 'Home',
-      components: [
+      sections: [
         { id: uuidv4(), component: SectionComponent },
         { id: uuidv4(), component: SectionComponent },
       ],
     },
-    { id: uuidv4(), title: 'About', components: [{ id: uuidv4(), component: SectionComponent }] },
+    { id: uuidv4(), title: 'About', sections: [{ id: uuidv4(), component: SectionComponent }] },
   ],
   currentPageId: pageId,
 };
 
 export const reducer = createReducer(
   initialState,
+  on(DesignCanvasActions.addPage, state => {
+    const pages = [
+      ...state.pages,
+      {
+        id: uuidv4(),
+        title: 'New Page',
+        sections: [],
+      },
+    ];
+    return { ...state, pages: pages };
+  }),
   on(DesignCanvasActions.setCurrentPage, (state, { pageId }) => ({
     ...state,
     currentPageId: pageId,
@@ -42,7 +53,7 @@ export const reducer = createReducer(
   on(DesignCanvasActions.sortCurrentPageComponents, (state, { previousIndex, currentIndex }) => {
     const page = currentPage(state);
     if (page) {
-      const components = moveItemInArray(page.components, previousIndex, currentIndex);
+      const components = moveItemInArray(page.sections, previousIndex, currentIndex);
       const modifiedPage = { ...page, components: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
@@ -52,7 +63,7 @@ export const reducer = createReducer(
   on(DesignCanvasActions.addCurentPageComponent, (state, { component }) => {
     const page = currentPage(state);
     if (page) {
-      const components = [...page.components, component];
+      const components = [...page.sections, component];
       const modifiedPage = { ...page, components: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
@@ -63,7 +74,7 @@ export const reducer = createReducer(
     const page = currentPage(state);
     if (page) {
       const newComponent = { id: uuidv4(), component: componentClass };
-      const components = copyArrayItem(newComponent, page.components, currentIndex);
+      const components = copyArrayItem(newComponent, page.sections, currentIndex);
       const modifiedPage = { ...page, components: components };
       const pages = updatePage(state, modifiedPage);
       return { ...state, pages: pages };
@@ -73,7 +84,7 @@ export const reducer = createReducer(
   on(DesignCanvasActions.updateComponent, (state, { id, inputs }) => {
     const page = currentPage(state);
     if (page) {
-      const components = page.components.map(component => {
+      const components = page.sections.map(component => {
         if (component.id === id) {
           return { ...component, inputs: inputs };
         }
@@ -98,10 +109,10 @@ export const designCanvasFeature = createFeature({
     selectCurrentPage: createSelector(selectCurrentPageId, selectPages, (id, pages) =>
       pages.find(page => page.id === id)
     ),
-    selectCurrentPageComponents: createSelector(
+    selectCurrentPageSections: createSelector(
       selectCurrentPageId,
       selectPages,
-      (id, pages) => pages.find(page => page.id === id)?.components
+      (id, pages) => pages.find(page => page.id === id)?.sections
     ),
   }),
 });
@@ -111,5 +122,5 @@ export const {
   selectPages,
   selectCurrentPageId,
   selectCurrentPage,
-  selectCurrentPageComponents,
+  selectCurrentPageSections,
 } = designCanvasFeature;

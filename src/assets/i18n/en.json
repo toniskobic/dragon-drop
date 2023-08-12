@@ -45,6 +45,7 @@
               "DELETE_PAGE": "Are you sure?"
             },
             "TOOLTIPS": {
+              "ADD_PAGE": "Add page",
               "DELETE_PAGE": "Delete page"
             }
           },

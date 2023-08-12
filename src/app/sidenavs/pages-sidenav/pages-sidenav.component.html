@@ -1,8 +1,17 @@
 <div class="accordion-wrapper">
   <mat-accordion>
-    <mat-expansion-panel class="panel-box-shadow">
-      <mat-expansion-panel-header>
+    <mat-expansion-panel class="panel-box-shadow" (opened)="pagesOpened = true" (closed)="pagesOpened = false">
+      <mat-expansion-panel-header class="panel-header">
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.TITLE' | translate }}</mat-panel-title>
+        <button
+          *ngIf="pagesOpened"
+          class="icon-button"
+          (click)="addPage($event)"
+          mat-icon-button
+          matTooltip="{{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.TOOLTIPS.ADD_PAGE' | translate }}"
+          matTooltipPosition="right">
+          <mat-icon svgIcon="add"></mat-icon>
+        </button>
       </mat-expansion-panel-header>
       <div class="panel-content-wrapper mat-component-density-xs">
         <div class="page" *ngFor="let page of pagesInput$ | async">
@@ -41,7 +50,9 @@
       <mat-expansion-panel-header>
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.PAGES.PANELS.CURRENT_PAGE.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
-      <div class="panel-content-wrapper"></div>
+      <div class="panel-content-wrapper">
+        <mat-card *ngFor="let component of currentPageComponents$ | async"></mat-card>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
