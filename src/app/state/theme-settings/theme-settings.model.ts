@@ -1,7 +1,8 @@
+import { UndoRedoState } from 'ngrx-wieder';
 import { Color } from 'src/app/models/color.model';
 import { WebFontItem } from 'src/app/models/web-font.model';
 
-export interface ThemeSettingsState {
+export interface ThemeSettingsState extends UndoRedoState {
   colors: {
     primary: Color;
     secondary: Color;

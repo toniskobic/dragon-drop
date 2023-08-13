@@ -53,7 +53,6 @@ export class ThemeSettingsEffects {
         from(this.googleFontsService.getAllFonts()).pipe(
           map(response => {
             const fonts = response.items.slice(0, 200);
-            console.log(fonts);
             return FontsApiActions.fontsLoadedSuccess({ fontList: fonts });
           }),
           catchError(() => EMPTY)
@@ -61,6 +60,43 @@ export class ThemeSettingsEffects {
       )
     )
   );
+
+  // undoRedo$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(AppActions.undo, AppActions.redo),
+  //       withLatestFrom(this.store.select(selectHistories)),
+  //       tap(([action, histories]) => {
+  //         if (!histories['DEFAULT']) return;
+  //         const historyProp = action.type === AppActions.undo.type ? 'undone' : 'undoable';
+  //         const actionType = histories['DEFAULT'][historyProp][0].actions[0].type;
+  //         if (actionType === ThemeSettingsActions.setColor.type || actionType === ThemeSettingsActions.setFont.type) {
+  //           const patch = action.type === AppActions.undo.type ? 'inversePatches' : 'patches';
+
+  //           const key = histories['DEFAULT'][historyProp][0].actions[0]['key' as keyof Action];
+  //           const value = histories['DEFAULT'][historyProp][0].patches[patch][0].value as string;
+
+  //           switch (actionType) {
+  //             case ThemeSettingsActions.setColor.type: {
+  //               document.documentElement.style.setProperty(`--${key}-color`, value);
+  //               break;
+  //             }
+  //             case ThemeSettingsActions.setFont.type: {
+  //               document.documentElement.style.setProperty(`--${key}-font-family`, value);
+  //               if (key !== 'alternative') {
+  //                 const link = document.getElementById(`${key}-font`) as HTMLLinkElement | null;
+  //                 if (link) {
+  //                   link.href = `https://fonts.googleapis.com/css2?family=${value}:wght@300;400;500;600;700&display=swap`;
+  //                 }
+  //                 break;
+  //               }
+  //             }
+  //           }
+  //         }
+  //       })
+  //     ),
+  //   { dispatch: false }
+  // );
 
   constructor(
     private actions$: Actions,

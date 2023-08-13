@@ -32,6 +32,14 @@
           <mat-icon svgIcon="mobile"></mat-icon>
         </mat-button-toggle>
       </mat-button-toggle-group>
+      <div class="undo-redo">
+        <button mat-icon-button [disabled]="(canUndo$ | async) !== true" (click)="undo()" matTooltip="Undo">
+          <mat-icon svgIcon="undo"></mat-icon>
+        </button>
+        <button mat-icon-button [disabled]="(canRedo$ | async) !== true" (click)="redo()" matTooltip="Redo">
+          <mat-icon svgIcon="redo"></mat-icon>
+        </button>
+      </div>
     </div>
     <div class="page-title">
       <mat-form-field class="current-page">

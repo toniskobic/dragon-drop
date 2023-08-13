@@ -8,9 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { debounceTime, map, Observable, of, startWith, Subscription, switchMap, take } from 'rxjs';
+import { debounceTime, map, Observable, of, startWith, Subject, Subscription, switchMap, tap } from 'rxjs';
 import { ALTERNATIVE_FONT_FAMILIES } from 'src/app/constants/constants';
 import { Color } from 'src/app/models/color.model';
+import { AppActions } from 'src/app/state/app.actions';
 import { AppState } from 'src/app/state/app.reducer';
 import { ThemeSettingsActions } from 'src/app/state/theme-settings/theme-settings.actions';
 import { selectColors, selectFontList, selectFonts } from 'src/app/state/theme-settings/theme-settings.reducer';
@@ -53,15 +54,18 @@ export class ThemeSettingsSidenavComponent implements OnInit, OnDestroy {
     alternative: this.altFonts$,
   };
 
+  colorChangedSubject$ = new Subject<{ key: string; color: string }>();
+  colorChanged$ = this.colorChangedSubject$.asObservable();
+
   subscriptions: Subscription[] = [];
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.subscriptions.push(
-      this.fonts$.pipe(take(1)).subscribe(value => {
+      this.fonts$.pipe().subscribe(value => {
         Object.entries(value).forEach(([key, value]) => {
-          this.formControls[key].setValue(value);
+          if (this.formControls[key].value !== value) this.formControls[key].setValue(value);
         });
       })
     );
@@ -78,6 +82,20 @@ export class ThemeSettingsSidenavComponent implements OnInit, OnDestroy {
         })
       );
     });
+
+    this.subscriptions.push(
+      this.colorChanged$
+        .pipe(
+          tap(value => {
+            this.store.dispatch(ThemeSettingsActions.setColor({ key: value.key, color: value.color as Color }));
+          }),
+          debounceTime(50),
+          tap(() => {
+            this.store.dispatch(AppActions.breakMerge());
+          })
+        )
+        .subscribe()
+    );
   }
 
   ngOnDestroy(): void {
@@ -86,7 +104,7 @@ export class ThemeSettingsSidenavComponent implements OnInit, OnDestroy {
   }
 
   onColorChange(key: string, color: string) {
-    this.store.dispatch(ThemeSettingsActions.setColor({ key: key, color: color as Color }));
+    this.colorChangedSubject$.next({ key: key, color: color });
   }
 
   setFont(event: MatAutocompleteSelectedEvent, key: string) {

@@ -1,11 +1,13 @@
-import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { createFeature, createSelector } from '@ngrx/store';
+import { createHistorySelectors, initialUndoRedoState, produceOn, undoRedo } from 'ngrx-wieder';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
-import { Page } from 'src/app/models/page.model';
 import { v4 as uuidv4 } from 'uuid';
 
+import { AppState } from '../app.reducer';
 import { DesignCanvasActions } from './design-canvas.actions';
 import { DesignCanvasState } from './design-canvas.model';
-import { copyArrayItem, currentPage, moveItemInArray, updatePage } from './design-canvas.utils';
+import { currentPage, updatePage } from './design-canvas.utils';
 
 export const designCanvasFeatureKey = 'designCanvas';
 
@@ -24,92 +26,68 @@ export const initialState: DesignCanvasState = {
     { id: uuidv4(), title: 'About', sections: [{ id: uuidv4(), component: SectionComponent }] },
   ],
   currentPageId: pageId,
+  ...initialUndoRedoState,
 };
 
-export const reducer = createReducer(
+// initialize ngrx-wieder with custom config
+const { createUndoRedoReducer } = undoRedo({
+  allowedActionTypes: [
+    DesignCanvasActions.addPage.type,
+    DesignCanvasActions.deletePage.type,
+    DesignCanvasActions.addDroppedCurrentPageComponent.type,
+    DesignCanvasActions.deleteComponent.type,
+    DesignCanvasActions.sortCurrentPageComponents.type,
+    DesignCanvasActions.updateComponent.type,
+    DesignCanvasActions.updatePage.type,
+  ],
+  trackActionPayload: true,
+});
+
+export const reducer = createUndoRedoReducer(
   initialState,
-  on(DesignCanvasActions.addPage, state => {
-    const pages = [
-      ...state.pages,
-      {
-        id: uuidv4(),
-        title: 'New Page',
-        sections: [],
-      },
-    ];
-    return { ...state, pages: pages };
+  produceOn(DesignCanvasActions.addPage, state => {
+    state.pages.push({ id: uuidv4(), title: 'New Page', sections: [] });
   }),
-  on(DesignCanvasActions.setCurrentPage, (state, { pageId }) => ({
-    ...state,
-    currentPageId: pageId,
-  })),
-  on(DesignCanvasActions.deletePage, (state, { pageId }) => {
+  produceOn(DesignCanvasActions.setCurrentPage, (state, { pageId }) => {
+    state.currentPageId = pageId;
+  }),
+  produceOn(DesignCanvasActions.deletePage, (state, { pageId }) => {
     const pages = state.pages.filter(page => page.id !== pageId);
-    return {
-      ...state,
-      pages: pages,
-      currentPageId: state.currentPageId === pageId ? pages[0].id : state.currentPageId,
-    };
+    state.pages = pages;
+    state.currentPageId = state.currentPageId === pageId ? pages[0].id : state.currentPageId;
   }),
-  on(DesignCanvasActions.sortCurrentPageComponents, (state, { previousIndex, currentIndex }) => {
+  produceOn(DesignCanvasActions.sortCurrentPageComponents, (state, { previousIndex, currentIndex }) => {
     const page = currentPage(state);
     if (page) {
-      const components = moveItemInArray(page.sections, previousIndex, currentIndex);
-      const modifiedPage: Page = { ...page, sections: components };
-      const pages = updatePage(state, modifiedPage);
-      return { ...state, pages: pages };
+      moveItemInArray(page.sections, previousIndex, currentIndex);
     }
-    return state;
   }),
-  on(DesignCanvasActions.addCurentPageComponent, (state, { component }) => {
-    const page = currentPage(state);
-    if (page) {
-      const components = [...page.sections, component];
-      const modifiedPage: Page = { ...page, sections: components };
-      const pages = updatePage(state, modifiedPage);
-      return { ...state, pages: pages };
-    }
-    return state;
-  }),
-  on(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { componentClass, currentIndex }) => {
+  produceOn(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { componentClass, currentIndex }) => {
     const page = currentPage(state);
     if (page) {
       const newSection = { id: uuidv4(), component: componentClass };
-      const sections = copyArrayItem(newSection, page.sections, currentIndex);
-      const modifiedPage: Page = { ...page, sections: sections };
-      const pages = updatePage(state, modifiedPage);
-      return { ...state, pages: pages };
+      page.sections.splice(currentIndex, 0, newSection);
     }
-    return state;
   }),
-  on(DesignCanvasActions.deleteComponent, (state, { pageId, id }) => {
-    const page = pageId ? state.pages.find(page => page.id === pageId) : currentPage(state);
+  produceOn(DesignCanvasActions.deleteComponent, (state, { pageId, id }) => {
+    const componentsPageId = pageId ? pageId : state.currentPageId;
+    const page = state.pages.find(page => page.id === componentsPageId);
     if (page) {
-      const components = page.sections.filter(component => component.id !== id);
-      const modifiedPage: Page = { ...page, sections: components };
-      const pages = updatePage(state, modifiedPage);
-      return { ...state, pages: pages };
+      page.sections = page.sections.filter(component => component.id !== id);
     }
-    return state;
   }),
-  on(DesignCanvasActions.updateComponent, (state, { id, inputs }) => {
+  produceOn(DesignCanvasActions.updateComponent, (state, { id, inputs }) => {
     const page = currentPage(state);
     if (page) {
-      const components = page.sections.map(component => {
-        if (component.id === id) {
-          return { ...component, inputs: inputs };
-        }
-        return component;
-      });
-      const modifiedPage: Page = { ...page, sections: components };
-      const pages = updatePage(state, modifiedPage);
-      return { ...state, pages: pages };
+      const section = page.sections.find(component => component.id === id);
+      if (section) section.inputs = inputs;
     }
-    return state;
   }),
-  on(DesignCanvasActions.updatePage, (state, { page }) => {
-    const pages = updatePage(state, page);
-    return { ...state, pages: pages };
+  produceOn(DesignCanvasActions.updatePage, (state, { newPage }) => {
+    const page = state.pages.find(page => page.id === newPage.id);
+    if (page) {
+      updatePage(page, newPage);
+    }
   })
 );
 
@@ -135,3 +113,8 @@ export const {
   selectCurrentPage,
   selectCurrentPageSections,
 } = designCanvasFeature;
+
+export const { selectCanUndo: canUndoDesignCanvas, selectCanRedo: canRedoDesignCanvas } = createHistorySelectors<
+  AppState,
+  DesignCanvasState
+>(state => state[designCanvasFeatureKey]);

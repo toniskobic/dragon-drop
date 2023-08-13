@@ -7,7 +7,6 @@
   [cdkDropListAutoScrollDisabled]="false"
   [cdkDropListAutoScrollStep]="10"
   (cdkDropListDropped)="drop($event)">
-  <!-- <ng-template drdDynamicContentArea></ng-template> -->
   <drd-resizable-draggable
     *ngFor="let component of components$ | async"
     [component]="component"></drd-resizable-draggable>

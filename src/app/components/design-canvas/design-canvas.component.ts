@@ -31,8 +31,6 @@ import { ResizableDraggableComponent } from '../resizable-draggable/resizable-dr
   ],
 })
 export class DesignCanvasComponent {
-  // @ViewChild(DynamicContentAreaDirective, { static: true }) canvasContentArea!: DynamicContentAreaDirective;
-
   components$ = this.store.select(selectCurrentPageSections);
 
   readonly Viewport = Viewport;
@@ -40,7 +38,6 @@ export class DesignCanvasComponent {
   currentViewport$ = this.store.select(selectViewport);
 
   constructor(
-    // private designCanvasService: DesignCanvasService,
     private store: Store<AppState>,
     private utils: UtilsService
   ) {}

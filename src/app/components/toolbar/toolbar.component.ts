@@ -12,14 +12,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { map } from 'rxjs';
+import { combineLatest, map, tap } from 'rxjs';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
-import { selectCurrentPageId, selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
+import {
+  canRedoDesignCanvas,
+  canUndoDesignCanvas,
+  selectCurrentPageId,
+  selectPages,
+} from 'src/app/state/design-canvas/design-canvas.reducer';
 import { EditorActions } from 'src/app/state/editor/editor.actions';
 import { selectViewport } from 'src/app/state/editor/editor.reducer';
+import { canRedoThemeSettings, canUndoThemeSettings } from 'src/app/state/theme-settings/theme-settings.reducer';
 
 @Component({
   selector: 'drd-toolbar',
@@ -45,6 +51,14 @@ export default class ToolbarComponent {
 
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
 
+  canUndo$ = combineLatest([this.store.select(canUndoThemeSettings()), this.store.select(canUndoDesignCanvas())]).pipe(
+    map(([firstValue, secondValue]) => firstValue || secondValue),
+    tap(value => console.log('canUndo$', value))
+  );
+  canRedo$ = combineLatest([this.store.select(canRedoThemeSettings()), this.store.select(canRedoDesignCanvas())]).pipe(
+    map(([firstValue, secondValue]) => firstValue || secondValue)
+  );
+
   currentViewport$ = this.store.select(selectViewport);
   currentPageId$ = this.store.select(selectCurrentPageId);
   pages$ = this.store.select(selectPages);
@@ -56,7 +70,15 @@ export default class ToolbarComponent {
     private utilsService: UtilsService,
     private breakpointObserver: BreakpointObserver
   ) {
-    this.utilsService.initSvgIcons(['dragon-drop-full-white', 'dragon-drop-short', 'menu', 'mobile', 'desktop']);
+    this.utilsService.initSvgIcons([
+      'dragon-drop-full-white',
+      'dragon-drop-short',
+      'menu',
+      'mobile',
+      'desktop',
+      'undo',
+      'redo',
+    ]);
   }
 
   onPageSelect(event: MatSelectChange) {
@@ -71,5 +93,13 @@ export default class ToolbarComponent {
 
   onMenuClick() {
     this.store.dispatch(EditorActions.setSidebarOpened({}));
+  }
+
+  undo() {
+    this.store.dispatch({ type: 'UNDO' });
+  }
+
+  redo() {
+    this.store.dispatch({ type: 'REDO' });
   }
 }

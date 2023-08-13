@@ -1,6 +1,9 @@
-import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
+import { createFeature, createSelector } from '@ngrx/store';
+import { createHistorySelectors, initialUndoRedoState, produceOn, undoRedo } from 'ngrx-wieder';
 import { Color } from 'src/app/models/color.model';
 
+import { AppActions } from '../app.actions';
+import { AppState } from '../app.reducer';
 import { FontsApiActions, ThemeSettingsActions } from './theme-settings.actions';
 import { ThemeSettingsState } from './theme-settings.model';
 
@@ -26,25 +29,31 @@ export const initialState: ThemeSettingsState = {
     alternative: alternativeFontFamily,
   },
   fontList: undefined,
+  ...initialUndoRedoState,
 };
 
-export const reducer = createReducer(
+// initialize ngrx-wieder with custom config
+const { createUndoRedoReducer } = undoRedo({
+  allowedActionTypes: [ThemeSettingsActions.setFont.type, ThemeSettingsActions.setColor.type],
+  mergeActionTypes: [ThemeSettingsActions.setColor.type],
+  breakMergeActionType: AppActions.breakMerge.type,
+  trackActionPayload: true,
+});
+
+export const reducer = createUndoRedoReducer(
   initialState,
-  on(ThemeSettingsActions.setColor, (state, { key, color }) => {
+  produceOn(ThemeSettingsActions.setColor, (state, { key, color }) => {
     if (state.colors[key as keyof typeof state.colors] !== color) {
-      return { ...state, colors: { ...state.colors, [key as keyof typeof state.colors]: color } };
+      state.colors[key as keyof typeof state.colors] = color;
     }
-    return state;
   }),
-  on(FontsApiActions.fontsLoadedSuccess, (state, { fontList }) => ({
-    ...state,
-    fontList: fontList,
-  })),
-  on(ThemeSettingsActions.setFont, (state, { key, font }) => {
+  produceOn(FontsApiActions.fontsLoadedSuccess, (state, { fontList }) => {
+    state.fontList = fontList;
+  }),
+  produceOn(ThemeSettingsActions.setFont, (state, { key, font }) => {
     if (state.fonts[key as keyof typeof state.fonts] !== font) {
-      return { ...state, fonts: { ...state.fonts, [key as keyof typeof state.fonts]: font } };
+      state.fonts[key as keyof typeof state.fonts] = font;
     }
-    return state;
   })
 );
 
@@ -67,4 +76,10 @@ export const {
   selectFontList,
   selectPrimarySecondaryFonts,
   selectAlternativeFont,
+  selectHistories,
 } = themeSettingsFeature;
+
+export const { selectCanUndo: canUndoThemeSettings, selectCanRedo: canRedoThemeSettings } = createHistorySelectors<
+  AppState,
+  ThemeSettingsState
+>(state => state[themeSettingsFeatureKey]);

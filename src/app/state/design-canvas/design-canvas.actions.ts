@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
+import { DynamicElement } from 'src/app/models/dynamic-component.model';
 import { Page } from 'src/app/models/page.model';
 
 export const DesignCanvasActions = createActionGroup({
@@ -9,7 +9,6 @@ export const DesignCanvasActions = createActionGroup({
     'Add Page': emptyProps(),
     'Delete Page': props<{ pageId: string }>(),
     'Set Current Page': props<{ pageId: string }>(),
-    'Add Curent Page Component': props<{ component: DynamicComponent }>(),
     'Add Dropped Current Page Component': props<{
       componentClass: Type<DynamicElement>;
       currentIndex: number;
@@ -17,6 +16,6 @@ export const DesignCanvasActions = createActionGroup({
     'Delete Component': props<{ pageId?: string; id: string }>(),
     'Sort Current Page Components': props<{ previousIndex: number; currentIndex: number }>(),
     'Update Component': props<{ id: string; inputs: { [key: string]: unknown } }>(),
-    'Update Page': props<{ page: Page }>(),
+    'Update Page': props<{ newPage: Page }>(),
   },
 });

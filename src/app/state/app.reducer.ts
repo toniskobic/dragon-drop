@@ -1,4 +1,4 @@
-import { ActionReducerMap } from '@ngrx/store';
+import { UndoRedoState } from 'ngrx-wieder';
 
 import { DesignCanvasState } from './design-canvas/design-canvas.model';
 import { designCanvasFeatureKey, reducer as desigCanvasReducer } from './design-canvas/design-canvas.reducer';
@@ -7,13 +7,13 @@ import { editorFeatureKey, reducer as editorReducer } from './editor/editor.redu
 import { ThemeSettingsState } from './theme-settings/theme-settings.model';
 import { reducer as themeSettingsReducer, themeSettingsFeatureKey } from './theme-settings/theme-settings.reducer';
 
-export interface AppState {
+export interface AppState extends UndoRedoState {
   [editorFeatureKey]: EditorState;
   [designCanvasFeatureKey]: DesignCanvasState;
   [themeSettingsFeatureKey]: ThemeSettingsState;
 }
 
-export const reducers: ActionReducerMap<AppState> = {
+export const reducers = {
   [editorFeatureKey]: editorReducer,
   [designCanvasFeatureKey]: desigCanvasReducer,
   [themeSettingsFeatureKey]: themeSettingsReducer,

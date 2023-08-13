@@ -128,7 +128,7 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
       const updatedPage = { id: page.id, title: page.formControl.value, sections: page.sections };
       this.store.dispatch(
         DesignCanvasActions.updatePage({
-          page: updatedPage,
+          newPage: updatedPage,
         })
       );
       page.valueChanged = false;
