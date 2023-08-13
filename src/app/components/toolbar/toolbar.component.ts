@@ -12,20 +12,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { combineLatest, map, tap } from 'rxjs';
+import { map } from 'rxjs';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
-import { AppState } from 'src/app/state/app.reducer';
+import { AppActions } from 'src/app/state/app.actions';
+import { AppState, selectCanRedo, selectCanUndo } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
-import {
-  canRedoDesignCanvas,
-  canUndoDesignCanvas,
-  selectCurrentPageId,
-  selectPages,
-} from 'src/app/state/design-canvas/design-canvas.reducer';
+import { selectCurrentPageId, selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
 import { EditorActions } from 'src/app/state/editor/editor.actions';
 import { selectViewport } from 'src/app/state/editor/editor.reducer';
-import { canRedoThemeSettings, canUndoThemeSettings } from 'src/app/state/theme-settings/theme-settings.reducer';
 
 @Component({
   selector: 'drd-toolbar',
@@ -51,13 +46,8 @@ export default class ToolbarComponent {
 
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
 
-  canUndo$ = combineLatest([this.store.select(canUndoThemeSettings()), this.store.select(canUndoDesignCanvas())]).pipe(
-    map(([firstValue, secondValue]) => firstValue || secondValue),
-    tap(value => console.log('canUndo$', value))
-  );
-  canRedo$ = combineLatest([this.store.select(canRedoThemeSettings()), this.store.select(canRedoDesignCanvas())]).pipe(
-    map(([firstValue, secondValue]) => firstValue || secondValue)
-  );
+  canUndo$ = this.store.select(selectCanUndo());
+  canRedo$ = this.store.select(selectCanRedo());
 
   currentViewport$ = this.store.select(selectViewport);
   currentPageId$ = this.store.select(selectCurrentPageId);
@@ -96,10 +86,10 @@ export default class ToolbarComponent {
   }
 
   undo() {
-    this.store.dispatch({ type: 'UNDO' });
+    this.store.dispatch(AppActions.undo());
   }
 
   redo() {
-    this.store.dispatch({ type: 'REDO' });
+    this.store.dispatch(AppActions.redo());
   }
 }

@@ -10,7 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { CustomTitleStrategy, routes } from './app.routes';
-import { reducers } from './state/app.reducer';
+import { reducer } from './state/app.reducer';
 import { DesignCanvasEffects } from './state/design-canvas/design-canvas.effects';
 import { EditorEffects } from './state/editor/editor.effects';
 import { ThemeSettingsEffects } from './state/theme-settings/theme-settings.effects';
@@ -45,12 +45,15 @@ export const appConfig: ApplicationConfig = {
         },
       })
     ),
-    provideStore(reducers, {
-      runtimeChecks: {
-        strictStateImmutability: false,
-        strictActionImmutability: false,
-      },
-    }),
+    provideStore(
+      { dragonDrop: reducer },
+      {
+        runtimeChecks: {
+          strictStateImmutability: false,
+          strictActionImmutability: false,
+        },
+      }
+    ),
     provideStoreDevtools(),
     provideEffects([EditorEffects, DesignCanvasEffects, ThemeSettingsEffects]),
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },

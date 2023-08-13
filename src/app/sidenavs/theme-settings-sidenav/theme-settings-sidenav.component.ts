@@ -89,7 +89,7 @@ export class ThemeSettingsSidenavComponent implements OnInit, OnDestroy {
           tap(value => {
             this.store.dispatch(ThemeSettingsActions.setColor({ key: value.key, color: value.color as Color }));
           }),
-          debounceTime(50),
+          debounceTime(100),
           tap(() => {
             this.store.dispatch(AppActions.breakMerge());
           })

@@ -1,31 +1,26 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
+import { produceOn } from 'ngrx-wieder';
 import { Viewport } from 'src/app/models/viewport.enum';
 
+import { DragonDropState } from '../app.reducer';
+import { selectDragonDropState } from '../app.selectors';
 import { EditorActions } from './editor.actions';
 import { EditorState } from './editor.model';
 
-export const editorFeatureKey = 'editor';
-
-export const initialState: EditorState = {
+export const initialEditorState: EditorState = {
   sidebarOpened: false,
   viewport: Viewport.Desktop,
 };
 
-export const reducer = createReducer(
-  initialState,
-  on(EditorActions.setViewport, (state, { viewport }) => ({
-    ...state,
-    viewport: viewport,
-  })),
-  on(EditorActions.setSidebarOpened, (state, { opened }) => ({
-    ...state,
-    sidebarOpened: opened ? opened : !state.sidebarOpened,
-  }))
-);
+export const editorOnActions = [
+  produceOn(EditorActions.setViewport, (state: DragonDropState, { viewport }) => {
+    state.viewport = viewport;
+  }),
+  produceOn(EditorActions.setSidebarOpened, (state: DragonDropState, { opened }) => {
+    state.sidebarOpened = opened ? opened : !state.sidebarOpened;
+  }),
+];
 
-export const editorFeature = createFeature({
-  name: editorFeatureKey,
-  reducer,
-});
+export const selectSidebarOpened = createSelector(selectDragonDropState, state => state.sidebarOpened);
 
-export const { selectEditorState, selectSidebarOpened, selectViewport } = editorFeature;
+export const selectViewport = createSelector(selectDragonDropState, state => state.viewport);

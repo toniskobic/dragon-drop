@@ -1,9 +1,9 @@
-import { createFeature, createSelector } from '@ngrx/store';
-import { createHistorySelectors, initialUndoRedoState, produceOn, undoRedo } from 'ngrx-wieder';
+import { createSelector } from '@ngrx/store';
+import { initialUndoRedoState, produceOn } from 'ngrx-wieder';
 import { Color } from 'src/app/models/color.model';
 
-import { AppActions } from '../app.actions';
-import { AppState } from '../app.reducer';
+import { DragonDropState } from '../app.reducer';
+import { selectDragonDropState } from '../app.selectors';
 import { FontsApiActions, ThemeSettingsActions } from './theme-settings.actions';
 import { ThemeSettingsState } from './theme-settings.model';
 
@@ -15,9 +15,7 @@ const primaryColor = getComputedStyle(document.documentElement).getPropertyValue
 const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color') as Color;
 const tertiaryColor = getComputedStyle(document.documentElement).getPropertyValue('--tertiary-color') as Color;
 
-export const themeSettingsFeatureKey = 'themeSettings';
-
-export const initialState: ThemeSettingsState = {
+export const initialThemeSettingsState: ThemeSettingsState = {
   colors: {
     primary: primaryColor,
     secondary: secondaryColor,
@@ -32,54 +30,30 @@ export const initialState: ThemeSettingsState = {
   ...initialUndoRedoState,
 };
 
-// initialize ngrx-wieder with custom config
-const { createUndoRedoReducer } = undoRedo({
-  allowedActionTypes: [ThemeSettingsActions.setFont.type, ThemeSettingsActions.setColor.type],
-  mergeActionTypes: [ThemeSettingsActions.setColor.type],
-  breakMergeActionType: AppActions.breakMerge.type,
-  trackActionPayload: true,
-});
-
-export const reducer = createUndoRedoReducer(
-  initialState,
-  produceOn(ThemeSettingsActions.setColor, (state, { key, color }) => {
+export const themeSettingsOnActions = [
+  produceOn(ThemeSettingsActions.setColor, (state: DragonDropState, { key, color }) => {
     if (state.colors[key as keyof typeof state.colors] !== color) {
       state.colors[key as keyof typeof state.colors] = color;
     }
   }),
-  produceOn(FontsApiActions.fontsLoadedSuccess, (state, { fontList }) => {
+  produceOn(FontsApiActions.fontsLoadedSuccess, (state: DragonDropState, { fontList }) => {
     state.fontList = fontList;
   }),
-  produceOn(ThemeSettingsActions.setFont, (state, { key, font }) => {
+  produceOn(ThemeSettingsActions.setFont, (state: DragonDropState, { key, font }) => {
     if (state.fonts[key as keyof typeof state.fonts] !== font) {
       state.fonts[key as keyof typeof state.fonts] = font;
     }
-  })
-);
-
-export const themeSettingsFeature = createFeature({
-  name: themeSettingsFeatureKey,
-  reducer,
-  extraSelectors: ({ selectThemeSettingsState, selectFonts }) => ({
-    selectPrimarySecondaryFonts: createSelector(selectFonts, fonts => {
-      return { primary: fonts.primary, secondary: fonts.secondary };
-    }),
-    selectAlternativeFont: createSelector(selectFonts, fonts => fonts.alternative),
-    selectFontList: createSelector(selectThemeSettingsState, fonts => fonts.fontList?.map(font => font.family)),
   }),
+];
+
+export const selectThemeSettingsState = createSelector(selectDragonDropState, state => {
+  state.colors, state.fonts, state.fontList;
 });
 
-export const {
-  selectThemeSettingsState,
-  selectColors,
-  selectFonts,
-  selectFontList,
-  selectPrimarySecondaryFonts,
-  selectAlternativeFont,
-  selectHistories,
-} = themeSettingsFeature;
+export const selectFonts = createSelector(selectDragonDropState, state => state.fonts);
 
-export const { selectCanUndo: canUndoThemeSettings, selectCanRedo: canRedoThemeSettings } = createHistorySelectors<
-  AppState,
-  ThemeSettingsState
->(state => state[themeSettingsFeatureKey]);
+export const selectAlternativeFont = createSelector(selectFonts, fonts => fonts.alternative);
+
+export const selectFontList = createSelector(selectDragonDropState, state => state.fontList?.map(font => font.family));
+
+export const selectColors = createSelector(selectDragonDropState, state => state.colors);

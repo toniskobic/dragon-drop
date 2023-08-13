@@ -1,19 +1,18 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
-import { createFeature, createSelector } from '@ngrx/store';
-import { createHistorySelectors, initialUndoRedoState, produceOn, undoRedo } from 'ngrx-wieder';
+import { createSelector } from '@ngrx/store';
+import { produceOn } from 'ngrx-wieder';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
 import { v4 as uuidv4 } from 'uuid';
 
-import { AppState } from '../app.reducer';
+import { DragonDropState } from '../app.reducer';
+import { selectDragonDropState } from '../app.selectors';
 import { DesignCanvasActions } from './design-canvas.actions';
 import { DesignCanvasState } from './design-canvas.model';
 import { currentPage, updatePage } from './design-canvas.utils';
 
-export const designCanvasFeatureKey = 'designCanvas';
-
 const pageId = uuidv4();
 
-export const initialState: DesignCanvasState = {
+export const initialDesignCanvasState: DesignCanvasState = {
   pages: [
     {
       id: pageId,
@@ -26,95 +25,67 @@ export const initialState: DesignCanvasState = {
     { id: uuidv4(), title: 'About', sections: [{ id: uuidv4(), component: SectionComponent }] },
   ],
   currentPageId: pageId,
-  ...initialUndoRedoState,
 };
 
-// initialize ngrx-wieder with custom config
-const { createUndoRedoReducer } = undoRedo({
-  allowedActionTypes: [
-    DesignCanvasActions.addPage.type,
-    DesignCanvasActions.deletePage.type,
-    DesignCanvasActions.addDroppedCurrentPageComponent.type,
-    DesignCanvasActions.deleteComponent.type,
-    DesignCanvasActions.sortCurrentPageComponents.type,
-    DesignCanvasActions.updateComponent.type,
-    DesignCanvasActions.updatePage.type,
-  ],
-  trackActionPayload: true,
-});
-
-export const reducer = createUndoRedoReducer(
-  initialState,
-  produceOn(DesignCanvasActions.addPage, state => {
+export const designCanvasOnActions = [
+  produceOn(DesignCanvasActions.addPage, (state: DragonDropState) => {
     state.pages.push({ id: uuidv4(), title: 'New Page', sections: [] });
   }),
-  produceOn(DesignCanvasActions.setCurrentPage, (state, { pageId }) => {
+  produceOn(DesignCanvasActions.setCurrentPage, (state: DragonDropState, { pageId }) => {
     state.currentPageId = pageId;
   }),
-  produceOn(DesignCanvasActions.deletePage, (state, { pageId }) => {
+  produceOn(DesignCanvasActions.deletePage, (state: DragonDropState, { pageId }) => {
     const pages = state.pages.filter(page => page.id !== pageId);
     state.pages = pages;
     state.currentPageId = state.currentPageId === pageId ? pages[0].id : state.currentPageId;
   }),
-  produceOn(DesignCanvasActions.sortCurrentPageComponents, (state, { previousIndex, currentIndex }) => {
-    const page = currentPage(state);
-    if (page) {
-      moveItemInArray(page.sections, previousIndex, currentIndex);
+  produceOn(
+    DesignCanvasActions.sortCurrentPageComponents,
+    (state: DragonDropState, { previousIndex, currentIndex }) => {
+      const page = currentPage(state);
+      if (page) {
+        moveItemInArray(page.sections, previousIndex, currentIndex);
+      }
     }
-  }),
-  produceOn(DesignCanvasActions.addDroppedCurrentPageComponent, (state, { componentClass, currentIndex }) => {
-    const page = currentPage(state);
-    if (page) {
-      const newSection = { id: uuidv4(), component: componentClass };
-      page.sections.splice(currentIndex, 0, newSection);
+  ),
+  produceOn(
+    DesignCanvasActions.addDroppedCurrentPageComponent,
+    (state: DragonDropState, { componentClass, currentIndex }) => {
+      const page = currentPage(state);
+      if (page) {
+        const newSection = { id: uuidv4(), component: componentClass };
+        page.sections.splice(currentIndex, 0, newSection);
+      }
     }
-  }),
-  produceOn(DesignCanvasActions.deleteComponent, (state, { pageId, id }) => {
+  ),
+  produceOn(DesignCanvasActions.deleteComponent, (state: DragonDropState, { pageId, id }) => {
     const componentsPageId = pageId ? pageId : state.currentPageId;
     const page = state.pages.find(page => page.id === componentsPageId);
     if (page) {
       page.sections = page.sections.filter(component => component.id !== id);
     }
   }),
-  produceOn(DesignCanvasActions.updateComponent, (state, { id, inputs }) => {
+  produceOn(DesignCanvasActions.updateComponent, (state: DragonDropState, { id, inputs }) => {
     const page = currentPage(state);
     if (page) {
       const section = page.sections.find(component => component.id === id);
       if (section) section.inputs = inputs;
     }
   }),
-  produceOn(DesignCanvasActions.updatePage, (state, { newPage }) => {
+  produceOn(DesignCanvasActions.updatePage, (state: DragonDropState, { newPage }) => {
     const page = state.pages.find(page => page.id === newPage.id);
     if (page) {
       updatePage(page, newPage);
     }
-  })
+  }),
+];
+
+export const selectPages = createSelector(selectDragonDropState, state => state.pages);
+
+export const selectCurrentPageId = createSelector(selectDragonDropState, state => state.currentPageId);
+
+export const selectCurrentPage = createSelector(selectPages, selectCurrentPageId, (pages, currentPageId) =>
+  pages.find(page => page.id === currentPageId)
 );
 
-export const designCanvasFeature = createFeature({
-  name: designCanvasFeatureKey,
-  reducer,
-  extraSelectors: ({ selectCurrentPageId, selectPages }) => ({
-    selectCurrentPage: createSelector(selectCurrentPageId, selectPages, (id, pages) =>
-      pages.find(page => page.id === id)
-    ),
-    selectCurrentPageSections: createSelector(
-      selectCurrentPageId,
-      selectPages,
-      (id, pages) => pages.find(page => page.id === id)?.sections
-    ),
-  }),
-});
-
-export const {
-  selectDesignCanvasState,
-  selectPages,
-  selectCurrentPageId,
-  selectCurrentPage,
-  selectCurrentPageSections,
-} = designCanvasFeature;
-
-export const { selectCanUndo: canUndoDesignCanvas, selectCanRedo: canRedoDesignCanvas } = createHistorySelectors<
-  AppState,
-  DesignCanvasState
->(state => state[designCanvasFeatureKey]);
+export const selectCurrentPageSections = createSelector(selectCurrentPage, page => page?.sections);
