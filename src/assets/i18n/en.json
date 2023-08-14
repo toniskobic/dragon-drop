@@ -52,7 +52,7 @@
             }
           },
           "CURRENT_PAGE": {
-            "TITLE": "Page Sections",
+            "TITLE": "Sections",
             "TOOLTIPS": {
               "DELETE_SECTION": "Delete section"
             }

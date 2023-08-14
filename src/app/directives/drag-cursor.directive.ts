@@ -12,12 +12,12 @@ export class DragCursorDirective implements OnInit, OnDestroy {
   constructor(@Self() private drag: CdkDrag) {}
 
   ngOnInit() {
-    this.subscriptions?.push(
+    this.subscriptions.push(
       this.drag._dragRef.started.subscribe(() => {
         document.body.classList.add('dragging-cursor');
       })
     );
-    this.subscriptions?.push(
+    this.subscriptions.push(
       this.drag._dragRef.ended.subscribe(() => {
         document.body.classList.remove('dragging-cursor');
       })
