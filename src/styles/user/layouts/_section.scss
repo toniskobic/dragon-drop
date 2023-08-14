@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,12 +8,14 @@
   height: 200px;
 
   .content {
-    width: 100%;
+    position: absolute;
     max-width: 992px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    top: 10%;
+    bottom: 10%
   }
 }

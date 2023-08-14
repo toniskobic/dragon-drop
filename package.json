@@ -28,6 +28,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@types/uuid": "^9.0.2",
+    "angular-gridster2": "^16.0.0",
     "angular-resizable-element": "^7.0.2",
     "immer": "^10.0.2",
     "ngrx-wieder": "^11.0.0",

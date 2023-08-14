@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { initialUndoRedoState, produceOn } from 'ngrx-wieder';
+import { produceOn } from 'ngrx-wieder';
 import { Color } from 'src/app/models/color.model';
 
 import { DragonDropState } from '../app.reducer';
@@ -27,7 +27,6 @@ export const initialThemeSettingsState: ThemeSettingsState = {
     alternative: alternativeFontFamily,
   },
   fontList: undefined,
-  ...initialUndoRedoState,
 };
 
 export const themeSettingsUndoRedoAllowedActions = [

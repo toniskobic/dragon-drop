@@ -23,6 +23,7 @@ mwlResizable {
   background-color: $rich-black-light;
   border: 1px solid $rich-black-light;
   border-radius: 5px;
+  z-index: 10;
 
   .resize-handle-top,
   .resize-handle-bottom {
@@ -51,6 +52,7 @@ mwlResizable {
   height: 100%;
   width: 5px;
   cursor: col-resize;
+  z-index: 10;
 }
 
 .resize-edge-left {
@@ -79,6 +81,7 @@ mwlResizable {
     background-color: $penn-red;
     border: 1px solid $penn-red;
     border-radius: 5px;
+    z-index: 10;
   }
 
   .selected-edge-right,
@@ -89,6 +92,7 @@ mwlResizable {
     background-color: $penn-red;
     border: 1px solid $penn-red;
     border-radius: 5px;
+    z-index: 10;
   }
 
   .selected-edge-top {
