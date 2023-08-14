@@ -33,10 +33,18 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
       <div class="undo-redo">
-        <button mat-icon-button [disabled]="(canUndo$ | async) !== true" (click)="undo()" matTooltip="Undo">
+        <button
+          mat-icon-button
+          [disabled]="(canUndo$ | async) !== true"
+          (click)="undo()"
+          matTooltip="{{ 'EDITOR.TOOLBAR.TOOLTIPS.UNDO' | translate }}">
           <mat-icon svgIcon="undo"></mat-icon>
         </button>
-        <button mat-icon-button [disabled]="(canRedo$ | async) !== true" (click)="redo()" matTooltip="Redo">
+        <button
+          mat-icon-button
+          [disabled]="(canRedo$ | async) !== true"
+          (click)="redo()"
+          matTooltip="{{ 'EDITOR.TOOLBAR.TOOLTIPS.REDO' | translate }}">
           <mat-icon svgIcon="redo"></mat-icon>
         </button>
       </div>

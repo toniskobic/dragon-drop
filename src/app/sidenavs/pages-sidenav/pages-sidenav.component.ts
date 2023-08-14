@@ -94,7 +94,7 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
           return {
             id: section.id,
             name: this.sectionsService.allSections.get(section.component) ?? '',
-            selected: false,
+            selected: section.selected ?? false,
           };
         });
       })
@@ -143,9 +143,11 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
     page.confirmDelete = !page.confirmDelete;
   }
 
-  cardClick(id: string, cards: SectionCard[]) {
-    cards.forEach(card => {
-      card.selected = card.id === id ? !card.selected : false;
-    });
+  cardClick(id: string) {
+    this.store.dispatch(DesignCanvasActions.selectCurrentPageSection({ sectionId: id }));
+  }
+
+  onPanelClose() {
+    this.store.dispatch(DesignCanvasActions.unselectCurrentPageSection());
   }
 }

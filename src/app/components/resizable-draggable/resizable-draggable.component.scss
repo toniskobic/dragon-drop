@@ -69,3 +69,41 @@ mwlResizable {
 .drag-handle:active {
   cursor: grabbing;
 }
+
+.selected {
+  .selected-edge-top,
+  .selected-edge-bottom {
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background-color: $penn-red;
+    border: 1px solid $penn-red;
+    border-radius: 5px;
+  }
+
+  .selected-edge-right,
+  .selected-edge-left {
+    position: absolute;
+    height: 100%;
+    width: 5px;
+    background-color: $penn-red;
+    border: 1px solid $penn-red;
+    border-radius: 5px;
+  }
+
+  .selected-edge-top {
+    top: 0;
+  }
+
+  .selected-edge-bottom {
+    bottom: 5px;
+  }
+
+  .selected-edge-left {
+    left: 0;
+  }
+
+  .selected-edge-right {
+    right: 0;
+  }
+}

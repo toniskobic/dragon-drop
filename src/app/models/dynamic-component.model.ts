@@ -9,4 +9,5 @@ export interface DynamicComponent {
   id: string;
   component: Type<DynamicElement>;
   inputs?: { [key: string]: unknown };
+  selected?: boolean;
 }

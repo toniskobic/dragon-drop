@@ -9,6 +9,8 @@ export const DesignCanvasActions = createActionGroup({
     'Add Page': emptyProps(),
     'Delete Page': props<{ pageId: string }>(),
     'Set Current Page': props<{ pageId: string }>(),
+    'Select Current Page Section': props<{ sectionId: string }>(),
+    'Unselect Current Page Section': emptyProps(),
     'Add Dropped Current Page Component': props<{
       componentClass: Type<DynamicElement>;
       currentIndex: number;

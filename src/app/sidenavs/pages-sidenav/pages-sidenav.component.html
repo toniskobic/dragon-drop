@@ -46,7 +46,7 @@
         </div>
       </div>
     </mat-expansion-panel>
-    <mat-expansion-panel class="panel-box-shadow">
+    <mat-expansion-panel class="panel-box-shadow" (destroyed)="onPanelClose()" (closed)="onPanelClose()">
       <mat-expansion-panel-header>
         <mat-panel-title>{{ 'EDITOR.SIDENAVS.PAGES.PANELS.CURRENT_PAGE.TITLE' | translate }}</mat-panel-title>
       </mat-expansion-panel-header>
@@ -55,7 +55,7 @@
           class="mat-card"
           [ngClass]="{ focused: section.selected }"
           *ngFor="let section of sectionCards$ | async as sections"
-          (click)="cardClick(section.id, sections)">
+          (click)="cardClick(section.id)">
           <mat-card-content>
             <span>{{ section.name }}</span>
             <button

@@ -7,6 +7,12 @@
   cdkDrag
   drdDragCursor
   cdkDragBoundary=".canvas">
+  <div class="selected" *ngIf="component?.selected === true">
+    <div class="selected-edge-top mat-elevation-z20"></div>
+    <div class="selected-edge-right mat-elevation-z20"></div>
+    <div class="selected-edge-bottom mat-elevation-z20"></div>
+    <div class="selected-edge-left mat-elevation-z20"></div>
+  </div>
   <div class="resize-edge-bottom">
     <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true }"></div>
   </div>

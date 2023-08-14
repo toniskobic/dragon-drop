@@ -18,7 +18,7 @@ export const initialDesignCanvasState: DesignCanvasState = {
       id: pageId,
       title: 'Home',
       sections: [
-        { id: uuidv4(), component: SectionComponent },
+        { id: uuidv4(), component: SectionComponent, selected: false },
         { id: uuidv4(), component: SectionComponent },
       ],
     },
@@ -26,6 +26,16 @@ export const initialDesignCanvasState: DesignCanvasState = {
   ],
   currentPageId: pageId,
 };
+
+export const designCanvasUndoRedoAllowedActions = [
+  DesignCanvasActions.addPage.type,
+  DesignCanvasActions.deletePage.type,
+  DesignCanvasActions.addDroppedCurrentPageComponent.type,
+  DesignCanvasActions.deleteComponent.type,
+  DesignCanvasActions.sortCurrentPageComponents.type,
+  DesignCanvasActions.updateComponent.type,
+  DesignCanvasActions.updatePage.type,
+];
 
 export const designCanvasOnActions = [
   produceOn(DesignCanvasActions.addPage, (state: DragonDropState) => {
@@ -38,6 +48,22 @@ export const designCanvasOnActions = [
     const pages = state.pages.filter(page => page.id !== pageId);
     state.pages = pages;
     state.currentPageId = state.currentPageId === pageId ? pages[0].id : state.currentPageId;
+  }),
+  produceOn(DesignCanvasActions.selectCurrentPageSection, (state: DragonDropState, { sectionId }) => {
+    const page = currentPage(state);
+    if (page) {
+      page.sections.forEach(section => {
+        section.selected = section.id === sectionId;
+      });
+    }
+  }),
+  produceOn(DesignCanvasActions.unselectCurrentPageSection, (state: DragonDropState) => {
+    const page = currentPage(state);
+    if (page) {
+      page.sections.forEach(section => {
+        section.selected = false;
+      });
+    }
   }),
   produceOn(
     DesignCanvasActions.sortCurrentPageComponents,

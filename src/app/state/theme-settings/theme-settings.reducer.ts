@@ -30,6 +30,11 @@ export const initialThemeSettingsState: ThemeSettingsState = {
   ...initialUndoRedoState,
 };
 
+export const themeSettingsUndoRedoAllowedActions = [
+  ThemeSettingsActions.setFont.type,
+  ThemeSettingsActions.setColor.type,
+];
+
 export const themeSettingsOnActions = [
   produceOn(ThemeSettingsActions.setColor, (state: DragonDropState, { key, color }) => {
     if (state.colors[key as keyof typeof state.colors] !== color) {
