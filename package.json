@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@ckeditor/ckeditor5-angular": "^7.0.0",
+    "@ckeditor/ckeditor5-build-balloon-block": "^39.0.1",
     "@ngrx/component": "^16.2.0",
     "@ngrx/effects": "^16.2.0",
     "@ngrx/entity": "^16.2.0",

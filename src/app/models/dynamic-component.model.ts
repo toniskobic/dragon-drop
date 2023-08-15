@@ -1,13 +1,18 @@
-import { ElementRef, Type } from '@angular/core';
+import { Type } from '@angular/core';
 
-export interface DynamicElement {
-  element: ElementRef<HTMLElement> | null;
+export interface DynamicComponentType {
   style?: object;
+  elements: DynamicElement[];
 }
 
 export interface DynamicComponent {
   id: string;
-  component: Type<DynamicElement>;
+  component: Type<DynamicComponentType>;
   inputs?: { [key: string]: unknown };
   selected?: boolean;
+}
+
+export interface DynamicElement {
+  id: string;
+  data: string;
 }

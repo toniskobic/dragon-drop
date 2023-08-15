@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { DynamicElement } from 'src/app/models/dynamic-component.model';
+import { DynamicComponentType, DynamicElement } from 'src/app/models/dynamic-component.model';
 
 @Component({
   selector: 'drd-footer',
@@ -9,8 +9,9 @@ import { DynamicElement } from 'src/app/models/dynamic-component.model';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements DynamicElement {
+export class FooterComponent implements DynamicComponentType {
   @ViewChild('element') element: ElementRef<HTMLElement> | null = null;
+  @Input() elements: DynamicElement[] = [];
 
   @Input() style: object = {};
 }

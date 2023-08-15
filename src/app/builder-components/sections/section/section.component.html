@@ -1,6 +1,5 @@
 <section class="container" [ngStyle]="style" #element [style.background-color]="backgroundColor">
   <div class="content">
-    <h2>{{ title }}</h2>
-    <p>{{ text }}</p>
+    <drd-editable-text *ngFor="let element of elements" [data]="element.data" [id]="element.id"></drd-editable-text>
   </div>
 </section>

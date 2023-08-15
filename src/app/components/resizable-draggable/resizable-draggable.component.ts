@@ -7,7 +7,7 @@ import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resiza
 import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { DragCursorDirective } from 'src/app/directives/drag-cursor.directive';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
-import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
+import { DynamicComponent, DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
@@ -31,7 +31,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges {
 
   @Input() component?: DynamicComponent;
 
-  componentRef?: ComponentRef<DynamicElement>;
+  componentRef?: ComponentRef<DynamicComponentType>;
   style = {};
 
   constructor(private store: Store<AppState>) {}

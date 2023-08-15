@@ -2,6 +2,7 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { createSelector } from '@ngrx/store';
 import { produceOn } from 'ngrx-wieder';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
+import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DragonDropState } from '../app.reducer';
@@ -18,7 +19,12 @@ export const initialDesignCanvasState: DesignCanvasState = {
       id: pageId,
       title: 'Home',
       sections: [
-        { id: uuidv4(), component: SectionComponent, selected: false },
+        {
+          id: uuidv4(),
+          component: SectionComponent,
+          selected: false,
+          inputs: { elements: [{ id: uuidv4(), data: '<p>Hello World!</p>' }] },
+        },
         { id: uuidv4(), component: SectionComponent },
       ],
     },
@@ -35,6 +41,7 @@ export const designCanvasUndoRedoAllowedActions = [
   DesignCanvasActions.sortCurrentPageComponents.type,
   DesignCanvasActions.updateComponent.type,
   DesignCanvasActions.updatePage.type,
+  DesignCanvasActions.updateElement.type,
 ];
 
 export const designCanvasOnActions = [
@@ -79,7 +86,7 @@ export const designCanvasOnActions = [
     (state: DragonDropState, { componentClass, currentIndex }) => {
       const page = currentPage(state);
       if (page) {
-        const newSection = { id: uuidv4(), component: componentClass };
+        const newSection: DynamicComponent = { id: uuidv4(), component: componentClass };
         page.sections.splice(currentIndex, 0, newSection);
       }
     }
@@ -102,6 +109,20 @@ export const designCanvasOnActions = [
     const page = state.pages.find(page => page.id === newPage.id);
     if (page) {
       updatePage(page, newPage);
+    }
+  }),
+  produceOn(DesignCanvasActions.updateElement, (state: DragonDropState, { id, data }) => {
+    const page = currentPage(state);
+    if (page) {
+      for (const section of page.sections) {
+        if (section.inputs) {
+          const element = (section.inputs['elements'] as DynamicElement[]).find(element => element.id === id);
+          if (element) {
+            element.data = data;
+            break;
+          }
+        }
+      }
     }
   }),
 ];
