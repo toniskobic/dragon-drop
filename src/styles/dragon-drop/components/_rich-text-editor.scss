@@ -1,0 +1,21 @@
+.ck.ck-editor__editable.ck-blurred:not(.ck-editor__nested-editable) {
+  border: none;
+  border-color: var(--ck-color-focus-border);
+  box-shadow: none;
+  transition: 0.2s ease-in-out;
+  transition-property: border, outline, box-shadow;
+}
+
+.ck.ck-editor__editable.ck-blurred:not(.ck-editor__nested-editable):hover {
+  border: var(--ck-focus-ring);
+  box-shadow:
+    var(--ck-inner-shadow),
+    0 0;
+  outline: none;
+  transition: 0.2s ease-in-out;
+  transition-property: border, outline, box-shadow;
+}
+
+div.ck.ck-balloon-panel.ck-powered-by-balloon {
+  display: none;
+}

@@ -1,13 +1,25 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ComponentRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ComponentRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resizable-element';
+import { Subscription } from 'rxjs';
 import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { DragCursorDirective } from 'src/app/directives/drag-cursor.directive';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { DynamicComponent, DynamicComponentType } from 'src/app/models/dynamic-component.model';
+import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
@@ -21,20 +33,28 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
     DragDropModule,
     ScrollingModule,
     DragCursorDirective,
+    MatIconModule,
   ],
   templateUrl: './resizable-draggable.component.html',
   styleUrls: ['./resizable-draggable.component.scss'],
 })
-export class ResizableDraggableComponent implements AfterViewInit, OnChanges {
+export class ResizableDraggableComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild(DynamicContentAreaDirective, { static: true }) dynamicContentArea?: DynamicContentAreaDirective;
-  @ViewChild('resizableElement', { read: ResizableDirective }) resizable?: ResizableDirective;
+  @ViewChild('resizableElement', { read: ResizableDirective }) resizable!: ResizableDirective;
 
   @Input() component?: DynamicComponent;
 
   componentRef?: ComponentRef<DynamicComponentType>;
   style = {};
 
-  constructor(private store: Store<AppState>) {}
+  subscriptions: Subscription[] = [];
+
+  constructor(
+    private store: Store<AppState>,
+    private utilsService: UtilsService
+  ) {
+    this.utilsService.initSvgIcons(['drag']);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['component'].currentValue) {
@@ -44,28 +64,51 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    const resizable$ = this.resizable?.resizing;
-    const resizeEnd$ = this.resizable?.resizeEnd;
-    resizable$?.subscribe(event => {
-      if (event.rectangle.height) {
-        const style = {
-          height: `${event.rectangle.height}px`,
-        };
-        this.componentRef?.setInput('style', style);
-      }
-    });
+    const resizeStart$ = this.resizable.resizeStart;
+    const resizable$ = this.resizable.resizing;
+    const resizeEnd$ = this.resizable.resizeEnd;
 
-    resizeEnd$?.subscribe(event => {
-      if (event.rectangle.height) {
-        const style = {
-          height: `${event.rectangle.height}px`,
-        };
-        this.componentRef?.setInput('style', style);
-        this.store.dispatch(
-          DesignCanvasActions.updateComponent({ id: this.component?.id as string, inputs: { style: style } })
-        );
-      }
-    });
+    this.subscriptions.push(
+      resizeStart$.subscribe(() => {
+        const element = document.getElementsByClassName('ck ck-button ck-block-toolbar-button')[0] as HTMLDivElement;
+        if (element) {
+          element.style.display = 'none';
+        }
+      })
+    );
+
+    this.subscriptions.push(
+      resizable$.subscribe(event => {
+        if (event.rectangle.height) {
+          const style = {
+            height: `${event.rectangle.height}px`,
+          };
+          this.componentRef?.setInput('style', style);
+        }
+      })
+    );
+
+    this.subscriptions.push(
+      resizeEnd$?.subscribe(event => {
+        if (event.rectangle.height) {
+          const style = {
+            height: `${event.rectangle.height}px`,
+          };
+          this.componentRef?.setInput('style', style);
+          this.store.dispatch(
+            DesignCanvasActions.updateComponent({
+              id: this.component?.id as string,
+              inputs: { ...this.component?.inputs, style: style },
+            })
+          );
+        }
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions = [];
   }
 
   validate = (event: ResizeEvent): boolean => {

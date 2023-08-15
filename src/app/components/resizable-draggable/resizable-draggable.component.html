@@ -16,7 +16,8 @@
   <div class="resize-edge-bottom">
     <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true }"></div>
   </div>
-  <div cdkDragHandle class="drag-handle">
-    <ng-template drdDynamicContentArea></ng-template>
+  <div cdkDragHandle class="drag-handle mat-elevation-z6">
+    <mat-icon svgIcon="drag"></mat-icon>
   </div>
+  <ng-template drdDynamicContentArea></ng-template>
 </div>
