@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["@ckeditor/ckeditor5-build-balloon-block"],
+            "allowedCommonJsDependencies": ["@ckeditor/ckeditor5-build-balloon-block", "ckeditor5-custom-build"],
             "outputPath": "dist/dragon-drop",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -41,7 +41,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",

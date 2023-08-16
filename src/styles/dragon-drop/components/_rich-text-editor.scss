@@ -16,6 +16,14 @@
   transition-property: border, outline, box-shadow;
 }
 
+.ck.ck-block-toolbar-button {
+  transform: translateX(calc(var(--ck-spacing-large) * -1));
+}
+
 div.ck.ck-balloon-panel.ck-powered-by-balloon {
   display: none;
+}
+
+.ck-content ul {
+  padding-left: 40px;
 }

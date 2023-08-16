@@ -32,6 +32,7 @@
     "@types/uuid": "^9.0.2",
     "angular-gridster2": "^16.0.0",
     "angular-resizable-element": "^7.0.2",
+    "ckeditor5-custom-build": "file:ckeditor5",
     "immer": "^10.0.2",
     "ngrx-wieder": "^11.0.0",
     "ngx-color-picker": "^14.0.0",

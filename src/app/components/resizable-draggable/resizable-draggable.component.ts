@@ -65,7 +65,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
 
   ngAfterViewInit() {
     const resizeStart$ = this.resizable.resizeStart;
-    const resizable$ = this.resizable.resizing;
+    const resizing$ = this.resizable.resizing;
     const resizeEnd$ = this.resizable.resizeEnd;
 
     this.subscriptions.push(
@@ -78,7 +78,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
     );
 
     this.subscriptions.push(
-      resizable$.subscribe(event => {
+      resizing$.subscribe(event => {
         if (event.rectangle.height) {
           const style = {
             height: `${event.rectangle.height}px`,

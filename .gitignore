@@ -5,6 +5,10 @@
 /src/environments/*.ts
 !/src/environments/environment.example.ts
 
+# Custom CKEditor 5 build
+/ckeditor5/build
+/ckeditor5/node_modules
+
 
 # Compiled output
 /dist

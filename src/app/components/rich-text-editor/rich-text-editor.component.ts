@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { CKEditorComponent, CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import BalloonEditor from '@ckeditor/ckeditor5-build-balloon-block';
+// import Editor from '@ckeditor/ckeditor5-build-balloon-block';
 import { Store } from '@ngrx/store';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { ElementClassObserver } from 'src/app/models/element-class-observer.class';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
@@ -15,12 +16,22 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
   styleUrls: ['./rich-text-editor.component.scss'],
 })
 export class RichTextEditorComponent {
-  Editor = BalloonEditor;
+  Editor = Editor;
 
-  @ViewChild('editor') editor!: CKEditorComponent<BalloonEditor>;
+  @ViewChild('editor') editor!: CKEditorComponent<Editor>;
 
   @Input() id: string = '';
   @Input() data: string = '';
+
+  editorConfig = {
+    fontFamily: {
+      options: [
+        { title: 'Primary font', model: 'var(--primary-font-family), var(--alternative-font-family)' },
+        { title: 'Secondary font', model: 'var(--secondary-font-family), var(--alternative-font-family)' },
+      ],
+      supportAllValues: true,
+    },
+  };
 
   changed = false;
   classWatcher: ElementClassObserver | null = null;
