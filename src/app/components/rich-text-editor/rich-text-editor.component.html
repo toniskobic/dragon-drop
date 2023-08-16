@@ -1,1 +1,7 @@
-<ckeditor #editor [editor]="Editor" [data]="data" [disableTwoWayDataBinding]="false" (change)="onChange()"></ckeditor>
+<ckeditor
+  #editor
+  [editor]="Editor"
+  [config]="editorConfig"
+  [data]="data"
+  [disableTwoWayDataBinding]="false"
+  (change)="onChange()"></ckeditor>
