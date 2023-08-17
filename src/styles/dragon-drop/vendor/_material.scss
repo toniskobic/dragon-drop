@@ -138,9 +138,7 @@ $dragon-drop-typography: mat.define-typography-config(
     ),
   $body-1:
     mat.define-typography-level(
-      $font-size: 1.8rem,
-      $font-weight: 500,
-      $line-height: 1.4,
+      $font-size: $font-size-base,
     ),
   $body-2:
     mat.define-typography-level(
