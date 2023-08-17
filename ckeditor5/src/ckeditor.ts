@@ -3,7 +3,6 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-import { UploadAdapter } from '@ckeditor/ckeditor5-adapter-ckfinder';
 import { Alignment } from '@ckeditor/ckeditor5-alignment';
 import { Autoformat } from '@ckeditor/ckeditor5-autoformat';
 import { Autosave } from '@ckeditor/ckeditor5-autosave';
@@ -40,7 +39,6 @@ import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import { RemoveFormat } from '@ckeditor/ckeditor5-remove-format';
 import { SelectAll } from '@ckeditor/ckeditor5-select-all';
 import { ShowBlocks } from '@ckeditor/ckeditor5-show-blocks';
-import { SourceEditing } from '@ckeditor/ckeditor5-source-editing';
 import { SpecialCharacters, SpecialCharactersArrows } from '@ckeditor/ckeditor5-special-characters';
 import {
   Table,
@@ -52,6 +50,7 @@ import {
 } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { BlockToolbar } from '@ckeditor/ckeditor5-ui';
+import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
 import { WordCount } from '@ckeditor/ckeditor5-word-count';
 
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
@@ -106,7 +105,6 @@ class Editor extends BalloonEditor {
     RemoveFormat,
     SelectAll,
     ShowBlocks,
-    SourceEditing,
     SpecialCharacters,
     SpecialCharactersArrows,
     Table,
@@ -118,8 +116,8 @@ class Editor extends BalloonEditor {
     TextTransformation,
     TodoList,
     Underline,
-    UploadAdapter,
     WordCount,
+    Base64UploadAdapter,
   ];
 
   public static override defaultConfig = {
@@ -145,6 +143,7 @@ class Editor extends BalloonEditor {
             'fontFamily',
             'fontColor',
             'imageInsert',
+            'mediaEmbed',
             'insertTable',
           ],
         },
