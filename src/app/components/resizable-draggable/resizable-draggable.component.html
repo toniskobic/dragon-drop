@@ -6,7 +6,8 @@
   [validateResize]="validate"
   cdkDrag
   drdDragCursor
-  cdkDragBoundary=".canvas">
+  cdkDragBoundary=".canvas"
+  (contextmenu)="onContextMenu($event)">
   <div class="selected" *ngIf="component?.selected === true">
     <div class="selected-edge-top mat-elevation-z20"></div>
     <div class="selected-edge-right mat-elevation-z20"></div>
@@ -20,4 +21,5 @@
     <mat-icon svgIcon="drag"></mat-icon>
   </div>
   <ng-template drdDynamicContentArea></ng-template>
+  <drd-context-menu #contextMenu [type]="contextMenuType" [section]="component"></drd-context-menu>
 </div>

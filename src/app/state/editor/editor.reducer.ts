@@ -10,6 +10,7 @@ import { EditorState } from './editor.model';
 export const initialEditorState: EditorState = {
   sidebarOpened: false,
   viewport: Viewport.Desktop,
+  isExporting: false,
 };
 
 export const editorOnActions = [
@@ -24,3 +25,5 @@ export const editorOnActions = [
 export const selectSidebarOpened = createSelector(selectDragonDropState, state => state.sidebarOpened);
 
 export const selectViewport = createSelector(selectDragonDropState, state => state.viewport);
+
+export const selectIsExporting = createSelector(selectDragonDropState, state => state.isExporting);

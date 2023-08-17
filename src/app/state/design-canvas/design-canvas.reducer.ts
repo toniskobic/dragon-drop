@@ -2,7 +2,7 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { createSelector } from '@ngrx/store';
 import { produceOn } from 'ngrx-wieder';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
-import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
+import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -26,10 +26,16 @@ export const initialDesignCanvasState: DesignCanvasState = {
           selected: false,
           inputs: { elements: [{ id: uuidv4(), data: '<p>Hello World!</p>' }], themeColor: ThemeColor.Primary },
         },
-        { id: uuidv4(), component: SectionComponent },
+        { id: uuidv4(), component: SectionComponent, inputs: { elements: [], themeColor: ThemeColor.Primary } },
       ],
     },
-    { id: uuidv4(), title: 'About', sections: [{ id: uuidv4(), component: SectionComponent }] },
+    {
+      id: uuidv4(),
+      title: 'About',
+      sections: [
+        { id: uuidv4(), component: SectionComponent, inputs: { elements: [], themeColor: ThemeColor.Primary } },
+      ],
+    },
   ],
   currentPageId: pageId,
 };
@@ -42,6 +48,7 @@ export const designCanvasUndoRedoAllowedActions = [
   DesignCanvasActions.sortCurrentPageComponents.type,
   DesignCanvasActions.updateComponent.type,
   DesignCanvasActions.updatePage.type,
+  DesignCanvasActions.addElement.type,
   DesignCanvasActions.updateElement.type,
 ];
 
@@ -87,7 +94,11 @@ export const designCanvasOnActions = [
     (state: DragonDropState, { componentClass, currentIndex }) => {
       const page = currentPage(state);
       if (page) {
-        const newSection: DynamicComponent = { id: uuidv4(), component: componentClass };
+        const newSection: DynamicComponent = {
+          id: uuidv4(),
+          component: componentClass,
+          inputs: { themeColor: ThemeColor.Primary, elements: [] },
+        };
         page.sections.splice(currentIndex, 0, newSection);
       }
     }
@@ -112,12 +123,27 @@ export const designCanvasOnActions = [
       updatePage(page, newPage);
     }
   }),
+  produceOn(DesignCanvasActions.addElement, (state: DragonDropState, { sectionId }) => {
+    const page = currentPage(state);
+    if (page) {
+      const section = page.sections.find(component => component.id === sectionId);
+      if (section) {
+        const element = { id: uuidv4(), data: '<p>Hello World!</p>' };
+        const elements = section.inputs.elements;
+        if (elements) {
+          elements.push(element);
+        } else {
+          section.inputs.elements = [element];
+        }
+      }
+    }
+  }),
   produceOn(DesignCanvasActions.updateElement, (state: DragonDropState, { id, data }) => {
     const page = currentPage(state);
     if (page) {
       for (const section of page.sections) {
         if (section.inputs) {
-          const element = (section.inputs['elements'] as DynamicElement[]).find(element => element.id === id);
+          const element = section.inputs.elements?.find(element => element.id === id);
           if (element) {
             element.data = data;
             break;

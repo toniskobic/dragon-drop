@@ -1,0 +1,37 @@
+<div
+  style="visibility: hidden; position: fixed"
+  [style.left]="contextMenuPosition.x"
+  [style.top]="contextMenuPosition.y"
+  [matMenuTriggerFor]="contextMenu"></div>
+<mat-menu #contextMenu>
+  <ng-container *ngIf="type === ContextMenuType.Section">
+    <ng-template matMenuContent>
+      <mat-list class="list context-menu header">
+        <mat-list-item class="list-item" matRipple [matRippleColor]="rippleColor" (click)="addElement()">
+          <mat-icon class="item-icon" matListItemIcon svgIcon="add"></mat-icon>
+          <span class="item-label" matListItemTitle>{{ 'Add Element' }}</span>
+        </mat-list-item>
+        <mat-list-item
+          class="list-item page-title"
+          matRipple
+          [matRippleColor]="rippleColor"
+          (click)="$event.stopPropagation()">
+          <mat-form-field class="editor-input mat-component-density-s current-page">
+            <mat-label>Theme Color</mat-label>
+            <mat-select
+              [value]="section?.inputs?.themeColor"
+              (selectionChange)="setSectionThemeColor($event)"
+              panelClass="select-field">
+              <mat-option class="select-option" *ngFor="let color of ThemeColor | keyvalue" [value]="color.value">
+                {{ color.key }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="type === ContextMenuType.Element">
+    <ng-template matMenuContent>Test</ng-template>
+  </ng-container>
+</mat-menu>

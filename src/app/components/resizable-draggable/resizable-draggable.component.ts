@@ -12,16 +12,21 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { Store } from '@ngrx/store';
 import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resizable-element';
 import { Subscription } from 'rxjs';
 import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { DragCursorDirective } from 'src/app/directives/drag-cursor.directive';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
+import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-export.directive';
+import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent, DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+
+import { ContextMenuComponent } from '../context-menu/context-menu.component';
 
 @Component({
   selector: 'drd-resizable-draggable',
@@ -33,7 +38,10 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
     DragDropModule,
     ScrollingModule,
     DragCursorDirective,
+    ContextMenuComponent,
     MatIconModule,
+    MatMenuModule,
+    ExcludeFromExportDirective,
   ],
   templateUrl: './resizable-draggable.component.html',
   styleUrls: ['./resizable-draggable.component.scss'],
@@ -41,9 +49,11 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
 export class ResizableDraggableComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild(DynamicContentAreaDirective, { static: true }) dynamicContentArea?: DynamicContentAreaDirective;
   @ViewChild('resizableElement', { read: ResizableDirective }) resizable!: ResizableDirective;
+  @ViewChild(ContextMenuComponent) contextMenuComponent!: ContextMenuComponent;
 
   @Input() component?: DynamicComponent;
 
+  contextMenuType = ContextMenuType.Section;
   componentRef?: ComponentRef<DynamicComponentType>;
   style = {};
 
@@ -123,6 +133,14 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
     }
     return true;
   };
+
+  onContextMenu(event: MouseEvent) {
+    event.preventDefault();
+
+    this.contextMenuComponent.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuComponent.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenuComponent.contextMenu.openMenu();
+  }
 
   private renderComponent(component: DynamicComponent) {
     this.dynamicContentArea?.viewContainerRef.clear();

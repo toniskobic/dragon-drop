@@ -11,7 +11,7 @@ export interface DynamicComponentType {
 export interface DynamicComponent {
   id: string;
   component: Type<DynamicComponentType>;
-  inputs?: { [key: string]: unknown };
+  inputs: DynamicComponentInputs;
   selected?: boolean;
 }
 
@@ -19,3 +19,5 @@ export interface DynamicElement {
   id: string;
   data: string;
 }
+
+export type DynamicComponentInputs = { [K in keyof DynamicComponentType]?: DynamicComponentType[K] };

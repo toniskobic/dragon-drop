@@ -16,10 +16,6 @@ $penn-red: var(--penn-red);
       height: 40px;
       width: calc(100% - 20px);
 
-      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-        padding-right: 8px;
-      }
-
       input.mdc-text-field__input {
         padding-block: 5px;
         height: 100%;
