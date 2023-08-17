@@ -1,4 +1,4 @@
-<header #element [ngStyle]="style">
+<header #element [ngStyle]="style" [style.background-color]="backgroundColor">
   <nav>
     <ul>
       <li *ngFor="let page of pages$ | async">

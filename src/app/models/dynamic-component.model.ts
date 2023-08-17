@@ -1,7 +1,10 @@
 import { Type } from '@angular/core';
 
+import { ThemeColor } from './theme-color.enum';
+
 export interface DynamicComponentType {
   style?: object;
+  themeColor: ThemeColor;
   elements: DynamicElement[];
 }
 

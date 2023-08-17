@@ -3,6 +3,7 @@ import { createSelector } from '@ngrx/store';
 import { produceOn } from 'ngrx-wieder';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
 import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
+import { ThemeColor } from 'src/app/models/theme-color.enum';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DragonDropState } from '../app.reducer';
@@ -23,7 +24,7 @@ export const initialDesignCanvasState: DesignCanvasState = {
           id: uuidv4(),
           component: SectionComponent,
           selected: false,
-          inputs: { elements: [{ id: uuidv4(), data: '<p>Hello World!</p>' }] },
+          inputs: { elements: [{ id: uuidv4(), data: '<p>Hello World!</p>' }], themeColor: ThemeColor.Primary },
         },
         { id: uuidv4(), component: SectionComponent },
       ],
