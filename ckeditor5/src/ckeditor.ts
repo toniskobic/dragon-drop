@@ -10,7 +10,7 @@ import { Bold, Code, Italic, Underline } from '@ckeditor/ckeditor5-basic-styles'
 import { BlockQuote } from '@ckeditor/ckeditor5-block-quote';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 import { CodeBlock } from '@ckeditor/ckeditor5-code-block';
-import { BalloonEditor } from '@ckeditor/ckeditor5-editor-balloon';
+import { InlineEditor } from '@ckeditor/ckeditor5-editor-inline';
 import { Essentials } from '@ckeditor/ckeditor5-essentials';
 import { FindAndReplace } from '@ckeditor/ckeditor5-find-and-replace';
 import { FontBackgroundColor, FontColor, FontFamily, FontSize } from '@ckeditor/ckeditor5-font';
@@ -49,14 +49,13 @@ import {
   TableToolbar,
 } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
-import { BlockToolbar } from '@ckeditor/ckeditor5-ui';
 import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
 import { WordCount } from '@ckeditor/ckeditor5-word-count';
 
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
 
-class Editor extends BalloonEditor {
+class Editor extends InlineEditor {
   public static override builtinPlugins = [
     Alignment,
     AutoImage,
@@ -64,7 +63,6 @@ class Editor extends BalloonEditor {
     Autoformat,
     Autosave,
     BlockQuote,
-    BlockToolbar,
     Bold,
     CloudServices,
     Code,
@@ -122,34 +120,49 @@ class Editor extends BalloonEditor {
 
   public static override defaultConfig = {
     toolbar: {
-      items: ['bold', 'italic', 'link', 'fontSize', 'fontColor'],
-      shouldNotGroupWhenFull: true,
-    },
-    language: 'en',
-    blockToolbar: {
       items: [
         'undo',
         'redo',
         '|',
+        'bold',
+        'italic',
+        'link',
+        '|',
+        'heading',
+        'alignment',
+        '|',
         {
-          label: 'Show more items',
-          icon: 'threeVerticalDots',
+          label: 'Font',
+          icon: 'text',
           withText: false,
-          items: [
-            'heading',
-            'alignment',
-            'bulletedList',
-            'fontSize',
-            'fontFamily',
-            'fontColor',
-            'imageInsert',
-            'mediaEmbed',
-            'insertTable',
-          ],
+          items: ['fontFamily', 'fontSize', 'fontColor'],
+        },
+        '|',
+        {
+          label: 'Indentation',
+          icon: '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M120-120v-60h720v60H120Zm320-165v-60h400v60H440Zm0-165v-60h400v60H440Zm0-165v-60h400v60H440ZM120-780v-60h720v60H120Zm0 437v-276l141 136-141 140Z"/></svg>',
+          withText: false,
+          items: ['indent', 'outdent'],
+        },
+        '|',
+        {
+          label: 'List',
+          icon: '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M377-198v-60h463v60H377Zm0-252v-60h463v60H377Zm0-253v-60h463v60H377ZM189-161q-28.05 0-48.025-19Q121-199 121-227.5t19.5-48q19.5-19.5 48-19.5t47.5 19.975Q255-255.05 255-227q0 27.225-19.387 46.613Q216.225-161 189-161Zm0-252q-28.05 0-48.025-19.681Q121-452.362 121-480t19.975-47.319Q160.95-547 189-547q27.225 0 46.613 19.681Q255-507.638 255-480t-19.387 47.319Q216.225-413 189-413Zm-1-253q-27.637 0-47.319-19.681Q121-705.362 121-733t19.681-47.319Q160.363-800 188-800q27.637 0 47.319 19.681Q255-760.638 255-733t-19.681 47.319Q215.637-666 188-666Z"/></svg>',
+          withText: false,
+          items: ['bulletedList', 'numberedList'],
+        },
+        '|',
+
+        {
+          label: 'Media',
+          icon: '<svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm56-97h489L578-473 446-302l-93-127-117 152Zm-56 97v-600 600Z"/></svg>',
+          withText: false,
+          items: ['imageInsert', 'mediaEmbed', 'insertTable'],
         },
       ],
       shouldNotGroupWhenFull: true,
     },
+    language: 'en',
     image: {
       toolbar: [
         'imageTextAlternative',

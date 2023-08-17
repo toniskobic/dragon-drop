@@ -70,7 +70,9 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
 
     this.subscriptions.push(
       resizeStart$.subscribe(() => {
-        const element = document.getElementsByClassName('ck ck-button ck-block-toolbar-button')[0] as HTMLDivElement;
+        const element = document.getElementsByClassName(
+          'ck ck-balloon-panel ck-balloon-panel_toolbar_west ck-toolbar-container'
+        )[0] as HTMLDivElement;
         if (element) {
           element.style.display = 'none';
         }

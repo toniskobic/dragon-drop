@@ -33,13 +33,17 @@ div.ck.ck-reset_all :not(.ck-reset_all-excluded *),
   font-family: $font-family, $font-family-alt;
 }
 
-.ck div.ck-toolbar {
-  min-width: 127px;
-
-  & > .ck-toolbar__items {
-    justify-content: center;
-  }
+div.ck.ck-balloon-panel.ck-balloon-panel_toolbar_west.ck-toolbar-container {
+  z-index: 10000;
 }
+
+// .ck div.ck-toolbar {
+//   min-width: 127px;
+
+//   & > .ck-toolbar__items {
+//     justify-content: center;
+//   }
+// }
 
 // .ck-content figure.image,
 // .ck-content figure.image.image_resized {

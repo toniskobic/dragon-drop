@@ -15,7 +15,7 @@
     "@ckeditor/ckeditor5-block-quote": "39.0.1",
     "@ckeditor/ckeditor5-cloud-services": "39.0.1",
     "@ckeditor/ckeditor5-code-block": "39.0.1",
-    "@ckeditor/ckeditor5-editor-balloon": "39.0.1",
+    "@ckeditor/ckeditor5-editor-inline": "^39.0.1",
     "@ckeditor/ckeditor5-essentials": "39.0.1",
     "@ckeditor/ckeditor5-find-and-replace": "39.0.1",
     "@ckeditor/ckeditor5-font": "39.0.1",

@@ -46,8 +46,10 @@ export class RichTextEditorComponent {
     this.changed = true;
 
     if (!this.classWatcher) {
-      const element = document.getElementsByClassName('ck ck-button ck-block-toolbar-button')[0] as HTMLDivElement;
-      this.classWatcher = new ElementClassObserver(element, 'ck-hidden', () => {
+      const element = document.getElementsByClassName(
+        'ck ck-balloon-panel ck-balloon-panel_toolbar_west ck-toolbar-container'
+      )[0] as HTMLDivElement;
+      this.classWatcher = new ElementClassObserver(element, 'ck-balloon-panel_visible', undefined, () => {
         if (this.changed) {
           this.store.dispatch(
             DesignCanvasActions.updateElement({ data: this.editor.editorInstance?.getData() as string, id: this.id })
