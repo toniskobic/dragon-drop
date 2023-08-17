@@ -25,5 +25,18 @@ div.ck.ck-balloon-panel.ck-powered-by-balloon {
 }
 
 .ck-content ul {
-  padding-left: 40px;
+  padding-inline-start: 40px;
+}
+
+div.ck.ck-reset_all :not(.ck-reset_all-excluded *),
+.ck.ck-reset_all {
+  font-family: $font-family, $font-family-alt;
+}
+
+.ck div.ck-toolbar {
+  min-width: 127px;
+
+  & > .ck-toolbar__items {
+    justify-content: center;
+  }
 }

@@ -31,6 +31,10 @@ export class RichTextEditorComponent {
       ],
       supportAllValues: true,
     },
+    fontSize: {
+      options: ['default', 8, 12, 16, 18, 24, 30, 36, 42],
+      supportAllValues: true,
+    },
   };
 
   changed = false;

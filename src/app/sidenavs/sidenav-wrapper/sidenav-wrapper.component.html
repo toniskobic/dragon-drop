@@ -11,6 +11,6 @@
     <mat-icon svgIcon="back"></mat-icon>
     <span>{{ 'COMMON.BUTTONS.BACK' | translate }}</span>
   </button>
-  <h2 class="sidenav-label" *ngIf="subSidenavLabel$ | async as subSidenavLabel">{{ subSidenavLabel | translate }}</h2>
+  <h3 class="sidenav-label" *ngIf="subSidenavLabel$ | async as subSidenavLabel">{{ subSidenavLabel | translate }}</h3>
   <ng-template drdDynamicContentArea></ng-template>
 </div>

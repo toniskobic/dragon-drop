@@ -124,21 +124,33 @@ class Editor extends BalloonEditor {
 
   public static override defaultConfig = {
     toolbar: {
-      items: ['bold', 'italic', 'link'],
+      items: ['bold', 'italic', 'link', 'fontSize', 'fontColor'],
       shouldNotGroupWhenFull: true,
     },
     language: 'en',
-    blockToolbar: [
-      'undo',
-      'redo',
-      '|',
-      {
-        label: 'Show more items',
-        icon: 'threeVerticalDots',
-        withText: false,
-        items: ['alignment', 'bulletedList', 'fontSize', 'fontFamily', 'fontColor', 'imageUpload', 'imageInsert'],
-      },
-    ],
+    blockToolbar: {
+      items: [
+        'undo',
+        'redo',
+        '|',
+        {
+          label: 'Show more items',
+          icon: 'threeVerticalDots',
+          withText: false,
+          items: [
+            'heading',
+            'alignment',
+            'bulletedList',
+            'fontSize',
+            'fontFamily',
+            'fontColor',
+            'imageInsert',
+            'insertTable',
+          ],
+        },
+      ],
+      shouldNotGroupWhenFull: true,
+    },
     image: {
       toolbar: [
         'imageTextAlternative',

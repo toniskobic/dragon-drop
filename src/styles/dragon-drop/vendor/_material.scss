@@ -124,9 +124,23 @@ $dragon-drop-typography: mat.define-typography-config(
       $font-size: $font-size-4xl,
       $font-weight: $font-weight-bold,
     ),
+  $headline-6:
+    mat.define-typography-level(
+      $font-size: $font-size-2xl,
+      $font-weight: $font-weight-bold,
+    ),
+  $subtitle-1:
+    mat.define-typography-level(
+      $font-size: $font-size-lg,
+      $font-weight: 500,
+      $line-height: 1.6,
+      $letter-spacing: 0.0125em,
+    ),
   $body-1:
     mat.define-typography-level(
-      $font-size: $font-size-base,
+      $font-size: 1.8rem,
+      $font-weight: 500,
+      $line-height: 1.4,
     ),
   $body-2:
     mat.define-typography-level(

@@ -1,4 +1,17 @@
 div.canvas *,
 div.cdk-drag-preview * {
-  font-family: var(--primary-font-family), var(--alternative-font-family);
+  font-family: $font-family, $font-family-alt;
+}
+
+.canvas {
+  font-size: $font-size-base;
+}
+
+.canvas * {
+  font-size: inherit;
+}
+
+.canvas p {
+  text-align: unset;
+  line-height: 1.5;
 }
