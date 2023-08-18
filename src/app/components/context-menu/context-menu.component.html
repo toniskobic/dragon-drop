@@ -11,18 +11,17 @@
           <mat-icon class="item-icon" matListItemIcon svgIcon="add"></mat-icon>
           <span class="item-label" matListItemTitle>{{ 'Add Element' }}</span>
         </mat-list-item>
-        <mat-list-item
-          class="list-item page-title"
-          matRipple
-          [matRippleColor]="rippleColor"
-          (click)="$event.stopPropagation()">
-          <mat-form-field class="editor-input mat-component-density-s current-page">
+        <mat-list-item class="list-item" (click)="$event.stopPropagation()">
+          <mat-form-field class="select-form-field mat-component-density-s">
             <mat-label>Theme Color</mat-label>
             <mat-select
               [value]="section?.inputs?.themeColor"
               (selectionChange)="setSectionThemeColor($event)"
-              panelClass="select-field">
-              <mat-option class="select-option" *ngFor="let color of ThemeColor | keyvalue" [value]="color.value">
+              panelClass="select-panel">
+              <mat-option
+                class="select-option select-option-s"
+                *ngFor="let color of ThemeColor | keyvalue"
+                [value]="color.value">
                 {{ color.key }}
               </mat-option>
             </mat-select>

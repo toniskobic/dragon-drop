@@ -15,7 +15,7 @@
       </mat-expansion-panel-header>
       <div class="panel-content-wrapper mat-component-density-xs">
         <div class="page" *ngFor="let page of pagesInput$ | async">
-          <mat-form-field class="editor-input page-title">
+          <mat-form-field class="input-form-field page-title padding-r-s">
             <input [style.display]="page.confirmDelete ? 'none' : 'block'" matInput [formControl]="page.formControl" />
             <span *ngIf="page.confirmDelete">
               {{ 'EDITOR.SIDENAVS.PAGES.PANELS.PAGES.CONFIRMATIONS.DELETE_PAGE' | translate }}

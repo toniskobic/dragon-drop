@@ -35,6 +35,31 @@ export class RichTextEditorComponent {
       options: ['default', 8, 12, 16, 18, 24, 30, 36, 42],
       supportAllValues: true,
     },
+    fontColor: {
+      colors: [
+        {
+          color: 'var(--primary-color)',
+          label: 'Primary color',
+        },
+        {
+          color: 'var(--secondary-color)',
+          label: 'Secondary color',
+        },
+        {
+          color: 'var(--tertiary-color)',
+          label: 'Tertiary color',
+        },
+        {
+          color: '#000000',
+          label: 'Black',
+        },
+        {
+          color: '#FFFFFF',
+          label: 'White',
+        },
+      ],
+      supportAllValues: true,
+    },
   };
 
   changed = false;

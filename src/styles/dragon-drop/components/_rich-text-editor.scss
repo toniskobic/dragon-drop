@@ -16,9 +16,9 @@
   transition-property: border, outline, box-shadow;
 }
 
-.ck.ck-block-toolbar-button {
-  transform: translateX(calc(var(--ck-spacing-large) * -1));
-}
+// .ck.ck-block-toolbar-button {
+//   transform: translateX(calc(var(--ck-spacing-large) * -1));
+// }
 
 div.ck.ck-balloon-panel.ck-powered-by-balloon {
   display: none;
@@ -35,6 +35,16 @@ div.ck.ck-reset_all :not(.ck-reset_all-excluded *),
 
 div.ck.ck-balloon-panel.ck-balloon-panel_toolbar_west.ck-toolbar-container {
   z-index: 10000;
+}
+
+div.ck.ck-color-selector {
+  button.ck-color-grid__tile {
+    border: 1px solid black;
+  }
+}
+
+div.ck.ck-balloon-panel.ck-tooltip {
+  z-index: 100000;
 }
 
 // .ck div.ck-toolbar {

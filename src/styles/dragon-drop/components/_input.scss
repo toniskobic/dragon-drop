@@ -1,4 +1,4 @@
-.editor-input.mat-mdc-form-field {
+.input-form-field.mat-mdc-form-field {
   background-color: $rich-black-lighter;
   transition: background-color 0.2s ease-in-out;
   border-radius: 4px;
@@ -58,7 +58,7 @@
     }
   }
 
-  &.page-title .mdc-text-field--filled {
+  &.padding-r-s .mdc-text-field--filled {
     padding-right: 8px;
   }
 }

@@ -28,13 +28,13 @@
       </mat-expansion-panel-header>
       <div class="panel-content-wrapper mat-component-density-s">
         <mat-form-field
-          class="editor-input"
+          class="input-form-field"
           *ngFor="let font of fonts$ | async | keyvalue: returnZero; trackBy: identify">
           <mat-label>
             {{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.FONTS.LABELS.' + (font.key | uppercase) | translate }}:
           </mat-label>
           <input type="text" matInput [formControl]="formControls[font.key]" [matAutocomplete]="auto" />
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setFont($event, font.key)" class="select-field">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setFont($event, font.key)" class="select-panel">
             <mat-option class="select-option" *ngFor="let option of filteredFonts$[font.key] | async" [value]="option">
               {{ option }}
             </mat-option>

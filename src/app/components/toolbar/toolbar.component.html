@@ -49,9 +49,9 @@
         </button>
       </div>
     </div>
-    <div class="page-title">
-      <mat-form-field class="current-page">
-        <mat-select [value]="currentPageId$ | async" (selectionChange)="onPageSelect($event)" panelClass="select-field">
+    <div class="current-page-title">
+      <mat-form-field class="current-page select-form-field">
+        <mat-select [value]="currentPageId$ | async" (selectionChange)="onPageSelect($event)" panelClass="select-panel">
           <mat-option class="select-option" *ngFor="let page of pages$ | async" [value]="page.id">
             {{ page.title }}
           </mat-option>
