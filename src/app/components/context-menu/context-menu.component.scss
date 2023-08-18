@@ -1,3 +1,5 @@
+$white: var(--white);
+
 mat-list.list.context-menu {
   mat-list-item.list-item {
     height: 50px;
@@ -9,5 +11,22 @@ mat-list.list.context-menu {
     span.item-label {
       padding-right: 8px;
     }
+  }
+}
+
+.custom-color {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .custom-color-label {
+  }
+
+  .custom-color-input {
+    width: 30px;
+    height: 30px;
+    border: 2px solid $white;
+    border-radius: 50%;
+    cursor: pointer;
   }
 }

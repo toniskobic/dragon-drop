@@ -1,4 +1,6 @@
 div.mat-mdc-menu-panel {
   background-color: $rich-black-light;
   color: $white;
+  overflow: visible;
+  position: relative;
 }

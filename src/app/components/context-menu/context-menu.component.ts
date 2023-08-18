@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { Store } from '@ngrx/store';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { Color } from 'src/app/models/color.model';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
@@ -25,6 +27,7 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
     MatRippleModule,
     MatSelectModule,
     MatFormFieldModule,
+    ColorPickerModule,
   ],
   templateUrl: './context-menu.component.html',
   styleUrls: ['./context-menu.component.scss'],
@@ -39,6 +42,8 @@ export class ContextMenuComponent {
   @Input() type?: ContextMenuType;
   @Input() section?: DynamicComponent;
   @Input() element?: DynamicElement;
+
+  color!: Color;
 
   contextMenuPosition = { x: '0px', y: '0px' };
 

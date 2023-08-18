@@ -18,6 +18,7 @@ export class SectionComponent implements DynamicComponentType {
   @Input() elements: DynamicElement[] = [];
 
   get backgroundColor() {
-    return getComputedStyle(document.documentElement).getPropertyValue(`--${this.themeColor}-color`);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+    return (this.style as any)['background-color'] ? '' : `var(--${this.themeColor}-color)`;
   }
 }

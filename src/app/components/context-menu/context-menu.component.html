@@ -27,6 +27,19 @@
             </mat-select>
           </mat-form-field>
         </mat-list-item>
+        <mat-list-item class="custom-color">
+          <label>Custom color:</label>
+          <div
+            #colorPicker
+            class="custom-color-input-wrapper"
+            [colorPicker]="color"
+            [cpPosition]="'auto'"
+            [cpPositionOffset]="'50%'"
+            [cpUseRootViewContainer]="true"
+            [cpAlphaChannel]="'disabled'">
+            <div class="custom-color-input" [style.background-color]="color"></div>
+          </div>
+        </mat-list-item>
       </mat-list>
     </ng-template>
   </ng-container>

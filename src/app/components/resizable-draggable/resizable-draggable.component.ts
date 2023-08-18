@@ -93,6 +93,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
       resizing$.subscribe(event => {
         if (event.rectangle.height) {
           const style = {
+            ...this.component?.inputs.style,
             height: `${event.rectangle.height}px`,
           };
           this.componentRef?.setInput('style', style);
@@ -104,6 +105,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
       resizeEnd$?.subscribe(event => {
         if (event.rectangle.height) {
           const style = {
+            ...this.component?.inputs.style,
             height: `${event.rectangle.height}px`,
           };
           this.componentRef?.setInput('style', style);
