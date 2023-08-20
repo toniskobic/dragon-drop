@@ -4,24 +4,30 @@ import { CKEditorComponent, CKEditorModule } from '@ckeditor/ckeditor5-angular';
 // import Editor from '@ckeditor/ckeditor5-build-balloon-block';
 import { Store } from '@ngrx/store';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { ElementClassObserver } from 'src/app/models/element-class-observer.class';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
+import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wrapper/context-menu-wrapper.component';
+
 @Component({
   selector: 'drd-rich-text-editor',
   standalone: true,
-  imports: [CommonModule, CKEditorModule],
   templateUrl: './rich-text-editor.component.html',
   styleUrls: ['./rich-text-editor.component.scss'],
+  imports: [CommonModule, CKEditorModule, ContextMenuWrapperComponent],
 })
 export class RichTextEditorComponent {
   Editor = Editor;
 
   @ViewChild('editor') editor!: CKEditorComponent<Editor>;
+  @ViewChild(ContextMenuWrapperComponent) contextMenuComponent!: ContextMenuWrapperComponent;
 
   @Input() id: string = '';
   @Input() data: string = '';
+
+  contextMenuType = ContextMenuType.Element;
 
   editorConfig = {
     fontFamily: {
@@ -83,5 +89,14 @@ export class RichTextEditorComponent {
         }
       });
     }
+  }
+
+  onContextMenu(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.contextMenuComponent.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuComponent.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenuComponent.matMenuTrigger.openMenu();
   }
 }

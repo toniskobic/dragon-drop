@@ -2,6 +2,7 @@ import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { createSelector } from '@ngrx/store';
 import { produceOn } from 'ngrx-wieder';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
+import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
 import { v4 as uuidv4 } from 'uuid';
@@ -24,16 +25,28 @@ export const initialDesignCanvasState: DesignCanvasState = {
           id: uuidv4(),
           component: SectionComponent,
           selected: false,
-          inputs: { elements: [{ id: uuidv4(), data: '<p>Hello World!</p>' }], themeColor: ThemeColor.Primary },
+          inputs: {
+            elements: [{ id: uuidv4(), data: '<p>Hello World!</p>' }],
+            themeColor: ThemeColor.Primary,
+            style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
+          },
         },
-        { id: uuidv4(), component: SectionComponent, inputs: { elements: [], themeColor: ThemeColor.Primary } },
+        {
+          id: uuidv4(),
+          component: SectionComponent,
+          inputs: { elements: [], themeColor: ThemeColor.Primary, style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` } },
+        },
       ],
     },
     {
       id: uuidv4(),
       title: 'About',
       sections: [
-        { id: uuidv4(), component: SectionComponent, inputs: { elements: [], themeColor: ThemeColor.Primary } },
+        {
+          id: uuidv4(),
+          component: SectionComponent,
+          inputs: { elements: [], themeColor: ThemeColor.Primary, style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` } },
+        },
       ],
     },
   ],
@@ -97,7 +110,7 @@ export const designCanvasOnActions = [
         const newSection: DynamicComponent = {
           id: uuidv4(),
           component: componentClass,
-          inputs: { themeColor: ThemeColor.Primary, elements: [] },
+          inputs: { themeColor: ThemeColor.Primary, elements: [], style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` } },
         };
         page.sections.splice(currentIndex, 0, newSection);
       }

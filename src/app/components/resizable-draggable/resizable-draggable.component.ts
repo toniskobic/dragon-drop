@@ -26,7 +26,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
-import { ContextMenuComponent } from '../context-menu/context-menu.component';
+import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wrapper/context-menu-wrapper.component';
 
 @Component({
   selector: 'drd-resizable-draggable',
@@ -38,7 +38,7 @@ import { ContextMenuComponent } from '../context-menu/context-menu.component';
     DragDropModule,
     ScrollingModule,
     DragCursorDirective,
-    ContextMenuComponent,
+    ContextMenuWrapperComponent,
     MatIconModule,
     MatMenuModule,
     ExcludeFromExportDirective,
@@ -49,7 +49,7 @@ import { ContextMenuComponent } from '../context-menu/context-menu.component';
 export class ResizableDraggableComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild(DynamicContentAreaDirective, { static: true }) dynamicContentArea?: DynamicContentAreaDirective;
   @ViewChild('resizableElement', { read: ResizableDirective }) resizable!: ResizableDirective;
-  @ViewChild(ContextMenuComponent) contextMenuComponent!: ContextMenuComponent;
+  @ViewChild(ContextMenuWrapperComponent) contextMenuComponent!: ContextMenuWrapperComponent;
 
   @Input() component?: DynamicComponent;
 
@@ -141,7 +141,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
 
     this.contextMenuComponent.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuComponent.contextMenuPosition.y = event.clientY + 'px';
-    this.contextMenuComponent.contextMenu.openMenu();
+    this.contextMenuComponent.matMenuTrigger.openMenu();
   }
 
   private renderComponent(component: DynamicComponent) {

@@ -1,54 +1,65 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
-import { DynamicComponent, DynamicElement } from 'src/app/models/dynamic-component.model';
+import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
 @Component({
-  selector: 'drd-context-menu',
+  selector: 'drd-section-context-menu',
   standalone: true,
   imports: [
     CommonModule,
-    MatMenuModule,
     MatListModule,
     MatIconModule,
     MatRippleModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
     ColorPickerModule,
     MatButtonModule,
     MatTooltipModule,
     TranslateModule,
   ],
-  templateUrl: './context-menu.component.html',
-  styleUrls: ['./context-menu.component.scss'],
+  templateUrl: './section-context-menu.component.html',
+  styleUrls: ['./section-context-menu.component.scss'],
 })
-export class ContextMenuComponent implements AfterViewInit {
+export class SectionContextMenuComponent implements OnInit, AfterViewInit {
   ThemeColor = ThemeColor;
   ContextMenuType = ContextMenuType;
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
 
-  @ViewChild(MatMenuTrigger) contextMenu!: MatMenuTrigger;
-
-  @Input() type?: ContextMenuType;
   @Input() section?: DynamicComponent;
-  @Input() element?: DynamicElement;
+  @Input() menuOpened?: EventEmitter<void>;
+  @Input() menuClosed?: EventEmitter<void>;
 
+  contextMenuPosition = { x: '0px', y: '0px' };
   colorPickerToggle = false;
+  sectionHeightControl = new FormControl(100, {
+    nonNullable: true,
+    validators: [Validators.required, Validators.min(100)],
+  });
+
+  get sectionHeight() {
+    const style = this.section?.inputs?.style as object;
+    const number = parseInt(style['height' as keyof typeof style], 10);
+    return number;
+  }
 
   get color() {
     const style = this.section?.inputs?.style;
@@ -57,19 +68,50 @@ export class ContextMenuComponent implements AfterViewInit {
       : '';
   }
 
-  contextMenuPosition = { x: '0px', y: '0px' };
-
   constructor(
     private store: Store<AppState>,
     private utilsService: UtilsService
   ) {
-    this.utilsService.initSvgIcons(['add', 'close']);
+    this.utilsService.initSvgIcons(['add', 'close', 'delete']);
+  }
+
+  ngOnInit() {
+    this.sectionHeightControl = new FormControl(this.sectionHeight, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.min(100)],
+    });
   }
 
   ngAfterViewInit() {
-    this.contextMenu.menuOpened.subscribe(() => {
+    this.menuOpened?.subscribe(() => {
+      this.sectionHeightControl.setValue(this.sectionHeight);
       this.colorPickerToggle = false;
     });
+
+    this.menuClosed?.subscribe(() => {
+      this.submitInput();
+    });
+  }
+
+  submitInput() {
+    if (this.sectionHeightControl.valid) {
+      const sectionHeight = this.sectionHeightControl.value;
+      if (sectionHeight !== this.sectionHeight) {
+        this.store.dispatch(
+          DesignCanvasActions.updateComponent({
+            id: this.section?.id || '',
+            inputs: {
+              ...this.section?.inputs,
+              style: { ...this.section?.inputs.style, height: `${sectionHeight}px` },
+            },
+          })
+        );
+      }
+    }
+  }
+
+  deleteSection() {
+    this.store.dispatch(DesignCanvasActions.deleteComponent({ id: this.section?.id || '' }));
   }
 
   addElement() {

@@ -1,0 +1,19 @@
+<div
+  #matMenuTrigger="matMenuTrigger"
+  style="visibility: hidden; position: fixed"
+  [style.left]="contextMenuPosition.x"
+  [style.top]="contextMenuPosition.y"
+  [matMenuTriggerFor]="contextMenu"></div>
+<mat-menu #contextMenu>
+  <ng-template matMenuContent>
+    <ng-container *ngIf="type === ContextMenuType.Section">
+      <drd-section-context-menu
+        [section]="section"
+        [menuOpened]="matMenuTrigger.menuOpened"
+        [menuClosed]="matMenuTrigger.menuClosed"></drd-section-context-menu>
+    </ng-container>
+  </ng-template>
+  <ng-container *ngIf="type === ContextMenuType.Element">
+    <drd-element-context-menu></drd-element-context-menu>
+  </ng-container>
+</mat-menu>
