@@ -1,11 +1,13 @@
 <mat-list class="list context-menu">
   <mat-list-item class="list-item" matRipple [matRippleColor]="rippleColor" (click)="addElement()">
     <mat-icon class="item-icon" matListItemIcon svgIcon="add"></mat-icon>
-    <span class="item-label" matListItemTitle>{{ 'Add Element' }}</span>
+    <span class="item-label" matListItemTitle>
+      {{ 'EDITOR.CONTEXT_MENU.SECTION.LABELS.ADD_ELEMENT' | translate }}
+    </span>
   </mat-list-item>
   <mat-list-item class="list-item" (click)="$event.stopPropagation()" matRipple [matRippleColor]="rippleColor">
     <mat-form-field class="select-form-field mat-component-density-s">
-      <mat-label>Theme Color</mat-label>
+      <mat-label>{{ 'EDITOR.CONTEXT_MENU.SECTION.LABELS.THEME_COLOR' | translate }}</mat-label>
       <mat-select
         [value]="section?.inputs?.themeColor"
         (selectionChange)="setSectionThemeColor($event)"
@@ -34,7 +36,7 @@
       [cpToggle]="colorPickerToggle"
       (colorPickerSelect)="onColorChange($event)">
       <div *ngIf="color" class="custom-color-selected" [style.background-color]="color"></div>
-      <label class="custom-color-label">Custom Color</label>
+      <label class="custom-color-label">{{ 'EDITOR.CONTEXT_MENU.SECTION.LABELS.CUSTOM_COLOR' | translate }}</label>
       <button
         *ngIf="color"
         class="icon-button remove-color"
@@ -47,12 +49,14 @@
   </mat-list-item>
   <mat-list-item class="list-item" (click)="$event.stopPropagation()">
     <mat-form-field class="input-form-field">
-      <mat-label>Section Height (px)</mat-label>
+      <mat-label>{{ 'EDITOR.CONTEXT_MENU.SECTION.LABELS.SECTION_HEIGHT' | translate }}</mat-label>
       <input (keydown.enter)="submitInput()" matInput [formControl]="sectionHeightControl" />
     </mat-form-field>
   </mat-list-item>
   <mat-list-item class="list-item" matRipple [matRippleColor]="rippleColor" (click)="deleteSection()">
     <mat-icon class="item-icon" matListItemIcon svgIcon="delete"></mat-icon>
-    <span class="item-label" matListItemTitle>{{ 'Delete Section' }}</span>
+    <span class="item-label" matListItemTitle>
+      {{ 'EDITOR.CONTEXT_MENU.SECTION.LABELS.DELETE_SECTION' | translate }}
+    </span>
   </mat-list-item>
 </mat-list>

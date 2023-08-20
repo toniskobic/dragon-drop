@@ -14,6 +14,6 @@
     </ng-container>
   </ng-template>
   <ng-container *ngIf="type === ContextMenuType.Element">
-    <drd-element-context-menu></drd-element-context-menu>
+    <drd-element-context-menu [id]="elementId"></drd-element-context-menu>
   </ng-container>
 </mat-menu>

@@ -1,0 +1,8 @@
+<mat-list class="list context-menu">
+  <mat-list-item class="list-item" matRipple [matRippleColor]="rippleColor" (click)="deleteElement()">
+    <mat-icon class="item-icon" matListItemIcon svgIcon="delete"></mat-icon>
+    <span class="item-label" matListItemTitle>
+      {{ 'EDITOR.CONTEXT_MENU.ELEMENT.LABELS.DELETE_ELEMENT' | translate }}
+    </span>
+  </mat-list-item>
+</mat-list>

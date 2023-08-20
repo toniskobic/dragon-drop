@@ -30,8 +30,20 @@
     },
     "CONTEXT_MENU": {
       "SECTION": {
+        "LABELS": {
+          "ADD_ELEMENT": "Add Element",
+          "THEME_COLOR": "Theme Color",
+          "CUSTOM_COLOR": "Custom Color",
+          "SECTION_HEIGHT": "Section Height (px)",
+          "DELETE_SECTION": "Delete Section"
+        },
         "TOOLTIPS": {
           "REMOVE_CUSTOM_COLOR": "Remove"
+        }
+      },
+      "ELEMENT": {
+        "LABELS": {
+          "DELETE_ELEMENT": "Delete Element"
         }
       }
     },

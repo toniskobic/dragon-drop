@@ -63,6 +63,7 @@ export const designCanvasUndoRedoAllowedActions = [
   DesignCanvasActions.updatePage.type,
   DesignCanvasActions.addElement.type,
   DesignCanvasActions.updateElement.type,
+  DesignCanvasActions.deleteElement.type,
 ];
 
 export const designCanvasOnActions = [
@@ -159,6 +160,20 @@ export const designCanvasOnActions = [
           const element = section.inputs.elements?.find(element => element.id === id);
           if (element) {
             element.data = data;
+            break;
+          }
+        }
+      }
+    }
+  }),
+  produceOn(DesignCanvasActions.deleteElement, (state: DragonDropState, { id }) => {
+    const page = currentPage(state);
+    if (page) {
+      for (const section of page.sections) {
+        if (section.inputs) {
+          const elements = section.inputs.elements;
+          if (elements) {
+            section.inputs.elements = elements.filter(element => element.id !== id);
             break;
           }
         }

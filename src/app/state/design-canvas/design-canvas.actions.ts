@@ -21,5 +21,6 @@ export const DesignCanvasActions = createActionGroup({
     'Update Page': props<{ newPage: Page }>(),
     'Add Element': props<{ sectionId: string }>(),
     'Update Element': props<{ id: string; data: string }>(),
+    'Delete Element': props<{ id: string }>(),
   },
 });

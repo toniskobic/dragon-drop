@@ -1,0 +1,16 @@
+$white: var(--white);
+
+mat-list.list.context-menu {
+  mat-list-item.list-item {
+    height: 50px;
+
+    mat-icon.item-icon {
+      margin-left: 16px;
+      margin-right: 8px;
+    }
+
+    span.item-label {
+      padding-right: 16px;
+    }
+  }
+}
