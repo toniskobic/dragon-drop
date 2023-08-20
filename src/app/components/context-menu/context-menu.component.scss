@@ -5,28 +5,36 @@ mat-list.list.context-menu {
     height: 50px;
 
     mat-icon.item-icon {
-      margin-inline: 8px;
+      margin-left: 16px;
+      margin-right: 8px;
     }
 
     span.item-label {
-      padding-right: 8px;
+      padding-right: 16px;
     }
-  }
-}
 
-.custom-color {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    .custom-color {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-inline: 16px;
 
-  .custom-color-label {
-  }
+      &-selected {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        border: 2px solid $white;
+        border-radius: 50%;
+      }
 
-  .custom-color-input {
-    width: 30px;
-    height: 30px;
-    border: 2px solid $white;
-    border-radius: 50%;
-    cursor: pointer;
+      &-label {
+        color: $white;
+      }
+
+      .remove-color {
+        margin-left: auto;
+        color: $white;
+      }
+    }
   }
 }

@@ -27,17 +27,30 @@
             </mat-select>
           </mat-form-field>
         </mat-list-item>
-        <mat-list-item class="custom-color">
-          <label>Custom color:</label>
+        <mat-list-item class="list-item" (click)="openColorPicker($event)">
           <div
             #colorPicker
-            class="custom-color-input-wrapper"
+            class="custom-color"
             [colorPicker]="color"
-            [cpPosition]="'auto'"
-            [cpPositionOffset]="'50%'"
             [cpUseRootViewContainer]="true"
-            [cpAlphaChannel]="'disabled'">
-            <div class="custom-color-input" [style.background-color]="color"></div>
+            [cpAlphaChannel]="'disabled'"
+            [cpCancelButton]="true"
+            [cpOKButton]="true"
+            [cpOKButtonText]="'COLOR_PICKER.BUTTONS.OK' | translate"
+            [cpCancelButtonText]="'COLOR_PICKER.BUTTONS.CANCEL' | translate"
+            [cpSaveClickOutside]="false"
+            [cpToggle]="colorPickerToggle"
+            (colorPickerSelect)="onColorChange($event)">
+            <div *ngIf="color" class="custom-color-selected" [style.background-color]="color"></div>
+            <label class="custom-color-label">Custom Color</label>
+            <button
+              *ngIf="color"
+              class="icon-button remove-color"
+              mat-icon-button
+              (click)="removeCustomColor()"
+              [matTooltip]="'EDITOR.CONTEXT_MENU.SECTION.TOOLTIPS.REMOVE_CUSTOM_COLOR' | translate">
+              <mat-icon svgIcon="close"></mat-icon>
+            </button>
           </div>
         </mat-list-item>
       </mat-list>

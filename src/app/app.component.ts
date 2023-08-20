@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -16,7 +16,10 @@ import ToolbarComponent from './components/toolbar/toolbar.component';
   animations: [fadeAnimation],
 })
 export class AppComponent {
-  constructor(translate: TranslateService) {
+  constructor(
+    public viewContainerRef: ViewContainerRef,
+    translate: TranslateService
+  ) {
     translate.setDefaultLang('en');
     translate.use('en');
   }

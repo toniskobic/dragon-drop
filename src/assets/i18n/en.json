@@ -4,6 +4,12 @@
       "BACK": "Back"
     }
   },
+  "COLOR_PICKER": {
+    "BUTTONS": {
+      "OK": "OK",
+      "CANCEL": "Cancel"
+    }
+  },
   "HOME": {
     "TITLE": "Dragon Drop",
     "INTRO": "Static website drag and drop builder, no coding required.<br/>Transform your ideas into digital reality, one drop at a time.",
@@ -21,6 +27,13 @@
   "EDITOR": {
     "ALERTS": {
       "UNSAVED_CHANGES": "Are you sure you want to leave, all your progress will be lost?"
+    },
+    "CONTEXT_MENU": {
+      "SECTION": {
+        "TOOLTIPS": {
+          "REMOVE_CUSTOM_COLOR": "Remove"
+        }
+      }
     },
     "TOOLBAR": {
       "BUTTONS": { "EXPORT": "Export" },
