@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { Subscription } from 'rxjs';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
@@ -39,7 +40,7 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
   templateUrl: './section-context-menu.component.html',
   styleUrls: ['./section-context-menu.component.scss'],
 })
-export class SectionContextMenuComponent implements OnInit, AfterViewInit {
+export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   ThemeColor = ThemeColor;
   ContextMenuType = ContextMenuType;
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
@@ -48,6 +49,7 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit {
   @Input() menuOpened?: EventEmitter<void>;
   @Input() menuClosed?: EventEmitter<void>;
 
+  subscriptions: (Subscription | undefined)[] = [];
   contextMenuPosition = { x: '0px', y: '0px' };
   colorPickerToggle = false;
   sectionHeightControl = new FormControl(100, {
@@ -83,14 +85,23 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.menuOpened?.subscribe(() => {
-      this.sectionHeightControl.setValue(this.sectionHeight);
-      this.colorPickerToggle = false;
-    });
+    this.subscriptions.push(
+      this.menuOpened?.subscribe(() => {
+        this.sectionHeightControl.setValue(this.sectionHeight);
+        this.colorPickerToggle = false;
+      })
+    );
 
-    this.menuClosed?.subscribe(() => {
-      this.submitInput();
-    });
+    this.subscriptions.push(
+      this.menuClosed?.subscribe(() => {
+        this.submitInput();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s?.unsubscribe());
+    this.subscriptions = [];
   }
 
   submitInput() {
