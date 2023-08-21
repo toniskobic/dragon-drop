@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { DynamicComponentType, DynamicElement } from 'src/app/models/dynamic-component.model';
+import { GridsterItem } from 'angular-gridster2';
+import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
 import { AppState } from 'src/app/state/app.reducer';
 import { selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
@@ -16,7 +17,7 @@ import { selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
 export class HeaderComponent implements DynamicComponentType {
   @Input() themeColor: ThemeColor = ThemeColor.Secondary;
   @Input() style: object = {};
-  @Input() elements: DynamicElement[] = [];
+  @Input() elements: GridsterItem[] = [];
 
   pages$ = this.store.select(selectPages);
   constructor(private store: Store<AppState>) {}

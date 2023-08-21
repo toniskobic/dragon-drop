@@ -11,7 +11,7 @@ import { DragonDropState } from '../app.reducer';
 import { selectDragonDropState } from '../app.selectors';
 import { DesignCanvasActions } from './design-canvas.actions';
 import { DesignCanvasState } from './design-canvas.model';
-import { currentPage, updatePage } from './design-canvas.utils';
+import { currentPage, updateElementPosition, updatePage } from './design-canvas.utils';
 
 const pageId = uuidv4();
 
@@ -26,7 +26,7 @@ export const initialDesignCanvasState: DesignCanvasState = {
           component: SectionComponent,
           selected: false,
           inputs: {
-            elements: [{ id: uuidv4(), data: '<p>Hello World!</p>' }],
+            elements: [{ x: 0, y: 0, rows: 2, cols: 2, id: uuidv4(), data: '<p>Hello World!</p>' }],
             themeColor: ThemeColor.Primary,
             style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
           },
@@ -63,6 +63,7 @@ export const designCanvasUndoRedoAllowedActions = [
   DesignCanvasActions.updatePage.type,
   DesignCanvasActions.addElement.type,
   DesignCanvasActions.updateElement.type,
+  DesignCanvasActions.updateElementPosition.type,
   DesignCanvasActions.deleteElement.type,
 ];
 
@@ -142,7 +143,7 @@ export const designCanvasOnActions = [
     if (page) {
       const section = page.sections.find(component => component.id === sectionId);
       if (section) {
-        const element = { id: uuidv4(), data: '<p>Hello World!</p>' };
+        const element = { x: 0, y: 0, rows: 2, cols: 2, id: uuidv4(), data: '<p>Hello World!</p>' };
         const elements = section.inputs.elements;
         if (elements) {
           elements.push(element);
@@ -157,9 +158,23 @@ export const designCanvasOnActions = [
     if (page) {
       for (const section of page.sections) {
         if (section.inputs) {
-          const element = section.inputs.elements?.find(element => element.id === id);
+          const element = section.inputs.elements?.find(element => element['id'] === id);
           if (element) {
-            element.data = data;
+            element['data'] = data;
+            break;
+          }
+        }
+      }
+    }
+  }),
+  produceOn(DesignCanvasActions.updateElementPosition, (state: DragonDropState, { id, x, y, rows, cols }) => {
+    const page = currentPage(state);
+    if (page) {
+      for (const section of page.sections) {
+        if (section.inputs) {
+          const element = section.inputs.elements?.find(element => element['id'] === id);
+          if (element) {
+            updateElementPosition(element, { x, y, rows, cols });
             break;
           }
         }
@@ -173,7 +188,7 @@ export const designCanvasOnActions = [
         if (section.inputs) {
           const elements = section.inputs.elements;
           if (elements) {
-            section.inputs.elements = elements.filter(element => element.id !== id);
+            section.inputs.elements = elements.filter(element => element['id'] !== id);
             break;
           }
         }

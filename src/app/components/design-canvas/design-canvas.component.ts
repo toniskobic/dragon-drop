@@ -31,11 +31,10 @@ import { ResizableDraggableComponent } from '../resizable-draggable/resizable-dr
   ],
 })
 export class DesignCanvasComponent {
-  components$ = this.store.select(selectCurrentPageSections);
-
   readonly Viewport = Viewport;
 
   currentViewport$ = this.store.select(selectViewport);
+  components$ = this.store.select(selectCurrentPageSections);
 
   constructor(
     private store: Store<AppState>,

@@ -1,104 +1,126 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { Store } from '@ngrx/store';
 import {
   CompactType,
-  DisplayGrid,
   GridsterComponent,
   GridsterConfig,
   GridsterItem,
   GridsterItemComponent,
+  GridsterItemComponentInterface,
   GridType,
 } from 'angular-gridster2';
 import { ResizableModule } from 'angular-resizable-element';
+import { cloneDeep } from 'lodash';
 import { RichTextEditorComponent } from 'src/app/components/rich-text-editor/rich-text-editor.component';
-import { DynamicComponentType, DynamicElement } from 'src/app/models/dynamic-component.model';
+import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
+import { UtilsService } from 'src/app/services/utils.service';
+import { AppState } from 'src/app/state/app.reducer';
+import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
 @Component({
   selector: 'drd-section',
   standalone: true,
-  imports: [CommonModule, ResizableModule, RichTextEditorComponent, GridsterComponent, GridsterItemComponent],
+  imports: [
+    CommonModule,
+    ResizableModule,
+    RichTextEditorComponent,
+    GridsterComponent,
+    GridsterItemComponent,
+    MatIconModule,
+  ],
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent implements DynamicComponentType, OnChanges {
   @Input() themeColor: ThemeColor = ThemeColor.Primary;
   @Input() style: object = {};
-  @Input() elements: DynamicElement[] = [];
+  @Input() elements: GridsterItem[] = [];
 
   gridItems: GridsterItem[] = [];
   gridOptions: GridsterConfig = {
     gridType: GridType.Fit,
     compactType: CompactType.None,
-    margin: 0,
+    disableScrollHorizontal: true,
+    disableScrollVertical: true,
+    itemChangeCallback: this.itemChange.bind(this),
+    itemResizeCallback: this.itemResize.bind(this),
+    itemValidateCallback: this.itemValidate.bind(this),
+    minRows: 10,
+    minCols: 10,
     outerMargin: false,
-    outerMarginTop: null,
-    outerMarginRight: null,
-    outerMarginBottom: null,
-    outerMarginLeft: null,
-    useTransformPositioning: false,
-    mobileBreakpoint: 640,
-    useBodyForBreakpoint: false,
-    minCols: 1,
-    maxCols: 100,
-    minRows: 1,
-    maxRows: 100,
-    maxItemCols: 100,
+    outerMarginBottom: 0,
+    outerMarginLeft: 0,
+    outerMarginRight: 0,
+    outerMarginTop: 0,
+    margin: 0,
+    maxCols: 10,
+    maxRows: 10,
     minItemCols: 1,
-    maxItemRows: 100,
     minItemRows: 1,
-    maxItemArea: 2500,
-    minItemArea: 1,
-    defaultItemCols: 1,
-    defaultItemRows: 1,
-    fixedColWidth: 105,
-    fixedRowHeight: 105,
-    keepFixedHeightInMobile: false,
-    keepFixedWidthInMobile: false,
-    scrollSensitivity: 10,
-    scrollSpeed: 20,
-    enableEmptyCellClick: false,
-    enableEmptyCellContextMenu: false,
-    enableEmptyCellDrop: false,
-    enableEmptyCellDrag: false,
-    enableOccupiedCellDrop: false,
-    emptyCellDragMaxCols: 50,
-    emptyCellDragMaxRows: 50,
-    ignoreMarginInRow: false,
+    pushItems: true,
     draggable: {
-      enabled: false,
+      enabled: true,
+      ignoreContent: true,
+      dragHandleClass: 'drag-handle',
     },
     resizable: {
       enabled: true,
     },
-    swap: false,
-    pushItems: true,
-    disablePushOnDrag: false,
-    disablePushOnResize: false,
-    pushDirections: { north: true, east: true, south: true, west: true },
-    pushResizeItems: false,
-    displayGrid: DisplayGrid.Always,
-    disableWindowResize: false,
-    disableWarnings: false,
-    scrollToNewItems: false,
   };
 
   get backgroundColor() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
-    return (this.style as any)['background-color'] ? '' : `var(--${this.themeColor}-color)`;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+    const background = (this.style as any)['background-color'];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return background ? background : `var(--${this.themeColor}-color)`;
+  }
+
+  constructor(
+    private utilsService: UtilsService,
+    private store: Store<AppState>
+  ) {
+    this.utilsService.initSvgIcons(['drag']);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['elements']?.currentValue) {
-      this.gridItems = this.elements.map(element => ({
-        cols: this.gridOptions.defaultItemCols as number,
-        rows: this.gridOptions.defaultItemRows as number,
-        x: 0,
-        y: 0,
-        content: element,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      }));
-      console.log(this.gridItems);
+      this.gridItems = cloneDeep(this.elements);
     }
+  }
+
+  itemChange(item: GridsterItem, itemComponent: GridsterItemComponentInterface): void {
+    console.info('itemChanged', item, itemComponent);
+    this.store.dispatch(
+      DesignCanvasActions.updateElementPosition({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        id: item['id'],
+        x: item.x,
+        y: item.y,
+        rows: item.rows,
+        cols: item.cols,
+      })
+    );
+  }
+
+  itemResize(item: GridsterItem, itemComponent: GridsterItemComponentInterface): void {
+    console.info('itemResized', item, itemComponent);
+    console.info('itemChanged', item, itemComponent);
+    this.store.dispatch(
+      DesignCanvasActions.updateElementPosition({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        id: item['id'],
+        x: item.x,
+        y: item.y,
+        rows: item.rows,
+        cols: item.cols,
+      })
+    );
+  }
+
+  itemValidate(item: GridsterItem): boolean {
+    return item.cols > 0 && item.rows > 0;
   }
 }

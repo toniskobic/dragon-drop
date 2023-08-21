@@ -1,0 +1,25 @@
+$rich-black: var(--rich-black);
+$white: var(--white);
+
+.drag-handle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 10px;
+  right: 10px;
+  color: $rich-black;
+  background-color: $white;
+  z-index: 10;
+  border-radius: 4px;
+  cursor: move;
+}
+
+gridster {
+  transition: background-color 0.8s ease-out;
+}
+
+gridster.display-grid {
+  background-color: gray !important;
+  transition: none;
+}

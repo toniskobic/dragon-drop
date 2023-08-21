@@ -1,8 +1,11 @@
 <section class="container" [ngStyle]="style" #element [style.background-color]="backgroundColor">
   <div class="content">
-    <gridster [options]="gridOptions">
-      <gridster-item [item]="item" *ngFor="let item of gridItems">
-        <drd-rich-text-editor [id]="item['content'].id" [data]="item['content'].data"></drd-rich-text-editor>
+    <gridster [options]="gridOptions" [style.background-color]="backgroundColor">
+      <gridster-item [item]="item" *ngFor="let item of gridItems" [style.background-color]="backgroundColor">
+        <div class="drag-handle mat-elevation-z6">
+          <mat-icon svgIcon="drag"></mat-icon>
+        </div>
+        <drd-rich-text-editor [id]="item['id']" [data]="item['data']"></drd-rich-text-editor>
       </gridster-item>
     </gridster>
   </div>
