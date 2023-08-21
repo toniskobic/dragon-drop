@@ -45,6 +45,7 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
     compactType: CompactType.None,
     disableScrollHorizontal: true,
     disableScrollVertical: true,
+    useTransformPositioning: false,
     itemChangeCallback: this.itemChange.bind(this),
     itemResizeCallback: this.itemResize.bind(this),
     itemValidateCallback: this.itemValidate.bind(this),
