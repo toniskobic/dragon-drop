@@ -91,6 +91,12 @@ export class RichTextEditorComponent {
     }
   }
 
+  onMouseDown(event: MouseEvent) {
+    if (event.button === 2) {
+      event.preventDefault();
+    }
+  }
+
   onContextMenu(event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();

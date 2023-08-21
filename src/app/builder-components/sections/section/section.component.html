@@ -1,8 +1,9 @@
 <section class="container" [ngStyle]="style" #element [style.background-color]="backgroundColor">
   <div class="content">
-    <drd-rich-text-editor
-      *ngFor="let element of elements"
-      [id]="element.id"
-      [data]="element.data"></drd-rich-text-editor>
+    <gridster [options]="gridOptions">
+      <gridster-item [item]="item" *ngFor="let item of gridItems">
+        <drd-rich-text-editor [id]="item['content'].id" [data]="item['content'].data"></drd-rich-text-editor>
+      </gridster-item>
+    </gridster>
   </div>
 </section>
