@@ -1,5 +1,8 @@
 <header class="header" #element [ngStyle]="style" [style.background-color]="backgroundColor" [style.color]="color">
   <nav>
+    <div *ngIf="logoSrc" class="logo-wrapper">
+      <img id="logo" class="logo" [src]="logoSrc" />
+    </div>
     <ul>
       <li *ngFor="let page of pages$ | async">
         <a [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>

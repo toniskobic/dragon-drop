@@ -12,6 +12,46 @@
             <mat-icon svgIcon="close"></mat-icon>
           </button>
         </mat-form-field>
+        <div class="file-upload">
+          <div class="file-upload-input">
+            <label class="file-upload-label">{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.FAVICON' | translate }}:</label>
+            <button mat-raised-button color="accent" (click)="faviconInput.click()">
+              {{ 'COMMON.BUTTONS.UPLOAD' | translate }}
+            </button>
+            <input #faviconInput id="file" hidden type="file" accept=".ico" (change)="onFileChange($event)" />
+          </div>
+          <div *ngIf="faviconSrc" class="upload-img">
+            <img class="upload-img-favicon" [src]="faviconSrc" />
+            <button
+              class="icon-button"
+              mat-icon-button
+              (click)="deleteFile()"
+              matTooltip="{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.TOOLTIPS.DELETE_FAVICON' | translate }}"
+              matTooltipPosition="right">
+              <mat-icon svgIcon="close"></mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="file-upload">
+          <div class="file-upload-input">
+            <label class="file-upload-label">{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.LOGO' | translate }}:</label>
+            <button mat-raised-button color="accent" (click)="logoInput.click()">
+              {{ 'COMMON.BUTTONS.UPLOAD' | translate }}
+            </button>
+            <input #logoInput id="file" hidden type="file" accept="image/*" (change)="onFileChange($event, true)" />
+          </div>
+          <div *ngIf="logoSrc" class="upload-img">
+            <img class="upload-img-logo" [src]="logoSrc" />
+            <button
+              class="icon-button"
+              mat-icon-button
+              (click)="deleteFile(true)"
+              matTooltip="{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.TOOLTIPS.DELETE_LOGO' | translate }}"
+              matTooltipPosition="right">
+              <mat-icon svgIcon="close"></mat-icon>
+            </button>
+          </div>
+        </div>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

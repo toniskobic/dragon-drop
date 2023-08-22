@@ -1,7 +1,15 @@
 {
   "COMMON": {
     "BUTTONS": {
-      "BACK": "Back"
+      "BACK": "Back",
+      "UPLOAD": "Upload",
+      "CLOSE": "Close"
+    }
+  },
+  "FILE_UPLOAD": {
+    "ALERTS": {
+      "FAVICON_DELETE_FAILED": "Favicon must be an .ico file with a maximum size of 1MB!",
+      "LOGO_DELETE_FAILED": "Logo must be an image file (.png, .jpeg, .gif, .svg) with a maximum size of 3MB!"
     }
   },
   "COLOR_PICKER": {
@@ -91,7 +99,13 @@
       },
       "GLOBAL_SETTINGS": {
         "LABELS": {
-          "WEBSITE_TITLE": "Website Title"
+          "WEBSITE_TITLE": "Website title",
+          "FAVICON": "Favicon",
+          "LOGO": "Logo"
+        },
+        "TOOLTIPS": {
+          "DELETE_FAVICON": "Delete favicon",
+          "DELETE_LOGO": "Delete logo"
         }
       },
       "THEME_SETTINGS": {

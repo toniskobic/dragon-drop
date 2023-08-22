@@ -206,3 +206,18 @@ div.mat-mdc-autocomplete-panel[role='listbox'] {
   background-color: $rich-black-light;
   padding: 0;
 }
+
+mat-snack-bar-container.mdc-snackbar.mat-mdc-snack-bar-container {
+  .mdc-snackbar__surface {
+    background: $rich-black;
+  }
+
+  .mat-mdc-snack-bar-label.mdc-snackbar__label {
+    color: $white;
+  }
+
+  button.mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    background-color: $penn-red;
+    color: $white;
+  }
+}

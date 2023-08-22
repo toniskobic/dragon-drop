@@ -3,6 +3,14 @@
 
   nav {
     height: 100%;
+    display: flex;
+    align-items: center;
+
+    .logo-wrapper {
+      .logo {
+        width: 200px;
+      }
+    }
 
     ul {
       display: flex;
@@ -11,6 +19,10 @@
       margin: 0;
 
       li {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        max-height: 70px;
         padding: 0 10px;
         cursor: pointer;
       }
