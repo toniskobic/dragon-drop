@@ -1,0 +1,19 @@
+.header {
+  padding-inline: 15px;
+
+  nav {
+    height: 100%;
+
+    ul {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      margin: 0;
+
+      li {
+        padding: 0 10px;
+        cursor: pointer;
+      }
+    }
+  }
+}

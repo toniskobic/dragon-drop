@@ -7,7 +7,6 @@ import { GoogleFontsService } from 'src/app/services/google-fonts.service';
 import { AppActions } from '../app.actions';
 import { AppState, selectHistory } from '../app.reducer';
 import { FontsApiActions, ThemeSettingsActions } from './theme-settings.actions';
-import { selectThemeSettingsState } from './theme-settings.reducer';
 
 @Injectable()
 export class ThemeSettingsEffects {
@@ -15,8 +14,7 @@ export class ThemeSettingsEffects {
     () =>
       this.actions$.pipe(
         ofType(ThemeSettingsActions.setColor),
-        withLatestFrom(this.store.select(selectThemeSettingsState)),
-        tap(([action]) => {
+        tap(action => {
           document.documentElement.style.setProperty(`--${action.key}-color`, action.color);
         })
       ),
@@ -27,8 +25,7 @@ export class ThemeSettingsEffects {
     () =>
       this.actions$.pipe(
         ofType(ThemeSettingsActions.setFont),
-        withLatestFrom(this.store.select(selectThemeSettingsState)),
-        tap(([action]) => {
+        tap(action => {
           document.documentElement.style.setProperty(`--${action.key}-font-family`, action.font);
           if (action.key !== 'alternative') {
             let link = document.getElementById(`${action.key}-font`) as HTMLLinkElement | null;

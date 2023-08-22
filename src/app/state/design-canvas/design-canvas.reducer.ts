@@ -1,15 +1,21 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { createSelector } from '@ngrx/store';
 import { produceOn } from 'ngrx-wieder';
+import { HeaderComponent } from 'src/app/builder-components/headers/header/header.component';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
 import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
+import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DragonDropState } from '../app.reducer';
 import { selectDragonDropState } from '../app.selectors';
-import { DesignCanvasActions } from './design-canvas.actions';
+import {
+  DesignCanvasElementActions,
+  DesignCanvasPageActions,
+  DesignCanvasSectionActions,
+} from './design-canvas.actions';
 import { DesignCanvasState } from './design-canvas.model';
 import { currentPage, updateElementPosition, updatePage } from './design-canvas.utils';
 
@@ -23,18 +29,26 @@ export const initialDesignCanvasState: DesignCanvasState = {
       sections: [
         {
           id: uuidv4(),
-          component: SectionComponent,
+          component: HeaderComponent,
           selected: false,
           inputs: {
-            elements: [{ x: 0, y: 0, rows: 2, cols: 2, id: uuidv4(), data: '<p>Hello World!</p>' }],
             themeColor: ThemeColor.Primary,
+            themeFontFamily: FontFamily.Primary,
             style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
           },
         },
         {
           id: uuidv4(),
           component: SectionComponent,
-          inputs: { elements: [], themeColor: ThemeColor.Primary, style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` } },
+          selected: false,
+          inputs: {
+            elements: [
+              { x: 0, y: 0, rows: 3, cols: 10, id: uuidv4(), data: '<h2 style="text-align:center;">Lorem ipsum!</h2>' },
+            ],
+            themeColor: ThemeColor.Primary,
+            themeFontFamily: FontFamily.Primary,
+            style: { height: `${MIN_SECTION_DIMENSIONS_PX * 2}px` },
+          },
         },
       ],
     },
@@ -45,7 +59,12 @@ export const initialDesignCanvasState: DesignCanvasState = {
         {
           id: uuidv4(),
           component: SectionComponent,
-          inputs: { elements: [], themeColor: ThemeColor.Primary, style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` } },
+          inputs: {
+            elements: [],
+            themeColor: ThemeColor.Secondary,
+            themeFontFamily: FontFamily.Primary,
+            style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
+          },
         },
       ],
     },
@@ -54,32 +73,32 @@ export const initialDesignCanvasState: DesignCanvasState = {
 };
 
 export const designCanvasUndoRedoAllowedActions = [
-  DesignCanvasActions.addPage.type,
-  DesignCanvasActions.deletePage.type,
-  DesignCanvasActions.addDroppedCurrentPageComponent.type,
-  DesignCanvasActions.deleteComponent.type,
-  DesignCanvasActions.sortCurrentPageComponents.type,
-  DesignCanvasActions.updateComponent.type,
-  DesignCanvasActions.updatePage.type,
-  DesignCanvasActions.addElement.type,
-  DesignCanvasActions.updateElement.type,
-  DesignCanvasActions.updateElementPosition.type,
-  DesignCanvasActions.deleteElement.type,
+  DesignCanvasPageActions.addPage.type,
+  DesignCanvasPageActions.updatePage.type,
+  DesignCanvasPageActions.deletePage.type,
+  DesignCanvasSectionActions.addDroppedCurrentPageSection.type,
+  DesignCanvasSectionActions.updateSection.type,
+  DesignCanvasSectionActions.sortCurrentPageSections.type,
+  DesignCanvasSectionActions.deleteSection.type,
+  DesignCanvasElementActions.addElement.type,
+  DesignCanvasElementActions.updateElement.type,
+  DesignCanvasElementActions.updateElementPosition.type,
+  DesignCanvasElementActions.deleteElement.type,
 ];
 
 export const designCanvasOnActions = [
-  produceOn(DesignCanvasActions.addPage, (state: DragonDropState) => {
+  produceOn(DesignCanvasPageActions.addPage, (state: DragonDropState) => {
     state.pages.push({ id: uuidv4(), title: 'New Page', sections: [] });
   }),
-  produceOn(DesignCanvasActions.setCurrentPage, (state: DragonDropState, { pageId }) => {
+  produceOn(DesignCanvasPageActions.setCurrentPage, (state: DragonDropState, { pageId }) => {
     state.currentPageId = pageId;
   }),
-  produceOn(DesignCanvasActions.deletePage, (state: DragonDropState, { pageId }) => {
+  produceOn(DesignCanvasPageActions.deletePage, (state: DragonDropState, { pageId }) => {
     const pages = state.pages.filter(page => page.id !== pageId);
     state.pages = pages;
     state.currentPageId = state.currentPageId === pageId ? pages[0].id : state.currentPageId;
   }),
-  produceOn(DesignCanvasActions.selectCurrentPageSection, (state: DragonDropState, { sectionId }) => {
+  produceOn(DesignCanvasSectionActions.selectCurrentPageSection, (state: DragonDropState, { sectionId }) => {
     const page = currentPage(state);
     if (page) {
       page.sections.forEach(section => {
@@ -87,7 +106,7 @@ export const designCanvasOnActions = [
       });
     }
   }),
-  produceOn(DesignCanvasActions.unselectCurrentPageSection, (state: DragonDropState) => {
+  produceOn(DesignCanvasSectionActions.unselectCurrentPageSection, (state: DragonDropState) => {
     const page = currentPage(state);
     if (page) {
       page.sections.forEach(section => {
@@ -96,7 +115,7 @@ export const designCanvasOnActions = [
     }
   }),
   produceOn(
-    DesignCanvasActions.sortCurrentPageComponents,
+    DesignCanvasSectionActions.sortCurrentPageSections,
     (state: DragonDropState, { previousIndex, currentIndex }) => {
       const page = currentPage(state);
       if (page) {
@@ -105,40 +124,45 @@ export const designCanvasOnActions = [
     }
   ),
   produceOn(
-    DesignCanvasActions.addDroppedCurrentPageComponent,
-    (state: DragonDropState, { componentClass, currentIndex }) => {
+    DesignCanvasSectionActions.addDroppedCurrentPageSection,
+    (state: DragonDropState, { sectionClass, currentIndex }) => {
       const page = currentPage(state);
       if (page) {
         const newSection: DynamicComponent = {
           id: uuidv4(),
-          component: componentClass,
-          inputs: { themeColor: ThemeColor.Primary, elements: [], style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` } },
+          component: sectionClass,
+          inputs: {
+            themeColor: ThemeColor.Primary,
+            themeFontFamily: FontFamily.Primary,
+            elements: [],
+            style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
+          },
         };
         page.sections.splice(currentIndex, 0, newSection);
       }
     }
   ),
-  produceOn(DesignCanvasActions.deleteComponent, (state: DragonDropState, { pageId, id }) => {
+  produceOn(DesignCanvasSectionActions.deleteSection, (state: DragonDropState, { pageId, id }) => {
     const componentsPageId = pageId ? pageId : state.currentPageId;
     const page = state.pages.find(page => page.id === componentsPageId);
     if (page) {
       page.sections = page.sections.filter(component => component.id !== id);
     }
   }),
-  produceOn(DesignCanvasActions.updateComponent, (state: DragonDropState, { id, inputs }) => {
+  produceOn(DesignCanvasSectionActions.updateSection, (state: DragonDropState, { id, inputs }) => {
     const page = currentPage(state);
     if (page) {
       const section = page.sections.find(component => component.id === id);
       if (section) section.inputs = inputs;
     }
   }),
-  produceOn(DesignCanvasActions.updatePage, (state: DragonDropState, { newPage }) => {
+  produceOn(DesignCanvasPageActions.updatePage, (state: DragonDropState, { newPage }) => {
     const page = state.pages.find(page => page.id === newPage.id);
     if (page) {
       updatePage(page, newPage);
     }
   }),
-  produceOn(DesignCanvasActions.addElement, (state: DragonDropState, { sectionId }) => {
+  produceOn(DesignCanvasElementActions.addElement, (state: DragonDropState, { sectionId }) => {
     const page = currentPage(state);
     if (page) {
       const section = page.sections.find(component => component.id === sectionId);
@@ -153,7 +177,7 @@ export const designCanvasOnActions = [
       }
     }
   }),
-  produceOn(DesignCanvasActions.updateElement, (state: DragonDropState, { id, data }) => {
+  produceOn(DesignCanvasElementActions.updateElement, (state: DragonDropState, { id, data }) => {
     const page = currentPage(state);
     if (page) {
       for (const section of page.sections) {
@@ -167,7 +191,7 @@ export const designCanvasOnActions = [
       }
     }
   }),
-  produceOn(DesignCanvasActions.updateElementPosition, (state: DragonDropState, { id, x, y, rows, cols }) => {
+  produceOn(DesignCanvasElementActions.updateElementPosition, (state: DragonDropState, { id, x, y, rows, cols }) => {
     const page = currentPage(state);
     if (page) {
       for (const section of page.sections) {
@@ -181,7 +205,7 @@ export const designCanvasOnActions = [
       }
     }
   }),
-  produceOn(DesignCanvasActions.deleteElement, (state: DragonDropState, { id }) => {
+  produceOn(DesignCanvasElementActions.deleteElement, (state: DragonDropState, { id }) => {
     const page = currentPage(state);
     if (page) {
       for (const section of page.sections) {

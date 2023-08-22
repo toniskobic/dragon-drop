@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasElementActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
 @Component({
   selector: 'drd-element-context-menu',
@@ -29,6 +29,6 @@ export class ElementContextMenuComponent {
   }
 
   deleteElement() {
-    this.store.dispatch(DesignCanvasActions.deleteElement({ id: this.id || '' }));
+    this.store.dispatch(DesignCanvasElementActions.deleteElement({ id: this.id || '' }));
   }
 }

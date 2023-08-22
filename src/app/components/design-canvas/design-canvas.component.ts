@@ -10,7 +10,7 @@ import { SectionItem } from 'src/app/models/section-item.model';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
 import { selectCurrentPageSections } from 'src/app/state/design-canvas/design-canvas.reducer';
 import { selectViewport } from 'src/app/state/editor/editor.reducer';
 
@@ -45,7 +45,7 @@ export class DesignCanvasComponent {
     if (event.isPointerOverContainer) {
       if (event.previousContainer === event.container) {
         this.store.dispatch(
-          DesignCanvasActions.sortCurrentPageComponents({
+          DesignCanvasSectionActions.sortCurrentPageSections({
             previousIndex: event.previousIndex,
             currentIndex: event.currentIndex,
           })
@@ -53,8 +53,8 @@ export class DesignCanvasComponent {
       } else {
         const sectionItem = event.item.data as SectionItem;
         this.store.dispatch(
-          DesignCanvasActions.addDroppedCurrentPageComponent({
-            componentClass: sectionItem.class,
+          DesignCanvasSectionActions.addDroppedCurrentPageSection({
+            sectionClass: sectionItem.class,
             currentIndex: event.currentIndex,
           })
         );

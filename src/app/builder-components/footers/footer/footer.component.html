@@ -1,1 +1,9 @@
-<footer #element [ngStyle]="style" [style.background-color]="backgroundColor">Footer</footer>
+<footer class="footer" [ngStyle]="style" [style.background-color]="backgroundColor" [style.color]="color">
+  <nav>
+    <ul>
+      <li *ngFor="let page of pages$ | async">
+        <a [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
+      </li>
+    </ul>
+  </nav>
+</footer>

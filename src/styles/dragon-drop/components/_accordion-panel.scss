@@ -8,6 +8,10 @@
       background-color: $rich-black;
       color: $white;
 
+      &.headless .mat-expansion-panel-body {
+        padding: 16px 24px;
+      }
+
       .mat-expansion-panel-header-title,
       .mat-expansion-panel-header-description {
         color: $white;

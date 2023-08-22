@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import {
@@ -12,13 +12,14 @@ import {
   GridType,
 } from 'angular-gridster2';
 import { ResizableModule } from 'angular-resizable-element';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { RichTextEditorComponent } from 'src/app/components/rich-text-editor/rich-text-editor.component';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
+import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasElementActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
 @Component({
   selector: 'drd-section',
@@ -36,6 +37,8 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
 })
 export class SectionComponent implements DynamicComponentType, OnChanges {
   @Input() themeColor: ThemeColor = ThemeColor.Primary;
+  @Input() fontThemeColor?: ThemeColor;
+  @Input() themeFontFamily?: FontFamily;
   @Input() style: object = {};
   @Input() elements: GridsterItem[] = [];
 
@@ -49,16 +52,18 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
     itemChangeCallback: this.itemChange.bind(this),
     itemResizeCallback: this.itemResize.bind(this),
     itemValidateCallback: this.itemValidate.bind(this),
-    minRows: 10,
+    itemInitCallback: this.itemInit.bind(this),
+    itemRemovedCallback: this.itemInit.bind(this),
+    minRows: 4,
+    maxRows: 4,
     minCols: 10,
+    maxCols: 10,
     outerMargin: false,
     outerMarginBottom: 0,
     outerMarginLeft: 0,
     outerMarginRight: 0,
     outerMarginTop: 0,
     margin: 0,
-    maxCols: 10,
-    maxRows: 10,
     minItemCols: 1,
     minItemRows: 1,
     pushItems: true,
@@ -73,15 +78,14 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
   };
 
   get backgroundColor() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
-    const background = (this.style as any)['background-color'];
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    const background = this.style['background-color' as keyof typeof this.style];
     return background ? background : `var(--${this.themeColor}-color)`;
   }
 
   constructor(
     private utilsService: UtilsService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private renderer: Renderer2
   ) {
     this.utilsService.initSvgIcons(['drag']);
   }
@@ -90,14 +94,21 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
     if (changes['elements']?.currentValue) {
       this.gridItems = cloneDeep(this.elements);
     }
+    const style = changes['style']?.currentValue as object | undefined;
+    if (style && style['height' as keyof typeof style]) {
+      const height = parseInt(style['height' as keyof typeof style], 10);
+      this.adjustMaxRows(height);
+    }
   }
 
-  itemChange(item: GridsterItem, itemComponent: GridsterItemComponentInterface): void {
-    console.info('itemChanged', item, itemComponent);
+  itemInit(item: GridsterItem, itemComponent: GridsterItemComponentInterface): void {
+    itemComponent.renderer = this.renderer;
+  }
+
+  itemChange(item: GridsterItem): void {
     this.store.dispatch(
-      DesignCanvasActions.updateElementPosition({
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        id: item['id'],
+      DesignCanvasElementActions.updateElementPosition({
+        id: item['id'] as string,
         x: item.x,
         y: item.y,
         rows: item.rows,
@@ -106,13 +117,10 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
     );
   }
 
-  itemResize(item: GridsterItem, itemComponent: GridsterItemComponentInterface): void {
-    console.info('itemResized', item, itemComponent);
-    console.info('itemChanged', item, itemComponent);
+  itemResize(item: GridsterItem): void {
     this.store.dispatch(
-      DesignCanvasActions.updateElementPosition({
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        id: item['id'],
+      DesignCanvasElementActions.updateElementPosition({
+        id: item['id'] as string,
         x: item.x,
         y: item.y,
         rows: item.rows,
@@ -123,5 +131,15 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
 
   itemValidate(item: GridsterItem): boolean {
     return item.cols > 0 && item.rows > 0;
+  }
+
+  private adjustMaxRows(sectionHeight: number): void {
+    if (sectionHeight > 400) {
+      this.gridOptions.maxRows = 10;
+      this.gridOptions.minRows = 10;
+    } else {
+      this.gridOptions.maxRows = 4;
+      this.gridOptions.minRows = 4;
+    }
   }
 }

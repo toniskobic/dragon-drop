@@ -1,0 +1,18 @@
+<div class="accordion-wrapper">
+  <mat-accordion multi="true">
+    <mat-expansion-panel [expanded]="true" class="panel-box-shadow headless">
+      <div class="panel-content-wrapper mat-component-density-s">
+        <mat-form-field class="input-form-field website-title padding-r-s">
+          <mat-label>{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.WEBSITE_TITLE' | translate }}:</mat-label>
+          <input matInput [formControl]="website.formControl" />
+          <button *ngIf="website.valueChanged" class="icon-button" mat-icon-button (click)="confirm(website)">
+            <mat-icon svgIcon="check"></mat-icon>
+          </button>
+          <button *ngIf="website.valueChanged" class="icon-button" mat-icon-button (click)="close(website)">
+            <mat-icon svgIcon="close"></mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

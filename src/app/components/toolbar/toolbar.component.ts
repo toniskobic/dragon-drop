@@ -17,7 +17,7 @@ import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppActions } from 'src/app/state/app.actions';
 import { AppState, selectCanRedo, selectCanUndo } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasPageActions } from 'src/app/state/design-canvas/design-canvas.actions';
 import { selectCurrentPageId, selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
 import { EditorActions } from 'src/app/state/editor/editor.actions';
 import { selectViewport } from 'src/app/state/editor/editor.reducer';
@@ -73,7 +73,7 @@ export default class ToolbarComponent {
 
   onPageSelect(event: MatSelectChange) {
     const pageId = event.value as string;
-    this.store.dispatch(DesignCanvasActions.setCurrentPage({ pageId: pageId }));
+    this.store.dispatch(DesignCanvasPageActions.setCurrentPage({ pageId: pageId }));
     event.source.close();
   }
 

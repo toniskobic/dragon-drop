@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
@@ -13,12 +22,18 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { Subscription } from 'rxjs';
+import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
+import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
+import { SectionsService } from 'src/app/services/sections.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import {
+  DesignCanvasElementActions,
+  DesignCanvasSectionActions,
+} from 'src/app/state/design-canvas/design-canvas.actions';
 
 @Component({
   selector: 'drd-section-context-menu',
@@ -40,8 +55,9 @@ import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.a
   templateUrl: './section-context-menu.component.html',
   styleUrls: ['./section-context-menu.component.scss'],
 })
-export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SectionContextMenuComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
   ThemeColor = ThemeColor;
+  FontFamily = FontFamily;
   ContextMenuType = ContextMenuType;
   rippleColor = getComputedStyle(document.documentElement).getPropertyValue('--rich-black-light-ripple');
 
@@ -52,10 +68,13 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDes
   subscriptions: (Subscription | undefined)[] = [];
   contextMenuPosition = { x: '0px', y: '0px' };
   colorPickerToggle = false;
-  sectionHeightControl = new FormControl(100, {
+  fontColorPickerToggle = false;
+  isHeaderOrFooter = false;
+  sectionHeightControl = new FormControl(MIN_SECTION_DIMENSIONS_PX, {
     nonNullable: true,
-    validators: [Validators.required, Validators.min(100)],
+    validators: [Validators.required, Validators.min(MIN_SECTION_DIMENSIONS_PX)],
   });
+  fontSizes = ['8px', '12px', '16px', '18px', '24px', '30px', '36px', '42px'];
 
   get sectionHeight() {
     const style = this.section?.inputs?.style as object;
@@ -63,24 +82,42 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDes
     return number;
   }
 
-  get color() {
+  get backgroundColor() {
     const style = this.section?.inputs?.style;
     return style && style['background-color' as keyof typeof style]
       ? style['background-color' as keyof typeof style]
       : '';
   }
 
+  get color() {
+    const style = this.section?.inputs?.style;
+    return style && style['color' as keyof typeof style] ? style['color' as keyof typeof style] : '';
+  }
+
+  get fontSize() {
+    const style = this.section?.inputs?.style;
+    return style && style['font-size' as keyof typeof style] ? style['font-size' as keyof typeof style] : '';
+  }
+
   constructor(
     private store: Store<AppState>,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private sectionsService: SectionsService
   ) {
     this.utilsService.initSvgIcons(['add', 'close', 'delete']);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['section'].currentValue) {
+      const section = changes['section'].currentValue as DynamicComponent;
+      this.isHeaderOrFooter = !this.sectionsService.sections.get(section.component);
+    }
   }
 
   ngOnInit() {
     this.sectionHeightControl = new FormControl(this.sectionHeight, {
       nonNullable: true,
-      validators: [Validators.required, Validators.min(100)],
+      validators: [Validators.required, Validators.min(MIN_SECTION_DIMENSIONS_PX)],
     });
   }
 
@@ -88,7 +125,7 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDes
     this.subscriptions.push(
       this.menuOpened?.subscribe(() => {
         this.sectionHeightControl.setValue(this.sectionHeight);
-        this.colorPickerToggle = false;
+        this.fontColorPickerToggle = false;
       })
     );
 
@@ -109,7 +146,7 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDes
       const sectionHeight = this.sectionHeightControl.value;
       if (sectionHeight !== this.sectionHeight) {
         this.store.dispatch(
-          DesignCanvasActions.updateComponent({
+          DesignCanvasSectionActions.updateSection({
             id: this.section?.id || '',
             inputs: {
               ...this.section?.inputs,
@@ -122,33 +159,35 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDes
   }
 
   deleteSection() {
-    this.store.dispatch(DesignCanvasActions.deleteComponent({ id: this.section?.id || '' }));
+    this.store.dispatch(DesignCanvasSectionActions.deleteSection({ id: this.section?.id || '' }));
   }
 
   addElement() {
-    this.store.dispatch(DesignCanvasActions.addElement({ sectionId: this.section?.id || '' }));
+    this.store.dispatch(DesignCanvasElementActions.addElement({ sectionId: this.section?.id || '' }));
   }
 
-  onColorChange(color: string) {
-    this.colorPickerToggle = false;
+  onColorChange(color: string, isFont: boolean = false) {
+    isFont ? (this.fontColorPickerToggle = false) : (this.colorPickerToggle = false);
+    const property = isFont ? 'color' : 'background-color';
     this.store.dispatch(
-      DesignCanvasActions.updateComponent({
+      DesignCanvasSectionActions.updateSection({
         id: this.section?.id || '',
         inputs: {
           ...this.section?.inputs,
-          style: { ...this.section?.inputs.style, ['background-color']: color },
+          style: { ...this.section?.inputs.style, [property]: color },
         },
       })
     );
   }
 
-  removeCustomColor() {
+  removeCustomColor(isFont: boolean = false) {
+    const property = isFont ? 'color' : 'background-color';
     const style = this.section?.inputs?.style;
     if (style) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { ['background-color' as keyof typeof style]: _background, ...removedBackgroundStyle } = style;
+      const { [property as keyof typeof style]: _background, ...removedBackgroundStyle } = style;
       this.store.dispatch(
-        DesignCanvasActions.updateComponent({
+        DesignCanvasSectionActions.updateSection({
           id: this.section?.id || '',
           inputs: {
             ...this.section?.inputs,
@@ -159,20 +198,41 @@ export class SectionContextMenuComponent implements OnInit, AfterViewInit, OnDes
     }
   }
 
-  openColorPicker(event: MouseEvent) {
+  openColorPicker(event: MouseEvent, isFont = false) {
     event.stopPropagation();
-    this.colorPickerToggle = true;
+    isFont ? (this.fontColorPickerToggle = true) : (this.colorPickerToggle = true);
     setTimeout(() => {
       document.getElementsByClassName('color-picker open')[0]?.classList.add('no-arrow');
     }, 0);
   }
 
-  setSectionThemeColor(event: MatSelectChange) {
+  setThemeColor(event: MatSelectChange, isFont: boolean = false) {
+    const property = isFont ? 'fontThemeColor' : 'themeColor';
     const themeColor = event.value as ThemeColor;
     this.store.dispatch(
-      DesignCanvasActions.updateComponent({
+      DesignCanvasSectionActions.updateSection({
         id: this.section?.id || '',
-        inputs: { ...this.section?.inputs, themeColor: themeColor },
+        inputs: { ...this.section?.inputs, [property]: themeColor },
+      })
+    );
+  }
+
+  setFontFamily(event: MatSelectChange) {
+    const fontFamily = event.value as FontFamily;
+    this.store.dispatch(
+      DesignCanvasSectionActions.updateSection({
+        id: this.section?.id || '',
+        inputs: { ...this.section?.inputs, themeFontFamily: fontFamily },
+      })
+    );
+  }
+
+  setFontSize(event: MatSelectChange) {
+    const fontSize = event.value as string;
+    this.store.dispatch(
+      DesignCanvasSectionActions.updateSection({
+        id: this.section?.id || '',
+        inputs: { ...this.section?.inputs, style: { ...this.section?.inputs.style, 'font-size': fontSize } },
       })
     );
   }

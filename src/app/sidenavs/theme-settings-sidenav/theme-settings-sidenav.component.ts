@@ -33,9 +33,6 @@ import { selectColors, selectFontList, selectFonts } from 'src/app/state/theme-s
   styleUrls: ['./theme-settings-sidenav.component.scss'],
 })
 export class ThemeSettingsSidenavComponent implements OnInit, OnDestroy {
-  itemSize = 56;
-  panelHeight = '224px';
-
   colors$ = this.store.select(selectColors);
   fonts$ = this.store.select(selectFonts);
 

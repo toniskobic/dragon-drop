@@ -7,7 +7,7 @@ import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { ElementClassObserver } from 'src/app/models/element-class-observer.class';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasElementActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
 import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wrapper/context-menu-wrapper.component';
 
@@ -83,7 +83,10 @@ export class RichTextEditorComponent {
       this.classWatcher = new ElementClassObserver(element, 'ck-balloon-panel_visible', undefined, () => {
         if (this.changed) {
           this.store.dispatch(
-            DesignCanvasActions.updateElement({ data: this.editor.editorInstance?.getData() as string, id: this.id })
+            DesignCanvasElementActions.updateElement({
+              data: this.editor.editorInstance?.getData() as string,
+              id: this.id,
+            })
           );
           this.changed = false;
         }

@@ -32,8 +32,12 @@
       "SECTION": {
         "LABELS": {
           "ADD_ELEMENT": "Add Element",
-          "THEME_COLOR": "Theme Color",
-          "CUSTOM_COLOR": "Custom Color",
+          "BACKGROUND_THEME_COLOR": "Background Theme Color",
+          "BACKGROUND_CUSTOM_COLOR": "Background Custom Color",
+          "FONT_THEME_COLOR": "Font Theme Color",
+          "FONT_CUSTOM_COLOR": "Font Custom Color",
+          "FONT_FAMILY": "Font Family",
+          "FONT_SIZE": "Font Size (px)",
           "SECTION_HEIGHT": "Section Height (px)",
           "DELETE_SECTION": "Delete Section"
         },
@@ -61,7 +65,8 @@
         "LABELS": {
           "PAGES": "Pages",
           "SECTIONS": "Sections",
-          "THEME_SETTINGS": "Theme Settings"
+          "THEME_SETTINGS": "Theme Settings",
+          "GLOBAL_SETTINGS": "Global Settings"
         }
       },
       "PAGES": {
@@ -82,6 +87,11 @@
               "DELETE_SECTION": "Delete section"
             }
           }
+        }
+      },
+      "GLOBAL_SETTINGS": {
+        "LABELS": {
+          "WEBSITE_TITLE": "Website Title"
         }
       },
       "THEME_SETTINGS": {

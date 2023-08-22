@@ -50,8 +50,8 @@ export const themeSettingsOnActions = [
   }),
 ];
 
-export const selectThemeSettingsState = createSelector(selectDragonDropState, state => {
-  state.colors, state.fonts, state.fontList;
+export const selectThemeSettingsState = createSelector(selectDragonDropState, (state): ThemeSettingsState => {
+  return { colors: state.colors, fonts: state.fonts, fontList: state.fontList };
 });
 
 export const selectFonts = createSelector(selectDragonDropState, state => state.fonts);

@@ -16,7 +16,7 @@ import { SectionCard } from 'src/app/models/section-item.model';
 import { SectionsService } from 'src/app/services/sections.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasPageActions, DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
 import { selectCurrentPageSections, selectPages } from 'src/app/state/design-canvas/design-canvas.reducer';
 
 @Component({
@@ -108,7 +108,7 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
 
   addPage(event: Event) {
     event.stopPropagation();
-    this.store.dispatch(DesignCanvasActions.addPage());
+    this.store.dispatch(DesignCanvasPageActions.addPage());
   }
 
   close(page: PageInput) {
@@ -122,12 +122,12 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
 
   confirm(page: PageInput) {
     if (page.confirmDelete) {
-      this.store.dispatch(DesignCanvasActions.deletePage({ pageId: page.id }));
+      this.store.dispatch(DesignCanvasPageActions.deletePage({ pageId: page.id }));
       page.confirmDelete = false;
     } else {
       const updatedPage = { id: page.id, title: page.formControl.value, sections: page.sections };
       this.store.dispatch(
-        DesignCanvasActions.updatePage({
+        DesignCanvasPageActions.updatePage({
           newPage: updatedPage,
         })
       );
@@ -136,7 +136,7 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
   }
 
   deleteSection(sectionId: string) {
-    this.store.dispatch(DesignCanvasActions.deleteComponent({ id: sectionId }));
+    this.store.dispatch(DesignCanvasSectionActions.deleteSection({ id: sectionId }));
   }
 
   deletePage(page: PageInput) {
@@ -144,10 +144,10 @@ export class PagesSidenavComponent implements OnInit, OnDestroy {
   }
 
   cardClick(id: string) {
-    this.store.dispatch(DesignCanvasActions.selectCurrentPageSection({ sectionId: id }));
+    this.store.dispatch(DesignCanvasSectionActions.selectCurrentPageSection({ sectionId: id }));
   }
 
   onPanelClose() {
-    this.store.dispatch(DesignCanvasActions.unselectCurrentPageSection());
+    this.store.dispatch(DesignCanvasSectionActions.unselectCurrentPageSection());
   }
 }

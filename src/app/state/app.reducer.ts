@@ -9,6 +9,12 @@ import {
 } from './design-canvas/design-canvas.reducer';
 import { EditorState } from './editor/editor.model';
 import { editorOnActions, initialEditorState } from './editor/editor.reducer';
+import { GlobalSettingsState } from './global-settings/global-settings.model';
+import {
+  globalSettingsOnActions,
+  globalSettingsUndoRedoAllowedActions,
+  initialGlobalSettingsState,
+} from './global-settings/global-settings.reducer';
 import { ThemeSettingsActions } from './theme-settings/theme-settings.actions';
 import { ThemeSettingsState } from './theme-settings/theme-settings.model';
 import {
@@ -21,10 +27,16 @@ export interface AppState {
   dragonDrop: DragonDropState;
 }
 
-export interface DragonDropState extends EditorState, DesignCanvasState, ThemeSettingsState, UndoRedoState {}
+export interface DragonDropState
+  extends EditorState,
+    DesignCanvasState,
+    GlobalSettingsState,
+    ThemeSettingsState,
+    UndoRedoState {}
 
 export const initialState: DragonDropState = {
   ...initialEditorState,
+  ...initialGlobalSettingsState,
   ...initialThemeSettingsState,
   ...initialDesignCanvasState,
   ...initialUndoRedoState,
@@ -32,7 +44,11 @@ export const initialState: DragonDropState = {
 
 // initialize ngrx-wieder with custom config
 const { createUndoRedoReducer } = undoRedo({
-  allowedActionTypes: [...themeSettingsUndoRedoAllowedActions, ...designCanvasUndoRedoAllowedActions],
+  allowedActionTypes: [
+    ...globalSettingsUndoRedoAllowedActions,
+    ...themeSettingsUndoRedoAllowedActions,
+    ...designCanvasUndoRedoAllowedActions,
+  ],
   mergeActionTypes: [ThemeSettingsActions.setColor.type],
   breakMergeActionType: AppActions.breakMerge.type,
   undoActionType: AppActions.undo.type,
@@ -43,6 +59,7 @@ const { createUndoRedoReducer } = undoRedo({
 export const reducer = createUndoRedoReducer(
   initialState,
   ...designCanvasOnActions,
+  ...globalSettingsOnActions,
   ...themeSettingsOnActions,
   ...editorOnActions
 );

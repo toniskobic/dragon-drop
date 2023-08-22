@@ -13,13 +13,15 @@ $white: var(--white);
   z-index: 10;
   border-radius: 4px;
   cursor: move;
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
 }
 
-gridster {
-  transition: background-color 0.8s ease-out;
+.drag-handle:hover {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 gridster.display-grid {
   background-color: gray !important;
-  transition: none;
 }

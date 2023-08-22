@@ -1,4 +1,4 @@
-export const MIN_SECTION_DIMENSIONS_PX = 100;
+export const MIN_SECTION_DIMENSIONS_PX = 60;
 
 export const ALTERNATIVE_FONT_FAMILIES = ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'];
 

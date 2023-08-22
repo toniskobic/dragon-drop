@@ -24,7 +24,7 @@ import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent, DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
 
 import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wrapper/context-menu-wrapper.component';
 
@@ -110,7 +110,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
           };
           this.componentRef?.setInput('style', style);
           this.store.dispatch(
-            DesignCanvasActions.updateComponent({
+            DesignCanvasSectionActions.updateSection({
               id: this.component?.id as string,
               inputs: { ...this.component?.inputs, style: style },
             })
@@ -150,6 +150,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
 
     if (component.inputs) {
       for (const [key, value] of Object.entries(component.inputs)) {
+        if (value === undefined) continue;
         this.componentRef?.setInput(key, value);
       }
     }

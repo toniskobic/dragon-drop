@@ -10,6 +10,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { ThemeSettingsSidenavComponent } from 'src/app/sidenavs/theme-settings-sidenav/theme-settings-sidenav.component';
 
+import { GlobalSettingsSidenavComponent } from '../global-settings-sidenav/global-settings-sidenav.component';
 import { PagesSidenavComponent } from '../pages-sidenav/pages-sidenav.component';
 import { SectionsSidenavComponent } from '../sections-sidenav/sections-sidenav.component';
 
@@ -38,6 +39,11 @@ export class DefaultSidenavComponent {
       label: 'EDITOR.SIDENAVS.DEFAULT.LABELS.THEME_SETTINGS',
       icon: 'theme-settings',
       component: ThemeSettingsSidenavComponent,
+    },
+    {
+      label: 'EDITOR.SIDENAVS.DEFAULT.LABELS.GLOBAL_SETTINGS',
+      icon: 'settings',
+      component: GlobalSettingsSidenavComponent,
     },
   ];
 
