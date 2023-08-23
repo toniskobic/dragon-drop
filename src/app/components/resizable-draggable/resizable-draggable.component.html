@@ -15,11 +15,13 @@
     <div class="selected-edge-left mat-elevation-z20"></div>
   </div>
   <div class="resize-edge-bottom">
-    <div
-      *ngrxLet="resizeHandleDirection$ | async as resizeHandleDirection"
-      class="resize-handle-bottom"
-      mwlResizeHandle
-      [resizeEdges]="resizeHandleDirection ? { bottom: true } : { top: true }"></div>
+    <ng-container *ngIf="!(((isCurrentViewportMobile$ | async) || (isMobile$ | async)) && elementsCount)">
+      <div
+        *ngrxLet="normalHandleDirection$ | async as normalHandleDirection"
+        class="resize-handle-bottom"
+        mwlResizeHandle
+        [resizeEdges]="normalHandleDirection ? { bottom: true } : { top: true }"></div>
+    </ng-container>
   </div>
   <div cdkDragHandle class="drag-handle mat-elevation-z6">
     <mat-icon svgIcon="drag"></mat-icon>

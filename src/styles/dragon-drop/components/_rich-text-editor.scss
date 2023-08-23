@@ -1,5 +1,6 @@
 .ck.ck-editor__editable.ck-blurred:not(.ck-editor__nested-editable) {
   border: none;
+  border-width: 2px;
   border-color: var(--ck-color-focus-border);
   box-shadow: none;
   transition: 0.2s ease-in-out;
@@ -8,6 +9,7 @@
 
 .ck.ck-editor__editable.ck-blurred:not(.ck-editor__nested-editable):hover {
   border: var(--ck-focus-ring);
+  border-width: 2px;
   box-shadow:
     var(--ck-inner-shadow),
     0 0;

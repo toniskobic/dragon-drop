@@ -1,4 +1,5 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import {
@@ -24,10 +25,11 @@ import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-expo
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent, DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { ResizeHandleDirection } from 'src/app/models/resize-handle-direction.enum';
+import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
-import { selectResizeHandleDirection } from 'src/app/state/editor/editor.reducer';
+import { selectResizeHandleDirection, selectViewport } from 'src/app/state/editor/editor.reducer';
 
 import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wrapper/context-menu-wrapper.component';
 
@@ -59,7 +61,11 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
 
   @Input() component?: DynamicComponent;
 
-  resizeHandleDirection$ = this.store
+  isCurrentViewportMobile$ = this.store.select(selectViewport).pipe(map(viewport => viewport === Viewport.Mobile));
+  isMobile$ = this.breakpointObserver.observe('(max-width: 640px)').pipe(map(result => result.matches));
+  elementsCount = 0;
+
+  normalHandleDirection$ = this.store
     .select(selectResizeHandleDirection)
     .pipe(map(direction => direction === ResizeHandleDirection.Normal));
 
@@ -71,7 +77,8 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
 
   constructor(
     private store: Store<AppState>,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private breakpointObserver: BreakpointObserver
   ) {
     this.utilsService.initSvgIcons(['drag']);
   }
@@ -80,6 +87,7 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
     if (changes['component'].currentValue) {
       const component = changes['component'].currentValue as DynamicComponent;
       this.renderComponent(component);
+      this.elementsCount = component.inputs.elements?.length || 0;
     }
   }
 

@@ -4,7 +4,7 @@
   [ngStyle]="style"
   #element
   [style.background-color]="backgroundColor">
-  <div class="content">
+  <div class="content" [class.content-mobile]="isMobile$ | async">
     <gridster #gridster [options]="gridOptions" [style.background-color]="backgroundColor">
       <gridster-item [item]="item" *ngFor="let item of gridItems" [style.background-color]="backgroundColor">
         <div class="drag-handle mat-elevation-z6">

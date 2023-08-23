@@ -1,3 +1,4 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
@@ -21,12 +22,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
+import { Viewport } from 'src/app/models/viewport.enum';
 import { SectionsService } from 'src/app/services/sections.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
@@ -34,6 +36,7 @@ import {
   DesignCanvasElementActions,
   DesignCanvasSectionActions,
 } from 'src/app/state/design-canvas/design-canvas.actions';
+import { selectViewport } from 'src/app/state/editor/editor.reducer';
 
 @Component({
   selector: 'drd-section-context-menu',
@@ -65,6 +68,10 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
   @Input() menuOpened?: EventEmitter<void>;
   @Input() menuClosed?: EventEmitter<void>;
 
+  isCurrentViewportMobile$ = this.store.select(selectViewport).pipe(map(viewport => viewport === Viewport.Mobile));
+  isMobile$ = this.breakpointObserver.observe('(max-width: 640px)').pipe(map(result => result.matches));
+  elementsCount = 0;
+
   subscriptions: (Subscription | undefined)[] = [];
   contextMenuPosition = { x: '0px', y: '0px' };
   colorPickerToggle = false;
@@ -78,7 +85,7 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
 
   get sectionHeight() {
     const style = this.section?.inputs?.style as object;
-    const number = parseInt(style['height' as keyof typeof style], 10);
+    const number = parseInt(style['min-height' as keyof typeof style], 10);
     return number;
   }
 
@@ -102,7 +109,8 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
   constructor(
     private store: Store<AppState>,
     private utilsService: UtilsService,
-    private sectionsService: SectionsService
+    private sectionsService: SectionsService,
+    private breakpointObserver: BreakpointObserver
   ) {
     this.utilsService.initSvgIcons(['add', 'close', 'delete']);
   }
@@ -111,6 +119,7 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
     if (changes['section'].currentValue) {
       const section = changes['section'].currentValue as DynamicComponent;
       this.isHeaderOrFooter = !this.sectionsService.sections.get(section.component);
+      this.elementsCount = section.inputs.elements?.length || 0;
     }
   }
 

@@ -46,7 +46,7 @@
           "FONT_CUSTOM_COLOR": "Font Custom Color",
           "FONT_FAMILY": "Font Family",
           "FONT_SIZE": "Font Size (px)",
-          "SECTION_HEIGHT": "Section Height (px)",
+          "SECTION_MIN_HEIGHT": "Section Min Height (px)",
           "DELETE_SECTION": "Delete Section"
         },
         "TOOLTIPS": {

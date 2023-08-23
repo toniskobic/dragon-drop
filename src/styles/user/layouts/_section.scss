@@ -8,11 +8,11 @@
   height: 1px;
 
   @media only screen and (max-width: 640px) {
-    height: 100%;
+    height: auto;
   }
 
   &-mobile {
-    height: 100%;
+    height: auto;
   }
 
   .content {
@@ -24,5 +24,13 @@
     width: 100%;
     min-height: 90%;
     height: 90%;
+
+    @media only screen and (max-width: 640px) {
+      padding-block: 20px;
+    }
+
+    &-mobile {
+      padding-block: 20px;
+    }
   }
 }
