@@ -97,6 +97,10 @@ header {
         &.mat-focused {
           background-color: $rich-black-light-ripple;
         }
+
+        &:hover {
+          background-color: $rich-black-light-ripple;
+        }
       }
     }
   }

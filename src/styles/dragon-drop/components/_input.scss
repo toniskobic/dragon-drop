@@ -49,7 +49,7 @@
     border-radius: 4px;
 
     .mdc-line-ripple::before {
-      border-bottom-color: $rich-black;
+      border-bottom-color: transparent;
     }
   }
 

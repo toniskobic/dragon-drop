@@ -77,13 +77,13 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
   colorPickerToggle = false;
   fontColorPickerToggle = false;
   isHeaderOrFooter = false;
-  sectionHeightControl = new FormControl(MIN_SECTION_DIMENSIONS_PX, {
+  sectionMinHeightControl = new FormControl(MIN_SECTION_DIMENSIONS_PX, {
     nonNullable: true,
     validators: [Validators.required, Validators.min(MIN_SECTION_DIMENSIONS_PX)],
   });
   fontSizes = ['8px', '12px', '16px', '18px', '24px', '30px', '36px', '42px'];
 
-  get sectionHeight() {
+  get sectionMinHeight() {
     const style = this.section?.inputs?.style as object;
     const number = parseInt(style['min-height' as keyof typeof style], 10);
     return number;
@@ -124,7 +124,7 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
   }
 
   ngOnInit() {
-    this.sectionHeightControl = new FormControl(this.sectionHeight, {
+    this.sectionMinHeightControl = new FormControl(this.sectionMinHeight, {
       nonNullable: true,
       validators: [Validators.required, Validators.min(MIN_SECTION_DIMENSIONS_PX)],
     });
@@ -133,7 +133,7 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
   ngAfterViewInit() {
     this.subscriptions.push(
       this.menuOpened?.subscribe(() => {
-        this.sectionHeightControl.setValue(this.sectionHeight);
+        this.sectionMinHeightControl.setValue(this.sectionMinHeight);
         this.fontColorPickerToggle = false;
       })
     );
@@ -151,15 +151,15 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
   }
 
   submitInput() {
-    if (this.sectionHeightControl.valid) {
-      const sectionHeight = this.sectionHeightControl.value;
-      if (sectionHeight !== this.sectionHeight) {
+    if (this.sectionMinHeightControl.valid) {
+      const sectionMinHeight = this.sectionMinHeightControl.value;
+      if (sectionMinHeight !== this.sectionMinHeight) {
         this.store.dispatch(
           DesignCanvasSectionActions.updateSection({
             id: this.section?.id || '',
             inputs: {
               ...this.section?.inputs,
-              style: { ...this.section?.inputs.style, ['min-height']: `${sectionHeight}px` },
+              style: { ...this.section?.inputs.style, ['min-height']: `${sectionMinHeight}px` },
             },
           })
         );

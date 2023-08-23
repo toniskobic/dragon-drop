@@ -132,7 +132,7 @@
     (click)="$event.stopPropagation()">
     <mat-form-field class="input-form-field">
       <mat-label>{{ 'EDITOR.CONTEXT_MENU.SECTION.LABELS.SECTION_MIN_HEIGHT' | translate }}</mat-label>
-      <input (keydown.enter)="submitInput()" matInput [formControl]="sectionHeightControl" />
+      <input (keydown.enter)="submitInput()" matInput [formControl]="sectionMinHeightControl" />
     </mat-form-field>
   </mat-list-item>
   <mat-list-item class="list-item" matRipple [matRippleColor]="rippleColor" (click)="deleteSection()">

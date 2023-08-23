@@ -119,9 +119,9 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
     }
 
     const style = changes['style']?.currentValue as object | undefined;
-    if (style && style['height' as keyof typeof style]) {
-      const height = parseInt(style['height' as keyof typeof style], 10);
-      this.adjustMaxRows(height);
+    if (style && style['min-height' as keyof typeof style]) {
+      const minHeight = parseInt(style['min-height' as keyof typeof style], 10);
+      this.adjustMaxRows(minHeight);
     }
 
     if (changes['resized']?.currentValue) {
@@ -159,8 +159,8 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
     return item.cols > 0 && item.rows > 0;
   }
 
-  private adjustMaxRows(sectionHeight: number): void {
-    if (sectionHeight > 400) {
+  private adjustMaxRows(sectionMinHeight: number): void {
+    if (sectionMinHeight > 400) {
       this.gridOptions.maxRows = 10;
       this.gridOptions.minRows = 10;
     } else {

@@ -1,4 +1,6 @@
 $rich-black-lighter: var(--rich-black-lighter);
+$rich-black-light-ripple: var(--rich-black-light-ripple);
+
 
 .accordion-wrapper .mat-accordion .mat-expansion-panel .panel-content-wrapper {
   gap: 20px;
@@ -48,5 +50,9 @@ $rich-black-lighter: var(--rich-black-lighter);
 
   .resize-handle-direction.select-form-field {
     background-color: $rich-black-lighter;
+
+    &:hover, &.mat-focused {
+      background-color: $rich-black-light-ripple;
+    }
   }
 }
