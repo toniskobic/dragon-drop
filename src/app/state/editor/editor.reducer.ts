@@ -1,5 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { produceOn } from 'ngrx-wieder';
+import { ResizeHandleDirection } from 'src/app/models/resize-handle-direction.enum';
 import { Viewport } from 'src/app/models/viewport.enum';
 
 import { DragonDropState } from '../app.reducer';
@@ -11,6 +12,7 @@ export const initialEditorState: EditorState = {
   sidebarOpened: false,
   viewport: Viewport.Desktop,
   isExporting: false,
+  resizeHandleDirection: ResizeHandleDirection.Normal,
 };
 
 export const editorOnActions = [
@@ -20,6 +22,9 @@ export const editorOnActions = [
   produceOn(EditorActions.setSidebarOpened, (state: DragonDropState, { opened }) => {
     state.sidebarOpened = opened ? opened : !state.sidebarOpened;
   }),
+  produceOn(EditorActions.setResizeHandleDirection, (state: DragonDropState, { direction }) => {
+    state.resizeHandleDirection = direction;
+  }),
 ];
 
 export const selectSidebarOpened = createSelector(selectDragonDropState, state => state.sidebarOpened);
@@ -27,3 +32,5 @@ export const selectSidebarOpened = createSelector(selectDragonDropState, state =
 export const selectViewport = createSelector(selectDragonDropState, state => state.viewport);
 
 export const selectIsExporting = createSelector(selectDragonDropState, state => state.isExporting);
+
+export const selectResizeHandleDirection = createSelector(selectDragonDropState, state => state.resizeHandleDirection);

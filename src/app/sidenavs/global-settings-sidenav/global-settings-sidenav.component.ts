@@ -6,6 +6,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Store } from '@ngrx/store';
@@ -17,9 +18,12 @@ import {
   LOGO_FILE_TYPES,
   LOGO_MAX_SIZE_BYTES,
 } from 'src/app/constants/constants';
+import { ResizeHandleDirection } from 'src/app/models/resize-handle-direction.enum';
 import { WebsiteInput } from 'src/app/models/website.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
+import { EditorActions } from 'src/app/state/editor/editor.actions';
+import { selectResizeHandleDirection } from 'src/app/state/editor/editor.reducer';
 import { GlobalSettingsActions } from 'src/app/state/global-settings/global-settings.actions';
 import { selectFavicon, selectLogo, selectWebsiteTitle } from 'src/app/state/global-settings/global-settings.reducer';
 
@@ -36,14 +40,17 @@ import { selectFavicon, selectLogo, selectWebsiteTitle } from 'src/app/state/glo
     MatIconModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatSelectModule,
   ],
   templateUrl: './global-settings-sidenav.component.html',
   styleUrls: ['./global-settings-sidenav.component.scss'],
 })
 export class GlobalSettingsSidenavComponent implements OnInit, OnDestroy {
+  ResizeHandleDirection = ResizeHandleDirection;
   websiteTitle$ = this.store.select(selectWebsiteTitle);
   favicon$ = this.store.select(selectFavicon);
   logo$ = this.store.select(selectLogo);
+  resizeHandleDirection$ = this.store.select(selectResizeHandleDirection);
 
   translations: { [key: string]: string } = {};
   faviconSrc: string | null = null;
@@ -137,6 +144,15 @@ export class GlobalSettingsSidenavComponent implements OnInit, OnDestroy {
     website.valueChanged = false;
   }
 
+  setResizeHandleDirection(event: MatSelectChange) {
+    const direction = event.value as ResizeHandleDirection;
+    this.store.dispatch(
+      EditorActions.setResizeHandleDirection({
+        direction: direction,
+      })
+    );
+  }
+
   onFileChange(event: Event, isLogo: boolean = false) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file)
@@ -171,6 +187,7 @@ export class GlobalSettingsSidenavComponent implements OnInit, OnDestroy {
       'FILE_UPLOAD.ALERTS.FAVICON_DELETE_FAILED',
       'FILE_UPLOAD.ALERTS.LOGO_DELETE_FAILED',
       'COMMON.BUTTONS.CLOSE',
+      'EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.RESIZE_HANDLE_DIRECTION',
     ];
     this.translations = (await firstValueFrom(this.translate.get(keys))) as { [key: string]: string };
   }

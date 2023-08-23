@@ -1,5 +1,6 @@
 import { Type } from '@angular/core';
 import { GridsterItem } from 'angular-gridster2';
+import { ResizeEvent } from 'angular-resizable-element';
 
 import { FontFamily } from './font-family.enum';
 import { ThemeColor } from './theme-color.enum';
@@ -10,6 +11,7 @@ export interface DynamicComponentType {
   fontThemeColor?: ThemeColor;
   themeFontFamily?: FontFamily;
   elements: GridsterItem[];
+  resized?: ResizeEvent;
 }
 
 export interface DynamicComponent {

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GridsterItem } from 'angular-gridster2';
+import { ResizeEvent } from 'angular-resizable-element';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
@@ -21,8 +22,10 @@ export class FooterComponent implements DynamicComponentType {
   @Input() themeFontFamily?: FontFamily = FontFamily.Primary;
   @Input() style: object = {};
   @Input() elements: GridsterItem[] = [];
+  @Input() resized?: ResizeEvent;
 
   pages$ = this.store.select(selectPages);
+
   constructor(private store: Store<AppState>) {}
 
   get backgroundColor() {

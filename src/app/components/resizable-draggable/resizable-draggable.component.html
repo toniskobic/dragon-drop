@@ -15,7 +15,11 @@
     <div class="selected-edge-left mat-elevation-z20"></div>
   </div>
   <div class="resize-edge-bottom">
-    <div class="resize-handle-bottom" mwlResizeHandle [resizeEdges]="{ bottom: true }"></div>
+    <div
+      *ngrxLet="resizeHandleDirection$ | async as resizeHandleDirection"
+      class="resize-handle-bottom"
+      mwlResizeHandle
+      [resizeEdges]="resizeHandleDirection ? { bottom: true } : { top: true }"></div>
   </div>
   <div cdkDragHandle class="drag-handle mat-elevation-z6">
     <mat-icon svgIcon="drag"></mat-icon>

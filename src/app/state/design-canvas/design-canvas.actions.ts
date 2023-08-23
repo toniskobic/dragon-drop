@@ -3,6 +3,13 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { DynamicComponentInputs, DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { Page } from 'src/app/models/page.model';
 
+export const DesignCanvasActions = createActionGroup({
+  source: 'Design Canvas',
+  events: {
+    'Canvas Width Changed': props<{ width: number }>(),
+  },
+});
+
 export const DesignCanvasPageActions = createActionGroup({
   source: 'Design Canvas Page',
   events: {

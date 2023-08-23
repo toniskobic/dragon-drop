@@ -1,3 +1,5 @@
+$rich-black-lighter: var(--rich-black-lighter);
+
 .accordion-wrapper .mat-accordion .mat-expansion-panel .panel-content-wrapper {
   gap: 20px;
 
@@ -42,5 +44,9 @@
         width: 150px;
       }
     }
+  }
+
+  .resize-handle-direction.select-form-field {
+    background-color: $rich-black-lighter;
   }
 }

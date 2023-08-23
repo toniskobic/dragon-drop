@@ -1,7 +1,7 @@
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
@@ -10,7 +10,7 @@ import { SectionItem } from 'src/app/models/section-item.model';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
-import { DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { DesignCanvasActions, DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
 import { selectCurrentPageSections } from 'src/app/state/design-canvas/design-canvas.reducer';
 import { selectViewport } from 'src/app/state/editor/editor.reducer';
 
@@ -30,16 +30,43 @@ import { ResizableDraggableComponent } from '../resizable-draggable/resizable-dr
     ScrollingModule,
   ],
 })
-export class DesignCanvasComponent {
+export class DesignCanvasComponent implements OnInit {
   readonly Viewport = Viewport;
+
+  @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLDivElement>;
 
   currentViewport$ = this.store.select(selectViewport);
   components$ = this.store.select(selectCurrentPageSections);
+
+  private resizeObserver!: ResizeObserver;
+  private previousWidth: number | null = null;
 
   constructor(
     private store: Store<AppState>,
     private utils: UtilsService
   ) {}
+
+  ngOnInit() {
+    const canvasDiv = this.canvas.nativeElement;
+
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        if (entry.target === canvasDiv) {
+          const newWidth = entry.contentRect.width;
+          if (this.previousWidth !== newWidth) {
+            this.store.dispatch(
+              DesignCanvasActions.canvasWidthChanged({
+                width: newWidth,
+              })
+            );
+            this.previousWidth = newWidth;
+          }
+        }
+      }
+    });
+
+    this.resizeObserver.observe(canvasDiv);
+  }
 
   drop(event: CdkDragDrop<DynamicComponent[], SectionItem[] | DynamicComponent[]>) {
     if (event.isPointerOverContainer) {

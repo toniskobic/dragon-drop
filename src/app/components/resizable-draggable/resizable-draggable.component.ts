@@ -13,18 +13,21 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { LetDirective } from '@ngrx/component';
 import { Store } from '@ngrx/store';
 import { ResizableDirective, ResizableModule, ResizeEvent } from 'angular-resizable-element';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { MIN_SECTION_DIMENSIONS_PX } from 'src/app/constants/constants';
 import { DragCursorDirective } from 'src/app/directives/drag-cursor.directive';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-export.directive';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { DynamicComponent, DynamicComponentType } from 'src/app/models/dynamic-component.model';
+import { ResizeHandleDirection } from 'src/app/models/resize-handle-direction.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { selectResizeHandleDirection } from 'src/app/state/editor/editor.reducer';
 
 import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wrapper/context-menu-wrapper.component';
 
@@ -42,16 +45,23 @@ import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wr
     MatIconModule,
     MatMenuModule,
     ExcludeFromExportDirective,
+    LetDirective,
   ],
   templateUrl: './resizable-draggable.component.html',
   styleUrls: ['./resizable-draggable.component.scss'],
 })
 export class ResizableDraggableComponent implements AfterViewInit, OnChanges, OnDestroy {
+  ResizeHandleDirection = ResizeHandleDirection;
+
   @ViewChild(DynamicContentAreaDirective, { static: true }) dynamicContentArea?: DynamicContentAreaDirective;
   @ViewChild('resizableElement', { read: ResizableDirective }) resizable!: ResizableDirective;
   @ViewChild(ContextMenuWrapperComponent) contextMenuComponent!: ContextMenuWrapperComponent;
 
   @Input() component?: DynamicComponent;
+
+  resizeHandleDirection$ = this.store
+    .select(selectResizeHandleDirection)
+    .pipe(map(direction => direction === ResizeHandleDirection.Normal));
 
   contextMenuType = ContextMenuType.Section;
   componentRef?: ComponentRef<DynamicComponentType>;
@@ -94,7 +104,8 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
         if (event.rectangle.height) {
           const style = {
             ...this.component?.inputs.style,
-            height: `${event.rectangle.height}px`,
+            height: '',
+            ['min-height']: `${event.rectangle.height}px`,
           };
           this.componentRef?.setInput('style', style);
         }
@@ -106,13 +117,13 @@ export class ResizableDraggableComponent implements AfterViewInit, OnChanges, On
         if (event.rectangle.height) {
           const style = {
             ...this.component?.inputs.style,
-            height: `${event.rectangle.height}px`,
+            height: '',
+            ['min-height']: `${event.rectangle.height}px`,
           };
-          this.componentRef?.setInput('style', style);
           this.store.dispatch(
             DesignCanvasSectionActions.updateSection({
               id: this.component?.id as string,
-              inputs: { ...this.component?.inputs, style: style },
+              inputs: { ...this.component?.inputs, style: style, resized: event },
             })
           );
         }

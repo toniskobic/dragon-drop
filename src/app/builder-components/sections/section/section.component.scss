@@ -22,6 +22,11 @@ $white: var(--white);
   transition: opacity 0.3s ease-in-out;
 }
 
+gridster {
+  transition: background-color 0.3s ease-in-out;
+}
+
 gridster.display-grid {
   background-color: gray !important;
+  transition: background-color 0.3s ease-in-out;
 }

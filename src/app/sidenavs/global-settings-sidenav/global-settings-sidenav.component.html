@@ -52,6 +52,22 @@
             </button>
           </div>
         </div>
+        <mat-form-field class="resize-handle-direction select-form-field mat-component-density-s">
+          <mat-label title="{{ translations['EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.RESIZE_HANDLE_DIRECTION'] }}">
+            {{ translations['EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.RESIZE_HANDLE_DIRECTION'] }}
+          </mat-label>
+          <mat-select
+            [value]="resizeHandleDirection$ | async"
+            (selectionChange)="setResizeHandleDirection($event)"
+            panelClass="select-panel">
+            <mat-option
+              class="select-option select-option-s"
+              *ngFor="let direction of ResizeHandleDirection | keyvalue"
+              [value]="direction.value">
+              {{ direction.key }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

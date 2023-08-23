@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { DragonDropState } from '../app.reducer';
 import { selectDragonDropState } from '../app.selectors';
 import {
+  DesignCanvasActions,
   DesignCanvasElementActions,
   DesignCanvasPageActions,
   DesignCanvasSectionActions,
@@ -22,6 +23,7 @@ import { currentPage, updateElementPosition, updatePage } from './design-canvas.
 const pageId = uuidv4();
 
 export const initialDesignCanvasState: DesignCanvasState = {
+  canvasWidth: null,
   pages: [
     {
       id: pageId,
@@ -34,7 +36,7 @@ export const initialDesignCanvasState: DesignCanvasState = {
           inputs: {
             themeColor: ThemeColor.Primary,
             themeFontFamily: FontFamily.Primary,
-            style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
+            style: { ['min-height']: `${MIN_SECTION_DIMENSIONS_PX}px` },
           },
         },
         {
@@ -47,7 +49,7 @@ export const initialDesignCanvasState: DesignCanvasState = {
             ],
             themeColor: ThemeColor.Primary,
             themeFontFamily: FontFamily.Primary,
-            style: { height: `${MIN_SECTION_DIMENSIONS_PX * 2}px` },
+            style: { ['min-height']: `${MIN_SECTION_DIMENSIONS_PX * 2}px` },
           },
         },
       ],
@@ -63,7 +65,7 @@ export const initialDesignCanvasState: DesignCanvasState = {
             elements: [],
             themeColor: ThemeColor.Secondary,
             themeFontFamily: FontFamily.Primary,
-            style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
+            style: { ['min-height']: `${MIN_SECTION_DIMENSIONS_PX}px` },
           },
         },
       ],
@@ -87,6 +89,9 @@ export const designCanvasUndoRedoAllowedActions = [
 ];
 
 export const designCanvasOnActions = [
+  produceOn(DesignCanvasActions.canvasWidthChanged, (state: DragonDropState, { width }) => {
+    state.canvasWidth = width;
+  }),
   produceOn(DesignCanvasPageActions.addPage, (state: DragonDropState) => {
     state.pages.push({ id: uuidv4(), title: 'New Page', sections: [] });
   }),
@@ -135,7 +140,7 @@ export const designCanvasOnActions = [
             themeColor: ThemeColor.Primary,
             themeFontFamily: FontFamily.Primary,
             elements: [],
-            style: { height: `${MIN_SECTION_DIMENSIONS_PX}px` },
+            style: { ['min-height']: `${MIN_SECTION_DIMENSIONS_PX}px` },
           },
         };
         page.sections.splice(currentIndex, 0, newSection);
@@ -220,6 +225,8 @@ export const designCanvasOnActions = [
     }
   }),
 ];
+
+export const selectCanvasWidth = createSelector(selectDragonDropState, state => state.canvasWidth);
 
 export const selectPages = createSelector(selectDragonDropState, state => state.pages);
 

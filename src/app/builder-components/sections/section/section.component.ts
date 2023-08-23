@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { LetDirective } from '@ngrx/component';
 import { Store } from '@ngrx/store';
 import {
   CompactType,
@@ -8,18 +9,21 @@ import {
   GridsterConfig,
   GridsterItem,
   GridsterItemComponent,
-  GridsterItemComponentInterface,
   GridType,
 } from 'angular-gridster2';
-import { ResizableModule } from 'angular-resizable-element';
+import { ResizableModule, ResizeEvent } from 'angular-resizable-element';
 import { cloneDeep } from 'lodash-es';
+import { map, Subscription } from 'rxjs';
 import { RichTextEditorComponent } from 'src/app/components/rich-text-editor/rich-text-editor.component';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
+import { Viewport } from 'src/app/models/viewport.enum';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasElementActions } from 'src/app/state/design-canvas/design-canvas.actions';
+import { selectCanvasWidth } from 'src/app/state/design-canvas/design-canvas.reducer';
+import { selectViewport } from 'src/app/state/editor/editor.reducer';
 
 @Component({
   selector: 'drd-section',
@@ -31,16 +35,23 @@ import { DesignCanvasElementActions } from 'src/app/state/design-canvas/design-c
     GridsterComponent,
     GridsterItemComponent,
     MatIconModule,
+    LetDirective,
   ],
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
 })
-export class SectionComponent implements DynamicComponentType, OnChanges {
+export class SectionComponent implements DynamicComponentType, OnChanges, OnInit, OnDestroy {
   @Input() themeColor: ThemeColor = ThemeColor.Primary;
   @Input() fontThemeColor?: ThemeColor;
   @Input() themeFontFamily?: FontFamily;
   @Input() style: object = {};
   @Input() elements: GridsterItem[] = [];
+  @Input() resized?: ResizeEvent;
+
+  canvasWidth$ = this.store.select(selectCanvasWidth);
+  isMobile$ = this.store.select(selectViewport).pipe(map(viewport => viewport === Viewport.Mobile));
+
+  subscriptions: Subscription[] = [];
 
   gridItems: GridsterItem[] = [];
   gridOptions: GridsterConfig = {
@@ -52,8 +63,6 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
     itemChangeCallback: this.itemChange.bind(this),
     itemResizeCallback: this.itemResize.bind(this),
     itemValidateCallback: this.itemValidate.bind(this),
-    itemInitCallback: this.itemInit.bind(this),
-    itemRemovedCallback: this.itemInit.bind(this),
     minRows: 4,
     maxRows: 4,
     minCols: 10,
@@ -84,25 +93,42 @@ export class SectionComponent implements DynamicComponentType, OnChanges {
 
   constructor(
     private utilsService: UtilsService,
-    private store: Store<AppState>,
-    private renderer: Renderer2
+    private store: Store<AppState>
   ) {
     this.utilsService.initSvgIcons(['drag']);
+  }
+
+  ngOnInit() {
+    this.subscriptions.push(
+      this.canvasWidth$.subscribe(() => {
+        if (this.gridOptions.api?.resize) {
+          this.gridOptions.api.resize();
+        }
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions = [];
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['elements']?.currentValue) {
       this.gridItems = cloneDeep(this.elements);
     }
+
     const style = changes['style']?.currentValue as object | undefined;
     if (style && style['height' as keyof typeof style]) {
       const height = parseInt(style['height' as keyof typeof style], 10);
       this.adjustMaxRows(height);
     }
-  }
 
-  itemInit(item: GridsterItem, itemComponent: GridsterItemComponentInterface): void {
-    itemComponent.renderer = this.renderer;
+    if (changes['resized']?.currentValue) {
+      setTimeout(() => {
+        if (this.gridOptions.api?.resize) this.gridOptions.api.resize();
+      });
+    }
   }
 
   itemChange(item: GridsterItem): void {

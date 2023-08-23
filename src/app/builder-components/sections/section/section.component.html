@@ -1,6 +1,11 @@
-<section class="container" [ngStyle]="style" #element [style.background-color]="backgroundColor">
+<section
+  class="container"
+  [class.container-mobile]="isMobile$ | async"
+  [ngStyle]="style"
+  #element
+  [style.background-color]="backgroundColor">
   <div class="content">
-    <gridster [options]="gridOptions" [style.background-color]="backgroundColor">
+    <gridster #gridster [options]="gridOptions" [style.background-color]="backgroundColor">
       <gridster-item [item]="item" *ngFor="let item of gridItems" [style.background-color]="backgroundColor">
         <div class="drag-handle mat-elevation-z6">
           <mat-icon svgIcon="drag"></mat-icon>

@@ -150,7 +150,7 @@ export class SectionContextMenuComponent implements OnChanges, OnInit, AfterView
             id: this.section?.id || '',
             inputs: {
               ...this.section?.inputs,
-              style: { ...this.section?.inputs.style, height: `${sectionHeight}px` },
+              style: { ...this.section?.inputs.style, ['min-height']: `${sectionHeight}px` },
             },
           })
         );

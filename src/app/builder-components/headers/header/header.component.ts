@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GridsterItem } from 'angular-gridster2';
+import { ResizeEvent } from 'angular-resizable-element';
 import { Subscription } from 'rxjs';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { FontFamily } from 'src/app/models/font-family.enum';
@@ -23,12 +24,32 @@ export class HeaderComponent implements DynamicComponentType, OnInit, OnDestroy 
   @Input() themeFontFamily?: FontFamily = FontFamily.Primary;
   @Input() style: object = {};
   @Input() elements: GridsterItem[] = [];
+  @Input() resized?: ResizeEvent;
 
   pages$ = this.store.select(selectPages);
   logo$ = this.store.select(selectLogo);
 
   logoSrc: string | null = null;
   subscriptions: Subscription[] = [];
+
+  get backgroundColor() {
+    const background = this.style['background-color' as keyof typeof this.style];
+    return background ? background : `var(--${this.themeColor}-color)`;
+  }
+
+  get color() {
+    const color = this.style['color' as keyof typeof this.style];
+    return color ? color : this.fontThemeColor ? `var(--${this.fontThemeColor}-color)` : '';
+  }
+
+  get fontFamily() {
+    return `var(--${this.themeFontFamily?.toLowerCase()}-font-family), var(--alternative-font-family)`;
+  }
+
+  get fontSize() {
+    const fontSize = this.style['font-size' as keyof typeof this.style];
+    return fontSize || '';
+  }
 
   constructor(private store: Store<AppState>) {}
 
@@ -53,24 +74,5 @@ export class HeaderComponent implements DynamicComponentType, OnInit, OnDestroy 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
     this.subscriptions = [];
-  }
-
-  get backgroundColor() {
-    const background = this.style['background-color' as keyof typeof this.style];
-    return background ? background : `var(--${this.themeColor}-color)`;
-  }
-
-  get color() {
-    const color = this.style['color' as keyof typeof this.style];
-    return color ? color : this.fontThemeColor ? `var(--${this.fontThemeColor}-color)` : '';
-  }
-
-  get fontFamily() {
-    return `var(--${this.themeFontFamily?.toLowerCase()}-font-family), var(--alternative-font-family)`;
-  }
-
-  get fontSize() {
-    const fontSize = this.style['font-size' as keyof typeof this.style];
-    return fontSize || '';
   }
 }
