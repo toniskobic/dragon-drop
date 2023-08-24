@@ -1,13 +1,15 @@
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { SectionComponent } from 'src/app/builder-components/sections/section/section.component';
 import { DynamicContentAreaDirective } from 'src/app/directives/dynamic-content-area.directive';
 import { DynamicComponent } from 'src/app/models/dynamic-component.model';
 import { SectionItem } from 'src/app/models/section-item.model';
 import { Viewport } from 'src/app/models/viewport.enum';
+import { ExportWebsiteService } from 'src/app/services/export-website.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasActions, DesignCanvasSectionActions } from 'src/app/state/design-canvas/design-canvas.actions';
@@ -30,7 +32,7 @@ import { ResizableDraggableComponent } from '../resizable-draggable/resizable-dr
     ScrollingModule,
   ],
 })
-export class DesignCanvasComponent implements OnInit {
+export class DesignCanvasComponent implements OnInit, OnDestroy {
   readonly Viewport = Viewport;
 
   @ViewChild('canvas', { static: true }) canvas!: ElementRef<HTMLDivElement>;
@@ -38,17 +40,19 @@ export class DesignCanvasComponent implements OnInit {
   currentViewport$ = this.store.select(selectViewport);
   components$ = this.store.select(selectCurrentPageSections);
 
+  private subscriptions: Subscription[] = [];
   private resizeObserver!: ResizeObserver;
   private previousWidth: number | null = null;
 
   constructor(
     private store: Store<AppState>,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private exportWebsiteService: ExportWebsiteService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     const canvasDiv = this.canvas.nativeElement;
-
     this.resizeObserver = new ResizeObserver(entries => {
       for (const entry of entries) {
         if (entry.target === canvasDiv) {
@@ -66,6 +70,18 @@ export class DesignCanvasComponent implements OnInit {
     });
 
     this.resizeObserver.observe(canvasDiv);
+
+    this.subscriptions.push(
+      this.exportWebsiteService.triggerChangeDetect$.subscribe(() => {
+        this.cdr.detectChanges();
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.resizeObserver.disconnect();
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions = [];
   }
 
   drop(event: CdkDragDrop<DynamicComponent[], SectionItem[] | DynamicComponent[]>) {

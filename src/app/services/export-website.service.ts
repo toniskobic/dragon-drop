@@ -4,26 +4,95 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
 
+import { ELEMENTS_TO_REMOVE_BY_CLASS, REMOVE_AND_REPLACE_ELEMENTS_BY_TAG } from '../constants/constants';
 import { AppState } from '../state/app.reducer';
+import { selectPages } from '../state/design-canvas/design-canvas.reducer';
+import { EditorActions } from '../state/editor/editor.actions';
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExportWebsiteService {
-  constructor(private store: Store<AppState>) {}
+  pagesNames: Map<string, string> = new Map<string, string>();
+  pagesExported = 0;
+
+  private triggerChangeDetectSubject$ = new Subject<void>();
+  triggerChangeDetect$ = this.triggerChangeDetectSubject$.asObservable();
+
+  constructor(
+    private store: Store<AppState>,
+    private utilsService: UtilsService
+  ) {}
+
+  setIsExporting(isExporting: boolean) {
+    this.store.dispatch(EditorActions.setIsExporting({ isExporting }));
+  }
 
   exportWebsite() {
-    const canvas = document.getElementById('canvas') as HTMLDivElement;
-    const { rules, variables } = this.traverseAndCollectCssRulesAndVars(canvas);
-    const variableValues = this.getCssVariableValues(document.documentElement, variables);
+    this.setIsExporting(true);
+    this.triggerChangeDetectSubject$.next();
 
-    const canvasHtml = canvas.outerHTML;
-    const css = [...rules].join('\n');
+    Promise.resolve()
+      .then(() => {
+        this.store.select(selectPages).subscribe(pages => {
+          pages.forEach((page, index) => {
+            const fileName = index === 0 ? 'index' : page.title.toLocaleLowerCase().replace(' ', '-');
+            return this.pagesNames.set(page.title, fileName);
+          });
+        });
 
-    console.log('variableValues', `:root {\n${variableValues.join('\n')}\n}`);
-    console.log('html', canvasHtml);
-    console.log('css', css);
+        const canvas = (document.getElementById('canvas') as HTMLElement).cloneNode(true) as HTMLElement;
+        REMOVE_AND_REPLACE_ELEMENTS_BY_TAG.forEach(tagName => this.removeAndReplaceElement(canvas, tagName));
+        ELEMENTS_TO_REMOVE_BY_CLASS.forEach(className => this.removeElement(canvas, className));
+        this.replaceNavigationLinks(canvas);
+
+        const { rules, variables } = this.traverseAndCollectCssRulesAndVars(canvas);
+        const variableValues = this.getCssVariableValues(document.documentElement, variables);
+
+        const canvasHtml = this.removeHtmlComments(canvas.outerHTML);
+        const css = [...rules].join('\n');
+
+        console.log('variableValues', `:root {\n${variableValues.join('\n')}\n}`);
+        console.log('html', canvasHtml);
+        console.log('css', css);
+        this.setIsExporting(false);
+      })
+      .catch(e => console.log('Got ' + e));
+  }
+
+  replaceNavigationLinks(el: HTMLElement): void {
+    const navLink = [...(el.getElementsByClassName('nav-links') as HTMLCollectionOf<HTMLAnchorElement>)];
+
+    navLink.forEach(link => {
+      const href = this.pagesNames.get(link.innerText);
+      link.href = `/${href}.html`;
+    });
+  }
+
+  removeAndReplaceElement(rootEl: HTMLElement, tagNameToRemove: string): void {
+    const elements = rootEl.getElementsByTagName(tagNameToRemove);
+
+    [...elements].forEach(el => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      el?.replaceWith(...el.childNodes);
+    });
+  }
+
+  removeElement(rootEl: HTMLElement, classNameToRemove: string): void {
+    const elements = rootEl.getElementsByClassName(classNameToRemove);
+
+    [...elements].forEach(el => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      el.remove();
+    });
+  }
+
+  removeHtmlComments(html: string): string {
+    // eslint-disable-next-line no-useless-escape
+    return html.replace(/<!--[\s\S]*?-->/g, '');
   }
 
   traverseAndCollectCssRulesAndVars(el: HTMLElement): { rules: Set<string>; variables: Set<string> } {
@@ -111,6 +180,7 @@ export class ExportWebsiteService {
       for (let i = 0; i < el.style.length; i++) {
         const propertyName = el.style[i];
         const propertyValue = el.style.getPropertyValue(propertyName);
+
         if (propertyValue.startsWith('var')) {
           const startIndex = propertyValue.indexOf('-');
           const endIndex = propertyValue.indexOf(')');

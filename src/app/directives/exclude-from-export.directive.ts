@@ -21,7 +21,7 @@ export class ExcludeFromExportDirective implements OnDestroy {
       .select(selectIsExporting)
       .pipe(takeUntil(this.destroy$))
       .subscribe(isExporting => {
-        if (isExporting) {
+        if (!isExporting) {
           this.viewContainer.createEmbeddedView(this.templateRef);
         } else {
           this.viewContainer.clear();

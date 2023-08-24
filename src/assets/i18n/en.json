@@ -87,6 +87,9 @@
             "TOOLTIPS": {
               "ADD_PAGE": "Add page",
               "DELETE_PAGE": "Delete page"
+            },
+            "ALERTS": {
+              "PAGE_RENAME_FAILED": "Page name must be unique!"
             }
           },
           "CURRENT_PAGE": {

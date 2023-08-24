@@ -7,10 +7,17 @@
   <div class="content" [class.content-mobile]="isMobile$ | async">
     <gridster #gridster [options]="gridOptions" [style.background-color]="backgroundColor">
       <gridster-item [item]="item" *ngFor="let item of gridItems" [style.background-color]="backgroundColor">
-        <div class="drag-handle mat-elevation-z6">
+        <div *drdExcludeFromExport class="drag-handle mat-elevation-z6">
           <mat-icon svgIcon="drag"></mat-icon>
         </div>
-        <drd-rich-text-editor [id]="item['id']" [data]="item['data']"></drd-rich-text-editor>
+        <span
+          class="section-element"
+          [attr.data-x]="item.x"
+          [attr.data-y]="item.y"
+          [attr.data-rows]="item.rows"
+          [attr.data-cols]="item.cols">
+          <drd-rich-text-editor [id]="item['id']" [data]="item['data']"></drd-rich-text-editor>
+        </span>
       </gridster-item>
     </gridster>
   </div>

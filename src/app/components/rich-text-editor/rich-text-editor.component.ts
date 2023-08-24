@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { CKEditorComponent, CKEditorModule } from '@ckeditor/ckeditor5-angular';
-// import Editor from '@ckeditor/ckeditor5-build-balloon-block';
 import { Store } from '@ngrx/store';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-export.directive';
 import { ContextMenuType } from 'src/app/models/context-menu-type.enum';
 import { ElementClassObserver } from 'src/app/models/element-class-observer.class';
 import { AppState } from 'src/app/state/app.reducer';
@@ -16,7 +16,7 @@ import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wr
   standalone: true,
   templateUrl: './rich-text-editor.component.html',
   styleUrls: ['./rich-text-editor.component.scss'],
-  imports: [CommonModule, CKEditorModule, ContextMenuWrapperComponent],
+  imports: [CommonModule, CKEditorModule, ContextMenuWrapperComponent, ExcludeFromExportDirective],
 })
 export class RichTextEditorComponent {
   Editor = Editor;

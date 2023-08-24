@@ -22,6 +22,9 @@ export const editorOnActions = [
   produceOn(EditorActions.setSidebarOpened, (state: DragonDropState, { opened }) => {
     state.sidebarOpened = opened ? opened : !state.sidebarOpened;
   }),
+  produceOn(EditorActions.setIsExporting, (state: DragonDropState, { isExporting }) => {
+    state.isExporting = isExporting;
+  }),
   produceOn(EditorActions.setResizeHandleDirection, (state: DragonDropState, { direction }) => {
     state.resizeHandleDirection = direction;
   }),

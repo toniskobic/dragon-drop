@@ -15,6 +15,7 @@ import { ResizableModule, ResizeEvent } from 'angular-resizable-element';
 import { cloneDeep } from 'lodash-es';
 import { map, Subscription } from 'rxjs';
 import { RichTextEditorComponent } from 'src/app/components/rich-text-editor/rich-text-editor.component';
+import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-export.directive';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
@@ -23,7 +24,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { AppState } from 'src/app/state/app.reducer';
 import { DesignCanvasElementActions } from 'src/app/state/design-canvas/design-canvas.actions';
 import { selectCanvasWidth } from 'src/app/state/design-canvas/design-canvas.reducer';
-import { selectViewport } from 'src/app/state/editor/editor.reducer';
+import { selectIsExporting, selectViewport } from 'src/app/state/editor/editor.reducer';
 
 @Component({
   selector: 'drd-section',
@@ -36,6 +37,7 @@ import { selectViewport } from 'src/app/state/editor/editor.reducer';
     GridsterItemComponent,
     MatIconModule,
     LetDirective,
+    ExcludeFromExportDirective,
   ],
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
@@ -50,6 +52,7 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
 
   canvasWidth$ = this.store.select(selectCanvasWidth);
   isMobile$ = this.store.select(selectViewport).pipe(map(viewport => viewport === Viewport.Mobile));
+  isExporting$ = this.store.select(selectIsExporting);
 
   subscriptions: Subscription[] = [];
 

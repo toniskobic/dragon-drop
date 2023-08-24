@@ -20,6 +20,15 @@ export class UtilsService {
     });
   }
 
+  formatString(string: string, placeholders: { [key: string]: string }) {
+    for (const propertyName in placeholders) {
+      const re = new RegExp('{' + propertyName + '}', 'gm');
+      string = string.replace(re, placeholders[propertyName]);
+    }
+
+    return string;
+  }
+
   filterInPlace<T, I = T>(a: T[], condition: (value: T, index: number, array: T[]) => unknown, thisArg?: I) {
     let j = 0;
 

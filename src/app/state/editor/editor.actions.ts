@@ -7,6 +7,7 @@ export const EditorActions = createActionGroup({
   events: {
     'Set Sidebar Opened': props<{ opened?: boolean }>(),
     'Set Viewport': props<{ viewport: Viewport }>(),
+    'Set Is Exporting': props<{ isExporting: boolean }>(),
     'Set Resize Handle Direction': props<{ direction: ResizeHandleDirection }>(),
   },
 });

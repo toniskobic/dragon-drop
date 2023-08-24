@@ -1,5 +1,4 @@
 .container {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,6 +15,7 @@
   }
 
   .content {
+    position: relative;
     max-width: 992px;
     display: flex;
     flex-direction: column;
@@ -24,6 +24,9 @@
     width: 100%;
     min-height: 90%;
     height: 90%;
+
+    .section-element {
+    }
 
     @media only screen and (max-width: 640px) {
       padding-block: 20px;

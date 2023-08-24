@@ -14,7 +14,7 @@
     <div class="selected-edge-bottom mat-elevation-z20"></div>
     <div class="selected-edge-left mat-elevation-z20"></div>
   </div>
-  <div class="resize-edge-bottom">
+  <div *drdExcludeFromExport class="resize-edge-bottom">
     <ng-container *ngIf="!(((isCurrentViewportMobile$ | async) || (isMobile$ | async)) && elementsCount)">
       <div
         *ngrxLet="normalHandleDirection$ | async as normalHandleDirection"
@@ -23,9 +23,13 @@
         [resizeEdges]="normalHandleDirection ? { bottom: true } : { top: true }"></div>
     </ng-container>
   </div>
-  <div cdkDragHandle class="drag-handle mat-elevation-z6">
+  <div *drdExcludeFromExport cdkDragHandle class="drag-handle mat-elevation-z6">
     <mat-icon svgIcon="drag"></mat-icon>
   </div>
   <ng-template drdDynamicContentArea></ng-template>
-  <drd-context-menu-wrapper #contextMenu [type]="contextMenuType" [section]="component"></drd-context-menu-wrapper>
+  <drd-context-menu-wrapper
+    *drdExcludeFromExport
+    #contextMenu
+    [type]="contextMenuType"
+    [section]="component"></drd-context-menu-wrapper>
 </div>

@@ -7,4 +7,8 @@
   (change)="onChange()"
   (mousedown)="onMouseDown($event)"
   (contextmenu)="onContextMenu($event)"></ckeditor>
-<drd-context-menu-wrapper #contextMenu [type]="contextMenuType" [elementId]="id"></drd-context-menu-wrapper>
+<drd-context-menu-wrapper
+  #contextMenu
+  *drdExcludeFromExport
+  [type]="contextMenuType"
+  [elementId]="id"></drd-context-menu-wrapper>
