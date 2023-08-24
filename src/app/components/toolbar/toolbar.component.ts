@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { Viewport } from 'src/app/models/viewport.enum';
+import { ExportWebsiteService } from 'src/app/services/export-website.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AppActions } from 'src/app/state/app.actions';
 import { AppState, selectCanRedo, selectCanUndo } from 'src/app/state/app.reducer';
@@ -58,6 +59,7 @@ export default class ToolbarComponent {
   constructor(
     private store: Store<AppState>,
     private utilsService: UtilsService,
+    private exportWebsiteService: ExportWebsiteService,
     private breakpointObserver: BreakpointObserver
   ) {
     this.utilsService.initSvgIcons([
@@ -83,6 +85,10 @@ export default class ToolbarComponent {
 
   onMenuClick() {
     this.store.dispatch(EditorActions.setSidebarOpened({}));
+  }
+
+  exportWebsite() {
+    this.exportWebsiteService.exportWebsite();
   }
 
   undo() {
