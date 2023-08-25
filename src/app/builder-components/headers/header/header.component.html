@@ -1,5 +1,49 @@
 <header class="header" #element [ngStyle]="style" [style.background-color]="backgroundColor" [style.color]="color">
-  <nav>
+  <nav class="nav">
+    <div
+      class="menu-button-wrapper"
+      *ngIf="(currentViewport$ | async) === Viewport.Mobile || (isMobile$ | async) === true"
+      (click)="isMenuOpened = !isMenuOpened">
+      <svg
+        class="menu-button"
+        [style.fill]="onHover ? backgroundColor : color"
+        xmlns="http://www.w3.org/2000/svg"
+        height="48"
+        viewBox="0 -960 960 960"
+        width="48">
+        <path d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z" />
+      </svg>
+    </div>
+    <div *ngIf="logoSrc" class="logo-wrapper">
+      <img id="logo" class="logo" [src]="logoSrc" />
+    </div>
+    <ul
+      class="nav-links-container"
+      *ngIf="(currentViewport$ | async) === Viewport.Desktop && (isMobile$ | async) !== true">
+      <li *ngFor="let page of pages$ | async">
+        <a [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
+      </li>
+    </ul>
+  </nav>
+  <nav
+    [class.nav-mobile-hidden]="isMenuOpened !== true"
+    [class.viewport-mobile]="(isExporting$ | async) !== true && (currentViewport$ | async) === Viewport.Mobile"
+    [class.sidebar-opened]="(sidebarOpened$ | async) === true"
+    class="nav-mobile mat-elevation-z6"
+    [style.top]="(isExporting$ | async) !== true ? toolbarHeight : ''"
+    [style.background-color]="backgroundColor"
+    [style.color]="color">
+    <div class="menu-button-wrapper" (click)="isMenuOpened = !isMenuOpened">
+      <svg
+        class="menu-button"
+        [style.fill]="color"
+        xmlns="http://www.w3.org/2000/svg"
+        height="48"
+        viewBox="0 -960 960 960"
+        width="48">
+        <path d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z" />
+      </svg>
+    </div>
     <div *ngIf="logoSrc" class="logo-wrapper">
       <img id="logo" class="logo" [src]="logoSrc" />
     </div>

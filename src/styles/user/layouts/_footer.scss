@@ -19,6 +19,11 @@
         margin: 0;
         padding: 10px;
         cursor: pointer;
+
+        &:hover {
+          filter: invert(0.5);
+        }
+
       }
     }
   }

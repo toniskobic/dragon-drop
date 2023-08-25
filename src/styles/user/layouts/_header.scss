@@ -1,11 +1,31 @@
+$breakpoint-mobile: var(--breakpoint-mobile);
+
 .header {
   padding-inline: 15px;
   height: 1px;
 
-  nav {
+  nav.nav {
     height: 100%;
     display: flex;
     align-items: center;
+    gap: 10px;
+
+    .menu-button-wrapper {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      max-height: 100px;
+      cursor: pointer;
+
+      .menu-button {
+        width: 24px;
+        height: 24px;
+      }
+
+      &:hover {
+        filter: invert(0.5);
+      }
+    }
 
     .logo-wrapper {
       .logo {
@@ -23,10 +43,108 @@
         display: flex;
         align-items: center;
         height: 100%;
-        max-height: 70px;
+        max-height: 100px;
         padding: 0 10px;
+        margin: 0;
         cursor: pointer;
+
+        &:hover {
+          filter: invert(0.5);
+        }
       }
+    }
+  }
+
+  nav.nav-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 30px;
+    z-index: 100000;
+    transition: 0.5s ease-in-out;
+    transition-property: left, visibility;
+    gap: 10px;
+
+    .menu-button-wrapper {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      .menu-button {
+        width: 24px;
+        height: 24px;
+      }
+
+      &:hover {
+        filter: invert(0.5);
+      }
+    }
+
+    .logo-wrapper {
+      .logo {
+        width: 120px;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      margin: 0;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        cursor: pointer;
+
+        &:hover {
+          filter: invert(0.5);
+        }
+
+        a.nav-links {
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+          padding: 10px 0;
+        }
+      }
+    }
+
+    &.viewport-mobile {
+      margin-left: calc(50% - #{$breakpoint-mobile / 2});
+      transition: 0.5s ease-in-out;
+      transition-property: margin-left, left, visibility;
+    }
+
+    &.sidebar-opened {
+      margin-left: 250px;
+      transition-duration: 400ms;
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition-property: all;
+    }
+
+    &.viewport-mobile.sidebar-opened {
+      margin-left: calc(50% - #{$breakpoint-mobile / 2} + 125px);
+      transition: 0.5s ease-in-out;
+      transition-property: margin-left, left, visibility;
+    }
+
+    &-hidden {
+      visibility: hidden;
+      left: -150px;
+      transition: all 0.5s ease-in-out;
     }
   }
 }

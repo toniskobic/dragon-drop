@@ -1,3 +1,5 @@
+export const GRIDSTER_BREAKPOINT = 641;
+
 export const MIN_SECTION_DIMENSIONS_PX = 60;
 
 export const ALTERNATIVE_FONT_FAMILIES = ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'];
@@ -44,6 +46,8 @@ export const ATTRIBUTES_TO_REMOVE = [
   'drddragcursor',
   'cdkdragboundary',
   'contenteditable',
+  'data-cke-filler',
+  'role',
 ];
 
 export const CLASSES_TO_REMOVE = [
@@ -53,6 +57,7 @@ export const CLASSES_TO_REMOVE = [
   'ck-widget_with-selection-handle',
   'ck-widget_selected',
   'ck-widget',
+  'ck-table-resized',
 ];
 
 export const ATTRIBUTES_STARTING_WITH_TO_REMOVE = ['ng-reflect'];
@@ -72,6 +77,7 @@ export const HTML_TEMPLATE = `<!DOCTYPE html>
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
@@ -82,6 +88,25 @@ export const HTML_TEMPLATE = `<!DOCTYPE html>
 </html>`;
 
 export const EXPORTED_JS_TEMPLATE = `window.addEventListener("load", () => {
+  const headers = [...document.querySelectorAll("header.header")];
+  headers.forEach((header) => {
+    const menuButtons = [
+      ...header.getElementsByClassName("menu-button-wrapper"),
+    ];
+    menuButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const mobileNav = header.getElementsByClassName("nav-mobile")[0];
+        mobileNav.classList.contains("nav-mobile-hidden")
+          ? mobileNav.classList.remove("nav-mobile-hidden")
+          : mobileNav.classList.add("nav-mobile-hidden");
+      });
+    });
+  });
+
+  mobileNavManagement();
+  menuButtonManagement();
+  navLinksManagement();
+
   const colNo = 10;
   const rowsNoLower = 4;
   const rowsNoUpper = 10;
@@ -98,6 +123,10 @@ export const EXPORTED_JS_TEMPLATE = `window.addEventListener("load", () => {
   positionSectionElements(items, rowsHeight, colWidth);
 
   window.addEventListener("resize", () => {
+    mobileNavManagement();
+    menuButtonManagement();
+    navLinksManagement();
+
     if (content.clientWidth !== contentWidth) {
       contentWidth = content.clientWidth;
       colWidth = contentWidth / colNo;
@@ -107,10 +136,57 @@ export const EXPORTED_JS_TEMPLATE = `window.addEventListener("load", () => {
   });
 });
 
+mobileNavManagement = () => {
+  if (window.innerWidth > 640) {
+    const openNavs = [
+      ...document.querySelectorAll(".nav-mobile:not(.nav-mobile-hidden)"),
+    ];
+    openNavs.forEach((nav) => {
+      nav.classList.add("nav-mobile-hidden");
+    });
+  }
+};
+
+menuButtonManagement = () => {
+  if (window.innerWidth > 640) {
+    const menuButtons = document.querySelectorAll(
+      "nav.nav .menu-button-wrapper:not(.hidden)"
+    );
+    [...menuButtons].forEach((button) => {
+      button.classList.add("hidden");
+    });
+  } else {
+    const menuButtons = document.querySelectorAll(
+      "nav.nav .menu-button-wrapper"
+    );
+    [...menuButtons].forEach((button) => {
+      if (button.classList.contains("hidden"))
+        button.classList.remove("hidden");
+    });
+  }
+};
+
+navLinksManagement = () => {
+  const navLinksContainers = [
+    ...document.querySelectorAll(".nav-links-container"),
+  ];
+  if (window.innerWidth < 640) {
+    navLinksContainers.forEach((container) => {
+      container.classList.add("hidden");
+    });
+  } else {
+    navLinksContainers.forEach((container) => {
+      if (container.classList.contains("hidden"))
+        container.classList.remove("hidden");
+    });
+  }
+};
+
 positionSectionElements = (items, rowsHeight, colWidth) => {
   items.forEach((item) => {
     item.style.top = \`\${item.dataset.y * rowsHeight}px\`;
-    item.style.left = \`$\{item.dataset.x * colWidth}px\`;
+    item.style.left = \`\${item.dataset.x * colWidth}px\`;
     item.style.width = \`\${item.dataset.cols * colWidth}px\`;
   });
-};`;
+};
+`;

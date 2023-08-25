@@ -69,7 +69,7 @@ export class ExportWebsiteService {
     const variableValues = this.getCssVariableValues(document.documentElement, variables);
 
     const canvasHtml = this.removeHtmlComments(canvas.outerHTML);
-    const css = [...rules].join('\n');
+    const css = [...rules].join('\n\n');
 
     console.log('variableValues', `:root {\n${variableValues.join('\n')}\n}`);
     console.log('html', canvasHtml);

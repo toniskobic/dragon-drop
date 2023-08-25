@@ -16,6 +16,7 @@ import { ResizableModule, ResizeEvent } from 'angular-resizable-element';
 import { cloneDeep } from 'lodash-es';
 import { map, Subscription } from 'rxjs';
 import { RichTextEditorComponent } from 'src/app/components/rich-text-editor/rich-text-editor.component';
+import { GRIDSTER_BREAKPOINT } from 'src/app/constants/constants';
 import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-export.directive';
 import { dragStop } from 'src/app/functions/item-component-resize-drag-stop.function';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
@@ -83,6 +84,8 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
     minItemRows: 1,
     pushItems: true,
     disableWarnings: true,
+    useBodyForBreakpoint: false,
+    mobileBreakpoint: GRIDSTER_BREAKPOINT,
     draggable: {
       enabled: true,
       ignoreContent: true,

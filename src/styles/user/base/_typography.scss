@@ -1,4 +1,7 @@
-div.canvas *,
+div.canvas * {
+  font-family: var(--primary-font-family), var(--alternative-font-family);
+}
+
 div.cdk-drag-preview * {
   font-family: var(--primary-font-family), var(--alternative-font-family);
 }
