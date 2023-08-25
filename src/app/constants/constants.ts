@@ -87,7 +87,7 @@ export const HTML_TEMPLATE = `<!DOCTYPE html>
 
 </html>`;
 
-export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager  {
+export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
   colNo = 10;
   rowsNoLower = 4;
   rowsNoUpper = 10;
@@ -111,7 +111,12 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager  {
           section.clientHeight > 400 ? this.rowsNoUpper : this.rowsNoLower;
         const rowsHeight = section.clientHeight / rowsNumber;
         const items = [...section.getElementsByClassName("section-element")];
-        this.positionSectionElements(items, rowsHeight, colWidth);
+
+        if (window.innerWidth < 641) {
+          this.positionMobileSectionElements(items, contentWidth);
+        } else {
+          this.positionDesktopSectionElements(items, rowsHeight, colWidth);
+        }
 
         return { domEl: section, contentWidth, colWidth, rowsHeight, items };
       }
@@ -127,7 +132,16 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager  {
       if (el.domEl.clientWidth !== el.contentWidth) {
         el.contentWidth = el.domEl.clientWidth;
         el.colWidth = el.contentWidth / this.colNo;
-        this.positionSectionElements(el.items, el.rowsHeight, el.colWidth);
+
+        if (window.innerWidth < 641) {
+          this.positionMobileSectionElements(el.items, el.contentWidth);
+        } else {
+          this.positionDesktopSectionElements(
+            el.items,
+            el.rowsHeight,
+            el.colWidth
+          );
+        }
       }
     });
   }
@@ -195,22 +209,122 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager  {
     }
   }
 
-  positionSectionElements(items, rowsHeight, colWidth) {
+  positionDesktopSectionElements(items, rowsHeight, colWidth) {
     items.forEach((item) => {
+      item.classList.remove("section-element-mobile");
+      item.style.height = '';
       item.style.top = \`\${item.dataset.y * rowsHeight}px\`;
       item.style.left = \`\${item.dataset.x * colWidth}px\`;
       item.style.width = \`\${item.dataset.cols * colWidth}px\`;
     });
   }
+
+  positionMobileSectionElements(items, contentWidth) {
+    items.forEach((item) => {
+      item.classList.add("section-element-mobile");
+      item.style.top = '';
+      item.style.left = '';
+      item.style.width = '';
+      item.style.height = \`\${
+        (item.dataset.rows / item.dataset.cols) * contentWidth
+      }px\`;
+    });
+  }
 }
 
 window.addEventListener("load", () => {
-  const responsiveUiManager = new ResponsiveUIManager ();
+  const responsiveUiManager = new ResponsiveUIManager();
 
-  window.addEventListener(
-    "resize",
-    responsiveUiManager.handleResize.bind(responsiveUiManager)
-  );
+  window.addEventListener("resize", () => {
+    responsiveUiManager.handleResize();
+  });
 });
 
+`;
+
+export const CSS_TEMPLATE = `.canvas {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 1px;
+}
+
+@media only screen and (max-width: 640px) {
+  .container {
+    height: auto;
+  }
+}
+
+.container .content {
+  position: relative;
+  max-width: 992px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 90%;
+  height: 90%;
+}
+
+@media only screen and (max-width: 640px) {
+  .container .content {
+    padding-block: 20px;
+  }
+}
+
+.section-element {
+  display: block;
+  position: absolute;
+  transition: all 0.3s ease 0s;
+  padding-inline: 10px;
+}
+
+.section-element-mobile {
+  position: relative;
+  width: 100%;
+}
+
+.rectangle:not(:last-child) {
+  flex-grow: 0;
+}
+.rectangle:last-child {
+  flex-grow: 1;
+}
+.rectangle:last-child>* {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+.header nav.nav-mobile ul li {
+  filter: invert(0.5);
+}
+
+.header nav.nav-mobile .menu-button-wrapper:hover {
+  filter: invert(0.5);
+}
+
+.header nav.nav .menu-button-wrapper:hover {
+  filter: invert(0.5);
+}
+
+.header nav.nav-mobile ul li {
+  filter: invert(0.5);
+}
+
+.footer nav ul li:hover {
+  filter: invert(0.5);
+}
 `;

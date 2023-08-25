@@ -2,7 +2,7 @@
   <nav class="nav">
     <div
       class="menu-button-wrapper"
-      *ngIf="(currentViewport$ | async) === Viewport.Mobile || (isMobile$ | async) === true"
+      [class.hidden]="(currentViewport$ | async) === Viewport.Desktop && (isMobile$ | async) !== true"
       (click)="isMenuOpened = !isMenuOpened">
       <svg
         class="menu-button"

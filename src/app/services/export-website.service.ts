@@ -16,6 +16,7 @@ import {
   REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS,
   REMOVE_AND_REPLACE_ELEMENTS_BY_TAG,
 } from '../constants/constants';
+import { Viewport } from '../models/viewport.enum';
 import { AppState } from '../state/app.reducer';
 import { selectPages } from '../state/design-canvas/design-canvas.reducer';
 import { EditorActions } from '../state/editor/editor.actions';
@@ -36,12 +37,9 @@ export class ExportWebsiteService {
     private utilsService: UtilsService
   ) {}
 
-  setIsExporting(isExporting: boolean) {
-    this.store.dispatch(EditorActions.setIsExporting({ isExporting }));
-  }
-
   exportWebsite() {
     this.setIsExporting(true);
+    this.setViewportToDesktop();
     this.triggerChangeDetectSubject$.next();
 
     this.store.select(selectPages).subscribe(pages => {
@@ -77,7 +75,7 @@ export class ExportWebsiteService {
     this.setIsExporting(false);
   }
 
-  replaceNavigationLinks(el: HTMLElement): void {
+  private replaceNavigationLinks(el: HTMLElement): void {
     const navLink = [...(el.getElementsByClassName('nav-links') as HTMLCollectionOf<HTMLAnchorElement>)];
 
     navLink.forEach(link => {
@@ -86,7 +84,7 @@ export class ExportWebsiteService {
     });
   }
 
-  removeAndReplaceElement(rootEl: HTMLElement, qualifiedName: string, isClass: boolean = false): void {
+  private removeAndReplaceElement(rootEl: HTMLElement, qualifiedName: string, isClass: boolean = false): void {
     const selector = isClass ? `.${qualifiedName}` : qualifiedName;
     const elements = rootEl.querySelectorAll(selector);
 
@@ -96,7 +94,7 @@ export class ExportWebsiteService {
     });
   }
 
-  removeAttrOrClass(rootEl: HTMLElement, qualifiedName: string, isClass: boolean = false) {
+  private removeAttrOrClass(rootEl: HTMLElement, qualifiedName: string, isClass: boolean = false) {
     const selector = isClass ? `.${qualifiedName}` : `[${qualifiedName}]`;
 
     if (isClass) {
@@ -113,7 +111,7 @@ export class ExportWebsiteService {
     });
   }
 
-  removeAttributesStartingWith(rootEl: HTMLElement, prefix: string) {
+  private removeAttributesStartingWith(rootEl: HTMLElement, prefix: string) {
     [...rootEl.attributes].forEach(attr => {
       if (attr.name.startsWith(prefix)) {
         rootEl.removeAttribute(attr.name);
@@ -134,7 +132,7 @@ export class ExportWebsiteService {
     });
   }
 
-  removeClass(rootEl: HTMLElement, className: string) {
+  private removeClass(rootEl: HTMLElement, className: string) {
     if (rootEl.classList.contains(className)) {
       rootEl.classList.remove(className);
     }
@@ -145,7 +143,7 @@ export class ExportWebsiteService {
     });
   }
 
-  removeElement(rootEl: HTMLElement, classNameToRemove: string): void {
+  private removeElement(rootEl: HTMLElement, classNameToRemove: string): void {
     const elements = rootEl.getElementsByClassName(classNameToRemove);
 
     [...elements].forEach(el => {
@@ -154,12 +152,12 @@ export class ExportWebsiteService {
     });
   }
 
-  removeHtmlComments(html: string): string {
+  private removeHtmlComments(html: string): string {
     // eslint-disable-next-line no-useless-escape
     return html.replace(/<!--[\s\S]*?-->/g, '');
   }
 
-  traverseAndCollectCssRulesAndVars(el: HTMLElement): { rules: Set<string>; variables: Set<string> } {
+  private traverseAndCollectCssRulesAndVars(el: HTMLElement): { rules: Set<string>; variables: Set<string> } {
     const cssRules = this.getCssRules(el);
     const cssVariables = new Set<string>();
 
@@ -189,7 +187,7 @@ export class ExportWebsiteService {
     };
   }
 
-  getCssVariableValues(el: HTMLElement, variables: Set<string>): string[] {
+  private getCssVariableValues(el: HTMLElement, variables: Set<string>): string[] {
     const computedStyles = window.getComputedStyle(el);
     const variableValues: string[] = [];
 
@@ -203,7 +201,7 @@ export class ExportWebsiteService {
     return variableValues;
   }
 
-  getCssRules(el: HTMLElement): Set<string> {
+  private getCssRules(el: HTMLElement): Set<string> {
     const sheets = document.styleSheets;
     const ret = new Set<string>();
     el.matches =
@@ -226,7 +224,7 @@ export class ExportWebsiteService {
     return ret;
   }
 
-  extractCssVariablesFromRule(rule: string): Set<string> {
+  private extractCssVariablesFromRule(rule: string): Set<string> {
     const variablePattern = /var\((--[^,)]+)/g;
     const foundVariables = new Set<string>();
     let match;
@@ -238,7 +236,7 @@ export class ExportWebsiteService {
     return foundVariables;
   }
 
-  collectInlineCssVariables(el: HTMLElement): Set<string> {
+  private collectInlineCssVariables(el: HTMLElement): Set<string> {
     const inlineVariables = new Set<string>();
     if (el.style) {
       for (let i = 0; i < el.style.length; i++) {
@@ -253,5 +251,13 @@ export class ExportWebsiteService {
       }
     }
     return inlineVariables;
+  }
+
+  private setIsExporting(isExporting: boolean) {
+    this.store.dispatch(EditorActions.setIsExporting({ isExporting }));
+  }
+
+  private setViewportToDesktop() {
+    this.store.dispatch(EditorActions.setViewport({ viewport: Viewport.Desktop }));
   }
 }
