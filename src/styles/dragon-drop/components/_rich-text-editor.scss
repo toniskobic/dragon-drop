@@ -47,4 +47,9 @@ div.ck.ck-balloon-panel.ck-tooltip {
 
 .ck-editor__editable_inline {
   min-height: 100%;
+
+}
+
+div.ck.ck-balloon-panel {
+  z-index: 100000;
 }

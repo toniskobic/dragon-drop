@@ -9,6 +9,7 @@ import {
   GridsterConfig,
   GridsterItem,
   GridsterItemComponent,
+  GridsterItemComponentInterface,
   GridType,
 } from 'angular-gridster2';
 import { ResizableModule, ResizeEvent } from 'angular-resizable-element';
@@ -16,6 +17,7 @@ import { cloneDeep } from 'lodash-es';
 import { map, Subscription } from 'rxjs';
 import { RichTextEditorComponent } from 'src/app/components/rich-text-editor/rich-text-editor.component';
 import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-export.directive';
+import { dragStop } from 'src/app/functions/item-component-resize-drag-stop.function';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
@@ -66,6 +68,7 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
     itemChangeCallback: this.itemChange.bind(this),
     itemResizeCallback: this.itemResize.bind(this),
     itemValidateCallback: this.itemValidate.bind(this),
+    itemInitCallback: this.itemInit.bind(this),
     minRows: 4,
     maxRows: 4,
     minCols: 10,
@@ -79,6 +82,7 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
     minItemCols: 1,
     minItemRows: 1,
     pushItems: true,
+    disableWarnings: true,
     draggable: {
       enabled: true,
       ignoreContent: true,
@@ -132,6 +136,12 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
         if (this.gridOptions.api?.resize) this.gridOptions.api.resize();
       });
     }
+  }
+
+  itemInit(item: GridsterItem, itemComponent: GridsterItemComponentInterface) {
+    itemComponent.resize.dragStop = (e: MouseEvent) => {
+      dragStop.bind(itemComponent.resize)(e);
+    };
   }
 
   itemChange(item: GridsterItem): void {

@@ -172,7 +172,7 @@ export const designCanvasOnActions = [
     if (page) {
       const section = page.sections.find(component => component.id === sectionId);
       if (section) {
-        const element = { x: 0, y: 0, rows: 2, cols: 2, id: uuidv4(), data: '<p>Hello World!</p>' };
+        const element = { x: 0, y: 0, rows: 1, cols: 1, id: uuidv4(), data: '<p>Hello World!</p>' };
         const elements = section.inputs.elements;
         if (elements) {
           elements.push(element);

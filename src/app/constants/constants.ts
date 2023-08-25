@@ -12,6 +12,53 @@ export const FAVICON_FILE_TYPES = ['image/x-icon'];
 
 export const LOGO_FILE_TYPES = ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml'];
 
+export const REMOVE_AND_REPLACE_ELEMENTS_BY_TAG = [
+  'drd-resizable-draggable',
+  'drd-rich-text-editor',
+  'drd-header',
+  'drd-section',
+  'drd-footer',
+  'gridster',
+  'gridster-item',
+  'ckeditor',
+  'gridster-preview',
+];
+
+export const REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS = ['ck-content'];
+
+export const ELEMENTS_TO_REMOVE_BY_CLASS = [
+  'gridster-item-resizable-handler',
+  'gridster-column',
+  'gridster-row',
+  'ck-table-column-resizer',
+  'ck-widget__selection-handle',
+  'ck-fake-selection-container',
+  'ck-widget__type-around',
+];
+
+export const ATTRIBUTES_TO_REMOVE = [
+  'cdkdroplist',
+  'cdkscrollable',
+  'mwlresizable',
+  'cdkdrag',
+  'drddragcursor',
+  'cdkdragboundary',
+  'contenteditable',
+];
+
+export const CLASSES_TO_REMOVE = [
+  'ng-star-inserted',
+  'cdk-drop-list',
+  'cdk-drag',
+  'ck-widget_with-selection-handle',
+  'ck-widget_selected',
+  'ck-widget',
+];
+
+export const ATTRIBUTES_STARTING_WITH_TO_REMOVE = ['ng-reflect'];
+
+export const ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV = ['_ngcontent'];
+
 export const HTML_TEMPLATE = `<!DOCTYPE html>
 <html lang="en">
 
@@ -33,18 +80,6 @@ export const HTML_TEMPLATE = `<!DOCTYPE html>
 </body>
 
 </html>`;
-
-export const REMOVE_AND_REPLACE_ELEMENTS_BY_TAG = [
-  'drd-resizable-draggable',
-  'drd-rich-text-editor',
-  'drd-header',
-  'drd-section',
-  'gridster',
-  'gridster-item',
-  'ckeditor',
-];
-
-export const ELEMENTS_TO_REMOVE_BY_CLASS = ['gridster-item-resizable-handler', 'gridster-column', 'gridster-row'];
 
 export const EXPORTED_JS_TEMPLATE = `window.addEventListener("load", () => {
   const colNo = 10;

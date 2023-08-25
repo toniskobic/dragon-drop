@@ -5,7 +5,7 @@
   #element
   [style.background-color]="backgroundColor">
   <div class="content" [class.content-mobile]="isMobile$ | async">
-    <gridster #gridster [options]="gridOptions" [style.background-color]="backgroundColor">
+    <gridster [options]="gridOptions" [style.background-color]="backgroundColor">
       <gridster-item [item]="item" *ngFor="let item of gridItems" [style.background-color]="backgroundColor">
         <div *drdExcludeFromExport class="drag-handle mat-elevation-z6">
           <mat-icon svgIcon="drag"></mat-icon>

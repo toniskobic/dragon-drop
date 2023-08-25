@@ -1,5 +1,5 @@
 export class ElementClassObserver {
-  private targetNode: Element;
+  private targetNode: Node;
   private classToObserve: string;
   private classAddedCallback?: () => void;
   private classRemovedCallback?: () => void;
@@ -17,7 +17,7 @@ export class ElementClassObserver {
     this.classAddedCallback = classAddedCallback;
     this.classRemovedCallback = classRemovedCallback;
     this.observer = null;
-    this.lastClassState = targetNode.classList.contains(this.classToObserve);
+    this.lastClassState = targetNode?.classList.contains(this.classToObserve);
 
     this.init();
   }
@@ -28,7 +28,7 @@ export class ElementClassObserver {
   }
 
   public observe(): void {
-    this.observer!.observe(this.targetNode, { attributes: true });
+    if (this.targetNode instanceof Node) this.observer!.observe(this.targetNode, { attributes: true });
   }
 
   public disconnect(): void {

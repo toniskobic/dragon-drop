@@ -5,8 +5,17 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-import { ELEMENTS_TO_REMOVE_BY_CLASS, REMOVE_AND_REPLACE_ELEMENTS_BY_TAG } from '../constants/constants';
+import {
+  ATTRIBUTES_STARTING_WITH_TO_REMOVE,
+  ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV,
+  ATTRIBUTES_TO_REMOVE,
+  CLASSES_TO_REMOVE,
+  ELEMENTS_TO_REMOVE_BY_CLASS,
+  REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS,
+  REMOVE_AND_REPLACE_ELEMENTS_BY_TAG,
+} from '../constants/constants';
 import { AppState } from '../state/app.reducer';
 import { selectPages } from '../state/design-canvas/design-canvas.reducer';
 import { EditorActions } from '../state/editor/editor.actions';
@@ -35,32 +44,37 @@ export class ExportWebsiteService {
     this.setIsExporting(true);
     this.triggerChangeDetectSubject$.next();
 
-    Promise.resolve()
-      .then(() => {
-        this.store.select(selectPages).subscribe(pages => {
-          pages.forEach((page, index) => {
-            const fileName = index === 0 ? 'index' : page.title.toLocaleLowerCase().replace(' ', '-');
-            return this.pagesNames.set(page.title, fileName);
-          });
-        });
+    this.store.select(selectPages).subscribe(pages => {
+      pages.forEach((page, index) => {
+        const fileName = index === 0 ? 'index' : page.title.toLocaleLowerCase().replace(' ', '-');
+        return this.pagesNames.set(page.title, fileName);
+      });
+    });
 
-        const canvas = (document.getElementById('canvas') as HTMLElement).cloneNode(true) as HTMLElement;
-        REMOVE_AND_REPLACE_ELEMENTS_BY_TAG.forEach(tagName => this.removeAndReplaceElement(canvas, tagName));
-        ELEMENTS_TO_REMOVE_BY_CLASS.forEach(className => this.removeElement(canvas, className));
-        this.replaceNavigationLinks(canvas);
+    const canvas = (document.getElementById('canvas') as HTMLElement).cloneNode(true) as HTMLElement;
+    REMOVE_AND_REPLACE_ELEMENTS_BY_TAG.forEach(tagName => this.removeAndReplaceElement(canvas, tagName));
+    REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS.forEach(className => this.removeAndReplaceElement(canvas, className, true));
+    ELEMENTS_TO_REMOVE_BY_CLASS.forEach(className => this.removeElement(canvas, className));
 
-        const { rules, variables } = this.traverseAndCollectCssRulesAndVars(canvas);
-        const variableValues = this.getCssVariableValues(document.documentElement, variables);
+    ATTRIBUTES_TO_REMOVE.forEach(attribute => this.removeAttrOrClass(canvas, attribute));
+    CLASSES_TO_REMOVE.forEach(className => this.removeAttrOrClass(canvas, className, true));
+    ATTRIBUTES_STARTING_WITH_TO_REMOVE.forEach(attribute => this.removeAttributesStartingWith(canvas, attribute));
+    if (!environment.production) {
+      ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV.forEach(attribute => this.removeAttributesStartingWith(canvas, attribute));
+    }
 
-        const canvasHtml = this.removeHtmlComments(canvas.outerHTML);
-        const css = [...rules].join('\n');
+    this.replaceNavigationLinks(canvas);
 
-        console.log('variableValues', `:root {\n${variableValues.join('\n')}\n}`);
-        console.log('html', canvasHtml);
-        console.log('css', css);
-        this.setIsExporting(false);
-      })
-      .catch(e => console.log('Got ' + e));
+    const { rules, variables } = this.traverseAndCollectCssRulesAndVars(canvas);
+    const variableValues = this.getCssVariableValues(document.documentElement, variables);
+
+    const canvasHtml = this.removeHtmlComments(canvas.outerHTML);
+    const css = [...rules].join('\n');
+
+    console.log('variableValues', `:root {\n${variableValues.join('\n')}\n}`);
+    console.log('html', canvasHtml);
+    console.log('css', css);
+    this.setIsExporting(false);
   }
 
   replaceNavigationLinks(el: HTMLElement): void {
@@ -72,12 +86,62 @@ export class ExportWebsiteService {
     });
   }
 
-  removeAndReplaceElement(rootEl: HTMLElement, tagNameToRemove: string): void {
-    const elements = rootEl.getElementsByTagName(tagNameToRemove);
+  removeAndReplaceElement(rootEl: HTMLElement, qualifiedName: string, isClass: boolean = false): void {
+    const selector = isClass ? `.${qualifiedName}` : qualifiedName;
+    const elements = rootEl.querySelectorAll(selector);
 
     [...elements].forEach(el => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       el?.replaceWith(...el.childNodes);
+    });
+  }
+
+  removeAttrOrClass(rootEl: HTMLElement, qualifiedName: string, isClass: boolean = false) {
+    const selector = isClass ? `.${qualifiedName}` : `[${qualifiedName}]`;
+
+    if (isClass) {
+      if (rootEl.classList.contains(qualifiedName)) {
+        rootEl.classList.remove(qualifiedName);
+      }
+    } else if (rootEl.hasAttribute(qualifiedName)) {
+      rootEl.removeAttribute(qualifiedName);
+    }
+
+    const elements = rootEl.querySelectorAll(selector);
+    elements.forEach((element: Element) => {
+      isClass ? element.classList.remove(qualifiedName) : element.removeAttribute(qualifiedName);
+    });
+  }
+
+  removeAttributesStartingWith(rootEl: HTMLElement, prefix: string) {
+    [...rootEl.attributes].forEach(attr => {
+      if (attr.name.startsWith(prefix)) {
+        rootEl.removeAttribute(attr.name);
+      }
+    });
+
+    const elements = rootEl.querySelectorAll('*'); // Selects all elements
+    elements.forEach((element: Element) => {
+      // Get all attribute names for the element
+      const attributeNames = [...element.attributes].map(attr => attr.name);
+
+      // Find attribute names that start with the prefix and remove them
+      attributeNames.forEach(name => {
+        if (name.startsWith(prefix)) {
+          element.removeAttribute(name);
+        }
+      });
+    });
+  }
+
+  removeClass(rootEl: HTMLElement, className: string) {
+    if (rootEl.classList.contains(className)) {
+      rootEl.classList.remove(className);
+    }
+
+    const elements = rootEl.querySelectorAll(`.${className}]`);
+    elements.forEach((element: Element) => {
+      element.classList.remove(className);
     });
   }
 
