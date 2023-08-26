@@ -242,7 +242,68 @@ window.addEventListener("load", () => {
 
 `;
 
-export const CSS_TEMPLATE = `.canvas {
+export const CSS_TEMPLATE = `*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  border: none;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+article ol,
+article ul {
+  list-style-position: inside;
+}
+
+a {
+  text-underline-position: under;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+label,
+button,
+select,
+summary,
+[type='radio'],
+[type='submit'],
+[type='checkbox'] {
+  cursor: pointer;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  font-family: var(--primary-font-family), var(--alternative-font-family);
+}
+
+html * {
+  font-size: 1.6rem;
+  font-family: inherit;
+}
+
+.canvas {
   height: 100%;
   display: flex;
   flex-direction: column;

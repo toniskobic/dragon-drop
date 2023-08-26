@@ -38,6 +38,8 @@ $breakpoint-mobile: var(--breakpoint-mobile);
       height: 100%;
       align-items: center;
       margin: 0;
+      padding: 0;
+      list-style: none;
 
       li {
         display: flex;
@@ -50,6 +52,10 @@ $breakpoint-mobile: var(--breakpoint-mobile);
 
         &:hover {
           filter: invert(0.5);
+        }
+
+        a.nav-links {
+          text-decoration: none;
         }
       }
     }
@@ -100,6 +106,8 @@ $breakpoint-mobile: var(--breakpoint-mobile);
       width: 100%;
       align-items: center;
       margin: 0;
+      padding: 0;
+      list-style: none;
 
       li {
         display: flex;
@@ -118,6 +126,7 @@ $breakpoint-mobile: var(--breakpoint-mobile);
           width: 100%;
           text-align: center;
           padding: 10px 0;
+          text-decoration: none;
         }
       }
     }
