@@ -6,7 +6,7 @@
       (click)="isMenuOpened = !isMenuOpened">
       <svg
         class="menu-button"
-        [style.fill]="onHover ? backgroundColor : color"
+        [style.fill]="color"
         xmlns="http://www.w3.org/2000/svg"
         height="48"
         viewBox="0 -960 960 960"
@@ -15,20 +15,20 @@
       </svg>
     </div>
     <div *ngIf="logoSrc" class="logo-wrapper">
-      <img id="logo" class="logo" [src]="logoSrc" />
+      <img class="logo" [src]="logoSrc" />
     </div>
     <ul
       class="nav-links-container"
       *ngIf="(currentViewport$ | async) === Viewport.Desktop && (isMobile$ | async) !== true">
       <li *ngFor="let page of pages$ | async">
-        <a [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
+        <a [style.color]="color" [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
       </li>
     </ul>
   </nav>
   <nav
     [class.nav-mobile-hidden]="isMenuOpened !== true"
     [class.viewport-mobile]="(isExporting$ | async) !== true && (currentViewport$ | async) === Viewport.Mobile"
-    [class.sidebar-opened]="(sidebarOpened$ | async) === true"
+    [class.sidebar-opened]="(isExporting$ | async) !== true && (sidebarOpened$ | async) === true"
     class="nav-mobile mat-elevation-z6"
     [style.top]="(isExporting$ | async) !== true ? toolbarHeight : ''"
     [style.background-color]="backgroundColor"
@@ -49,7 +49,7 @@
     </div>
     <ul>
       <li *ngFor="let page of pages$ | async">
-        <a [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
+        <a [style.color]="color" [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
       </li>
     </ul>
   </nav>

@@ -2,9 +2,12 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
+import { saveAs } from 'file-saver';
+import * as JSZip from 'jszip';
+import { firstValueFrom, Subject, Subscription, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import {
@@ -12,14 +15,27 @@ import {
   ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV,
   ATTRIBUTES_TO_REMOVE,
   CLASSES_TO_REMOVE,
+  COLUMNS_NUMBER,
+  CSS_MOBILE_TEMPLATE,
+  CSS_TEMPLATE,
   ELEMENTS_TO_REMOVE_BY_CLASS,
+  GRIDSTER_BREAKPOINT,
+  HTML_TEMPLATE,
+  JAVASCRIPT_TEMPLATE,
+  MOBILE_BREAKPOINT,
   REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS,
   REMOVE_AND_REPLACE_ELEMENTS_BY_TAG,
+  ROWS_NUMBER_BREAKPOINT,
+  ROWS_NUMBER_LOWER,
+  ROWS_NUMBER_UPPER,
 } from '../constants/constants';
+import { Page } from '../models/page.model';
 import { Viewport } from '../models/viewport.enum';
 import { AppState } from '../state/app.reducer';
+import { DesignCanvasPageActions } from '../state/design-canvas/design-canvas.actions';
 import { selectPages } from '../state/design-canvas/design-canvas.reducer';
 import { EditorActions } from '../state/editor/editor.actions';
+import { selectFavicon, selectLogo, selectWebsiteTitle } from '../state/global-settings/global-settings.reducer';
 import { UtilsService } from './utils.service';
 
 @Injectable({
@@ -27,29 +43,130 @@ import { UtilsService } from './utils.service';
 })
 export class ExportWebsiteService {
   pagesNames: Map<string, string> = new Map<string, string>();
+  pages: Page[] = [];
   pagesExported = 0;
+  websiteTitle = '';
+  cssRules: Set<string> = new Set<string>();
+  cssVariables: { [key: string]: string } = {};
+  favicon?: File | null = null;
+  logo?: File | null = null;
+  zip?: JSZip | null = null;
+  pagesFolder?: JSZip | null = null;
+  publicFolder?: JSZip | null = null;
+  cssFolder?: JSZip | null = null;
+  jsFolder?: JSZip | null = null;
+  assetsFolder?: JSZip | null = null;
 
   private triggerChangeDetectSubject$ = new Subject<void>();
   triggerChangeDetect$ = this.triggerChangeDetectSubject$.asObservable();
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private store: Store<AppState>,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private http: HttpClient
   ) {}
 
-  exportWebsite() {
+  initWebsiteExport() {
+    this.subscriptions.push(
+      this.store
+        .select(selectPages)
+        .pipe(take(1))
+        .subscribe(pages => {
+          this.pages = pages;
+          pages.forEach((page, index) => {
+            const fileName = index === 0 ? 'index' : page.title.toLocaleLowerCase().replace(' ', '-');
+            return this.pagesNames.set(page.title, fileName);
+          });
+        })
+    );
+
+    this.subscriptions.push(
+      this.store
+        .select(selectFavicon)
+        .pipe(take(1))
+        .subscribe(favicon => {
+          this.favicon = favicon;
+        })
+    );
+
+    this.subscriptions.push(
+      this.store
+        .select(selectLogo)
+        .pipe(take(1))
+        .subscribe(logo => {
+          this.logo = logo;
+        })
+    );
+
+    this.subscriptions.push(
+      this.store
+        .select(selectWebsiteTitle)
+        .pipe(take(1))
+        .subscribe(title => {
+          this.websiteTitle = title;
+        })
+    );
+
+    if (!this.pages.length) return;
+
+    this.zip = new JSZip();
+    this.pagesFolder = this.zip.folder('pages');
+    this.publicFolder = this.zip.folder('public');
+    this.cssFolder = this.publicFolder?.folder('css');
+    this.jsFolder = this.publicFolder?.folder('javascript');
+    this.assetsFolder = this.publicFolder?.folder('assets');
+
+    this.setCurrentPage(this.pages[this.pagesExported].id);
     this.setIsExporting(true);
     this.setViewportToDesktop();
+    this.closeSidebar();
     this.triggerChangeDetectSubject$.next();
+  }
 
-    this.store.select(selectPages).subscribe(pages => {
-      pages.forEach((page, index) => {
-        const fileName = index === 0 ? 'index' : page.title.toLocaleLowerCase().replace(' ', '-');
-        return this.pagesNames.set(page.title, fileName);
-      });
-    });
+  async continueExport() {
+    this.exportPage();
+    this.pagesExported++;
 
+    if (this.pagesExported < this.pages.length) {
+      this.setCurrentPage(this.pages[this.pagesExported].id);
+      this.triggerChangeDetectSubject$.next();
+      return;
+    }
+
+    this.exportCss();
+    this.exportJs();
+    await this.exportAssets();
+    await this.exportFolder();
+
+    this.resetToDefault();
+    this.closeSidebar();
+    this.setIsExporting(false);
+  }
+
+  private resetToDefault() {
+    this.pagesNames = new Map<string, string>();
+    this.pages = [];
+    this.pagesExported = 0;
+    this.websiteTitle = '';
+    this.cssRules = new Set<string>();
+    this.cssVariables = {};
+    this.favicon = null;
+    this.logo = null;
+    this.zip = null;
+    this.pagesFolder = null;
+    this.publicFolder = null;
+    this.cssFolder = null;
+    this.jsFolder = null;
+    this.assetsFolder = null;
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions = [];
+  }
+
+  private exportPage() {
     const canvas = (document.getElementById('canvas') as HTMLElement).cloneNode(true) as HTMLElement;
+
     REMOVE_AND_REPLACE_ELEMENTS_BY_TAG.forEach(tagName => this.removeAndReplaceElement(canvas, tagName));
     REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS.forEach(className => this.removeAndReplaceElement(canvas, className, true));
     ELEMENTS_TO_REMOVE_BY_CLASS.forEach(className => this.removeElement(canvas, className));
@@ -62,17 +179,75 @@ export class ExportWebsiteService {
     }
 
     this.replaceNavigationLinks(canvas);
+    this.insertLogoSrc(canvas);
 
     const { rules, variables } = this.traverseAndCollectCssRulesAndVars(canvas);
     const variableValues = this.getCssVariableValues(document.documentElement, variables);
 
-    const canvasHtml = this.removeHtmlComments(canvas.outerHTML);
-    const css = [...rules].join('\n\n');
+    rules.forEach(rule => this.cssRules.add(rule));
+    this.cssVariables = { ...this.cssVariables, ...variableValues };
 
-    console.log('variableValues', `:root {\n${variableValues.join('\n')}\n}`);
-    console.log('html', canvasHtml);
-    console.log('css', css);
-    this.setIsExporting(false);
+    const canvasHtml = this.removeHtmlComments(canvas.outerHTML);
+    let html = HTML_TEMPLATE;
+    html = this.utilsService.formatString(html, {
+      title: `${this.pages[this.pagesExported].title} | ${this.websiteTitle}`,
+      description: this.pages[this.pagesExported].title,
+      content: canvasHtml,
+      fonts: this.getFontFamilyStyles(),
+    });
+
+    this.pagesFolder?.file(`${this.pagesNames.get(this.pages[this.pagesExported].title)}.html`, html);
+  }
+
+  private exportCss() {
+    const cssVariables: string[] = [];
+    Object.entries(this.cssVariables).forEach(([key, value]) => {
+      cssVariables.push(`${key}: ${value};`);
+    });
+    let css = `:root {\n${cssVariables.join('\n')}\n}\n`;
+    css += `\n${CSS_TEMPLATE}\n\n`;
+    css += [...this.cssRules].join('\n\n');
+    css += `\n\n${CSS_MOBILE_TEMPLATE}\n`;
+
+    this.cssFolder?.file('styles.css', css);
+  }
+
+  private exportJs() {
+    let js = JAVASCRIPT_TEMPLATE;
+    js = this.utilsService.formatString(js, {
+      colNo: COLUMNS_NUMBER.toString(),
+      rowsNoUpper: ROWS_NUMBER_UPPER.toString(),
+      rowsNoLower: ROWS_NUMBER_LOWER.toString(),
+      gridsterBreakpoint: GRIDSTER_BREAKPOINT.toString(),
+      mobileBreakpoint: MOBILE_BREAKPOINT.toString(),
+      rowsNumberBreakpoint: ROWS_NUMBER_BREAKPOINT.toString(),
+    });
+
+    this.jsFolder?.file('index.js', js);
+  }
+
+  private async exportAssets() {
+    if (this.favicon) {
+      this.assetsFolder?.file('favicon.ico', this.favicon);
+    } else {
+      const faviconBlob = await firstValueFrom(this.http.get('assets/icons/favicon.ico', { responseType: 'blob' }));
+      this.assetsFolder?.file('favicon.ico', faviconBlob);
+    }
+
+    if (this.logo) {
+      const lastIndex = this.logo.name.lastIndexOf('.');
+      const fileExtension = lastIndex !== -1 ? this.logo.name.substring(lastIndex + 1) : '';
+      this.assetsFolder?.file(`logo.${fileExtension}`, this.logo);
+    }
+  }
+
+  private async exportFolder() {
+    const zipFolder = await this.zip?.generateAsync({ type: 'blob' });
+    if (zipFolder)
+      saveAs(
+        zipFolder,
+        `${this.websiteTitle ? this.websiteTitle.toLocaleLowerCase().replace(' ', '-') : 'website'}.zip`
+      );
   }
 
   private replaceNavigationLinks(el: HTMLElement): void {
@@ -80,8 +255,21 @@ export class ExportWebsiteService {
 
     navLink.forEach(link => {
       const href = this.pagesNames.get(link.innerText);
-      link.href = `/${href}.html`;
+      link.href = `${href}.html`;
     });
+  }
+
+  private insertLogoSrc(el: HTMLElement): void {
+    if (this.logo) {
+      const logos = [...(el.querySelectorAll('.logo-wrapper .logo') as unknown as HTMLImageElement[])];
+
+      logos.forEach(logo => {
+        const lastIndex = this.logo?.name.lastIndexOf('.');
+        const fileExtension = lastIndex && lastIndex !== -1 ? this.logo?.name.substring(lastIndex + 1) : '';
+        const src = `../public/assets/logo.${fileExtension}`;
+        logo.src = src;
+      });
+    }
   }
 
   private removeAndReplaceElement(rootEl: HTMLElement, qualifiedName: string, isClass: boolean = false): void {
@@ -186,15 +374,14 @@ export class ExportWebsiteService {
       variables: cssVariables,
     };
   }
-
-  private getCssVariableValues(el: HTMLElement, variables: Set<string>): string[] {
+  private getCssVariableValues(el: HTMLElement, variables: Set<string>): { [key: string]: string } {
     const computedStyles = window.getComputedStyle(el);
-    const variableValues: string[] = [];
+    const variableValues: { [key: string]: string } = {};
 
     variables.forEach(variableName => {
       const value = computedStyles.getPropertyValue(variableName);
       if (value) {
-        variableValues.push(`${variableName}: ${value};`);
+        variableValues[variableName] = value.trim(); // Adding trim() to remove any extra whitespace
       }
     });
 
@@ -259,5 +446,27 @@ export class ExportWebsiteService {
 
   private setViewportToDesktop() {
     this.store.dispatch(EditorActions.setViewport({ viewport: Viewport.Desktop }));
+  }
+
+  private closeSidebar() {
+    this.store.dispatch(EditorActions.setSidebarOpened({ opened: false }));
+  }
+
+  private setCurrentPage(pageId: string) {
+    this.store.dispatch(DesignCanvasPageActions.setCurrentPage({ pageId }));
+  }
+
+  private getFontFamilyStyles() {
+    let html = '';
+    let link = document.getElementById(`primary-font`) as HTMLLinkElement | null;
+    if (link) {
+      html += link.outerHTML;
+      html += '\n';
+    }
+    link = document.getElementById(`secondary-font`) as HTMLLinkElement | null;
+    if (link) {
+      html += link.outerHTML;
+    }
+    return html;
   }
 }

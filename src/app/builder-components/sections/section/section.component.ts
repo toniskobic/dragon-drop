@@ -9,16 +9,20 @@ import {
   GridsterConfig,
   GridsterItem,
   GridsterItemComponent,
-  GridsterItemComponentInterface,
   GridType,
 } from 'angular-gridster2';
 import { ResizableModule, ResizeEvent } from 'angular-resizable-element';
 import { cloneDeep } from 'lodash-es';
 import { map, Subscription } from 'rxjs';
 import { RichTextEditorComponent } from 'src/app/components/rich-text-editor/rich-text-editor.component';
-import { GRIDSTER_BREAKPOINT } from 'src/app/constants/constants';
+import {
+  COLUMNS_NUMBER,
+  GRIDSTER_BREAKPOINT,
+  ROWS_NUMBER_BREAKPOINT,
+  ROWS_NUMBER_LOWER,
+  ROWS_NUMBER_UPPER,
+} from 'src/app/constants/constants';
 import { ExcludeFromExportDirective } from 'src/app/directives/exclude-from-export.directive';
-import { dragStop } from 'src/app/functions/item-component-resize-drag-stop.function';
 import { DynamicComponentType } from 'src/app/models/dynamic-component.model';
 import { FontFamily } from 'src/app/models/font-family.enum';
 import { ThemeColor } from 'src/app/models/theme-color.enum';
@@ -69,11 +73,10 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
     itemChangeCallback: this.itemChange.bind(this),
     itemResizeCallback: this.itemResize.bind(this),
     itemValidateCallback: this.itemValidate.bind(this),
-    itemInitCallback: this.itemInit.bind(this),
-    minRows: 4,
-    maxRows: 4,
-    minCols: 10,
-    maxCols: 10,
+    minRows: ROWS_NUMBER_LOWER,
+    maxRows: ROWS_NUMBER_LOWER,
+    minCols: COLUMNS_NUMBER,
+    maxCols: COLUMNS_NUMBER,
     outerMargin: false,
     outerMarginBottom: 0,
     outerMarginLeft: 0,
@@ -141,12 +144,6 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
     }
   }
 
-  itemInit(item: GridsterItem, itemComponent: GridsterItemComponentInterface) {
-    itemComponent.resize.dragStop = (e: MouseEvent) => {
-      dragStop.bind(itemComponent.resize)(e);
-    };
-  }
-
   itemChange(item: GridsterItem): void {
     this.store.dispatch(
       DesignCanvasElementActions.updateElementPosition({
@@ -176,12 +173,12 @@ export class SectionComponent implements DynamicComponentType, OnChanges, OnInit
   }
 
   private adjustMaxRows(sectionMinHeight: number): void {
-    if (sectionMinHeight > 400) {
-      this.gridOptions.maxRows = 10;
-      this.gridOptions.minRows = 10;
+    if (sectionMinHeight > ROWS_NUMBER_BREAKPOINT) {
+      this.gridOptions.maxRows = ROWS_NUMBER_UPPER;
+      this.gridOptions.minRows = ROWS_NUMBER_UPPER;
     } else {
-      this.gridOptions.maxRows = 4;
-      this.gridOptions.minRows = 4;
+      this.gridOptions.maxRows = ROWS_NUMBER_LOWER;
+      this.gridOptions.minRows = ROWS_NUMBER_LOWER;
     }
   }
 }

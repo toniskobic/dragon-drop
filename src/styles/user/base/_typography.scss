@@ -24,7 +24,7 @@ div.cdk-drag-preview * {
   font-weight: 700;
   line-height: 3rem;
   letter-spacing: normal;
-  margin: 0 0 16px;
+  margin-block: calc(0.6em * 1.5);
 }
 
 .canvas h3 {
@@ -32,13 +32,14 @@ div.cdk-drag-preview * {
   font-weight: 500;
   line-height: 1.6;
   letter-spacing: 0.0125em;
-  margin: 0 0 16px;
+  margin-block: calc(0.6em * 1.5);
 }
 
 .canvas h4 {
   font-size: 1.8rem;
   font-weight: 500;
   line-height: 1.4;
+  margin-block: calc(0.6em * 1.5);
 }
 
 .canvas li {

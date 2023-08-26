@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li *ngFor="let page of pages$ | async">
-        <a [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
+        <a [style.color]="color" [style.font-family]="fontFamily" class="nav-links">{{ page.title }}</a>
       </li>
     </ul>
   </nav>

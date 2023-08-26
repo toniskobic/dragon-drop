@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,7 +38,7 @@ import { SidenavWrapperComponent } from '../../sidenavs/sidenav-wrapper/sidenav-
 export class EditorComponent implements CanDeactivateComponent {
   toolbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--toolbar-height'), 10);
 
-  isSaved = true;
+  // isSaved = true;s
   opened$ = this.store.select(selectSidebarOpened);
 
   constructor(
@@ -47,14 +47,7 @@ export class EditorComponent implements CanDeactivateComponent {
   ) {}
 
   canDeactivate(): boolean {
-    return this.isSaved || confirm(this.translate.instant('EDITOR.ALERTS.UNSAVED_CHANGES') as string);
-  }
-
-  @HostListener('window:beforeunload', ['$event'])
-  confirmExit(event: BeforeUnloadEvent) {
-    if (this.isSaved) return true;
-
-    event.preventDefault();
-    return (event.returnValue = '');
+    // return this.isSaved || confirm(this.translate.instant('EDITOR.ALERTS.UNSAVED_CHANGES') as string);
+    return true;
   }
 }

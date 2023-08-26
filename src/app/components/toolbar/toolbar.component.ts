@@ -12,7 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { Viewport } from 'src/app/models/viewport.enum';
 import { ExportWebsiteService } from 'src/app/services/export-website.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -52,9 +52,11 @@ export default class ToolbarComponent {
 
   currentViewport$ = this.store.select(selectViewport);
   currentPageId$ = this.store.select(selectCurrentPageId);
-  pages$ = this.store.select(selectPages);
+  pages$ = this.store.select(selectPages).pipe(tap(pages => (this.pagesCount = pages.length)));
 
   isMobile$ = this.breakpointObserver.observe(Breakpoints.XSmall).pipe(map(result => result.matches));
+
+  pagesCount = 0;
 
   constructor(
     private store: Store<AppState>,
@@ -88,7 +90,7 @@ export default class ToolbarComponent {
   }
 
   exportWebsite() {
-    this.exportWebsiteService.exportWebsite();
+    this.exportWebsiteService.initWebsiteExport();
   }
 
   undo() {

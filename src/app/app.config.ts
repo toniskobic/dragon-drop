@@ -8,6 +8,7 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from 'src/environments/environment';
 
 import { CustomTitleStrategy, routes } from './app.routes';
 import { reducer } from './state/app.reducer';
@@ -54,7 +55,10 @@ export const appConfig: ApplicationConfig = {
         },
       }
     ),
-    provideStoreDevtools(),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     provideEffects([EditorEffects, DesignCanvasEffects, ThemeSettingsEffects]),
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
   ],

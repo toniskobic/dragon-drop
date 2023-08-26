@@ -74,6 +74,9 @@ export class DesignCanvasComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.exportWebsiteService.triggerChangeDetect$.subscribe(() => {
         this.cdr.detectChanges();
+        setTimeout(() => {
+          void this.exportWebsiteService.continueExport();
+        }, 0);
       })
     );
   }

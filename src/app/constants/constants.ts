@@ -1,5 +1,15 @@
 export const GRIDSTER_BREAKPOINT = 641;
 
+export const MOBILE_BREAKPOINT = 640;
+
+export const ROWS_NUMBER_BREAKPOINT = 400;
+
+export const COLUMNS_NUMBER = 10;
+
+export const ROWS_NUMBER_LOWER = 4;
+
+export const ROWS_NUMBER_UPPER = 10;
+
 export const MIN_SECTION_DIMENSIONS_PX = 60;
 
 export const ALTERNATIVE_FONT_FAMILIES = ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'];
@@ -78,21 +88,25 @@ export const HTML_TEMPLATE = `<!DOCTYPE html>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../public/css/styles.css">
+  {fonts}
 
 </head>
 
 <body>
   {content}
-  <script src="index.js" defer></script>
+  <script src="../public/javascript/index.js" defer></script>
 </body>
 
 </html>`;
 
-export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
+export const JAVASCRIPT_TEMPLATE = `class ResponsiveUIManager {
   colNo = 10;
   rowsNoLower = 4;
   rowsNoUpper = 10;
+  gridsterBreakpoint = 641;
+  mobileBreakpoint = 640;
+  rowsNumberBreakpoint = 400;
   sections = [];
 
   constructor() {
@@ -110,11 +124,13 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
         const contentWidth = section.clientWidth;
         const colWidth = contentWidth / this.colNo;
         const rowsNumber =
-          section.clientHeight > 400 ? this.rowsNoUpper : this.rowsNoLower;
+          section.clientHeight > this.rowsNumberBreakpoint
+            ? this.rowsNoUpper
+            : this.rowsNoLower;
         const rowsHeight = section.clientHeight / rowsNumber;
         const items = [...section.getElementsByClassName("section-element")];
 
-        if (window.innerWidth < 641) {
+        if (window.innerWidth < this.gridsterBreakpoint) {
           this.positionMobileSectionElements(items, contentWidth);
         } else {
           this.positionDesktopSectionElements(items, rowsHeight, colWidth);
@@ -135,7 +151,7 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
         el.contentWidth = el.domEl.clientWidth;
         el.colWidth = el.contentWidth / this.colNo;
 
-        if (window.innerWidth < 641) {
+        if (window.innerWidth < this.gridsterBreakpoint) {
           this.positionMobileSectionElements(el.items, el.contentWidth);
         } else {
           this.positionDesktopSectionElements(
@@ -149,7 +165,7 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
   }
 
   mobileNavManagement() {
-    if (window.innerWidth > 640) {
+    if (window.innerWidth > this.mobileBreakpoint) {
       const openNavs = [
         ...document.querySelectorAll(".nav-mobile:not(.nav-mobile-hidden)"),
       ];
@@ -160,7 +176,7 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
   }
 
   menuButtonManagement() {
-    if (window.innerWidth > 640) {
+    if (window.innerWidth > this.mobileBreakpoint) {
       const menuButtons = document.querySelectorAll(
         "nav.nav .menu-button-wrapper:not(.hidden)"
       );
@@ -199,7 +215,7 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
     const navLinksContainers = [
       ...document.querySelectorAll(".nav-links-container"),
     ];
-    if (window.innerWidth < 640) {
+    if (window.innerWidth < this.mobileBreakpoint) {
       navLinksContainers.forEach((container) => {
         container.classList.add("hidden");
       });
@@ -214,7 +230,7 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
   positionDesktopSectionElements(items, rowsHeight, colWidth) {
     items.forEach((item) => {
       item.classList.remove("section-element-mobile");
-      item.style.height = '';
+      item.style.height = "";
       item.style.top = \`\${item.dataset.y * rowsHeight}px\`;
       item.style.left = \`\${item.dataset.x * colWidth}px\`;
       item.style.width = \`\${item.dataset.cols * colWidth}px\`;
@@ -224,9 +240,9 @@ export const EXPORTED_JS_TEMPLATE = `class ResponsiveUIManager {
   positionMobileSectionElements(items, contentWidth) {
     items.forEach((item) => {
       item.classList.add("section-element-mobile");
-      item.style.top = '';
-      item.style.left = '';
-      item.style.width = '';
+      item.style.top = "";
+      item.style.left = "";
+      item.style.width = "";
       item.style.height = \`\${
         (item.dataset.rows / item.dataset.cols) * contentWidth
       }px\`;
@@ -311,7 +327,38 @@ html * {
   flex-direction: column;
 }
 
-@media only screen and (max-width: 640px) {
+.rectangle:not(:last-child) {
+  flex-grow: 0;
+}
+.rectangle:last-child {
+  flex-grow: 1;
+}
+.rectangle:last-child>* {
+  height: 100%;
+}
+
+.header nav.nav ul li:hover {
+  filter: invert(0.5);
+}
+
+.header nav.nav-mobile ul li:hover {
+  filter: invert(0.5);
+}
+
+.header nav.nav .menu-button-wrapper:hover {
+  filter: invert(0.5);
+}
+
+.header nav.nav-mobile .menu-button-wrapper:hover {
+  filter: invert(0.5);
+}
+
+.footer nav ul li:hover {
+  filter: invert(0.5);
+}
+`;
+
+export const CSS_MOBILE_TEMPLATE = `@media only screen and (max-width: 640px) {
   .container {
     height: auto;
   }
@@ -333,40 +380,4 @@ html * {
 .section-element-mobile {
   position: relative;
   width: 100%;
-}
-
-.rectangle:not(:last-child) {
-  flex-grow: 0;
-}
-.rectangle:last-child {
-  flex-grow: 1;
-}
-.rectangle:last-child>* {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  height: 100vh;
-}
-
-.header nav.nav-mobile ul li {
-  filter: invert(0.5);
-}
-
-.header nav.nav-mobile .menu-button-wrapper:hover {
-  filter: invert(0.5);
-}
-
-.header nav.nav .menu-button-wrapper:hover {
-  filter: invert(0.5);
-}
-
-.header nav.nav-mobile ul li {
-  filter: invert(0.5);
-}
-
-.footer nav ul li:hover {
-  filter: invert(0.5);
-}
-`;
+}`;

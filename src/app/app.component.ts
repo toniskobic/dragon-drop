@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, HostListener, ViewContainerRef } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,5 +22,13 @@ export class AppComponent {
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  confirmExit(event: BeforeUnloadEvent) {
+    // if (this.isSaved) return true;
+
+    event.preventDefault();
+    return (event.returnValue = '');
   }
 }

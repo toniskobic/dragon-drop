@@ -55,6 +55,7 @@ $breakpoint-mobile: var(--breakpoint-mobile);
         }
 
         a.nav-links {
+          color: rgb(0, 0, 0);
           text-decoration: none;
         }
       }
@@ -127,6 +128,7 @@ $breakpoint-mobile: var(--breakpoint-mobile);
           text-align: center;
           padding: 10px 0;
           text-decoration: none;
+          color: rgb(0, 0, 0);
         }
       }
     }

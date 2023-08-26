@@ -101,7 +101,7 @@ export const designCanvasOnActions = [
   produceOn(DesignCanvasPageActions.deletePage, (state: DragonDropState, { pageId }) => {
     const pages = state.pages.filter(page => page.id !== pageId);
     state.pages = pages;
-    state.currentPageId = state.currentPageId === pageId ? pages[0].id : state.currentPageId;
+    state.currentPageId = state.currentPageId === pageId ? (pages.length ? pages[0]?.id : '') : state.currentPageId;
   }),
   produceOn(DesignCanvasSectionActions.selectCurrentPageSection, (state: DragonDropState, { sectionId }) => {
     const page = currentPage(state);

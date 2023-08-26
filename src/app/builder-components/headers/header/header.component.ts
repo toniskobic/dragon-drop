@@ -41,8 +41,6 @@ export class HeaderComponent implements DynamicComponentType, OnInit, OnDestroy 
   logo$ = this.store.select(selectLogo);
 
   isMenuOpened = false;
-  onHover = false;
-  onActive = false;
   logoSrc: string | null = null;
   subscriptions: Subscription[] = [];
 
