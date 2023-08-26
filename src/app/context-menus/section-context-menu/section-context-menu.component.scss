@@ -10,6 +10,17 @@ mat-list.list.context-menu {
       width: 100%;
     }
 
+    .input-form-field input::-webkit-outer-spin-button,
+    .input-form-field input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .input-form-field input[type='number'] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
     mat-icon.item-icon {
       margin-left: 16px;
       margin-right: 8px;

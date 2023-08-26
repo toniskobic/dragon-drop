@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, ViewChild } from '@angular/core';
 import { CKEditorComponent, CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { Store } from '@ngrx/store';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
@@ -18,7 +18,7 @@ import { ContextMenuWrapperComponent } from '../../context-menus/context-menu-wr
   styleUrls: ['./rich-text-editor.component.scss'],
   imports: [CommonModule, CKEditorModule, ContextMenuWrapperComponent, ExcludeFromExportDirective],
 })
-export class RichTextEditorComponent {
+export class RichTextEditorComponent implements OnDestroy {
   Editor = Editor;
 
   @ViewChild('editor') editor!: CKEditorComponent<Editor>;
@@ -69,29 +69,16 @@ export class RichTextEditorComponent {
   };
 
   changed = false;
-  classWatcher: ElementClassObserver | null = null;
+  editorClassWatcher: ElementClassObserver | null = null;
+  sectionResizeClassWatcher: ElementClassObserver | null = null;
+  elementDragClassWatcher: ElementClassObserver | null = null;
+  elementResizeClassWatcher: ElementClassObserver | null = null;
 
   constructor(private store: Store<AppState>) {}
 
   onChange() {
     this.changed = true;
-
-    if (!this.classWatcher) {
-      const element = document.getElementsByClassName(
-        'ck ck-balloon-panel ck-balloon-panel_toolbar_west ck-toolbar-container'
-      )[0] as HTMLDivElement;
-      this.classWatcher = new ElementClassObserver(element, 'ck-balloon-panel_visible', undefined, () => {
-        if (this.changed) {
-          this.store.dispatch(
-            DesignCanvasElementActions.updateElement({
-              data: this.editor.editorInstance?.getData() as string,
-              id: this.id,
-            })
-          );
-          this.changed = false;
-        }
-      });
-    }
+    this.initClassWatchers();
   }
 
   onMouseDown(event: MouseEvent) {
@@ -107,5 +94,70 @@ export class RichTextEditorComponent {
     this.contextMenuComponent.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuComponent.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenuComponent.matMenuTrigger.openMenu();
+  }
+
+  private initClassWatchers() {
+    if (!this.editorClassWatcher) {
+      const element = document.getElementsByClassName(
+        'ck ck-balloon-panel ck-balloon-panel_toolbar_west ck-toolbar-container'
+      )[0] as HTMLDivElement;
+      this.editorClassWatcher = new ElementClassObserver(
+        element,
+        'ck-balloon-panel_visible',
+        undefined,
+        this.updateElement
+      );
+    }
+
+    if (!this.sectionResizeClassWatcher) {
+      const resizableSection = this.editor.editorInstance?.sourceElement?.closest('div.cdk-drag.rectangle');
+      if (resizableSection) {
+        this.sectionResizeClassWatcher = new ElementClassObserver(
+          resizableSection,
+          'resize-active',
+          this.updateElement
+        );
+      }
+    }
+
+    if (!this.elementDragClassWatcher) {
+      const draggableEl = this.editor.editorInstance?.sourceElement?.closest('gridster-item');
+      if (draggableEl) {
+        this.elementDragClassWatcher = new ElementClassObserver(
+          draggableEl,
+          'gridster-item-moving',
+          this.updateElement
+        );
+      }
+    }
+    if (!this.elementResizeClassWatcher) {
+      const resizableEl = this.editor.editorInstance?.sourceElement?.closest('gridster-item');
+      if (resizableEl) {
+        this.elementResizeClassWatcher = new ElementClassObserver(
+          resizableEl,
+          'gridster-item-resizing',
+          this.updateElement
+        );
+      }
+    }
+  }
+
+  private updateElement = () => {
+    if (this.changed) {
+      this.store.dispatch(
+        DesignCanvasElementActions.updateElement({
+          data: this.editor.editorInstance?.getData() as string,
+          id: this.id,
+        })
+      );
+      this.changed = false;
+    }
+  };
+
+  ngOnDestroy() {
+    if (this.editorClassWatcher) this.editorClassWatcher.disconnect();
+    if (this.sectionResizeClassWatcher) this.sectionResizeClassWatcher.disconnect();
+    if (this.elementDragClassWatcher) this.elementDragClassWatcher.disconnect();
+    if (this.elementResizeClassWatcher) this.elementResizeClassWatcher.disconnect();
   }
 }

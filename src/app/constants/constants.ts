@@ -36,6 +36,7 @@ export const ELEMENTS_TO_REMOVE_BY_CLASS = [
   'ck-widget__selection-handle',
   'ck-fake-selection-container',
   'ck-widget__type-around',
+  'ck-widget__resizer',
 ];
 
 export const ATTRIBUTES_TO_REMOVE = [
@@ -58,6 +59,7 @@ export const CLASSES_TO_REMOVE = [
   'ck-widget_selected',
   'ck-widget',
   'ck-table-resized',
+  'ck-widget_with-resizer',
 ];
 
 export const ATTRIBUTES_STARTING_WITH_TO_REMOVE = ['ng-reflect'];
@@ -309,31 +311,10 @@ html * {
   flex-direction: column;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 1px;
-}
-
 @media only screen and (max-width: 640px) {
   .container {
     height: auto;
   }
-}
-
-.container .content {
-  position: relative;
-  max-width: 992px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 90%;
-  height: 90%;
 }
 
 @media only screen and (max-width: 640px) {
