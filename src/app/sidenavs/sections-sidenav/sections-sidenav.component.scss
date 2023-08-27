@@ -2,11 +2,11 @@
   max-height: 250px;
   overflow: auto;
 
-  .grid-item:hover {
+  .grid-item-text:hover {
     cursor: grab;
   }
 
-  .grid-item:active {
+  .grid-item-text:active {
     cursor: grabbing;
   }
 }

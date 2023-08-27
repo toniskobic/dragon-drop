@@ -18,7 +18,7 @@
           (cdkDropListExited)="exited($event)"
           (cdkDropListEntered)="entered(sections.key)">
           <div
-            class="grid-item mat-elevation-z6 insertable-section"
+            class="grid-item-text mat-elevation-z6 insertable-section"
             *ngFor="let section of sections.value"
             matTooltip="{{ 'EDITOR.SIDENAVS.SECTIONS.TOOLTIPS.DRAG_SECTION' | translate }}"
             cdkDrag

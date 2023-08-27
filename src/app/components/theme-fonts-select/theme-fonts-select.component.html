@@ -1,0 +1,15 @@
+<div class="theme-fonts-select mat-component-density-s">
+  <mat-form-field
+    class="input-form-field"
+    *ngFor="let font of fonts$ | async | keyvalue: returnZero; trackBy: identify">
+    <mat-label>
+      {{ 'EDITOR.SIDENAVS.THEME_SETTINGS.PANELS.FONTS.LABELS.' + (font.key | uppercase) | translate }}:
+    </mat-label>
+    <input type="text" matInput [formControl]="formControls[font.key]" [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setFont($event, font.key)" class="select-panel">
+      <mat-option class="select-option" *ngFor="let option of filteredFonts$[font.key] | async" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

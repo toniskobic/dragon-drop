@@ -23,7 +23,7 @@ $white: var(--white);
 }
 
 gridster {
-  transition: background-color 0.3s ease-in-out;
+  background-color: inherit;;
 }
 
 gridster.display-grid {

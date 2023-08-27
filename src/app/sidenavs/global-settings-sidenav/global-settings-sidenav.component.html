@@ -2,56 +2,7 @@
   <mat-accordion multi="true">
     <mat-expansion-panel [expanded]="true" class="panel-box-shadow headless">
       <div class="panel-content-wrapper mat-component-density-s">
-        <mat-form-field class="input-form-field website-title padding-r-s">
-          <mat-label>{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.WEBSITE_TITLE' | translate }}:</mat-label>
-          <input matInput [formControl]="website.formControl" />
-          <button *ngIf="website.valueChanged" class="icon-button" mat-icon-button (click)="confirm(website)">
-            <mat-icon svgIcon="check"></mat-icon>
-          </button>
-          <button *ngIf="website.valueChanged" class="icon-button" mat-icon-button (click)="close(website)">
-            <mat-icon svgIcon="close"></mat-icon>
-          </button>
-        </mat-form-field>
-        <div class="file-upload">
-          <div class="file-upload-input">
-            <label class="file-upload-label">{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.FAVICON' | translate }}:</label>
-            <button mat-raised-button color="accent" (click)="faviconInput.click()">
-              {{ 'COMMON.BUTTONS.UPLOAD' | translate }}
-            </button>
-            <input #faviconInput id="file" hidden type="file" accept=".ico" (change)="onFileChange($event)" />
-          </div>
-          <div *ngIf="faviconSrc" class="upload-img">
-            <img class="upload-img-favicon" [src]="faviconSrc" />
-            <button
-              class="icon-button"
-              mat-icon-button
-              (click)="deleteFile()"
-              matTooltip="{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.TOOLTIPS.DELETE_FAVICON' | translate }}"
-              matTooltipPosition="right">
-              <mat-icon svgIcon="close"></mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="file-upload">
-          <div class="file-upload-input">
-            <label class="file-upload-label">{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.LOGO' | translate }}:</label>
-            <button mat-raised-button color="accent" (click)="logoInput.click()">
-              {{ 'COMMON.BUTTONS.UPLOAD' | translate }}
-            </button>
-            <input #logoInput id="file" hidden type="file" accept="image/*" (change)="onFileChange($event, true)" />
-          </div>
-          <div *ngIf="logoSrc" class="upload-img">
-            <img class="upload-img-logo" [src]="logoSrc" />
-            <button
-              class="icon-button"
-              mat-icon-button
-              (click)="deleteFile(true)"
-              matTooltip="{{ 'EDITOR.SIDENAVS.GLOBAL_SETTINGS.TOOLTIPS.DELETE_LOGO' | translate }}"
-              matTooltipPosition="right">
-              <mat-icon svgIcon="close"></mat-icon>
-            </button>
-          </div>
-        </div>
+        <drd-website-settings></drd-website-settings>
         <mat-form-field class="resize-handle-direction select-form-field mat-component-density-s">
           <mat-label title="{{ translations['EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.RESIZE_HANDLE_DIRECTION'] }}">
             {{ translations['EDITOR.SIDENAVS.GLOBAL_SETTINGS.LABELS.RESIZE_HANDLE_DIRECTION'] }}

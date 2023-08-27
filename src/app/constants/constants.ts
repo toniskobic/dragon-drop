@@ -36,7 +36,7 @@ export const REMOVE_AND_REPLACE_ELEMENTS_BY_TAG = [
   'gridster-preview',
 ];
 
-export const REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS = ['ck-content'];
+export const REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS = ['ck-content', 'section-element-wrapper'];
 
 export const ELEMENTS_TO_REMOVE_BY_CLASS = [
   'gridster-item-resizable-handler',

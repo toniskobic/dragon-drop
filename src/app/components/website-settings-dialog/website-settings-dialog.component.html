@@ -1,0 +1,22 @@
+<div class="dialog-container mat-app-background mat-typography">
+  <h2 mat-dialog-title class="mat-elevation-z6">Website Settings</h2>
+  <mat-dialog-content>
+    <div class="grid content-wrapper mat-elevation-z6">
+      <div>
+        <h3>Website</h3>
+        <drd-website-settings></drd-website-settings>
+      </div>
+      <div>
+        <h3>Colors</h3>
+        <drd-theme-colors-picker [colorPickerPosition]="'auto'" [height]="true"></drd-theme-colors-picker>
+      </div>
+      <div>
+        <h3>Fonts</h3>
+        <drd-theme-fonts-select></drd-theme-fonts-select>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions [align]="'end'">
+    <button color="accent" mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+  </mat-dialog-actions>
+</div>

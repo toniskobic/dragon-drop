@@ -1,7 +1,6 @@
 $rich-black-lighter: var(--rich-black-lighter);
 $rich-black-light-ripple: var(--rich-black-light-ripple);
 
-
 .accordion-wrapper .mat-accordion .mat-expansion-panel .panel-content-wrapper {
   gap: 20px;
 
@@ -11,40 +10,6 @@ $rich-black-light-ripple: var(--rich-black-light-ripple);
     input.mdc-text-field__input {
       padding-block: 5px;
       height: 100%;
-    }
-  }
-
-  .file-upload {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    gap: 5px;
-
-    .file-upload-input {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-
-      .file-upload-label {
-        cursor: default;
-      }
-    }
-
-    .upload-img {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-
-      &-favicon {
-        width: 24px;
-        height: 24px;
-      }
-
-      &-logo {
-        width: 150px;
-      }
     }
   }
 

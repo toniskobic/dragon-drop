@@ -13,6 +13,7 @@ export const initialEditorState: EditorState = {
   viewport: Viewport.Desktop,
   isExporting: false,
   resizeHandleDirection: ResizeHandleDirection.Normal,
+  firstLoad: true,
 };
 
 export const editorOnActions = [
@@ -28,6 +29,9 @@ export const editorOnActions = [
   produceOn(EditorActions.setResizeHandleDirection, (state: DragonDropState, { direction }) => {
     state.resizeHandleDirection = direction;
   }),
+  produceOn(EditorActions.setFirstLoad, (state: DragonDropState, { firstLoad }) => {
+    state.firstLoad = firstLoad;
+  }),
 ];
 
 export const selectSidebarOpened = createSelector(selectDragonDropState, state => state.sidebarOpened);
@@ -37,3 +41,5 @@ export const selectViewport = createSelector(selectDragonDropState, state => sta
 export const selectIsExporting = createSelector(selectDragonDropState, state => state.isExporting);
 
 export const selectResizeHandleDirection = createSelector(selectDragonDropState, state => state.resizeHandleDirection);
+
+export const selectFirstLoad = createSelector(selectDragonDropState, state => state.firstLoad);

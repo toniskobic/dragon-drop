@@ -6,4 +6,5 @@ export interface EditorState {
   viewport: Viewport;
   isExporting: boolean;
   resizeHandleDirection: ResizeHandleDirection;
+  firstLoad: boolean;
 }

@@ -9,5 +9,6 @@ export const EditorActions = createActionGroup({
     'Set Viewport': props<{ viewport: Viewport }>(),
     'Set Is Exporting': props<{ isExporting: boolean }>(),
     'Set Resize Handle Direction': props<{ direction: ResizeHandleDirection }>(),
+    'Set First Load': props<{ firstLoad: boolean }>(),
   },
 });
