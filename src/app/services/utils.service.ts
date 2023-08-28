@@ -42,4 +42,8 @@ export class UtilsService {
     a.length = j;
     return a;
   }
+
+  removeWhitespace(input: string): string {
+    return input.trim().replace(/\s+/g, ' ');
+  }
 }

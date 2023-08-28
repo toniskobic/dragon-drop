@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.reducer';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ThemeColorsPickerComponent } from '../theme-colors-picker/theme-colors-picker.component';
 import { ThemeFontsSelectComponent } from '../theme-fonts-select/theme-fonts-select.component';
@@ -21,11 +20,7 @@ import { WebsiteSettingsComponent } from '../website-settings/website-settings.c
     ThemeColorsPickerComponent,
     ThemeFontsSelectComponent,
     WebsiteSettingsComponent,
+    TranslateModule,
   ],
 })
-export class WebsiteSettingsDialogComponent {
-  constructor(
-    private store: Store<AppState>,
-    private dialogRef: MatDialogRef<WebsiteSettingsDialogComponent>
-  ) {}
-}
+export class WebsiteSettingsDialogComponent {}

@@ -149,5 +149,14 @@
         }
       }
     }
+  },
+  "WEBSITE_SETTINGS_DIALOG": {
+    "TITLE": "Website Settings",
+    "CONTENT": "Set your website settings here, you can change them later in the settings sidenav.",
+    "LABELS": {
+      "WEBSITE": "Website",
+      "COLORS": "Colors",
+      "FONTS": "Fonts"
+    }
   }
 }

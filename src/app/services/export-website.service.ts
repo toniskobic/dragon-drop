@@ -246,7 +246,11 @@ export class ExportWebsiteService {
     if (zipFolder)
       saveAs(
         zipFolder,
-        `${this.websiteTitle ? this.websiteTitle.toLocaleLowerCase().replace(' ', '-') : 'website'}.zip`
+        `${
+          this.websiteTitle
+            ? this.utilsService.removeWhitespace(this.websiteTitle.toLocaleLowerCase()).replace(' ', '-')
+            : 'website'
+        }.zip`
       );
   }
 
