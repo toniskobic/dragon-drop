@@ -3,7 +3,7 @@
 
 # Ignore environment files
 /src/environments/*.ts
-!/src/environments/environment.example.ts
+!/src/environments/environment.ts
 
 # Custom CKEditor 5 build
 /ckeditor5/build
