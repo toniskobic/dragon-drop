@@ -477,7 +477,8 @@ export class DefaultSidenavComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;mat-list class&#x3D;&quot;list&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">test
+&lt;mat-list class&#x3D;&quot;list&quot;&gt;
   &lt;mat-list-item
     *ngFor&#x3D;&quot;let item of listItems&quot;
     matRipple
@@ -523,7 +524,7 @@ export class DefaultSidenavComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-list class="list">  <mat-list-item    *ngFor="let item of listItems"    matRipple    [matRippleColor]="rippleColor"    class="list-item"    (click)="onClick(item)">    <mat-icon class="item-icon" matListItemIcon [svgIcon]="item.icon"></mat-icon>    <span class="item-label" matListItemTitle>{{ item.label | translate }}</span>  </mat-list-item></mat-list></div>'
+        var COMPONENT_TEMPLATE = '<div>test<mat-list class="list">  <mat-list-item    *ngFor="let item of listItems"    matRipple    [matRippleColor]="rippleColor"    class="list-item"    (click)="onClick(item)">    <mat-icon class="item-icon" matListItemIcon [svgIcon]="item.icon"></mat-icon>    <span class="item-label" matListItemTitle>{{ item.label | translate }}</span>  </mat-list-item></mat-list></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'drd-root'},{'name': 'ContextMenuWrapperComponent', 'selector': 'drd-context-menu-wrapper'},{'name': 'DefaultSidenavComponent', 'selector': 'drd-default-sidenav'},{'name': 'DesignCanvasComponent', 'selector': 'drd-design-canvas'},{'name': 'EditorComponent', 'selector': 'drd-editor'},{'name': 'ElementContextMenuComponent', 'selector': 'drd-element-context-menu'},{'name': 'FooterComponent', 'selector': 'drd-footer'},{'name': 'GlobalSettingsSidenavComponent', 'selector': ''},{'name': 'HeaderComponent', 'selector': 'drd-header'},{'name': 'HomeComponent', 'selector': 'drd-home'},{'name': 'NotFoundComponent', 'selector': 'drd-not-found'},{'name': 'PagesSidenavComponent', 'selector': 'drd-pages-sidenav'},{'name': 'ResizableDraggableComponent', 'selector': 'drd-resizable-draggable'},{'name': 'RichTextEditorComponent', 'selector': 'drd-rich-text-editor'},{'name': 'SectionComponent', 'selector': 'drd-section'},{'name': 'SectionContextMenuComponent', 'selector': 'drd-section-context-menu'},{'name': 'SectionsSidenavComponent', 'selector': 'drd-sections-sidenav'},{'name': 'SidenavWrapperComponent', 'selector': 'drd-sidenav-wrapper'},{'name': 'SpinnerComponent', 'selector': 'drd-spinner'},{'name': 'ThemeColorsPickerComponent', 'selector': 'drd-theme-colors-picker'},{'name': 'ThemeFontsSelectComponent', 'selector': 'drd-theme-fonts-select'},{'name': 'ThemeSettingsSidenavComponent', 'selector': 'drd-theme-settings-sidenav'},{'name': 'ToolbarComponent', 'selector': 'drd-toolbar'},{'name': 'WebsiteSettingsComponent', 'selector': 'drd-website-settings'},{'name': 'WebsiteSettingsDialogComponent', 'selector': 'drd-website-settings-dialog'}];
     var DIRECTIVES = [{'name': 'DragCursorDirective', 'selector': '[drdDragCursor]'},{'name': 'DynamicContentAreaDirective', 'selector': '[drdDynamicContentArea]'},{'name': 'ExcludeFromExportDirective', 'selector': '[drdExcludeFromExport]'}];
     var ACTUAL_COMPONENT = {'name': 'DefaultSidenavComponent'};
