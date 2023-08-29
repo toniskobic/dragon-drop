@@ -1,0 +1,3042 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>dragon-drop documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">dragon-drop documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ExportWebsiteService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/export-website.service.ts</code>
+        </p>
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#assetsFolder" >assetsFolder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#cssFolder" >cssFolder</a>
+                            </li>
+                            <li>
+                                <a href="#cssRules" >cssRules</a>
+                            </li>
+                            <li>
+                                <a href="#cssVariables" >cssVariables</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#favicon" >favicon</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#jsFolder" >jsFolder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#logo" >logo</a>
+                            </li>
+                            <li>
+                                <a href="#pages" >pages</a>
+                            </li>
+                            <li>
+                                <a href="#pagesExported" >pagesExported</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pagesFolder" >pagesFolder</a>
+                            </li>
+                            <li>
+                                <a href="#pagesNames" >pagesNames</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#publicFolder" >publicFolder</a>
+                            </li>
+                            <li>
+                                <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                            <li>
+                                <a href="#triggerChangeDetect$" >triggerChangeDetect$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#triggerChangeDetectSubject$" >triggerChangeDetectSubject$</a>
+                            </li>
+                            <li>
+                                <a href="#websiteTitle" >websiteTitle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#zip" >zip</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#closeSidebar" >closeSidebar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#collectInlineCssVariables" >collectInlineCssVariables</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#continueExport" >continueExport</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#exportAssets" >exportAssets</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#exportCss" >exportCss</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#exportFolder" >exportFolder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#exportJs" >exportJs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#exportPage" >exportPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#extractCssVariablesFromRule" >extractCssVariablesFromRule</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getCssRules" >getCssRules</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getCssVariableValues" >getCssVariableValues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getFontFamilyStyles" >getFontFamilyStyles</a>
+                            </li>
+                            <li>
+                                <a href="#initWebsiteExport" >initWebsiteExport</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#insertLogoSrc" >insertLogoSrc</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeAndReplaceElement" >removeAndReplaceElement</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeAttributesStartingWith" >removeAttributesStartingWith</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeAttrOrClass" >removeAttrOrClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeClass" >removeClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeElement" >removeElement</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeHtmlComments" >removeHtmlComments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#replaceNavigationLinks" >replaceNavigationLinks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resetToDefault" >resetToDefault</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setCurrentPage" >setCurrentPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setIsExporting" >setIsExporting</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setViewportToDesktop" >setViewportToDesktop</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#traverseAndCollectCssRulesAndVars" >traverseAndCollectCssRulesAndVars</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(store: <a href="../interfaces/AppState.html" target="_self">Store&lt;AppState&gt;</a>, utilsService: <a href="../injectables/UtilsService.html" target="_self">UtilsService</a>, http: HttpClient)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/services/export-website.service.ts:63</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/AppState.html" target="_self" >Store&lt;AppState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>utilsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UtilsService.html" target="_self" >UtilsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeSidebar"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>closeSidebar</b></span>
+                        <a href="#closeSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>closeSidebar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="455"
+                            class="link-to-prism">src/app/services/export-website.service.ts:455</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="collectInlineCssVariables"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>collectInlineCssVariables</b></span>
+                        <a href="#collectInlineCssVariables"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>collectInlineCssVariables(el: HTMLElement)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="430"
+                            class="link-to-prism">src/app/services/export-website.service.ts:430</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Set&lt;string&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="continueExport"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>continueExport</b></span>
+                        <a href="#continueExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>continueExport()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/app/services/export-website.service.ts:128</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportAssets"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>exportAssets</b></span>
+                        <a href="#exportAssets"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportAssets()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/app/services/export-website.service.ts:229</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportCss"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>exportCss</b></span>
+                        <a href="#exportCss"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportCss()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/app/services/export-website.service.ts:202</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportFolder"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>exportFolder</b></span>
+                        <a href="#exportFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportFolder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="244"
+                            class="link-to-prism">src/app/services/export-website.service.ts:244</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportJs"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>exportJs</b></span>
+                        <a href="#exportJs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportJs()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/services/export-website.service.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>exportPage</b></span>
+                        <a href="#exportPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="167"
+                            class="link-to-prism">src/app/services/export-website.service.ts:167</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="extractCssVariablesFromRule"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>extractCssVariablesFromRule</b></span>
+                        <a href="#extractCssVariablesFromRule"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>extractCssVariablesFromRule(rule: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="418"
+                            class="link-to-prism">src/app/services/export-website.service.ts:418</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rule</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Set&lt;string&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCssRules"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getCssRules</b></span>
+                        <a href="#getCssRules"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCssRules(el: HTMLElement)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="395"
+                            class="link-to-prism">src/app/services/export-website.service.ts:395</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Set&lt;string&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCssVariableValues"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getCssVariableValues</b></span>
+                        <a href="#getCssVariableValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCssVariableValues(el: HTMLElement, variables: Set<string>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="381"
+                            class="link-to-prism">src/app/services/export-website.service.ts:381</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>variables</td>
+                                    <td>
+                                            <code>Set&lt;string&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFontFamilyStyles"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getFontFamilyStyles</b></span>
+                        <a href="#getFontFamilyStyles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFontFamilyStyles()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="463"
+                            class="link-to-prism">src/app/services/export-website.service.ts:463</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initWebsiteExport"></a>
+                    <span class="name">
+                        <span ><b>initWebsiteExport</b></span>
+                        <a href="#initWebsiteExport"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initWebsiteExport()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/app/services/export-website.service.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="insertLogoSrc"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>insertLogoSrc</b></span>
+                        <a href="#insertLogoSrc"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>insertLogoSrc(el: HTMLElement)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/services/export-website.service.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAndReplaceElement"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>removeAndReplaceElement</b></span>
+                        <a href="#removeAndReplaceElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeAndReplaceElement(rootEl: HTMLElement, qualifiedName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isClass: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/app/services/export-website.service.ts:279</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rootEl</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>qualifiedName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>isClass</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAttributesStartingWith"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>removeAttributesStartingWith</b></span>
+                        <a href="#removeAttributesStartingWith"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeAttributesStartingWith(rootEl: HTMLElement, prefix: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">src/app/services/export-website.service.ts:306</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rootEl</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prefix</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAttrOrClass"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>removeAttrOrClass</b></span>
+                        <a href="#removeAttrOrClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeAttrOrClass(rootEl: HTMLElement, qualifiedName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isClass: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="289"
+                            class="link-to-prism">src/app/services/export-website.service.ts:289</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rootEl</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>qualifiedName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>isClass</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeClass"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>removeClass</b></span>
+                        <a href="#removeClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeClass(rootEl: HTMLElement, className: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="327"
+                            class="link-to-prism">src/app/services/export-website.service.ts:327</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rootEl</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>className</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeElement"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>removeElement</b></span>
+                        <a href="#removeElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeElement(rootEl: HTMLElement, classNameToRemove: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="338"
+                            class="link-to-prism">src/app/services/export-website.service.ts:338</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>rootEl</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>classNameToRemove</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeHtmlComments"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>removeHtmlComments</b></span>
+                        <a href="#removeHtmlComments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeHtmlComments(html: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="347"
+                            class="link-to-prism">src/app/services/export-website.service.ts:347</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>html</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="replaceNavigationLinks"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>replaceNavigationLinks</b></span>
+                        <a href="#replaceNavigationLinks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>replaceNavigationLinks(el: HTMLElement)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="257"
+                            class="link-to-prism">src/app/services/export-website.service.ts:257</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetToDefault"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>resetToDefault</b></span>
+                        <a href="#resetToDefault"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetToDefault()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/app/services/export-website.service.ts:148</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setCurrentPage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setCurrentPage</b></span>
+                        <a href="#setCurrentPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setCurrentPage(pageId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="459"
+                            class="link-to-prism">src/app/services/export-website.service.ts:459</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setIsExporting"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setIsExporting</b></span>
+                        <a href="#setIsExporting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setIsExporting(isExporting: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="447"
+                            class="link-to-prism">src/app/services/export-website.service.ts:447</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isExporting</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setViewportToDesktop"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>setViewportToDesktop</b></span>
+                        <a href="#setViewportToDesktop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setViewportToDesktop()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="451"
+                            class="link-to-prism">src/app/services/export-website.service.ts:451</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="traverseAndCollectCssRulesAndVars"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>traverseAndCollectCssRulesAndVars</b></span>
+                        <a href="#traverseAndCollectCssRulesAndVars"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>traverseAndCollectCssRulesAndVars(el: HTMLElement)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="352"
+                            class="link-to-prism">src/app/services/export-website.service.ts:352</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>el</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="assetsFolder"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>assetsFolder</b></span>
+                        <a href="#assetsFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JSZip | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/services/export-website.service.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cssFolder"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>cssFolder</b></span>
+                        <a href="#cssFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JSZip | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/services/export-website.service.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cssRules"></a>
+                    <span class="name">
+                        <span ><b>cssRules</b></span>
+                        <a href="#cssRules"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Set&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;string&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/services/export-website.service.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cssVariables"></a>
+                    <span class="name">
+                        <span ><b>cssVariables</b></span>
+                        <a href="#cssVariables"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/services/export-website.service.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="favicon"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>favicon</b></span>
+                        <a href="#favicon"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/services/export-website.service.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="jsFolder"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>jsFolder</b></span>
+                        <a href="#jsFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JSZip | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/services/export-website.service.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logo"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>logo</b></span>
+                        <a href="#logo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>File | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/services/export-website.service.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pages"></a>
+                    <span class="name">
+                        <span ><b>pages</b></span>
+                        <a href="#pages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Page.html" target="_self" >Page[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/services/export-website.service.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pagesExported"></a>
+                    <span class="name">
+                        <span ><b>pagesExported</b></span>
+                        <a href="#pagesExported"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/services/export-website.service.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pagesFolder"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>pagesFolder</b></span>
+                        <a href="#pagesFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JSZip | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/services/export-website.service.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pagesNames"></a>
+                    <span class="name">
+                        <span ><b>pagesNames</b></span>
+                        <a href="#pagesNames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;string | string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;string, string&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/services/export-website.service.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="publicFolder"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>publicFolder</b></span>
+                        <a href="#publicFolder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JSZip | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/export-website.service.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/services/export-website.service.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="triggerChangeDetect$"></a>
+                    <span class="name">
+                        <span ><b>triggerChangeDetect$</b></span>
+                        <a href="#triggerChangeDetect$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.triggerChangeDetectSubject$.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/services/export-website.service.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="triggerChangeDetectSubject$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>triggerChangeDetectSubject$</b></span>
+                        <a href="#triggerChangeDetectSubject$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;void&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/services/export-website.service.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="websiteTitle"></a>
+                    <span class="name">
+                        <span ><b>websiteTitle</b></span>
+                        <a href="#websiteTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/services/export-website.service.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zip"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>zip</b></span>
+                        <a href="#zip"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>JSZip | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/services/export-website.service.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { saveAs } from &#x27;file-saver&#x27;;
+import * as JSZip from &#x27;jszip&#x27;;
+import { firstValueFrom, Subject, Subscription, take } from &#x27;rxjs&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+
+import {
+  ATTRIBUTES_STARTING_WITH_TO_REMOVE,
+  ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV,
+  ATTRIBUTES_TO_REMOVE,
+  CLASSES_TO_REMOVE,
+  COLUMNS_NUMBER,
+  CSS_MOBILE_TEMPLATE,
+  CSS_TEMPLATE,
+  ELEMENTS_TO_REMOVE_BY_CLASS,
+  GRIDSTER_BREAKPOINT,
+  HTML_TEMPLATE,
+  JAVASCRIPT_TEMPLATE,
+  MOBILE_BREAKPOINT,
+  REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS,
+  REMOVE_AND_REPLACE_ELEMENTS_BY_TAG,
+  ROWS_NUMBER_BREAKPOINT,
+  ROWS_NUMBER_LOWER,
+  ROWS_NUMBER_UPPER,
+} from &#x27;../constants/constants&#x27;;
+import { Page } from &#x27;../models/page.model&#x27;;
+import { Viewport } from &#x27;../models/viewport.enum&#x27;;
+import { AppState } from &#x27;../state/app.reducer&#x27;;
+import { DesignCanvasPageActions } from &#x27;../state/design-canvas/design-canvas.actions&#x27;;
+import { selectPages } from &#x27;../state/design-canvas/design-canvas.reducer&#x27;;
+import { EditorActions } from &#x27;../state/editor/editor.actions&#x27;;
+import { selectFavicon, selectLogo, selectWebsiteTitle } from &#x27;../state/global-settings/global-settings.reducer&#x27;;
+import { UtilsService } from &#x27;./utils.service&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class ExportWebsiteService {
+  pagesNames: Map&lt;string, string&gt; &#x3D; new Map&lt;string, string&gt;();
+  pages: Page[] &#x3D; [];
+  pagesExported &#x3D; 0;
+  websiteTitle &#x3D; &#x27;&#x27;;
+  cssRules: Set&lt;string&gt; &#x3D; new Set&lt;string&gt;();
+  cssVariables: { [key: string]: string } &#x3D; {};
+  favicon?: File | null &#x3D; null;
+  logo?: File | null &#x3D; null;
+  zip?: JSZip | null &#x3D; null;
+  pagesFolder?: JSZip | null &#x3D; null;
+  publicFolder?: JSZip | null &#x3D; null;
+  cssFolder?: JSZip | null &#x3D; null;
+  jsFolder?: JSZip | null &#x3D; null;
+  assetsFolder?: JSZip | null &#x3D; null;
+
+  private triggerChangeDetectSubject$ &#x3D; new Subject&lt;void&gt;();
+  triggerChangeDetect$ &#x3D; this.triggerChangeDetectSubject$.asObservable();
+
+  subscriptions: Subscription[] &#x3D; [];
+
+  constructor(
+    private store: Store&lt;AppState&gt;,
+    private utilsService: UtilsService,
+    private http: HttpClient
+  ) {}
+
+  initWebsiteExport() {
+    this.subscriptions.push(
+      this.store
+        .select(selectPages)
+        .pipe(take(1))
+        .subscribe(pages &#x3D;&gt; {
+          this.pages &#x3D; pages;
+          pages.forEach((page, index) &#x3D;&gt; {
+            const fileName &#x3D; index &#x3D;&#x3D;&#x3D; 0 ? &#x27;index&#x27; : page.title.toLocaleLowerCase().replace(&#x27; &#x27;, &#x27;-&#x27;);
+            return this.pagesNames.set(page.title, fileName);
+          });
+        })
+    );
+
+    this.subscriptions.push(
+      this.store
+        .select(selectFavicon)
+        .pipe(take(1))
+        .subscribe(favicon &#x3D;&gt; {
+          this.favicon &#x3D; favicon;
+        })
+    );
+
+    this.subscriptions.push(
+      this.store
+        .select(selectLogo)
+        .pipe(take(1))
+        .subscribe(logo &#x3D;&gt; {
+          this.logo &#x3D; logo;
+        })
+    );
+
+    this.subscriptions.push(
+      this.store
+        .select(selectWebsiteTitle)
+        .pipe(take(1))
+        .subscribe(title &#x3D;&gt; {
+          this.websiteTitle &#x3D; title;
+        })
+    );
+
+    if (!this.pages.length) return;
+
+    this.zip &#x3D; new JSZip();
+    this.pagesFolder &#x3D; this.zip.folder(&#x27;pages&#x27;);
+    this.publicFolder &#x3D; this.zip.folder(&#x27;public&#x27;);
+    this.cssFolder &#x3D; this.publicFolder?.folder(&#x27;css&#x27;);
+    this.jsFolder &#x3D; this.publicFolder?.folder(&#x27;javascript&#x27;);
+    this.assetsFolder &#x3D; this.publicFolder?.folder(&#x27;assets&#x27;);
+
+    this.setCurrentPage(this.pages[this.pagesExported].id);
+    this.setIsExporting(true);
+    this.setViewportToDesktop();
+    this.closeSidebar();
+    this.triggerChangeDetectSubject$.next();
+  }
+
+  async continueExport() {
+    this.exportPage();
+    this.pagesExported++;
+
+    if (this.pagesExported &lt; this.pages.length) {
+      this.setCurrentPage(this.pages[this.pagesExported].id);
+      this.triggerChangeDetectSubject$.next();
+      return;
+    }
+
+    this.exportCss();
+    this.exportJs();
+    await this.exportAssets();
+    await this.exportFolder();
+
+    this.resetToDefault();
+    this.closeSidebar();
+    this.setIsExporting(false);
+  }
+
+  private resetToDefault() {
+    this.pagesNames &#x3D; new Map&lt;string, string&gt;();
+    this.pages &#x3D; [];
+    this.pagesExported &#x3D; 0;
+    this.websiteTitle &#x3D; &#x27;&#x27;;
+    this.cssRules &#x3D; new Set&lt;string&gt;();
+    this.cssVariables &#x3D; {};
+    this.favicon &#x3D; null;
+    this.logo &#x3D; null;
+    this.zip &#x3D; null;
+    this.pagesFolder &#x3D; null;
+    this.publicFolder &#x3D; null;
+    this.cssFolder &#x3D; null;
+    this.jsFolder &#x3D; null;
+    this.assetsFolder &#x3D; null;
+    this.subscriptions.forEach(subscription &#x3D;&gt; subscription.unsubscribe());
+    this.subscriptions &#x3D; [];
+  }
+
+  private exportPage() {
+    const canvas &#x3D; (document.getElementById(&#x27;canvas&#x27;) as HTMLElement).cloneNode(true) as HTMLElement;
+
+    REMOVE_AND_REPLACE_ELEMENTS_BY_TAG.forEach(tagName &#x3D;&gt; this.removeAndReplaceElement(canvas, tagName));
+    REMOVE_AND_REPLACE_ELEMENTS_BY_CLASS.forEach(className &#x3D;&gt; this.removeAndReplaceElement(canvas, className, true));
+    ELEMENTS_TO_REMOVE_BY_CLASS.forEach(className &#x3D;&gt; this.removeElement(canvas, className));
+
+    ATTRIBUTES_TO_REMOVE.forEach(attribute &#x3D;&gt; this.removeAttrOrClass(canvas, attribute));
+    CLASSES_TO_REMOVE.forEach(className &#x3D;&gt; this.removeAttrOrClass(canvas, className, true));
+    ATTRIBUTES_STARTING_WITH_TO_REMOVE.forEach(attribute &#x3D;&gt; this.removeAttributesStartingWith(canvas, attribute));
+    if (!environment.production) {
+      ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV.forEach(attribute &#x3D;&gt; this.removeAttributesStartingWith(canvas, attribute));
+    }
+
+    this.replaceNavigationLinks(canvas);
+    this.insertLogoSrc(canvas);
+
+    const { rules, variables } &#x3D; this.traverseAndCollectCssRulesAndVars(canvas);
+    const variableValues &#x3D; this.getCssVariableValues(document.documentElement, variables);
+
+    rules.forEach(rule &#x3D;&gt; this.cssRules.add(rule));
+    this.cssVariables &#x3D; { ...this.cssVariables, ...variableValues };
+
+    const canvasHtml &#x3D; this.removeHtmlComments(canvas.outerHTML);
+    let html &#x3D; HTML_TEMPLATE;
+    html &#x3D; this.utilsService.formatString(html, {
+      title: &#x60;${this.pages[this.pagesExported].title} | ${this.websiteTitle}&#x60;,
+      description: this.pages[this.pagesExported].title,
+      content: canvasHtml,
+      fonts: this.getFontFamilyStyles(),
+    });
+
+    this.pagesFolder?.file(&#x60;${this.pagesNames.get(this.pages[this.pagesExported].title)}.html&#x60;, html);
+  }
+
+  private exportCss() {
+    const cssVariables: string[] &#x3D; [];
+    Object.entries(this.cssVariables).forEach(([key, value]) &#x3D;&gt; {
+      cssVariables.push(&#x60;${key}: ${value};&#x60;);
+    });
+    let css &#x3D; &#x60;:root {\n${cssVariables.join(&#x27;\n&#x27;)}\n}\n&#x60;;
+    css +&#x3D; &#x60;\n${CSS_TEMPLATE}\n\n&#x60;;
+    css +&#x3D; [...this.cssRules].join(&#x27;\n\n&#x27;);
+    css +&#x3D; &#x60;\n\n${CSS_MOBILE_TEMPLATE}\n&#x60;;
+
+    this.cssFolder?.file(&#x27;styles.css&#x27;, css);
+  }
+
+  private exportJs() {
+    let js &#x3D; JAVASCRIPT_TEMPLATE;
+    js &#x3D; this.utilsService.formatString(js, {
+      colNo: COLUMNS_NUMBER.toString(),
+      rowsNoUpper: ROWS_NUMBER_UPPER.toString(),
+      rowsNoLower: ROWS_NUMBER_LOWER.toString(),
+      gridsterBreakpoint: GRIDSTER_BREAKPOINT.toString(),
+      mobileBreakpoint: MOBILE_BREAKPOINT.toString(),
+      rowsNumberBreakpoint: ROWS_NUMBER_BREAKPOINT.toString(),
+    });
+
+    this.jsFolder?.file(&#x27;index.js&#x27;, js);
+  }
+
+  private async exportAssets() {
+    if (this.favicon) {
+      this.assetsFolder?.file(&#x27;favicon.ico&#x27;, this.favicon);
+    } else {
+      const faviconBlob &#x3D; await firstValueFrom(this.http.get(&#x27;assets/icons/favicon.ico&#x27;, { responseType: &#x27;blob&#x27; }));
+      this.assetsFolder?.file(&#x27;favicon.ico&#x27;, faviconBlob);
+    }
+
+    if (this.logo) {
+      const lastIndex &#x3D; this.logo.name.lastIndexOf(&#x27;.&#x27;);
+      const fileExtension &#x3D; lastIndex !&#x3D;&#x3D; -1 ? this.logo.name.substring(lastIndex + 1) : &#x27;&#x27;;
+      this.assetsFolder?.file(&#x60;logo.${fileExtension}&#x60;, this.logo);
+    }
+  }
+
+  private async exportFolder() {
+    const zipFolder &#x3D; await this.zip?.generateAsync({ type: &#x27;blob&#x27; });
+    if (zipFolder)
+      saveAs(
+        zipFolder,
+        &#x60;${
+          this.websiteTitle
+            ? this.utilsService.removeWhitespace(this.websiteTitle.toLocaleLowerCase()).replace(&#x27; &#x27;, &#x27;-&#x27;)
+            : &#x27;website&#x27;
+        }.zip&#x60;
+      );
+  }
+
+  private replaceNavigationLinks(el: HTMLElement): void {
+    const navLink &#x3D; [...(el.getElementsByClassName(&#x27;nav-links&#x27;) as HTMLCollectionOf&lt;HTMLAnchorElement&gt;)];
+
+    navLink.forEach(link &#x3D;&gt; {
+      const href &#x3D; this.pagesNames.get(link.innerText);
+      link.href &#x3D; &#x60;${href}.html&#x60;;
+    });
+  }
+
+  private insertLogoSrc(el: HTMLElement): void {
+    if (this.logo) {
+      const logos &#x3D; [...(el.querySelectorAll(&#x27;.logo-wrapper .logo&#x27;) as unknown as HTMLImageElement[])];
+
+      logos.forEach(logo &#x3D;&gt; {
+        const lastIndex &#x3D; this.logo?.name.lastIndexOf(&#x27;.&#x27;);
+        const fileExtension &#x3D; lastIndex &amp;&amp; lastIndex !&#x3D;&#x3D; -1 ? this.logo?.name.substring(lastIndex + 1) : &#x27;&#x27;;
+        const src &#x3D; &#x60;../public/assets/logo.${fileExtension}&#x60;;
+        logo.src &#x3D; src;
+      });
+    }
+  }
+
+  private removeAndReplaceElement(rootEl: HTMLElement, qualifiedName: string, isClass: boolean &#x3D; false): void {
+    const selector &#x3D; isClass ? &#x60;.${qualifiedName}&#x60; : qualifiedName;
+    const elements &#x3D; rootEl.querySelectorAll(selector);
+
+    [...elements].forEach(el &#x3D;&gt; {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      el?.replaceWith(...el.childNodes);
+    });
+  }
+
+  private removeAttrOrClass(rootEl: HTMLElement, qualifiedName: string, isClass: boolean &#x3D; false) {
+    const selector &#x3D; isClass ? &#x60;.${qualifiedName}&#x60; : &#x60;[${qualifiedName}]&#x60;;
+
+    if (isClass) {
+      if (rootEl.classList.contains(qualifiedName)) {
+        rootEl.classList.remove(qualifiedName);
+      }
+    } else if (rootEl.hasAttribute(qualifiedName)) {
+      rootEl.removeAttribute(qualifiedName);
+    }
+
+    const elements &#x3D; rootEl.querySelectorAll(selector);
+    elements.forEach((element: Element) &#x3D;&gt; {
+      isClass ? element.classList.remove(qualifiedName) : element.removeAttribute(qualifiedName);
+    });
+  }
+
+  private removeAttributesStartingWith(rootEl: HTMLElement, prefix: string) {
+    [...rootEl.attributes].forEach(attr &#x3D;&gt; {
+      if (attr.name.startsWith(prefix)) {
+        rootEl.removeAttribute(attr.name);
+      }
+    });
+
+    const elements &#x3D; rootEl.querySelectorAll(&#x27;*&#x27;); // Selects all elements
+    elements.forEach((element: Element) &#x3D;&gt; {
+      // Get all attribute names for the element
+      const attributeNames &#x3D; [...element.attributes].map(attr &#x3D;&gt; attr.name);
+
+      // Find attribute names that start with the prefix and remove them
+      attributeNames.forEach(name &#x3D;&gt; {
+        if (name.startsWith(prefix)) {
+          element.removeAttribute(name);
+        }
+      });
+    });
+  }
+
+  private removeClass(rootEl: HTMLElement, className: string) {
+    if (rootEl.classList.contains(className)) {
+      rootEl.classList.remove(className);
+    }
+
+    const elements &#x3D; rootEl.querySelectorAll(&#x60;.${className}]&#x60;);
+    elements.forEach((element: Element) &#x3D;&gt; {
+      element.classList.remove(className);
+    });
+  }
+
+  private removeElement(rootEl: HTMLElement, classNameToRemove: string): void {
+    const elements &#x3D; rootEl.getElementsByClassName(classNameToRemove);
+
+    [...elements].forEach(el &#x3D;&gt; {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      el.remove();
+    });
+  }
+
+  private removeHtmlComments(html: string): string {
+    // eslint-disable-next-line no-useless-escape
+    return html.replace(/&lt;!--[\s\S]*?--&gt;/g, &#x27;&#x27;);
+  }
+
+  private traverseAndCollectCssRulesAndVars(el: HTMLElement): { rules: Set&lt;string&gt;; variables: Set&lt;string&gt; } {
+    const cssRules &#x3D; this.getCssRules(el);
+    const cssVariables &#x3D; new Set&lt;string&gt;();
+
+    const inlineVars &#x3D; this.collectInlineCssVariables(el);
+    inlineVars.forEach(variable &#x3D;&gt; cssVariables.add(variable));
+
+    // Extract variables from the retrieved rules
+    cssRules.forEach(rule &#x3D;&gt; {
+      const varsFromRule &#x3D; this.extractCssVariablesFromRule(rule);
+      varsFromRule.forEach(variable &#x3D;&gt; cssVariables.add(variable));
+    });
+
+    const children &#x3D; el.children;
+
+    for (let i &#x3D; 0; i &lt; children.length; i++) {
+      const { rules: childRules, variables: childVars } &#x3D; this.traverseAndCollectCssRulesAndVars(
+        children[i] as HTMLElement
+      );
+
+      childRules.forEach(rule &#x3D;&gt; cssRules.add(rule));
+      childVars.forEach(variable &#x3D;&gt; cssVariables.add(variable));
+    }
+
+    return {
+      rules: cssRules,
+      variables: cssVariables,
+    };
+  }
+  private getCssVariableValues(el: HTMLElement, variables: Set&lt;string&gt;): { [key: string]: string } {
+    const computedStyles &#x3D; window.getComputedStyle(el);
+    const variableValues: { [key: string]: string } &#x3D; {};
+
+    variables.forEach(variableName &#x3D;&gt; {
+      const value &#x3D; computedStyles.getPropertyValue(variableName);
+      if (value) {
+        variableValues[variableName] &#x3D; value.trim(); // Adding trim() to remove any extra whitespace
+      }
+    });
+
+    return variableValues;
+  }
+
+  private getCssRules(el: HTMLElement): Set&lt;string&gt; {
+    const sheets &#x3D; document.styleSheets;
+    const ret &#x3D; new Set&lt;string&gt;();
+    el.matches &#x3D;
+      el.matches ||
+      el.webkitMatchesSelector ||
+      (el as any).mozMatchesSelector ||
+      (el as any).msMatchesSelector ||
+      (el as any).oMatchesSelector;
+    for (const i in sheets) {
+      if (!sheets[i].href || sheets[i].href?.includes(window.location.host)) {
+        const rules &#x3D; sheets[i]?.rules || sheets[i]?.cssRules;
+        for (const r in rules) {
+          const rule &#x3D; rules[r];
+          if (rule instanceof CSSStyleRule &amp;&amp; el.matches(rule.selectorText)) {
+            ret.add(rule.cssText);
+          }
+        }
+      }
+    }
+    return ret;
+  }
+
+  private extractCssVariablesFromRule(rule: string): Set&lt;string&gt; {
+    const variablePattern &#x3D; /var\((--[^,)]+)/g;
+    const foundVariables &#x3D; new Set&lt;string&gt;();
+    let match;
+
+    while ((match &#x3D; variablePattern.exec(rule)) !&#x3D;&#x3D; null) {
+      foundVariables.add(match[1]); // match[1] contains the --variable-name
+    }
+
+    return foundVariables;
+  }
+
+  private collectInlineCssVariables(el: HTMLElement): Set&lt;string&gt; {
+    const inlineVariables &#x3D; new Set&lt;string&gt;();
+    if (el.style) {
+      for (let i &#x3D; 0; i &lt; el.style.length; i++) {
+        const propertyName &#x3D; el.style[i];
+        const propertyValue &#x3D; el.style.getPropertyValue(propertyName);
+
+        if (propertyValue.startsWith(&#x27;var&#x27;)) {
+          const startIndex &#x3D; propertyValue.indexOf(&#x27;-&#x27;);
+          const endIndex &#x3D; propertyValue.indexOf(&#x27;)&#x27;);
+          inlineVariables.add(propertyValue.substring(startIndex, endIndex));
+        }
+      }
+    }
+    return inlineVariables;
+  }
+
+  private setIsExporting(isExporting: boolean) {
+    this.store.dispatch(EditorActions.setIsExporting({ isExporting }));
+  }
+
+  private setViewportToDesktop() {
+    this.store.dispatch(EditorActions.setViewport({ viewport: Viewport.Desktop }));
+  }
+
+  private closeSidebar() {
+    this.store.dispatch(EditorActions.setSidebarOpened({ opened: false }));
+  }
+
+  private setCurrentPage(pageId: string) {
+    this.store.dispatch(DesignCanvasPageActions.setCurrentPage({ pageId }));
+  }
+
+  private getFontFamilyStyles() {
+    let html &#x3D; &#x27;&#x27;;
+    let link &#x3D; document.getElementById(&#x60;primary-font&#x60;) as HTMLLinkElement | null;
+    if (link) {
+      html +&#x3D; link.outerHTML;
+      html +&#x3D; &#x27;\n&#x27;;
+    }
+    link &#x3D; document.getElementById(&#x60;secondary-font&#x60;) as HTMLLinkElement | null;
+    if (link) {
+      html +&#x3D; link.outerHTML;
+    }
+    return html;
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ExportWebsiteService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

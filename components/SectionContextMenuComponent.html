@@ -1,0 +1,2290 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>dragon-drop documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">dragon-drop documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SectionContextMenuComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/context-menus/section-context-menu/section-context-menu.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnChanges</code>
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>drd-section-context-menu</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatListModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatRippleModule</code>
+                            <code>MatSelectModule</code>
+                            <code>MatFormFieldModule</code>
+                            <code>MatInputModule</code>
+                            <code>ReactiveFormsModule</code>
+                                <code><a href="../miscellaneous/typealiases.html#Color" target="_self" >ColorPickerModule</a></code>
+                            <code>MatButtonModule</code>
+                            <code>MatTooltipModule</code>
+                            <code>TranslateModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./section-context-menu.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./section-context-menu.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#colorPickerToggle" >colorPickerToggle</a>
+                            </li>
+                            <li>
+                                <a href="#contextMenuPosition" >contextMenuPosition</a>
+                            </li>
+                            <li>
+                                <a href="#ContextMenuType" >ContextMenuType</a>
+                            </li>
+                            <li>
+                                <a href="#elementsCount" >elementsCount</a>
+                            </li>
+                            <li>
+                                <a href="#fontColorPickerToggle" >fontColorPickerToggle</a>
+                            </li>
+                            <li>
+                                <a href="#FontFamily" >FontFamily</a>
+                            </li>
+                            <li>
+                                <a href="#fontSizes" >fontSizes</a>
+                            </li>
+                            <li>
+                                <a href="#isCurrentViewportMobile$" >isCurrentViewportMobile$</a>
+                            </li>
+                            <li>
+                                <a href="#isHeaderOrFooter" >isHeaderOrFooter</a>
+                            </li>
+                            <li>
+                                <a href="#isMobile$" >isMobile$</a>
+                            </li>
+                            <li>
+                                <a href="#rippleColor" >rippleColor</a>
+                            </li>
+                            <li>
+                                <a href="#sectionMinHeightControl" >sectionMinHeightControl</a>
+                            </li>
+                            <li>
+                                <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                            <li>
+                                <a href="#ThemeColor" >ThemeColor</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addElement" >addElement</a>
+                            </li>
+                            <li>
+                                <a href="#deleteSection" >deleteSection</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onColorChange" >onColorChange</a>
+                            </li>
+                            <li>
+                                <a href="#openColorPicker" >openColorPicker</a>
+                            </li>
+                            <li>
+                                <a href="#removeCustomColor" >removeCustomColor</a>
+                            </li>
+                            <li>
+                                <a href="#setFontFamily" >setFontFamily</a>
+                            </li>
+                            <li>
+                                <a href="#setFontSize" >setFontSize</a>
+                            </li>
+                            <li>
+                                <a href="#setThemeColor" >setThemeColor</a>
+                            </li>
+                            <li>
+                                <a href="#submitInput" >submitInput</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#menuClosed" >menuClosed</a>
+                            </li>
+                            <li>
+                                <a href="#menuOpened" >menuOpened</a>
+                            </li>
+                            <li>
+                                <a href="#section" >section</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#sectionMinHeight" >sectionMinHeight</a>
+                                </li>
+                                <li>
+                                    <a href="#backgroundColor" >backgroundColor</a>
+                                </li>
+                                <li>
+                                    <a href="#color" >color</a>
+                                </li>
+                                <li>
+                                    <a href="#fontSize" >fontSize</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(store: <a href="../interfaces/AppState.html" target="_self">Store&lt;AppState&gt;</a>, utilsService: <a href="../injectables/UtilsService.html" target="_self">UtilsService</a>, sectionsService: <a href="../injectables/SectionsService.html" target="_self">SectionsService</a>, breakpointObserver: BreakpointObserver)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:107</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/AppState.html" target="_self" >Store&lt;AppState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>utilsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UtilsService.html" target="_self" >UtilsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sectionsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SectionsService.html" target="_self" >SectionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>breakpointObserver</td>
+                                                  
+                                                        <td>
+                                                                    <code>BreakpointObserver</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="menuClosed"></a>
+                        <b>menuClosed</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:69</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="menuOpened"></a>
+                        <b>menuOpened</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:68</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="section"></a>
+                        <b>section</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DynamicComponent.html" target="_self" >DynamicComponent</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:67</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addElement"></a>
+                    <span class="name">
+                        <span ><b>addElement</b></span>
+                        <a href="#addElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addElement()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteSection"></a>
+                    <span class="name">
+                        <span ><b>deleteSection</b></span>
+                        <a href="#deleteSection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteSection()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: SimpleChanges)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                            <code>SimpleChanges</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:148</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:126</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onColorChange"></a>
+                    <span class="name">
+                        <span ><b>onColorChange</b></span>
+                        <a href="#onColorChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onColorChange(color: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isFont: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:178</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>color</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>isFont</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openColorPicker"></a>
+                    <span class="name">
+                        <span ><b>openColorPicker</b></span>
+                        <a href="#openColorPicker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openColorPicker(event: MouseEvent, isFont)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:210</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MouseEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>isFont</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCustomColor"></a>
+                    <span class="name">
+                        <span ><b>removeCustomColor</b></span>
+                        <a href="#removeCustomColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeCustomColor(isFont: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isFont</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setFontFamily"></a>
+                    <span class="name">
+                        <span ><b>setFontFamily</b></span>
+                        <a href="#setFontFamily"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setFontFamily(event: MatSelectChange)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:229</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MatSelectChange</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setFontSize"></a>
+                    <span class="name">
+                        <span ><b>setFontSize</b></span>
+                        <a href="#setFontSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setFontSize(event: MatSelectChange)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="239"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:239</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MatSelectChange</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setThemeColor"></a>
+                    <span class="name">
+                        <span ><b>setThemeColor</b></span>
+                        <a href="#setThemeColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setThemeColor(event: MatSelectChange, isFont: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:218</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>MatSelectChange</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>isFont</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitInput"></a>
+                    <span class="name">
+                        <span ><b>submitInput</b></span>
+                        <a href="#submitInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitInput()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:153</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="colorPickerToggle"></a>
+                    <span class="name">
+                        <span ><b>colorPickerToggle</b></span>
+                        <a href="#colorPickerToggle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contextMenuPosition"></a>
+                    <span class="name">
+                        <span ><b>contextMenuPosition</b></span>
+                        <a href="#contextMenuPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ x: &#x27;0px&#x27;, y: &#x27;0px&#x27; }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ContextMenuType"></a>
+                    <span class="name">
+                        <span ><b>ContextMenuType</b></span>
+                        <a href="#ContextMenuType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ContextMenuType</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementsCount"></a>
+                    <span class="name">
+                        <span ><b>elementsCount</b></span>
+                        <a href="#elementsCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fontColorPickerToggle"></a>
+                    <span class="name">
+                        <span ><b>fontColorPickerToggle</b></span>
+                        <a href="#fontColorPickerToggle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FontFamily"></a>
+                    <span class="name">
+                        <span ><b>FontFamily</b></span>
+                        <a href="#FontFamily"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>FontFamily</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fontSizes"></a>
+                    <span class="name">
+                        <span ><b>fontSizes</b></span>
+                        <a href="#fontSizes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;8px&#x27;, &#x27;12px&#x27;, &#x27;16px&#x27;, &#x27;18px&#x27;, &#x27;24px&#x27;, &#x27;30px&#x27;, &#x27;36px&#x27;, &#x27;42px&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCurrentViewportMobile$"></a>
+                    <span class="name">
+                        <span ><b>isCurrentViewportMobile$</b></span>
+                        <a href="#isCurrentViewportMobile$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.store.select(selectViewport).pipe(map(viewport &#x3D;&gt; viewport &#x3D;&#x3D;&#x3D; Viewport.Mobile))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isHeaderOrFooter"></a>
+                    <span class="name">
+                        <span ><b>isHeaderOrFooter</b></span>
+                        <a href="#isHeaderOrFooter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isMobile$"></a>
+                    <span class="name">
+                        <span ><b>isMobile$</b></span>
+                        <a href="#isMobile$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.breakpointObserver.observe(&#x27;(max-width: 640px)&#x27;).pipe(map(result &#x3D;&gt; result.matches))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rippleColor"></a>
+                    <span class="name">
+                        <span ><b>rippleColor</b></span>
+                        <a href="#rippleColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>getComputedStyle(document.documentElement).getPropertyValue(&#x27;--rich-black-light-ripple&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sectionMinHeightControl"></a>
+                    <span class="name">
+                        <span ><b>sectionMinHeightControl</b></span>
+                        <a href="#sectionMinHeightControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl(MIN_SECTION_DIMENSIONS_PX, {
+    nonNullable: true,
+    validators: [Validators.required, Validators.min(MIN_SECTION_DIMENSIONS_PX)],
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscriptions"></a>
+                    <span class="name">
+                        <span ><b>subscriptions</b></span>
+                        <a href="#subscriptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>(Subscription | undefined)[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ThemeColor"></a>
+                    <span class="name">
+                        <span ><b>ThemeColor</b></span>
+                        <a href="#ThemeColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ThemeColor</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sectionMinHeight"></a>
+                        <span class="name"><b>sectionMinHeight</b><a href="#sectionMinHeight"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sectionMinHeight()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:86</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="backgroundColor"></a>
+                        <span class="name"><b>backgroundColor</b><a href="#backgroundColor"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>backgroundColor()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:92</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="color"></a>
+                        <span class="name"><b>color</b><a href="#color"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>color()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:99</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fontSize"></a>
+                        <span class="name"><b>fontSize</b><a href="#fontSize"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>fontSize()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/context-menus/section-context-menu/section-context-menu.component.ts:104</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BreakpointObserver } from &#x27;@angular/cdk/layout&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from &#x27;@angular/core&#x27;;
+import { FormControl, ReactiveFormsModule, Validators } from &#x27;@angular/forms&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { MatRippleModule } from &#x27;@angular/material/core&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatListModule } from &#x27;@angular/material/list&#x27;;
+import { MatSelectChange, MatSelectModule } from &#x27;@angular/material/select&#x27;;
+import { MatTooltipModule } from &#x27;@angular/material/tooltip&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { ColorPickerModule } from &#x27;ngx-color-picker&#x27;;
+import { map, Subscription } from &#x27;rxjs&#x27;;
+import { MIN_SECTION_DIMENSIONS_PX } from &#x27;src/app/constants/constants&#x27;;
+import { ContextMenuType } from &#x27;src/app/models/context-menu-type.enum&#x27;;
+import { DynamicComponent } from &#x27;src/app/models/dynamic-component.model&#x27;;
+import { FontFamily } from &#x27;src/app/models/font-family.enum&#x27;;
+import { ThemeColor } from &#x27;src/app/models/theme-color.enum&#x27;;
+import { Viewport } from &#x27;src/app/models/viewport.enum&#x27;;
+import { SectionsService } from &#x27;src/app/services/sections.service&#x27;;
+import { UtilsService } from &#x27;src/app/services/utils.service&#x27;;
+import { AppState } from &#x27;src/app/state/app.reducer&#x27;;
+import {
+  DesignCanvasElementActions,
+  DesignCanvasSectionActions,
+} from &#x27;src/app/state/design-canvas/design-canvas.actions&#x27;;
+import { selectViewport } from &#x27;src/app/state/editor/editor.reducer&#x27;;
+
+@Component({
+  selector: &#x27;drd-section-context-menu&#x27;,
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatListModule,
+    MatIconModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    ColorPickerModule,
+    MatButtonModule,
+    MatTooltipModule,
+    TranslateModule,
+  ],
+  templateUrl: &#x27;./section-context-menu.component.html&#x27;,
+  styleUrls: [&#x27;./section-context-menu.component.scss&#x27;],
+})
+export class SectionContextMenuComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+  ThemeColor &#x3D; ThemeColor;
+  FontFamily &#x3D; FontFamily;
+  ContextMenuType &#x3D; ContextMenuType;
+  rippleColor &#x3D; getComputedStyle(document.documentElement).getPropertyValue(&#x27;--rich-black-light-ripple&#x27;);
+
+  @Input() section?: DynamicComponent;
+  @Input() menuOpened?: EventEmitter&lt;void&gt;;
+  @Input() menuClosed?: EventEmitter&lt;void&gt;;
+
+  isCurrentViewportMobile$ &#x3D; this.store.select(selectViewport).pipe(map(viewport &#x3D;&gt; viewport &#x3D;&#x3D;&#x3D; Viewport.Mobile));
+  isMobile$ &#x3D; this.breakpointObserver.observe(&#x27;(max-width: 640px)&#x27;).pipe(map(result &#x3D;&gt; result.matches));
+  elementsCount &#x3D; 0;
+
+  subscriptions: (Subscription | undefined)[] &#x3D; [];
+  contextMenuPosition &#x3D; { x: &#x27;0px&#x27;, y: &#x27;0px&#x27; };
+  colorPickerToggle &#x3D; false;
+  fontColorPickerToggle &#x3D; false;
+  isHeaderOrFooter &#x3D; false;
+  sectionMinHeightControl &#x3D; new FormControl(MIN_SECTION_DIMENSIONS_PX, {
+    nonNullable: true,
+    validators: [Validators.required, Validators.min(MIN_SECTION_DIMENSIONS_PX)],
+  });
+  fontSizes &#x3D; [&#x27;8px&#x27;, &#x27;12px&#x27;, &#x27;16px&#x27;, &#x27;18px&#x27;, &#x27;24px&#x27;, &#x27;30px&#x27;, &#x27;36px&#x27;, &#x27;42px&#x27;];
+
+  get sectionMinHeight() {
+    const style &#x3D; this.section?.inputs?.style as object;
+    const number &#x3D; parseInt(style[&#x27;min-height&#x27; as keyof typeof style], 10);
+    return number;
+  }
+
+  get backgroundColor() {
+    const style &#x3D; this.section?.inputs?.style;
+    return style &amp;&amp; style[&#x27;background-color&#x27; as keyof typeof style]
+      ? style[&#x27;background-color&#x27; as keyof typeof style]
+      : &#x27;&#x27;;
+  }
+
+  get color() {
+    const style &#x3D; this.section?.inputs?.style;
+    return style &amp;&amp; style[&#x27;color&#x27; as keyof typeof style] ? style[&#x27;color&#x27; as keyof typeof style] : &#x27;&#x27;;
+  }
+
+  get fontSize() {
+    const style &#x3D; this.section?.inputs?.style;
+    return style &amp;&amp; style[&#x27;font-size&#x27; as keyof typeof style] ? style[&#x27;font-size&#x27; as keyof typeof style] : &#x27;&#x27;;
+  }
+
+  constructor(
+    private store: Store&lt;AppState&gt;,
+    private utilsService: UtilsService,
+    private sectionsService: SectionsService,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    this.utilsService.initSvgIcons([&#x27;add&#x27;, &#x27;close&#x27;, &#x27;delete&#x27;]);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes[&#x27;section&#x27;].currentValue) {
+      const section &#x3D; changes[&#x27;section&#x27;].currentValue as DynamicComponent;
+      this.isHeaderOrFooter &#x3D; !this.sectionsService.sections.get(section.component);
+      this.elementsCount &#x3D; section.inputs.elements?.length || 0;
+    }
+  }
+
+  ngOnInit() {
+    this.sectionMinHeightControl &#x3D; new FormControl(this.sectionMinHeight, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.min(MIN_SECTION_DIMENSIONS_PX)],
+    });
+  }
+
+  ngAfterViewInit() {
+    this.subscriptions.push(
+      this.menuOpened?.subscribe(() &#x3D;&gt; {
+        this.sectionMinHeightControl.setValue(this.sectionMinHeight);
+        this.fontColorPickerToggle &#x3D; false;
+      })
+    );
+
+    this.subscriptions.push(
+      this.menuClosed?.subscribe(() &#x3D;&gt; {
+        this.submitInput();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s &#x3D;&gt; s?.unsubscribe());
+    this.subscriptions &#x3D; [];
+  }
+
+  submitInput() {
+    if (this.sectionMinHeightControl.valid) {
+      const sectionMinHeight &#x3D; this.sectionMinHeightControl.value;
+      if (sectionMinHeight !&#x3D;&#x3D; this.sectionMinHeight) {
+        this.store.dispatch(
+          DesignCanvasSectionActions.updateSection({
+            id: this.section?.id || &#x27;&#x27;,
+            inputs: {
+              ...this.section?.inputs,
+              style: { ...this.section?.inputs.style, [&#x27;min-height&#x27;]: &#x60;${sectionMinHeight}px&#x60; },
+            },
+          })
+        );
+      }
+    }
+  }
+
+  deleteSection() {
+    this.store.dispatch(DesignCanvasSectionActions.deleteSection({ id: this.section?.id || &#x27;&#x27; }));
+  }
+
+  addElement() {
+    this.store.dispatch(DesignCanvasElementActions.addElement({ sectionId: this.section?.id || &#x27;&#x27; }));
+  }
+
+  onColorChange(color: string, isFont: boolean &#x3D; false) {
+    isFont ? (this.fontColorPickerToggle &#x3D; false) : (this.colorPickerToggle &#x3D; false);
+    const property &#x3D; isFont ? &#x27;color&#x27; : &#x27;background-color&#x27;;
+    this.store.dispatch(
+      DesignCanvasSectionActions.updateSection({
+        id: this.section?.id || &#x27;&#x27;,
+        inputs: {
+          ...this.section?.inputs,
+          style: { ...this.section?.inputs.style, [property]: color },
+        },
+      })
+    );
+  }
+
+  removeCustomColor(isFont: boolean &#x3D; false) {
+    const property &#x3D; isFont ? &#x27;color&#x27; : &#x27;background-color&#x27;;
+    const style &#x3D; this.section?.inputs?.style;
+    if (style) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { [property as keyof typeof style]: _background, ...removedBackgroundStyle } &#x3D; style;
+      this.store.dispatch(
+        DesignCanvasSectionActions.updateSection({
+          id: this.section?.id || &#x27;&#x27;,
+          inputs: {
+            ...this.section?.inputs,
+            style: removedBackgroundStyle,
+          },
+        })
+      );
+    }
+  }
+
+  openColorPicker(event: MouseEvent, isFont &#x3D; false) {
+    event.stopPropagation();
+    isFont ? (this.fontColorPickerToggle &#x3D; true) : (this.colorPickerToggle &#x3D; true);
+    setTimeout(() &#x3D;&gt; {
+      document.getElementsByClassName(&#x27;color-picker open&#x27;)[0]?.classList.add(&#x27;no-arrow&#x27;);
+    }, 0);
+  }
+
+  setThemeColor(event: MatSelectChange, isFont: boolean &#x3D; false) {
+    const property &#x3D; isFont ? &#x27;fontThemeColor&#x27; : &#x27;themeColor&#x27;;
+    const themeColor &#x3D; event.value as ThemeColor;
+    this.store.dispatch(
+      DesignCanvasSectionActions.updateSection({
+        id: this.section?.id || &#x27;&#x27;,
+        inputs: { ...this.section?.inputs, [property]: themeColor },
+      })
+    );
+  }
+
+  setFontFamily(event: MatSelectChange) {
+    const fontFamily &#x3D; event.value as FontFamily;
+    this.store.dispatch(
+      DesignCanvasSectionActions.updateSection({
+        id: this.section?.id || &#x27;&#x27;,
+        inputs: { ...this.section?.inputs, themeFontFamily: fontFamily },
+      })
+    );
+  }
+
+  setFontSize(event: MatSelectChange) {
+    const fontSize &#x3D; event.value as string;
+    this.store.dispatch(
+      DesignCanvasSectionActions.updateSection({
+        id: this.section?.id || &#x27;&#x27;,
+        inputs: { ...this.section?.inputs, style: { ...this.section?.inputs.style, &#x27;font-size&#x27;: fontSize } },
+      })
+    );
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;mat-list class&#x3D;&quot;list context-menu&quot;&gt;
+  &lt;mat-list-item
+    *ngIf&#x3D;&quot;!isHeaderOrFooter&quot;
+    class&#x3D;&quot;list-item&quot;
+    matRipple
+    [matRippleColor]&#x3D;&quot;rippleColor&quot;
+    (click)&#x3D;&quot;addElement()&quot;&gt;
+    &lt;mat-icon class&#x3D;&quot;item-icon&quot; matListItemIcon svgIcon&#x3D;&quot;add&quot;&gt;&lt;/mat-icon&gt;
+    &lt;span class&#x3D;&quot;item-label&quot; matListItemTitle&gt;
+      {{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.ADD_ELEMENT&#x27; | translate }}
+    &lt;/span&gt;
+  &lt;/mat-list-item&gt;
+  &lt;mat-list-item class&#x3D;&quot;list-item&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot; matRipple [matRippleColor]&#x3D;&quot;rippleColor&quot;&gt;
+    &lt;mat-form-field class&#x3D;&quot;select-form-field mat-component-density-s&quot;&gt;
+      &lt;mat-label&gt;{{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.BACKGROUND_THEME_COLOR&#x27; | translate }}&lt;/mat-label&gt;
+      &lt;mat-select
+        [value]&#x3D;&quot;section?.inputs?.themeColor&quot;
+        (selectionChange)&#x3D;&quot;setThemeColor($event)&quot;
+        panelClass&#x3D;&quot;select-panel&quot;&gt;
+        &lt;mat-option
+          class&#x3D;&quot;select-option select-option-s&quot;
+          *ngFor&#x3D;&quot;let color of ThemeColor | keyvalue&quot;
+          [value]&#x3D;&quot;color.value&quot;&gt;
+          {{ color.key }}
+        &lt;/mat-option&gt;
+      &lt;/mat-select&gt;
+    &lt;/mat-form-field&gt;
+  &lt;/mat-list-item&gt;
+  &lt;mat-list-item class&#x3D;&quot;list-item&quot; (click)&#x3D;&quot;openColorPicker($event)&quot; matRipple [matRippleColor]&#x3D;&quot;rippleColor&quot;&gt;
+    &lt;div
+      class&#x3D;&quot;custom-color&quot;
+      [colorPicker]&#x3D;&quot;backgroundColor&quot;
+      [cpUseRootViewContainer]&#x3D;&quot;true&quot;
+      [cpAlphaChannel]&#x3D;&quot;&#x27;disabled&#x27;&quot;
+      [cpCancelButton]&#x3D;&quot;true&quot;
+      [cpPresetColors]&#x3D;&quot;[]&quot;
+      [cpOKButton]&#x3D;&quot;true&quot;
+      [cpOKButtonText]&#x3D;&quot;&#x27;COLOR_PICKER.BUTTONS.OK&#x27; | translate&quot;
+      [cpCancelButtonText]&#x3D;&quot;&#x27;COLOR_PICKER.BUTTONS.CANCEL&#x27; | translate&quot;
+      [cpSaveClickOutside]&#x3D;&quot;false&quot;
+      [cpToggle]&#x3D;&quot;colorPickerToggle&quot;
+      (colorPickerSelect)&#x3D;&quot;onColorChange($event)&quot;&gt;
+      &lt;div *ngIf&#x3D;&quot;backgroundColor&quot; class&#x3D;&quot;custom-color-selected&quot; [style.background-color]&#x3D;&quot;backgroundColor&quot;&gt;&lt;/div&gt;
+      &lt;label class&#x3D;&quot;custom-color-label&quot;&gt;
+        {{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.BACKGROUND_CUSTOM_COLOR&#x27; | translate }}
+      &lt;/label&gt;
+      &lt;button
+        *ngIf&#x3D;&quot;backgroundColor&quot;
+        class&#x3D;&quot;icon-button remove-color&quot;
+        mat-icon-button
+        (click)&#x3D;&quot;removeCustomColor()&quot;
+        [matTooltip]&#x3D;&quot;&#x27;EDITOR.CONTEXT_MENU.SECTION.TOOLTIPS.REMOVE_CUSTOM_COLOR&#x27; | translate&quot;&gt;
+        &lt;mat-icon svgIcon&#x3D;&quot;close&quot;&gt;&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/mat-list-item&gt;
+
+  &lt;ng-container *ngIf&#x3D;&quot;isHeaderOrFooter&quot;&gt;
+    &lt;mat-list-item class&#x3D;&quot;list-item&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot; matRipple [matRippleColor]&#x3D;&quot;rippleColor&quot;&gt;
+      &lt;mat-form-field class&#x3D;&quot;select-form-field mat-component-density-s&quot;&gt;
+        &lt;mat-label&gt;{{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_THEME_COLOR&#x27; | translate }}&lt;/mat-label&gt;
+        &lt;mat-select
+          [value]&#x3D;&quot;section?.inputs?.fontThemeColor&quot;
+          (selectionChange)&#x3D;&quot;setThemeColor($event, true)&quot;
+          panelClass&#x3D;&quot;select-panel&quot;&gt;
+          &lt;mat-option
+            class&#x3D;&quot;select-option select-option-s&quot;
+            *ngFor&#x3D;&quot;let color of ThemeColor | keyvalue&quot;
+            [value]&#x3D;&quot;color.value&quot;&gt;
+            {{ color.key }}
+          &lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/mat-list-item&gt;
+    &lt;mat-list-item class&#x3D;&quot;list-item&quot; (click)&#x3D;&quot;openColorPicker($event, true)&quot; matRipple [matRippleColor]&#x3D;&quot;rippleColor&quot;&gt;
+      &lt;div
+        class&#x3D;&quot;custom-color&quot;
+        [colorPicker]&#x3D;&quot;color&quot;
+        [cpUseRootViewContainer]&#x3D;&quot;true&quot;
+        [cpAlphaChannel]&#x3D;&quot;&#x27;disabled&#x27;&quot;
+        [cpCancelButton]&#x3D;&quot;true&quot;
+        [cpOKButton]&#x3D;&quot;true&quot;
+        [cpOKButtonText]&#x3D;&quot;&#x27;COLOR_PICKER.BUTTONS.OK&#x27; | translate&quot;
+        [cpCancelButtonText]&#x3D;&quot;&#x27;COLOR_PICKER.BUTTONS.CANCEL&#x27; | translate&quot;
+        [cpSaveClickOutside]&#x3D;&quot;false&quot;
+        [cpToggle]&#x3D;&quot;fontColorPickerToggle&quot;
+        (colorPickerSelect)&#x3D;&quot;onColorChange($event, true)&quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;color&quot; class&#x3D;&quot;custom-color-selected&quot; [style.background-color]&#x3D;&quot;color&quot;&gt;&lt;/div&gt;
+        &lt;label class&#x3D;&quot;custom-color-label&quot;&gt;
+          {{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_CUSTOM_COLOR&#x27; | translate }}
+        &lt;/label&gt;
+        &lt;button
+          *ngIf&#x3D;&quot;color&quot;
+          class&#x3D;&quot;icon-button remove-color&quot;
+          mat-icon-button
+          (click)&#x3D;&quot;removeCustomColor(true)&quot;
+          [matTooltip]&#x3D;&quot;&#x27;EDITOR.CONTEXT_MENU.SECTION.TOOLTIPS.REMOVE_CUSTOM_COLOR&#x27; | translate&quot;&gt;
+          &lt;mat-icon svgIcon&#x3D;&quot;close&quot;&gt;&lt;/mat-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/mat-list-item&gt;
+    &lt;mat-list-item class&#x3D;&quot;list-item&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot; matRipple [matRippleColor]&#x3D;&quot;rippleColor&quot;&gt;
+      &lt;mat-form-field class&#x3D;&quot;select-form-field mat-component-density-s&quot;&gt;
+        &lt;mat-label&gt;{{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_FAMILY&#x27; | translate }}&lt;/mat-label&gt;
+        &lt;mat-select
+          [value]&#x3D;&quot;section?.inputs?.themeFontFamily&quot;
+          (selectionChange)&#x3D;&quot;setFontFamily($event)&quot;
+          panelClass&#x3D;&quot;select-panel&quot;&gt;
+          &lt;mat-option
+            class&#x3D;&quot;select-option select-option-s&quot;
+            *ngFor&#x3D;&quot;let color of FontFamily | keyvalue&quot;
+            [value]&#x3D;&quot;color.value&quot;&gt;
+            {{ color.key }}
+          &lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/mat-list-item&gt;
+    &lt;mat-list-item class&#x3D;&quot;list-item&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot; matRipple [matRippleColor]&#x3D;&quot;rippleColor&quot;&gt;
+      &lt;mat-form-field class&#x3D;&quot;select-form-field mat-component-density-s&quot;&gt;
+        &lt;mat-label&gt;{{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_SIZE&#x27; | translate }}&lt;/mat-label&gt;
+        &lt;mat-select [value]&#x3D;&quot;fontSize&quot; (selectionChange)&#x3D;&quot;setFontSize($event)&quot; panelClass&#x3D;&quot;select-panel&quot;&gt;
+          &lt;mat-option class&#x3D;&quot;select-option select-option-s&quot; *ngFor&#x3D;&quot;let fontSize of fontSizes&quot; [value]&#x3D;&quot;fontSize&quot;&gt;
+            {{ fontSize }}
+          &lt;/mat-option&gt;
+        &lt;/mat-select&gt;
+      &lt;/mat-form-field&gt;
+    &lt;/mat-list-item&gt;
+  &lt;/ng-container&gt;
+  &lt;mat-list-item
+    *ngIf&#x3D;&quot;!(((isCurrentViewportMobile$ | async) || (isMobile$ | async)) &amp;&amp; elementsCount)&quot;
+    class&#x3D;&quot;list-item&quot;
+    (click)&#x3D;&quot;$event.stopPropagation()&quot;&gt;
+    &lt;mat-form-field class&#x3D;&quot;input-form-field&quot;&gt;
+      &lt;mat-label&gt;{{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.SECTION_MIN_HEIGHT&#x27; | translate }}&lt;/mat-label&gt;
+      &lt;input type&#x3D;&quot;number&quot; (keydown.enter)&#x3D;&quot;submitInput()&quot; matInput [formControl]&#x3D;&quot;sectionMinHeightControl&quot; /&gt;
+    &lt;/mat-form-field&gt;
+  &lt;/mat-list-item&gt;
+  &lt;mat-list-item class&#x3D;&quot;list-item&quot; matRipple [matRippleColor]&#x3D;&quot;rippleColor&quot; (click)&#x3D;&quot;deleteSection()&quot;&gt;
+    &lt;mat-icon class&#x3D;&quot;item-icon&quot; matListItemIcon svgIcon&#x3D;&quot;delete&quot;&gt;&lt;/mat-icon&gt;
+    &lt;span class&#x3D;&quot;item-label&quot; matListItemTitle&gt;
+      {{ &#x27;EDITOR.CONTEXT_MENU.SECTION.LABELS.DELETE_SECTION&#x27; | translate }}
+    &lt;/span&gt;
+  &lt;/mat-list-item&gt;
+&lt;/mat-list&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./section-context-menu.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">$white: var(--white);
+$line-height-xs: var(--line-height-xs);
+
+mat-list.list.context-menu {
+  mat-list-item.list-item {
+    height: 50px;
+
+    mat-form-field.select-form-field,
+    mat-form-field.input-form-field {
+      width: 100%;
+    }
+
+    .input-form-field input::-webkit-outer-spin-button,
+    .input-form-field input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .input-form-field input[type&#x3D;&#x27;number&#x27;] {
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    mat-icon.item-icon {
+      margin-left: 16px;
+      margin-right: 8px;
+    }
+
+    span.item-label {
+      padding-right: 16px;
+    }
+
+    .custom-color {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-inline: 16px;
+
+      &amp;-selected {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        border: 2px solid $white;
+        border-radius: 50%;
+      }
+
+      &amp;-label {
+        color: $white;
+        line-height: $line-height-xs;
+        white-space: normal;
+      }
+
+      .remove-color {
+        margin-left: auto;
+        color: $white;
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-list class="list context-menu">  <mat-list-item    *ngIf="!isHeaderOrFooter"    class="list-item"    matRipple    [matRippleColor]="rippleColor"    (click)="addElement()">    <mat-icon class="item-icon" matListItemIcon svgIcon="add"></mat-icon>    <span class="item-label" matListItemTitle>      {{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.ADD_ELEMENT\' | translate }}    </span>  </mat-list-item>  <mat-list-item class="list-item" (click)="$event.stopPropagation()" matRipple [matRippleColor]="rippleColor">    <mat-form-field class="select-form-field mat-component-density-s">      <mat-label>{{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.BACKGROUND_THEME_COLOR\' | translate }}</mat-label>      <mat-select        [value]="section?.inputs?.themeColor"        (selectionChange)="setThemeColor($event)"        panelClass="select-panel">        <mat-option          class="select-option select-option-s"          *ngFor="let color of ThemeColor | keyvalue"          [value]="color.value">          {{ color.key }}        </mat-option>      </mat-select>    </mat-form-field>  </mat-list-item>  <mat-list-item class="list-item" (click)="openColorPicker($event)" matRipple [matRippleColor]="rippleColor">    <div      class="custom-color"      [colorPicker]="backgroundColor"      [cpUseRootViewContainer]="true"      [cpAlphaChannel]="\'disabled\'"      [cpCancelButton]="true"      [cpPresetColors]="[]"      [cpOKButton]="true"      [cpOKButtonText]="\'COLOR_PICKER.BUTTONS.OK\' | translate"      [cpCancelButtonText]="\'COLOR_PICKER.BUTTONS.CANCEL\' | translate"      [cpSaveClickOutside]="false"      [cpToggle]="colorPickerToggle"      (colorPickerSelect)="onColorChange($event)">      <div *ngIf="backgroundColor" class="custom-color-selected" [style.background-color]="backgroundColor"></div>      <label class="custom-color-label">        {{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.BACKGROUND_CUSTOM_COLOR\' | translate }}      </label>      <button        *ngIf="backgroundColor"        class="icon-button remove-color"        mat-icon-button        (click)="removeCustomColor()"        [matTooltip]="\'EDITOR.CONTEXT_MENU.SECTION.TOOLTIPS.REMOVE_CUSTOM_COLOR\' | translate">        <mat-icon svgIcon="close"></mat-icon>      </button>    </div>  </mat-list-item>  <ng-container *ngIf="isHeaderOrFooter">    <mat-list-item class="list-item" (click)="$event.stopPropagation()" matRipple [matRippleColor]="rippleColor">      <mat-form-field class="select-form-field mat-component-density-s">        <mat-label>{{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_THEME_COLOR\' | translate }}</mat-label>        <mat-select          [value]="section?.inputs?.fontThemeColor"          (selectionChange)="setThemeColor($event, true)"          panelClass="select-panel">          <mat-option            class="select-option select-option-s"            *ngFor="let color of ThemeColor | keyvalue"            [value]="color.value">            {{ color.key }}          </mat-option>        </mat-select>      </mat-form-field>    </mat-list-item>    <mat-list-item class="list-item" (click)="openColorPicker($event, true)" matRipple [matRippleColor]="rippleColor">      <div        class="custom-color"        [colorPicker]="color"        [cpUseRootViewContainer]="true"        [cpAlphaChannel]="\'disabled\'"        [cpCancelButton]="true"        [cpOKButton]="true"        [cpOKButtonText]="\'COLOR_PICKER.BUTTONS.OK\' | translate"        [cpCancelButtonText]="\'COLOR_PICKER.BUTTONS.CANCEL\' | translate"        [cpSaveClickOutside]="false"        [cpToggle]="fontColorPickerToggle"        (colorPickerSelect)="onColorChange($event, true)">        <div *ngIf="color" class="custom-color-selected" [style.background-color]="color"></div>        <label class="custom-color-label">          {{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_CUSTOM_COLOR\' | translate }}        </label>        <button          *ngIf="color"          class="icon-button remove-color"          mat-icon-button          (click)="removeCustomColor(true)"          [matTooltip]="\'EDITOR.CONTEXT_MENU.SECTION.TOOLTIPS.REMOVE_CUSTOM_COLOR\' | translate">          <mat-icon svgIcon="close"></mat-icon>        </button>      </div>    </mat-list-item>    <mat-list-item class="list-item" (click)="$event.stopPropagation()" matRipple [matRippleColor]="rippleColor">      <mat-form-field class="select-form-field mat-component-density-s">        <mat-label>{{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_FAMILY\' | translate }}</mat-label>        <mat-select          [value]="section?.inputs?.themeFontFamily"          (selectionChange)="setFontFamily($event)"          panelClass="select-panel">          <mat-option            class="select-option select-option-s"            *ngFor="let color of FontFamily | keyvalue"            [value]="color.value">            {{ color.key }}          </mat-option>        </mat-select>      </mat-form-field>    </mat-list-item>    <mat-list-item class="list-item" (click)="$event.stopPropagation()" matRipple [matRippleColor]="rippleColor">      <mat-form-field class="select-form-field mat-component-density-s">        <mat-label>{{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.FONT_SIZE\' | translate }}</mat-label>        <mat-select [value]="fontSize" (selectionChange)="setFontSize($event)" panelClass="select-panel">          <mat-option class="select-option select-option-s" *ngFor="let fontSize of fontSizes" [value]="fontSize">            {{ fontSize }}          </mat-option>        </mat-select>      </mat-form-field>    </mat-list-item>  </ng-container>  <mat-list-item    *ngIf="!(((isCurrentViewportMobile$ | async) || (isMobile$ | async)) && elementsCount)"    class="list-item"    (click)="$event.stopPropagation()">    <mat-form-field class="input-form-field">      <mat-label>{{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.SECTION_MIN_HEIGHT\' | translate }}</mat-label>      <input type="number" (keydown.enter)="submitInput()" matInput [formControl]="sectionMinHeightControl" />    </mat-form-field>  </mat-list-item>  <mat-list-item class="list-item" matRipple [matRippleColor]="rippleColor" (click)="deleteSection()">    <mat-icon class="item-icon" matListItemIcon svgIcon="delete"></mat-icon>    <span class="item-label" matListItemTitle>      {{ \'EDITOR.CONTEXT_MENU.SECTION.LABELS.DELETE_SECTION\' | translate }}    </span>  </mat-list-item></mat-list></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'drd-root'},{'name': 'ContextMenuWrapperComponent', 'selector': 'drd-context-menu-wrapper'},{'name': 'DefaultSidenavComponent', 'selector': 'drd-default-sidenav'},{'name': 'DesignCanvasComponent', 'selector': 'drd-design-canvas'},{'name': 'EditorComponent', 'selector': 'drd-editor'},{'name': 'ElementContextMenuComponent', 'selector': 'drd-element-context-menu'},{'name': 'FooterComponent', 'selector': 'drd-footer'},{'name': 'GlobalSettingsSidenavComponent', 'selector': ''},{'name': 'HeaderComponent', 'selector': 'drd-header'},{'name': 'HomeComponent', 'selector': 'drd-home'},{'name': 'NotFoundComponent', 'selector': 'drd-not-found'},{'name': 'PagesSidenavComponent', 'selector': 'drd-pages-sidenav'},{'name': 'ResizableDraggableComponent', 'selector': 'drd-resizable-draggable'},{'name': 'RichTextEditorComponent', 'selector': 'drd-rich-text-editor'},{'name': 'SectionComponent', 'selector': 'drd-section'},{'name': 'SectionContextMenuComponent', 'selector': 'drd-section-context-menu'},{'name': 'SectionsSidenavComponent', 'selector': 'drd-sections-sidenav'},{'name': 'SidenavWrapperComponent', 'selector': 'drd-sidenav-wrapper'},{'name': 'SpinnerComponent', 'selector': 'drd-spinner'},{'name': 'ThemeColorsPickerComponent', 'selector': 'drd-theme-colors-picker'},{'name': 'ThemeFontsSelectComponent', 'selector': 'drd-theme-fonts-select'},{'name': 'ThemeSettingsSidenavComponent', 'selector': 'drd-theme-settings-sidenav'},{'name': 'ToolbarComponent', 'selector': 'drd-toolbar'},{'name': 'WebsiteSettingsComponent', 'selector': 'drd-website-settings'},{'name': 'WebsiteSettingsDialogComponent', 'selector': 'drd-website-settings-dialog'}];
+    var DIRECTIVES = [{'name': 'DragCursorDirective', 'selector': '[drdDragCursor]'},{'name': 'DynamicContentAreaDirective', 'selector': '[drdDynamicContentArea]'},{'name': 'ExcludeFromExportDirective', 'selector': '[drdExcludeFromExport]'}];
+    var ACTUAL_COMPONENT = {'name': 'SectionContextMenuComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SectionContextMenuComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
