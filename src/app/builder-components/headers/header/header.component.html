@@ -26,7 +26,7 @@
     </ul>
   </nav>
   <nav
-    [class.nav-mobile-hidden]="isMenuOpened !== true"
+    [class.nav-mobile-hidden]="isMenuOpened !== true || (currentViewport$ | async) === Viewport.Desktop"
     [class.viewport-mobile]="(isExporting$ | async) !== true && (currentViewport$ | async) === Viewport.Mobile"
     [class.sidebar-opened]="(isExporting$ | async) !== true && (sidebarOpened$ | async) === true"
     class="nav-mobile mat-elevation-z6"
