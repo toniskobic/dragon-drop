@@ -28,8 +28,14 @@ $breakpoint-mobile: var(--breakpoint-mobile);
     }
 
     .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
       .logo {
-        width: 200px;
+        max-height: 100%;
+        max-width: 200px;
       }
     }
 
@@ -96,8 +102,14 @@ $breakpoint-mobile: var(--breakpoint-mobile);
     }
 
     .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
       .logo {
-        width: 120px;
+        max-height: 100%;
+        max-width: 120px;
       }
     }
 
