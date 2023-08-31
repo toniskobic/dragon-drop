@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
@@ -99,5 +99,13 @@ export default class ToolbarComponent {
 
   redo() {
     this.store.dispatch(AppActions.redo());
+  }
+
+  @HostListener('document:keydown.control.z') undoKeydown() {
+    this.undo();
+  }
+
+  @HostListener('document:keydown.control.y') redoKeydown() {
+    this.redo();
   }
 }
