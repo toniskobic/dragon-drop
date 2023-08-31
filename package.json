@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "compodoc": "npx compodoc -p tsconfig.doc.json",
-    "deploy": "gh-pages -d documentation -r https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+    "deploy": "gh-pages -d documentation -r https://x-access-token:${GH_TOKEN}@github.com/tskobic/dragon-drop.git"
   },
   "private": true,
   "dependencies": {
