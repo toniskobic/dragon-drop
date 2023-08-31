@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "compodoc": "npx compodoc -p tsconfig.doc.json",
-    "deploy": "gh-pages -d documentation -r https://x-access-token:${GH_TOKEN}@github.com/tskobic/dragon-drop.git"
+    "deploy": "gh-pages -d documentation -r https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +35,6 @@
     "angular-resizable-element": "^7.0.2",
     "ckeditor5-custom-build": "file:ckeditor5",
     "file-saver": "^2.0.5",
-    "fs": "^0.0.1-security",
     "immer": "^10.0.2",
     "jszip": "^3.10.1",
     "lodash-es": "^4.17.21",

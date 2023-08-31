@@ -211,7 +211,15 @@
                                 <a href="#redo" >redo</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                <a href="#redoKeydown" >redoKeydown</a>
+                            </li>
+                            <li>
                                 <a href="#undo" >undo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#undoKeydown" >undoKeydown</a>
                             </li>
                         </ul>
                     </td>
@@ -220,6 +228,23 @@
 
 
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#document:keydown.control.y" >document:keydown.control.y</a>
+                            </li>
+                            <li>
+                                <a href="#document:keydown.control.z" >document:keydown.control.z</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
         </tbody>
     </table>
@@ -313,7 +338,64 @@
 
 
 
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:keydown.control.y"></a>
+                    <span class="name">
+                        <span ><b>document:keydown.control.y</b></span>
+                        <a href="#document:keydown.control.y"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:keydown.control.y()</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/components/toolbar/toolbar.component.ts:108</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:keydown.control.z"></a>
+                    <span class="name">
+                        <span ><b>document:keydown.control.z</b></span>
+                        <a href="#document:keydown.control.z"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:keydown.control.z()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/components/toolbar/toolbar.component.ts:104</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <section data-compodoc="block-methods">
     
     <h3 id="methods">
@@ -572,6 +654,52 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="redoKeydown"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>redoKeydown</b></span>
+                        <a href="#redoKeydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>redoKeydown()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:keydown.control.y&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/app/components/toolbar/toolbar.component.ts:108</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="undo"></a>
                     <span class="name">
                         <span ><b>undo</b></span>
@@ -590,6 +718,52 @@
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="96"
                             class="link-to-prism">src/app/components/toolbar/toolbar.component.ts:96</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="undoKeydown"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span ><b>undoKeydown</b></span>
+                        <a href="#undoKeydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>undoKeydown()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:keydown.control.z&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/components/toolbar/toolbar.component.ts:104</a></div>
                 </td>
             </tr>
 
@@ -851,7 +1025,7 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BreakpointObserver, Breakpoints } from &#x27;@angular/cdk/layout&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
-import { Component } from &#x27;@angular/core&#x27;;
+import { Component, HostListener } from &#x27;@angular/core&#x27;;
 import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
 import { MatButtonToggleChange, MatButtonToggleModule } from &#x27;@angular/material/button-toggle&#x27;;
 import { MatRippleModule } from &#x27;@angular/material/core&#x27;;
@@ -950,6 +1124,14 @@ export default class ToolbarComponent {
 
   redo() {
     this.store.dispatch(AppActions.redo());
+  }
+
+  @HostListener(&#x27;document:keydown.control.z&#x27;) undoKeydown() {
+    this.undo();
+  }
+
+  @HostListener(&#x27;document:keydown.control.y&#x27;) redoKeydown() {
+    this.redo();
   }
 }
 </code></pre>
