@@ -8,7 +8,6 @@ import { Store } from '@ngrx/store';
 import { saveAs } from 'file-saver';
 import * as JSZip from 'jszip';
 import { firstValueFrom, Subject, Subscription, take } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 import {
   ATTRIBUTES_STARTING_WITH_TO_REMOVE,
@@ -174,9 +173,9 @@ export class ExportWebsiteService {
     ATTRIBUTES_TO_REMOVE.forEach(attribute => this.removeAttrOrClass(canvas, attribute));
     CLASSES_TO_REMOVE.forEach(className => this.removeAttrOrClass(canvas, className, true));
     ATTRIBUTES_STARTING_WITH_TO_REMOVE.forEach(attribute => this.removeAttributesStartingWith(canvas, attribute));
-    if (!environment.production) {
-      ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV.forEach(attribute => this.removeAttributesStartingWith(canvas, attribute));
-    }
+    // if (!environment.production) {
+    ATTRIBUTES_STARTING_WITH_TO_REMOVE_DEV.forEach(attribute => this.removeAttributesStartingWith(canvas, attribute));
+    // }
 
     this.replaceNavigationLinks(canvas);
     this.insertLogoSrc(canvas);
