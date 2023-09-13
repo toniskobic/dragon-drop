@@ -3,6 +3,7 @@
 Dragon Drop is an Angular static website builder app inspired by popular website builders such as Wix, Squarespace, and Shopify. Users can add, arrange, and customize webpage sections and elements using drag-and-drop and resizing functionalities. Upon completion, the application generates a static website ready for deployment.
 
 Example website generated using Dragon Drop Website Builder: [Website](https://tskobic.github.io/dragon-drop-generated-website/pages/)
+
 Example website repo: [Repo](https://github.com/tskobic/dragon-drop-generated-website)
 
 Documentation generated with Compodoc: [Documentation](https://tskobic.github.io/dragon-drop/index.html)
