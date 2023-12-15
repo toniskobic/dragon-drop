@@ -14,7 +14,7 @@ Example website repo: [Repo](https://github.com/tskobic/dragon-drop-generated-we
 
 Documentation generated with Compodoc: [Documentation](https://tskobic.github.io/dragon-drop/index.html)
 
-This app was made as part of the graduate thesis (T. Škobić, "Building Web site generators", Graduate thesis, University of Zagreb, Faculty of Organization and Informatics, Varaždin, 2023).
+This app was made as part of the graduate thesis (T. Škobić, "Building Web site generators", Graduate thesis, University of Zagreb, Faculty of Organization and Informatics, Varaždin, 2023, Available at: [https://urn.nsk.hr/urn:nbn:hr:211:816572](https://urn.nsk.hr/urn:nbn:hr:211:816572)).
 
 ## Features
 
