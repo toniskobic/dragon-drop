@@ -1,18 +1,18 @@
 # Dragon Drop - A Static Website Builder
 
 <p align="center">
-  <img width="500px" src="https://github.com/tskobic/dragon-drop/blob/main/src/assets/svgs/dragon-drop-short.svg" alt="Dragon Drop">
+  <img width="500px" src="https://github.com/toniskobic/dragon-drop/blob/main/src/assets/svgs/dragon-drop-short.svg" alt="Dragon Drop">
 </p>
 
 Dragon Drop is an Angular static website builder app inspired by popular website builders such as Wix, Squarespace, and Shopify. Users can add, arrange, and customize webpage sections and elements using drag-and-drop and resizing functionalities. Upon completion, the application generates a static website ready for deployment.
 
 Production deployed builder: [Dragon Drop Website Builder](https://dragon-drop-five.vercel.app/)
 
-Example website generated using Dragon Drop Website Builder: [Website](https://tskobic.github.io/dragon-drop-generated-website/pages/)
+Example website generated using Dragon Drop Website Builder: [Website](https://toniskobic.github.io/dragon-drop-generated-website/pages/)
 
-Example website repo: [Repo](https://github.com/tskobic/dragon-drop-generated-website)
+Example website repo: [Repo](https://github.com/toniskobic/dragon-drop-generated-website)
 
-Documentation generated with Compodoc: [Documentation](https://tskobic.github.io/dragon-drop/index.html)
+Documentation generated with Compodoc: [Documentation](https://toniskobic.github.io/dragon-drop/index.html)
 
 This app was made as part of the graduate thesis (T. Škobić, "Building Web site generators", Graduate thesis, University of Zagreb, Faculty of Organization and Informatics, Varaždin, 2023, Available at: [https://urn.nsk.hr/urn:nbn:hr:211:816572](https://urn.nsk.hr/urn:nbn:hr:211:816572)).
 
